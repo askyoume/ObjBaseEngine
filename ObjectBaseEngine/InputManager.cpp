@@ -73,6 +73,23 @@ void Core::InputManager::RegisterReceiver(_uint key, InputType Type, IInputRecei
 	Receivers[key][Type].push_back(Receiver);
 }
 
+void Core::InputManager::UnRegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver)
+{
+	auto find = Receivers.find(key);
+	if (find != Receivers.end())
+	{
+		auto findType = find->second.find(Type);
+		if (findType != find->second.end())
+		{
+			auto findReceiver = std::find(findType->second.begin(), findType->second.end(), Receiver);
+			if (findReceiver != findType->second.end())
+			{
+				findType->second.erase(findReceiver);
+			}
+		}
+	}
+}
+
 void Core::InputManager::InitializeKeyboard()
 {
 	HRESULT hresult = _pInputSDK->CreateDevice(GUID_SysKeyboard, &_pKeyboard, nullptr);

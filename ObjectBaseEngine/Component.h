@@ -16,6 +16,9 @@ namespace Core
 		virtual void EndPlay() PURE;
 
 	public:
+		void SetDisable() { _isDisable = true; }
+
+	public:
 		virtual void SetOwner(Actor* owner) { _owner = owner; }
 
 	protected:
@@ -24,5 +27,6 @@ namespace Core
 
 	protected:
 		Actor* _owner = nullptr;
+		bool _isDisable = false;
 	};
 }

@@ -39,17 +39,29 @@ void Core::Layer::EndPlay()
 {
 	CoreManager* pCoreMgr = CoreManager::GetInstance();
 
-	for(auto& actor : _actors)
+	if (_actors.empty())
+		return;
+
+	for (auto it = _actors.begin(); it != _actors.end(); )
 	{
-		if(nullptr == actor)
-			continue;
+		if (_actors.empty())
+			break;
 
-		if (!actor->IsDestroyMarked())
+		if (nullptr == *it)
+		{
+			++it;
 			continue;
+		}
 
-		actor->EndPlay();
-		pCoreMgr->AddDestroyList(actor);
-		actor = nullptr;
+		if (!(*it)->IsDestroyMarked())
+		{
+			++it;
+			continue;
+		}
+
+		(*it)->EndPlay();
+		pCoreMgr->AddDestroyList(*it);
+		it = _actors.erase(it); // 요소를 삭제하고 반복자를 다음 요소로 이동
 	}
 }
 

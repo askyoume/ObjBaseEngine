@@ -69,6 +69,6 @@ namespace Core
 		float					_elapsedTick{ 0.f };
 		float					_width{ 0.f };
 		float					_height{ 0.f };
-		bool					_endDestroyThread{ nullptr };
+		bool					_endDestroyThread{ false };
 	};
 }

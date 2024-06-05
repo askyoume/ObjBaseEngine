@@ -15,7 +15,7 @@ namespace Core
 		bool Initialize(HINSTANCE hInst, HWND hWnd);
 		void InputUpdate();
 		void RegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver);
-		void RegisterInputComponent(_uint key, InputType Type, IInputReceiver* Receiver);
+		void UnRegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver);
 
 	public:
 		void ProcessKeyboardInput();

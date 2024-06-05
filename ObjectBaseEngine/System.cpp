@@ -36,7 +36,34 @@ bool Game::System::Initialize(HINSTANCE hInstance, HWND hWnd, float width, float
 
     _pCoreMgr->Initialize(gameSetting);
 
-	_pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
 
     return true;
 }

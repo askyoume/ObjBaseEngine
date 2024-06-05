@@ -13,11 +13,13 @@ Core::CoreManager::CoreManager()
     _pGraphicsMgr = GraphicsManager::Create();
     _pTextureMgr = TextureManager::Create();
     _pWorld = World::Begin(); // 추후에 현 월드 클래스를 -> 레벨 클래스로 변경, 이후 월드 클래스는 레벨을 관리, 전환하는 역활을 수행
+    BeginDestroy();
 }
 
 void Core::CoreManager::Tick()
 {
     _pTimeMgr->UpdateTick();
+    std::cout << _toBeDestroyed.size() << std::endl;
 
     float tickTime = _pTimeMgr->GetTick();
 
@@ -58,9 +60,9 @@ void Core::CoreManager::EndPlay()
 
 void Core::CoreManager::DestroyPoint()
 {
+    std::unique_lock<std::mutex> lock(_mutex);
     while (true)
 	{
-		std::unique_lock<std::mutex> lock(_mutex);
 		_variable.wait(lock, [this] { return !_toBeDestroyed.empty() || _endDestroyThread; });
 
 		if (_endDestroyThread && _toBeDestroyed.empty()) break;
@@ -71,6 +73,11 @@ void Core::CoreManager::DestroyPoint()
 		}
 
 		_toBeDestroyed.clear();
+
+		if (_toBeDestroyed.empty())
+        {
+			break;
+        }
 	}
 }
 
@@ -133,4 +140,6 @@ void Core::CoreManager::Remove()
 	SafeDelete(_pGraphicsMgr);
 	SafeDelete(_pTextureMgr);
 	SafeDelete(_pWorld);
+
+    EndDestroy();
 }

@@ -39,10 +39,14 @@ void Game::TestActor::EndPlay()
 void Game::TestActor::Fire()
 {
 	std::cout << "Fire" << std::endl;
-	//OnDestroyMark(true);
-	//std::cout << (IsDestroyMarked() ? "ture" : "false") << std::endl;
+	OnDestroyMark(true);
+	std::cout << (IsDestroyMarked() ? "ture" : "false") << std::endl;
 }
 //test code end
 void Game::TestActor::Remove()
 {
+	for (auto& component : _vecComponents)
+		SafeDelete(component);
+
+	_vecComponents.clear();
 }
