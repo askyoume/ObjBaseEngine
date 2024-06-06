@@ -9,10 +9,11 @@ void Game::TestActor::BeginPlay()
 
 	CreateComponent<::Core::InputComponent>("InputComponent");
 	::Core::InputComponent* pInputComponent = GetComponent<::Core::InputComponent>("InputComponent");
+	DIJOYSTATE2 GamePadState{};
 
-	pInputComponent->BindInputEvent(DIK_SPACE, InputType::PRESS, [&](const InputEvent& inputEvent)
+	pInputComponent->BindInputEvent(DIP_AXIS_LX, InputType::MOVE, [&](const InputEvent& inputEvent)
 		{
-			std::cout << "UP Pressed" << std::endl;
+			std::cout << "AXIS_X" << std::endl;
 			Fire();
 		});
 
@@ -39,8 +40,8 @@ void Game::TestActor::EndPlay()
 void Game::TestActor::Fire()
 {
 	std::cout << "Fire" << std::endl;
-	OnDestroyMark(true);
-	std::cout << (IsDestroyMarked() ? "ture" : "false") << std::endl;
+	//OnDestroyMark(true);
+	//std::cout << (IsDestroyMarked() ? "ture" : "false") << std::endl;
 }
 //test code end
 void Game::TestActor::Remove()

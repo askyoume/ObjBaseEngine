@@ -8,15 +8,17 @@
 
 bool Game::System::MainLoop()
 {
-    if (_pCoreMgr)
+    if (!_pCoreMgr->IsEndPlay())
 	{
 		_pCoreMgr->Tick();
         _pCoreMgr->Fixed(50);
         _pCoreMgr->Render();
 		_pCoreMgr->EndPlay();
-	}
 
-    return true;
+        return true;
+	}
+    else
+        return false;
 }
 
 bool Game::System::Initialize(HINSTANCE hInstance, HWND hWnd, float width, float height)
@@ -37,6 +39,7 @@ bool Game::System::Initialize(HINSTANCE hInstance, HWND hWnd, float width, float
     _pCoreMgr->Initialize(gameSetting);
 
     _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+   /* _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
     _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
     _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
     _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
@@ -62,16 +65,14 @@ bool Game::System::Initialize(HINSTANCE hInstance, HWND hWnd, float width, float
     _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
     _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
     _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
-    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
-    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());*/
 
     return true;
 }
 
 void Game::System::Remove()
-{
+{    
     _pCoreMgr->Release();
-    _pCoreMgr = nullptr;
 }
 
 Game::System* Game::System::Create(HINSTANCE hInstance, HWND hWnd, float width, float height)

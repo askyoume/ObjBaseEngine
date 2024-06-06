@@ -73,11 +73,6 @@ void Core::CoreManager::DestroyPoint()
 		}
 
 		_toBeDestroyed.clear();
-
-		if (_toBeDestroyed.empty())
-        {
-			break;
-        }
 	}
 }
 
@@ -134,12 +129,13 @@ void Core::CoreManager::Remove()
 {
 	//_pSwapChain = nullptr;
 	_pRenderTarget = nullptr;
+    EndDestroy();
 
+	SafeDelete(_pWorld);
     SafeDelete(_pTimeMgr);
 	SafeDelete(_pInputMgr);
 	SafeDelete(_pGraphicsMgr);
 	SafeDelete(_pTextureMgr);
-	SafeDelete(_pWorld);
 
-    EndDestroy();
+	_endPlay = true;
 }

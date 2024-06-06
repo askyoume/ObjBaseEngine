@@ -30,17 +30,21 @@ namespace Core
 
 	public: //game loop
 		void Tick();
-		void Fixed(int count); //physics
+		void Fixed(int count);
 		void Render();
 		void EndPlay();
 		void DestroyPoint();
 
 	public:
-		void Initialize(const GameSetting& info);
 		HWND GetWindowHandle() const;
+
+		void Initialize(const GameSetting& info);
 		void AddDestroyList(Object* pObject);
 		void BeginDestroy();
 		void EndDestroy();
+
+		bool IsEndDestroy() const { return _endDestroyThread; }
+		bool IsEndPlay() const { return _endPlay; }
 
 		float GetWidth() const { return _width; }
 		float GetHeight() const { return _height; }
@@ -48,7 +52,7 @@ namespace Core
 		//test code
 		InputManager* GetInputManager() const { return _pInputMgr; }
 		World* GetWorld() const { return _pWorld; }
-
+		//test code end
 	private:
 		void Remove() override;
 
@@ -70,5 +74,6 @@ namespace Core
 		float					_width{ 0.f };
 		float					_height{ 0.f };
 		bool					_endDestroyThread{ false };
+		bool					_endPlay{ false };
 	};
 }
