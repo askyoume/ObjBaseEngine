@@ -50,6 +50,7 @@ namespace Core
 
 	protected:
 		//BoxCollider _BoxCollider;
+		Vector2     _WorldLocation{ UnitVector::Zero };
 		Vector2		_RelativeLocation{ UnitVector::Zero };
 		Vector2		_RelativeScale{ UnitVector::One };
 		float		_RelativeRotation{ 0.f };

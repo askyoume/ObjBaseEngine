@@ -49,10 +49,16 @@ namespace Core
 		float GetWidth() const { return _width; }
 		float GetHeight() const { return _height; }
 
+		bool LoadTexture(_pwstring filePath);
+		Texture* FindTexture(_pwstring filePath);
+
 		//test code
 		InputManager* GetInputManager() const { return _pInputMgr; }
 		World* GetWorld() const { return _pWorld; }
+		GraphicsPtrPackage* GetGraphicsPackage() const;
 		//test code end
+
+
 	private:
 		void Remove() override;
 

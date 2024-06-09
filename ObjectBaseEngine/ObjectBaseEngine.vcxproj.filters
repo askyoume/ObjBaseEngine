@@ -88,71 +88,11 @@
     <Filter Include="Client\TestCode">
       <UniqueIdentifier>{5bd30fa4-007c-43f1-83ec-199451c4aacd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component\BitmapComponent">
+      <UniqueIdentifier>{b9d675a3-075d-454d-9b17-5817a018bd27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core_Define.h">
-      <Filter>Engine\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Engine\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Core_Enum.h">
-      <Filter>Engine\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Engine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="TimeManager.h">
-      <Filter>Engine\Manager\Time</Filter>
-    </ClInclude>
-    <ClInclude Include="CoreManager.h">
-      <Filter>Engine\Manager\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Engine\Manager\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Engine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Engine\BaseClass\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Core_Struct.h">
-      <Filter>Engine\header</Filter>
-    </ClInclude>
-    <ClInclude Include="IInputReceiver.h">
-      <Filter>Engine\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Core_Type.h">
-      <Filter>Engine\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Core_Macro.h">
-      <Filter>Engine\header</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsManager.h">
-      <Filter>Engine\Manager\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Engine\BaseClass\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Engine\Manager\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Engine\BaseClass\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Engine\Layer</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Engine\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Core_Function.h">
-      <Filter>Engine\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Core.h">
-      <Filter>Engine\BaseClass\Core</Filter>
-    </ClInclude>
     <ClInclude Include="MainEntry.h">
       <Filter>Client\MainEntry</Filter>
     </ClInclude>
@@ -162,67 +102,136 @@
     <ClInclude Include="System.h">
       <Filter>Client\System</Filter>
     </ClInclude>
-    <ClInclude Include="RenderComponent.h">
-      <Filter>Engine\Component\RenderComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneComponent.h">
-      <Filter>Engine\Component\SceneComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="Mathf.h">
-      <Filter>Engine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="InputComponent.h">
-      <Filter>Engine\Component\InputComponent</Filter>
-    </ClInclude>
     <ClInclude Include="TestActor.h">
       <Filter>Client\TestCode</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Actor.h">
+      <Filter>Engine\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Core.h">
+      <Filter>Engine\BaseClass\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Object.h">
+      <Filter>Engine\BaseClass\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Texture.h">
+      <Filter>Engine\BaseClass\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\World.h">
+      <Filter>Engine\BaseClass\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Event.h">
+      <Filter>Engine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\InputComponent.h">
+      <Filter>Engine\Component\InputComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\RenderComponent.h">
+      <Filter>Engine\Component\RenderComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\SceneComponent.h">
+      <Filter>Engine\Component\SceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Component.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Core_Define.h">
+      <Filter>Engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Core_Enum.h">
+      <Filter>Engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Core_Function.h">
+      <Filter>Engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Core_Macro.h">
+      <Filter>Engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Core_Struct.h">
+      <Filter>Engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Core_Type.h">
+      <Filter>Engine\header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\IInputReceiver.h">
+      <Filter>Engine\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Layer.h">
+      <Filter>Engine\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Mathf.h">
+      <Filter>Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Singleton.h">
+      <Filter>Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\CoreManager.h">
+      <Filter>Engine\Manager\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\GraphicsManager.h">
+      <Filter>Engine\Manager\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\InputManager.h">
+      <Filter>Engine\Manager\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\TextureManager.h">
+      <Filter>Engine\Manager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\TimeManager.h">
+      <Filter>Engine\Manager\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\BitmapComponent.h">
+      <Filter>Engine\Component\BitmapComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TimeManager.cpp">
-      <Filter>Engine\Manager\Time</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Engine\Manager\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphicsManager.cpp">
-      <Filter>Engine\Manager\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Engine\BaseClass\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Engine\BaseClass\World</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Engine\Layer</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Engine\Manager\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="CoreManager.cpp">
-      <Filter>Engine\Manager\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Engine\BaseClass\Object</Filter>
-    </ClCompile>
     <ClCompile Include="MainEntry.cpp">
       <Filter>Client\MainEntry</Filter>
     </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Client\System</Filter>
     </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Engine\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="InputComponent.cpp">
-      <Filter>Engine\Component\InputComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneComponent.cpp">
-      <Filter>Engine\Component\SceneComponent</Filter>
-    </ClCompile>
     <ClCompile Include="TestActor.cpp">
       <Filter>Client\TestCode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\Object.cpp">
+      <Filter>Engine\BaseClass\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\Texture.cpp">
+      <Filter>Engine\BaseClass\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\World.cpp">
+      <Filter>Engine\BaseClass\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\InputComponent.cpp">
+      <Filter>Engine\Component\InputComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\SceneComponent.cpp">
+      <Filter>Engine\Component\SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\Layer.cpp">
+      <Filter>Engine\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\CoreManager.cpp">
+      <Filter>Engine\Manager\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\GraphicsManager.cpp">
+      <Filter>Engine\Manager\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\InputManager.cpp">
+      <Filter>Engine\Manager\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\TextureManager.cpp">
+      <Filter>Engine\Manager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\TimeManager.cpp">
+      <Filter>Engine\Manager\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\Actor.cpp">
+      <Filter>Engine\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp">
+      <Filter>Engine\Component\BitmapComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

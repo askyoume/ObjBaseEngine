@@ -32,37 +32,62 @@ bool Core::TextureManager::LoadTexture(LPCWSTR filePath)
 			}
 			else
 			{
+				WCHAR tag[64] = L"";
 				WCHAR fullPath[MAX_PATH] = L"";
+
 				lstrcpy(fullPath, filePath);
 				lstrcat(fullPath, L"/");
 				lstrcat(fullPath, findData.name);
 
-				Textures::iterator iter = _textures.find(fullPath);
-				if(iter == _textures.end())
+				int index = 0;
+				int offset = 0;
+				int length = lstrlen(filePath);
+
+				while(3 != offset)
 				{
-					Texture* texture = Texture::Create(_pPackage);
-					if(texture->LoadTexture(fullPath))
+					if (L'/' == filePath[index++])
 					{
-						_textures.insert(std::make_pair(fullPath, texture));
+						offset++;
 					}
-					else
-					{
-						SafeDelete(texture);
-						return false;
-					}
+				}
+
+				offset = index + 1;
+				index = 0;
+
+				while(offset < length)
+				{
+					tag[index] = filePath[offset++];
+
+					if (tag[index] == L'/')
+						tag[index] = L'_';
+
+					index++;
+				}
+
+				Texture* pTexture = _textures[tag];
+
+				if (nullptr == pTexture)
+				{
+					pTexture = Texture::Create(_pPackage);
+					pTexture->LoadTexture(fullPath);
+					_textures[tag] = pTexture;
+				}
+				else
+				{
+					pTexture->LoadTexture(fullPath);
 				}
 			}
 		} while(0 == _wfindnext(handle, &findData));
 		
-		_findclose(handle);
 	}
+		_findclose(handle);
 
 	return true;
 }
 
-Core::Texture* Core::TextureManager::FindTexture(LPCWSTR filePath)
+Core::Texture* Core::TextureManager::FindTexture(_pwstring fileTag)
 {
-    return _textures[filePath];
+    return _textures[fileTag];
 }
 
 bool Core::TextureManager::Initialize(GraphicsPtrPackage* package)

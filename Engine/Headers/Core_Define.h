@@ -12,6 +12,10 @@
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dinput8.lib")
 
+// Xinput
+#include <Xinput.h>
+#pragma comment(lib, "Xinput.lib")
+
 // DirectX
 #include <d3d11.h>
 #include <d2d1.h>

@@ -5,7 +5,7 @@ void Core::Object::CreateObjectDirectory()
 {
 	_bstr_t convertName = this->name;
 	_pwstring tempName = convertName;
-	_pwstring base = L"Assets";
+	_pwstring base = L"Client\\Assets";
 
 	CreateDirectory(base, nullptr);
 

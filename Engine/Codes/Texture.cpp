@@ -2,7 +2,6 @@
 
 ID2D1Bitmap* Core::Texture::LoadTexture(LPCWSTR filePath)
 {
-	BitmapPtrPackage pBitmapPtrPackage;
 
 	HRESULT hresult = _pPackage->_pWICFactory->CreateDecoderFromFilename(
 		filePath, nullptr, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pBitmapPtrPackage._pDecoder);
@@ -25,8 +24,9 @@ ID2D1Bitmap* Core::Texture::LoadTexture(LPCWSTR filePath)
 
 	if(SUCCEEDED(hresult))
 	{
-		hresult = _pPackage->_pD2DRenderTarget->CreateBitmapFromWicBitmap(
+		hresult = _pPackage->_pHwndRenderTarget->CreateBitmapFromWicBitmap(
 			pBitmapPtrPackage._pConverter, nullptr, &pBitmapPtrPackage._pBitmap);
+		std::cout << &pBitmapPtrPackage._pBitmap << std::endl;
 	}
 
 	if(pBitmapPtrPackage._pDecoder)
@@ -50,6 +50,7 @@ ID2D1Bitmap* Core::Texture::LoadTexture(LPCWSTR filePath)
 	if(SUCCEEDED(hresult))
 	{
 		_vecOriginBitmaps.push_back(pBitmapPtrPackage._pBitmap);
+		pBitmapPtrPackage._pBitmap->AddRef();
 		return pBitmapPtrPackage._pBitmap;
 	}
 
@@ -65,8 +66,10 @@ bool Core::Texture::Initialize(GraphicsPtrPackage* package)
 
 void Core::Texture::Remove()
 {
-	for (auto& Bitmap : _vecOriginBitmaps)
-		delete Bitmap;
+	for (auto& pBitmap : _vecOriginBitmaps)
+	{
+		SafeRelease(pBitmap);
+	}
 
 	_vecOriginBitmaps.clear();
 	_vecOriginBitmaps.shrink_to_fit();

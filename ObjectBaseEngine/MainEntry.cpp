@@ -1,11 +1,12 @@
 #include <cstdlib>
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
 
 #include "MainEntry.h"
 #include "CoreManager.h"
 #include "System.h"
+
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 constexpr int SCREEN_START_LEFT = 10;
 constexpr int SCREEN_START_TOP = 10;
@@ -20,11 +21,17 @@ constexpr int SCREEN_HEIGHT = 720;
 #endif
 #endif
 
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, 
 	_In_opt_ HINSTANCE hPrevInstance, 
 	_In_ LPWSTR lpszCmdParam, 
 	_In_ int nCmdShow)
 {
+	//_CrtSetBreakAlloc(257);
+
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpszCmdParam);
 
@@ -35,6 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	winApp.Release();
 	
 	_CrtDumpMemoryLeaks();
+
 
 	return EXIT_SUCCESS;
 }
@@ -112,8 +120,7 @@ void Game::WinApp::Release()
 		_pSystem->Release();
 		_pSystem = nullptr;
 	}
-
-	UnregisterClass(TEXT("Test D2D FrameWork"), _hInstance);
+	//UnregisterClass(TEXT("Test D2D FrameWork"), _hInstance);
 }
 
 LRESULT Game::WinApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

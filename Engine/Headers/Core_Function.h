@@ -25,4 +25,24 @@ namespace Core
 	template <typename T, typename std::enable_if<!has_Release<T>::value, int>::type = 0>
 	void SafeDelete(T*& ptr) = delete;
 
+	template <typename T>
+	void SafeRelease(T** pptr)
+	{
+		if (*pptr)
+		{
+			(*pptr)->Release();
+			*pptr = nullptr;
+		}
+	}
+
+	template <typename T>
+	void SafeRelease(T* ptr)
+	{
+		if (ptr)
+		{
+			ptr->Release();
+			ptr = nullptr;
+		}
+	}
+
 }

@@ -6,7 +6,7 @@ namespace Core
 {
 	class RenderComponent abstract : public SceneComponent
 	{
-	private:
+	protected:
 		explicit RenderComponent() DEFAULT;
 		virtual ~RenderComponent() DEFAULT;
 
@@ -23,6 +23,7 @@ namespace Core
 		virtual void Remove() override PURE;
 
 	protected:
+		Matrix3x2 _renderMatrix = D2D1::Matrix3x2F::Scale(1.f, -1.f, D2D1::Point2F(0,0));
 		bool _isVisible{ true };
 		int  _order{ 0 };
 	};

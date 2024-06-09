@@ -46,25 +46,22 @@ void Core::InputManager::Remove()
 	if (_pKeyboard)
     {
         _pKeyboard->Unacquire();
-        _pKeyboard->Release();
-        _pKeyboard = nullptr;
+		SafeRelease(_pKeyboard);
     }
     if (_pMouse)
     {
         _pMouse->Unacquire();
-        _pMouse->Release();
-        _pMouse = nullptr;
+		SafeRelease(_pMouse);
     }
     if (_pGamePad)
     {
-        _pGamePad->Unacquire();
-        _pGamePad->Release();
+		ZeroMemory(_pGamePad, sizeof(XINPUT_STATE));
+		delete _pGamePad;
         _pGamePad = nullptr;
     }
     if (_pInputSDK)
     {
-        _pInputSDK->Release();
-        _pInputSDK = nullptr;
+		SafeRelease(_pInputSDK);
     }
 }
 
@@ -174,45 +171,19 @@ void Core::InputManager::InitializeMouse()
 
 void Core::InputManager::InitializeGamePad()
 {
-	_pInputSDK->EnumDevices(DI8DEVCLASS_GAMECTRL, EnumGamepadsCallback, this, DIEDFL_ATTACHEDONLY);
-}
-
-BOOL Core::InputManager::EnumGamepadsCallback(LPCDIDEVICEINSTANCE lpddi, LPVOID pvRef)
-{
-	InputManager* pThis = static_cast<InputManager*>(pvRef);
-	HRESULT hresult = pThis->_pInputSDK->CreateDevice(lpddi->guidInstance, &pThis->_pGamePad, nullptr);
-	if(SUCCEEDED(hresult))
+	_pGamePad = new XINPUT_STATE();
+	ZeroMemory(_pGamePad, sizeof(XINPUT_STATE));
+	for (_uint i = 0; i < XUSER_MAX_COUNT; ++i)
 	{
-		hresult = pThis->_pGamePad->SetDataFormat(&c_dfDIJoystick);
-		if(SUCCEEDED(hresult))
+		DWORD result = XInputGetState(i, _pGamePad);
+		if (result == ERROR_SUCCESS)
 		{
-			hresult = pThis->_pGamePad->SetCooperativeLevel(pThis->hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
-			if(SUCCEEDED(hresult))
-			{
-				pThis->_pGamePad->Acquire();
-				if(FAILED(hresult))
-				{
-					MessageBox(pThis->hWnd, L"GamePad Acquire() failed", L"Error", MB_OK);
-					pThis->_pGamePad->Release();
-					pThis->_pGamePad = nullptr;
-				}
-			}
-			else
-			{
-				MessageBox(pThis->hWnd, L"GamePad SetCooperativeLevel() failed", L"Error", MB_OK);
-				pThis->_pGamePad->Release();
-				pThis->_pGamePad = nullptr;
-			}
-		}
-		else
-		{
-			MessageBox(pThis->hWnd, L"GamePad SetDataFormat() failed", L"Error", MB_OK);
-			pThis->_pGamePad->Release();
-			pThis->_pGamePad = nullptr;
+			_gamePadIndex = i;
+			break;
 		}
 	}
-	return DIENUM_STOP;
 }
+
 
 void Core::InputManager::ProcessKeyboardInput()
 {
@@ -256,54 +227,69 @@ void Core::InputManager::ProcessMouseInput()
 
         if (mouseState.lZ != 0)
         {
-            DispatchInput(InputDevice::MOUSE, InputType::SCROLL, 0, static_cast<float>(mouseState.lZ));
+            DispatchInput(InputDevice::MOUSE, InputType::SCROLL, (_uint)InputType::SCROLL, static_cast<float>(mouseState.lZ));
         }
 
         if (mouseState.lX != 0 || mouseState.lY != 0)
         {
-            DispatchInput(InputDevice::MOUSE, InputType::MOVE, 0, 0.0f, false, mouseState.lX, mouseState.lY);
+            DispatchInput(InputDevice::MOUSE, InputType::MOVE, (_uint)InputType::MOVE, 0.0f, false, mouseState.lX, mouseState.lY);
         }
 	}
 }
 
 void Core::InputManager::ProcessGamePadInput()
 {
-	if(_pGamePad)
+	if (XInputGetState(_gamePadIndex, _pGamePad) == ERROR_SUCCESS)
 	{
-		DIJOYSTATE2 gamePadState{};
-		HRESULT hresult = _pGamePad->GetDeviceState(sizeof(DIJOYSTATE2), (LPVOID)&gamePadState);
-		if(FAILED(hresult))
+		for (_uint i = 0; i < DIP_MAX; i++)
 		{
-			if(hresult == DIERR_INPUTLOST || hresult == DIERR_NOTACQUIRED)
-			{
-				_pMouse->Acquire();
-			}
+			bool isPressed = (_pGamePad->Gamepad.wButtons & (1 << i)) != 0;
+			DispatchInput(InputDevice::GAMEPAD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
 		}
-		else
+
+		float gamePadLX = static_cast<float>(_pGamePad->Gamepad.sThumbLX) / GAMEPAD_NORMALIZE;
+		if (abs(_pGamePad->Gamepad.sThumbLX) > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 		{
-			for(_uint i = 0; i < 128; ++i)
-			{
-				bool isPressed = (gamePadState.rgbButtons[i] & 0x80) != 0;
-				DispatchInput(InputDevice::GAMEPAD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
-			}
+			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_LX, gamePadLX);
+		}
 
-			if(gamePadState.lX != 0)
-			{
-				DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, 0, static_cast<_float>(gamePadState.lX));
-			}
+		float gamePadLY = static_cast<float>(_pGamePad->Gamepad.sThumbLY) / GAMEPAD_NORMALIZE;
+		if (abs(_pGamePad->Gamepad.sThumbLY) > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
+		{
+			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_LY, gamePadLY);
+		}
 
-			if(gamePadState.lY != 0)
-			{
-				DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, 1, static_cast<_float>(gamePadState.lY));
-			}
+		float gamePadRX = static_cast<float>(_pGamePad->Gamepad.sThumbRX) / GAMEPAD_NORMALIZE;
+		if (abs(_pGamePad->Gamepad.sThumbRX) > XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE)
+		{
+			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_RX, gamePadRX);
+		}
+
+		float gamePadRY = static_cast<float>(_pGamePad->Gamepad.sThumbRY) / GAMEPAD_NORMALIZE;
+		if (abs(_pGamePad->Gamepad.sThumbRY) > XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE)
+		{
+			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_RY, gamePadRY);
+		}
+
+		float gamePadLT = static_cast<float>(_pGamePad->Gamepad.bLeftTrigger) / 255.f;
+		if (gamePadLT > XINPUT_GAMEPAD_TRIGGER_THRESHOLD)
+		{
+			DispatchInput(InputDevice::GAMEPAD, InputType::TRIGGER, DIP_LT, gamePadLT);
+		}
+
+		float gamePadRT = static_cast<float>(_pGamePad->Gamepad.bRightTrigger) / 255.f;
+		if (gamePadRT > XINPUT_GAMEPAD_TRIGGER_THRESHOLD)
+		{
+			DispatchInput(InputDevice::GAMEPAD, InputType::TRIGGER, DIP_RT, gamePadRT);
 		}
 	}
 }
 
 void Core::InputManager::DispatchInput(InputDevice Device, InputType Type, _uint Key, _float Value, bool State, long x, long y)
 {
-	InputEvent event(Device, Type, Key, Value, State, x, y);
-	auto find = Receivers.find(Key);
+	_uint uniqueKey = (static_cast<_uint>(Device) << 16 | Key);
+	InputEvent event(Device, Type, uniqueKey, Value, State, x, y);
+	auto find = Receivers.find(uniqueKey);
 	if(find != Receivers.end())
 	{
 		auto findType = find->second.find(Type);

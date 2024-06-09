@@ -33,13 +33,14 @@ namespace Core
 		void InitializeKeyboard();
 		void InitializeMouse();
 		void InitializeGamePad();
-		static BOOL CALLBACK EnumGamepadsCallback(LPCDIDEVICEINSTANCE lpddi, LPVOID pvRef);
 
 	private:
 		IDirectInput8* _pInputSDK = nullptr;
 		IDirectInputDevice8* _pKeyboard = nullptr;
 		IDirectInputDevice8* _pMouse = nullptr;
-		IDirectInputDevice8* _pGamePad = nullptr;
+
+		XINPUT_STATE* _pGamePad = nullptr;
+		DWORD _gamePadIndex = 0;
 		HWND hWnd = nullptr;
 
 		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<IInputReceiver*>>> Receivers;

@@ -29,54 +29,62 @@ void Core::GraphicsManager::Remove()
 {
 	if (_pGraphicsPtrPackage._pBrush)
 	{
-		_pGraphicsPtrPackage._pBrush->Release();
-		_pGraphicsPtrPackage._pBrush = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pBrush);
 	}
 	if (_pGraphicsPtrPackage._pD2DRenderTarget)
 	{
-		_pGraphicsPtrPackage._pD2DRenderTarget->Release();
-		_pGraphicsPtrPackage._pD2DRenderTarget = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pD2DRenderTarget);
+	}
+	if (_pGraphicsPtrPackage._pRenderTargetView)
+	{
+		SafeRelease(_pGraphicsPtrPackage._pRenderTargetView);
 	}
 	if (_pGraphicsPtrPackage._pD2DFactory)
 	{
-		_pGraphicsPtrPackage._pD2DFactory->Release();
-		_pGraphicsPtrPackage._pD2DFactory = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pD2DFactory);
 	}
 	if (_pGraphicsPtrPackage._pBackBuffer)
 	{
-		_pGraphicsPtrPackage._pBackBuffer->Release();
-		_pGraphicsPtrPackage._pBackBuffer = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pBackBuffer);
 	}
 	if (_pGraphicsPtrPackage._pSwapChain)
 	{
-		_pGraphicsPtrPackage._pSwapChain->Release();
-		_pGraphicsPtrPackage._pSwapChain = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pSwapChain);
+	}
+	if(_pGraphicsPtrPackage._pHwndRenderTarget)
+	{
+		SafeRelease(_pGraphicsPtrPackage._pHwndRenderTarget);
 	}
 	if (_pGraphicsPtrPackage._pDXGIFactory)
 	{
-		_pGraphicsPtrPackage._pDXGIFactory->Release();
-		_pGraphicsPtrPackage._pDXGIFactory = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pDXGIFactory);
 	}
 	if (_pGraphicsPtrPackage._pDXGIDevice)
 	{
-		_pGraphicsPtrPackage._pDXGIDevice->Release();
-		_pGraphicsPtrPackage._pDXGIDevice = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pDXGIDevice);
 	}
 	if (_pGraphicsPtrPackage._pAdapter)
 	{
-		_pGraphicsPtrPackage._pAdapter->Release();
-		_pGraphicsPtrPackage._pAdapter = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pAdapter);
 	}
 	if (_pGraphicsPtrPackage._pDeviceContext)
 	{
-		_pGraphicsPtrPackage._pDeviceContext->Release();
-		_pGraphicsPtrPackage._pDeviceContext = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pDeviceContext);
 	}
 	if (_pGraphicsPtrPackage._pDevice)
 	{
-		_pGraphicsPtrPackage._pDevice->Release();
-		_pGraphicsPtrPackage._pDevice = nullptr;
+		SafeRelease(_pGraphicsPtrPackage._pDevice);
 	}
+	if (_pGraphicsPtrPackage._pTextFormat)
+	{
+		SafeRelease(_pGraphicsPtrPackage._pTextFormat);
+	}
+	if (_pGraphicsPtrPackage._pDWriteFactory)
+	{
+		SafeRelease(_pGraphicsPtrPackage._pDWriteFactory);
+	}
+
+	CoUninitialize();
 }
 
 HRESULT Core::GraphicsManager::InitializeD3D(HWND hWnd)
@@ -251,9 +259,14 @@ HRESULT Core::GraphicsManager::InitializeD2D(HWND hWnd)
 	//	return hresult;
 	//}
 
+	D2D1_SIZE_U screenSize = D2D1::SizeU(
+		(_uint)_pCoreMgr->GetWidth(), 
+		(_uint)_pCoreMgr->GetHeight()
+	);
+
 	hresult = _pGraphicsPtrPackage._pD2DFactory->CreateHwndRenderTarget(
 		renderTargetProperties,
-		D2D1::HwndRenderTargetProperties(hWnd, D2D1::SizeU(_pCoreMgr->GetWidth(), _pCoreMgr->GetHeight())),
+		D2D1::HwndRenderTargetProperties(hWnd, screenSize),
 		&_pGraphicsPtrPackage._pHwndRenderTarget
 	);
 	if (FAILED(hresult))

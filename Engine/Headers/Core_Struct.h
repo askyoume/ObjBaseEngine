@@ -18,15 +18,16 @@ enum class InputType
 	AXIS,
 	SCROLL,
 	MOVE,
+	TRIGGER,
 	END
 };
 
 enum MouseState
 {
-	DIM_LB = 0,
-	DIM_RB = 1,
-	DIM_WB = 2,
-	DIM_END = 4
+	DIM_LB,
+	DIM_RB,
+	DIM_WB,
+	DIM_END
 };
 
 struct InputEvent

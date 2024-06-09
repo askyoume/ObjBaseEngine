@@ -1,6 +1,5 @@
 #pragma once
 #include "Core_Define.h"
-#include "IInputReceiver.h"
 #include "Object.h"
 
 namespace Core
@@ -53,5 +52,6 @@ namespace Core
 		World*					_pOwnerWorld{ nullptr };
 		int						_layerIndex{ 0 };
 		std::vector<Component*> _vecComponents;
+		std::vector<Texture*>	_vecTextures;
 	};
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sdkddkver.h>
+#include <SDKDDKVer.h>
 #include <windows.h>
 #include "Client_Macro.h"
 
