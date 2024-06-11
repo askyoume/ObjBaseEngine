@@ -26,7 +26,6 @@ ID2D1Bitmap* Core::Texture::LoadTexture(LPCWSTR filePath)
 	{
 		hresult = _pPackage->_pHwndRenderTarget->CreateBitmapFromWicBitmap(
 			pBitmapPtrPackage._pConverter, nullptr, &pBitmapPtrPackage._pBitmap);
-		std::cout << &pBitmapPtrPackage._pBitmap << std::endl;
 	}
 
 	if(pBitmapPtrPackage._pDecoder)

@@ -2,11 +2,6 @@
 #include "Actor.h"
 #include "Layer.h"
 
-Core::World* Core::World::Begin()
-{
-	return new World;
-}
-
 bool Core::World::InitializeWorld(int layerSize)
 {
     InitializeLayer(layerSize);
@@ -91,8 +86,9 @@ void Core::World::ClearLayer()
 	_vecLayers.clear();
 }
 
-bool Core::World::AddActor(int layerIndex, Actor* pActor)
+bool Core::World::AddActor(int layerIndex, _pstring name, Actor* pActor)
 {
+	pActor->SetName(name);
 	_vecLayers[layerIndex]->AddActor(pActor);
 
     return true;

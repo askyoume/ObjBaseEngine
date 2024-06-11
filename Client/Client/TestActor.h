@@ -1,8 +1,9 @@
 #pragma once
-#include "Core_Define.h"
-#include "Actor.h"
 
-namespace Game
+#include "../../Engine/Headers/Core_Define.h"
+#include "../../Engine/Headers/Actor.h"
+
+namespace Client
 {
 	class TestActor : public Core::Actor
 	{

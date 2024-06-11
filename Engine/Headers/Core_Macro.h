@@ -72,11 +72,11 @@
 // Define MOUSE                             //
 //////////////////////////////////////////////
 
-#define DIM_LB 0x00010000
-#define DIM_RB 0x00010001
-#define DIM_WB 0x00010002
+#define DIM_LB      0x00010000
+#define DIM_RB      0x00010001
+#define DIM_WB      0x00010002
 
-#define DIM_SCROLL 0x00010004
-#define DIM_MOVE 0x00010005
+#define DIM_SCROLL  0x00010004
+#define DIM_MOVE    0x00010005
 
-#define DIM_END 3
+#define DIM_END     3

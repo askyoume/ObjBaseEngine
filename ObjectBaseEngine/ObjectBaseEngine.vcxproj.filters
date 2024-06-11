@@ -49,12 +49,6 @@
     <Filter Include="Engine\Manager\Texture">
       <UniqueIdentifier>{76deaee4-061e-4ff0-8090-d4fe5f1835d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Layer">
-      <UniqueIdentifier>{490dd329-328e-4e45-a96d-1fc593b49164}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Event">
-      <UniqueIdentifier>{21578d08-8f7c-4d3d-93c1-d6253f5e9a17}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\BaseClass">
       <UniqueIdentifier>{9c38e157-0d3c-4378-8fc2-60e24ecaa9aa}</UniqueIdentifier>
     </Filter>
@@ -85,11 +79,26 @@
     <Filter Include="Engine\Component\InputComponent">
       <UniqueIdentifier>{1e685de1-557a-4137-a2af-2b6ab1d36e72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Client\TestCode">
-      <UniqueIdentifier>{5bd30fa4-007c-43f1-83ec-199451c4aacd}</UniqueIdentifier>
+    <Filter Include="Engine\BaseClass\Layer">
+      <UniqueIdentifier>{490dd329-328e-4e45-a96d-1fc593b49164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseClass\Event">
+      <UniqueIdentifier>{21578d08-8f7c-4d3d-93c1-d6253f5e9a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\Mathf">
+      <UniqueIdentifier>{9eb24cea-469d-4039-bd7d-545c459c1677}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Component\BitmapComponent">
       <UniqueIdentifier>{b9d675a3-075d-454d-9b17-5817a018bd27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\Singleton">
+      <UniqueIdentifier>{4541ae21-7168-48ab-aea9-e234ffc68ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\Mathf\Matrix">
+      <UniqueIdentifier>{44614574-49ee-47e6-8c35-b95df0796f93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\Mathf\Vector2">
+      <UniqueIdentifier>{7be90afb-ac78-4b63-a22a-5315b40d3039}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +110,6 @@
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Client\System</Filter>
-    </ClInclude>
-    <ClInclude Include="TestActor.h">
-      <Filter>Client\TestCode</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Actor.h">
       <Filter>Engine\Actor</Filter>
@@ -121,16 +127,13 @@
       <Filter>Engine\BaseClass\World</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Event.h">
-      <Filter>Engine\Event</Filter>
+      <Filter>Engine\BaseClass\Event</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\InputComponent.h">
       <Filter>Engine\Component\InputComponent</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\RenderComponent.h">
       <Filter>Engine\Component\RenderComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine\Headers\SceneComponent.h">
-      <Filter>Engine\Component\SceneComponent</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Component.h">
       <Filter>Engine\Component</Filter>
@@ -157,13 +160,7 @@
       <Filter>Engine\Interface</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Layer.h">
-      <Filter>Engine\Layer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine\Headers\Mathf.h">
-      <Filter>Engine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine\Headers\Singleton.h">
-      <Filter>Engine\Utility</Filter>
+      <Filter>Engine\BaseClass\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\CoreManager.h">
       <Filter>Engine\Manager\Core</Filter>
@@ -183,6 +180,21 @@
     <ClInclude Include="..\Engine\Headers\BitmapComponent.h">
       <Filter>Engine\Component\BitmapComponent</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Mathf.h">
+      <Filter>Engine\Utility\Mathf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\SceneComponent.h">
+      <Filter>Engine\Component\SceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Matrix.h">
+      <Filter>Engine\Utility\Mathf\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Vector2.h">
+      <Filter>Engine\Utility\Mathf\Vector2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Singleton.h">
+      <Filter>Engine\Utility\Singleton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainEntry.cpp">
@@ -190,9 +202,6 @@
     </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Client\System</Filter>
-    </ClCompile>
-    <ClCompile Include="TestActor.cpp">
-      <Filter>Client\TestCode</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\Object.cpp">
       <Filter>Engine\BaseClass\Object</Filter>
@@ -206,11 +215,8 @@
     <ClCompile Include="..\Engine\Codes\InputComponent.cpp">
       <Filter>Engine\Component\InputComponent</Filter>
     </ClCompile>
-    <ClCompile Include="..\Engine\Codes\SceneComponent.cpp">
-      <Filter>Engine\Component\SceneComponent</Filter>
-    </ClCompile>
     <ClCompile Include="..\Engine\Codes\Layer.cpp">
-      <Filter>Engine\Layer</Filter>
+      <Filter>Engine\BaseClass\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\CoreManager.cpp">
       <Filter>Engine\Manager\Core</Filter>
@@ -232,6 +238,12 @@
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp">
       <Filter>Engine\Component\BitmapComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\SceneComponent.cpp">
+      <Filter>Engine\Component\SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Headers\RenderComponent.cpp">
+      <Filter>Engine\Component\RenderComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

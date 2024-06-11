@@ -12,7 +12,10 @@ Core::CoreManager::CoreManager()
     _pInputMgr = InputManager::Create();
     _pGraphicsMgr = GraphicsManager::Create();
     _pTextureMgr = TextureManager::Create();
-    _pWorld = World::Begin(); // 추후에 현 월드 클래스를 -> 레벨 클래스로 변경, 이후 월드 클래스는 레벨을 관리, 전환하는 역활을 수행
+    //클라이언트에서 월드를 생성하고 전달해야함.
+	//비긴 삭제하고 클라이언트에서 월드를 생성하고 전달하게 수정해야함.
+    /*_pWorld = World::Begin(); */
+    // 추후에 현 월드 클래스를 -> 레벨 클래스로 변경, 이후 월드 클래스는 레벨을 관리, 전환하는 역활을 수행
     
     BeginDestroy();
 }
@@ -24,7 +27,7 @@ void Core::CoreManager::Tick()
     float tickTime = _pTimeMgr->GetTick();
 
     _pInputMgr->InputUpdate();
-	_pWorld->Tick(tickTime);
+    if(_pWorld) { _pWorld->Tick(tickTime); }
 }
 
 void Core::CoreManager::Fixed(int count)
@@ -35,7 +38,7 @@ void Core::CoreManager::Fixed(int count)
 
     if(_elapsedTick >= fixedTick)
 	{
-		_pWorld->Fixed();
+		if (_pWorld) { _pWorld->Fixed(); }
 		_elapsedTick -= fixedTick;
 	}
 }
@@ -46,7 +49,7 @@ void Core::CoreManager::Render()
 
 	_pRenderTarget->Clear();
     
-	_pWorld->Render(_pRenderTarget);
+    if(_pWorld) { _pWorld->Render(_pRenderTarget); }
 	
 	_pRenderTarget->EndDraw();
 
@@ -55,7 +58,7 @@ void Core::CoreManager::Render()
 
 void Core::CoreManager::EndPlay()
 {
-    _pWorld->EndPlay();
+    if(_pWorld) { _pWorld->EndPlay(); }
 }
 
 void Core::CoreManager::DestroyPoint()
@@ -81,6 +84,7 @@ void Core::CoreManager::Initialize(const GameSetting& info)
     _hWnd = info.hWnd;
 	_width = info.width;
 	_height = info.height;
+	_pWorld = info.pWorld;
 
     _pTimeMgr->Initialize();
     _pInputMgr->Initialize(info.hInstance, _hWnd);
@@ -89,6 +93,12 @@ void Core::CoreManager::Initialize(const GameSetting& info)
     _pRenderTarget = _pGraphicsMgr->GetPackage()->_pHwndRenderTarget;
 
     _pTextureMgr->Initialize(_pGraphicsMgr->GetPackage());
+
+	//if (!_pWorld)
+ //   {
+	//	_pWorld = World::Begin();
+ //   }
+
     _pWorld->InitializeWorld(info.layerSize);
 }
 

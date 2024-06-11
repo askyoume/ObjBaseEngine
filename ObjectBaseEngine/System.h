@@ -1,11 +1,7 @@
 #pragma once
-#include "Core.h"
+#include "../../Engine/Headers/Core.h"
 #include "Client_Macro.h"
-
-namespace Core
-{
-	class CoreManager;
-}
+#include "../../Engine/Headers/CoreManager.h"
 
 namespace Game
 {
@@ -20,11 +16,11 @@ namespace Game
 		bool MainLoop();
 
 	private:
-		bool Initialize(HINSTANCE hInstance, HWND hWnd, float width, float height);
+		bool Initialize(::Core::CoreManager::GameSetting gameSetting);
 		void Remove() override;
 
 	public:
-		static System* Create(HINSTANCE hInstance, HWND hWnd, float width, float height);
+		static System* Create(::Core::CoreManager::GameSetting gameSetting);
 
 	private:
 		::Core::CoreManager* _pCoreMgr{ nullptr };

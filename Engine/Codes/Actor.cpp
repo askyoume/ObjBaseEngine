@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "CoreManager.h"
 #include "Texture.h"
+#include "BitmapComponent.h"
 
 void Core::Actor::BeginPlay()
 {
@@ -31,7 +32,20 @@ void Core::Actor::Fixed()
 
 void Core::Actor::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	pRenderTarget->DrawBitmap((*_vecTextures[0])[0], D2D1::RectF(0, 0, 1000, 590));
+	if (_vecTextures.empty())
+	{
+		return;
+	}
+
+	for (auto& component : _vecComponents)
+	{
+		if (dynamic_cast<BitmapComponent*>(component))
+		{
+			dynamic_cast<BitmapComponent*>(component)->Render(pRenderTarget);
+		}
+	}
+
+	//pRenderTarget->DrawBitmap((*_vecTextures[0])[0], D2D1::RectF(0, 0, 1000, 590));
 }
 
 void Core::Actor::EndPlay()

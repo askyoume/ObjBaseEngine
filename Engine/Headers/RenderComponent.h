@@ -1,5 +1,4 @@
 #pragma once
-#include "Core_Define.h"
 #include "SceneComponent.h"
 
 namespace Core
@@ -23,7 +22,7 @@ namespace Core
 		virtual void Remove() override PURE;
 
 	protected:
-		Matrix3x2 _renderMatrix = D2D1::Matrix3x2F::Scale(1.f, -1.f, D2D1::Point2F(0,0));
+		D2D1::Matrix3x2F _renderMatrix;
 		bool _isVisible{ true };
 		int  _order{ 0 };
 	};

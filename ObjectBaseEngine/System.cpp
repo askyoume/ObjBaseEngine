@@ -4,7 +4,6 @@
 //test code
 #include "World.h"
 #include "Actor.h"
-#include "TestActor.h"
 
 bool Game::System::MainLoop()
 {
@@ -21,18 +20,12 @@ bool Game::System::MainLoop()
         return false;
 }
 
-bool Game::System::Initialize(HINSTANCE hInstance, HWND hWnd, float width, float height)
+bool Game::System::Initialize(::Core::CoreManager::GameSetting gameSetting)
 {
-    ::Core::CoreManager::GameSetting gameSetting{};
-
-    gameSetting.hInstance = hInstance;
-    gameSetting.hWnd = hWnd;
-    gameSetting.width = width;
-    gameSetting.height = height;
-    gameSetting.renderGroupSize = 1;
-    gameSetting.maxSoundGroup = 1;
-    gameSetting.levelSize = 1;
-    gameSetting.layerSize = 5;
+    if(!gameSetting.pWorld)
+    {
+		MessageBoxEx(nullptr, L"World is nullptr", L"Error", MB_OK, MB_ICONERROR);
+    }
 
     _pCoreMgr = ::Core::CoreManager::GetInstance();
 
@@ -40,7 +33,7 @@ bool Game::System::Initialize(HINSTANCE hInstance, HWND hWnd, float width, float
 
 	_pCoreMgr->LoadTexture(L"Client/Resources/Texture/");
 
-    _pCoreMgr->GetWorld()->AddActor(1, TestActor::Create());
+    _pCoreMgr->GetWorld()->BeginPlay();
 
     return true;
 }
@@ -50,10 +43,10 @@ void Game::System::Remove()
     _pCoreMgr->Release();
 }
 
-Game::System* Game::System::Create(HINSTANCE hInstance, HWND hWnd, float width, float height)
+Game::System* Game::System::Create(::Core::CoreManager::GameSetting gameSetting)
 {
     System* pInstance = new System();
-    if(pInstance->Initialize(hInstance, hWnd, width, height))
+    if(pInstance->Initialize(gameSetting))
     {
         return pInstance;
     }

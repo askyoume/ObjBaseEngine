@@ -20,7 +20,6 @@
 #include <d3d11.h>
 #include <d2d1.h>
 #include <dxgi.h>
-#include <d2d1_1helper.h>
 #include <dwrite.h>
 
 #pragma comment(lib, "d3d11.lib")
@@ -28,8 +27,8 @@
 #pragma comment(lib, "dwrite.lib")
 #pragma comment(lib, "dxgi.lib")
 
-#include <DirectXMath.h>
 #include <wincodec.h>
+#include <DirectXMath.h>
 
 // STL
 #include <array>
@@ -54,3 +53,4 @@
 #include "Core_Type.h"
 #include "Core_Macro.h"
 #include "Core_Function.h"
+

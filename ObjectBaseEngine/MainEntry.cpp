@@ -1,59 +1,13 @@
-#include <cstdlib>
-
 #include "MainEntry.h"
 #include "CoreManager.h"
 #include "System.h"
 
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-
-constexpr int SCREEN_START_LEFT = 10;
-constexpr int SCREEN_START_TOP = 10;
-constexpr int SCREEN_WIDTH = 1280;
-constexpr int SCREEN_HEIGHT = 720;
-
-#ifdef _DEBUG
-#ifdef UNICODE
-#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
-#else
-#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
-#endif
-#endif
-
-#ifdef _DEBUG
-#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#endif
-
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance, 
-	_In_opt_ HINSTANCE hPrevInstance, 
-	_In_ LPWSTR lpszCmdParam, 
-	_In_ int nCmdShow)
+void Game::MainEntry::Initialize(::Core::CoreManager::GameSetting _gameSetting)
 {
-	//_CrtSetBreakAlloc(257);
-
-	UNREFERENCED_PARAMETER(hPrevInstance);
-	UNREFERENCED_PARAMETER(lpszCmdParam);
-
-	Game::WinApp winApp;
-
-	winApp.Initialize(hInstance);
-	winApp.MainLoop();
-	winApp.Release();
-	
-	_CrtDumpMemoryLeaks();
-
-
-	return EXIT_SUCCESS;
-}
-
-void Game::WinApp::Initialize(HINSTANCE hInstance)
-{
-	_hInstance = hInstance;
+	constexpr int SCREEN_START_LEFT = 10;
+	constexpr int SCREEN_START_TOP = 10;
 
 	const TCHAR* appName = TEXT("Test D2D FrameWork");
-
-	//Step 1: Registering the Window Class
 
 	WNDCLASS wndClass{};
 
@@ -61,8 +15,8 @@ void Game::WinApp::Initialize(HINSTANCE hInstance)
 	wndClass.lpfnWndProc = WndProc;
 	wndClass.cbClsExtra = 0;
 	wndClass.cbWndExtra = 0;
-	wndClass.hInstance = hInstance;
-	wndClass.hIcon = LoadIcon(hInstance, IDI_APPLICATION);
+	wndClass.hInstance = _gameSetting.hInstance;
+	wndClass.hIcon = LoadIcon(_gameSetting.hInstance, IDI_APPLICATION);
 	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(WHITE_BRUSH));
 	wndClass.lpszMenuName = NULL;
@@ -70,25 +24,40 @@ void Game::WinApp::Initialize(HINSTANCE hInstance)
 
 	RegisterClass(&wndClass);
 
-	RECT rect{ SCREEN_START_LEFT, SCREEN_START_TOP,
-	SCREEN_START_LEFT + SCREEN_WIDTH, SCREEN_START_TOP + SCREEN_HEIGHT };
+	if (_gameSetting.width <= 0 || _gameSetting.height <= 0)
+	{
+		_gameSetting.width = _width;
+		_gameSetting.height = _height;
+	}
+
+	RECT rect
+	{	
+		SCREEN_START_LEFT, 
+		SCREEN_START_TOP,
+		SCREEN_START_LEFT + _gameSetting.width, 
+		SCREEN_START_TOP + _gameSetting.height 
+	};
 
 	::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-	int width = rect.right - rect.left;
-	int height = rect.bottom - rect.top;
+	_gameSetting.width = static_cast<float>(rect.right - rect.left);
+	_gameSetting.height = static_cast<float>(rect.bottom - rect.top);
 
 	_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
-		SCREEN_START_LEFT, SCREEN_START_TOP, width, height, NULL, NULL, hInstance, NULL);
+		SCREEN_START_LEFT, SCREEN_START_TOP, 
+		(int)_gameSetting.width, 
+		(int)_gameSetting.height, 
+		NULL, NULL, _gameSetting.hInstance, NULL);
 
 	ShowWindow(_hWnd, SW_NORMAL);
 	UpdateWindow(_hWnd);
 
-	_pSystem = Game::System::Create(hInstance, _hWnd, SCREEN_WIDTH, SCREEN_HEIGHT);
-	_pGameManager = Core::CoreManager::GetInstance();
+	_gameSetting.hWnd = _hWnd;
+
+	_pSystem = Game::System::Create(_gameSetting);
 }
 
-int Game::WinApp::MainLoop()
+int Game::MainEntry::MainLoop()
 {
 	MSG msg;
 
@@ -113,7 +82,7 @@ int Game::WinApp::MainLoop()
     return 0;
 }
 
-void Game::WinApp::Release()
+void Game::MainEntry::Release()
 {
 	if (_pSystem)
 	{
@@ -123,7 +92,7 @@ void Game::WinApp::Release()
 	//UnregisterClass(TEXT("Test D2D FrameWork"), _hInstance);
 }
 
-LRESULT Game::WinApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT Game::MainEntry::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{

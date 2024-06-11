@@ -8,16 +8,17 @@ namespace Core
 	{
 	private:
 		using Layers = std::vector<Layer*>;
-	private:
-		World() DEFAULT;
-		~World() DEFAULT;
+
+	protected:
+		explicit World() DEFAULT;
+		virtual	~World() DEFAULT;
 	
 	public:
-		static World* Begin();
 		bool InitializeWorld(int layerSize);
 		void Remove() override;
 
 	public:
+		virtual bool BeginPlay() PURE;
 		void Tick(_float deltaTime);
 		void Fixed();
 		void Render(ID2D1RenderTarget* pRenderTarget);
@@ -31,7 +32,7 @@ namespace Core
 		int GetLayerSize() const { return _layerSize;}
 
 	public:
-		bool AddActor(int layerIndex, Actor* pActor);
+		bool AddActor(int layerIndex, _pstring name, Actor* pActor);
 		Actor* FindActor(int layerIndex, _pstring name);
 
 	private:

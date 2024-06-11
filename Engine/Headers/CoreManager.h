@@ -16,6 +16,7 @@ namespace Core
 		{
 			HINSTANCE hInstance;
 			HWND hWnd;
+			World* pWorld;
 			int renderGroupSize;
 			int maxSoundGroup;
 			int levelSize; // 추후 레벨 클래스 추가를 염두해두고 작성
@@ -54,6 +55,7 @@ namespace Core
 
 		//test code
 		InputManager* GetInputManager() const { return _pInputMgr; }
+		//void LoadWorld(World* pWorld) { _pWorld = pWorld; } //지금은 필요 없지만 추후에 시리얼라이즈를 통해 로드할 때 사용할 수 있음.
 		World* GetWorld() const { return _pWorld; }
 		GraphicsPtrPackage* GetGraphicsPackage() const;
 		//test code end

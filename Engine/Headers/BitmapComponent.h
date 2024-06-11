@@ -1,5 +1,4 @@
 #pragma once
-#include "Core_Define.h"
 #include "RenderComponent.h"
 
 namespace Core
@@ -15,17 +14,21 @@ namespace Core
 		virtual ~BitmapComponent() DEFAULT;
 
 	public:
-		virtual void Render(ID2D1RenderTarget* pRenderTarget) override;
+		virtual void Render(ID2D1RenderTarget* pRenderTarget);
+		void SetTextures(BitmapTextures* vecTextures) { _vecTextures = vecTextures; }
+		void SetTextureIndex(int index) { _currentTextureIndex = index; }
+		void SetTextureRect(Texture* pTexture);
 
 	protected:
-		virtual bool Initialize() override;
-		virtual void Remove() override;
+		virtual bool Initialize();
+		virtual void Remove();
 
 	public:
-		static BitmapComponent* Create(BitmapTextures* vecTextures);
+		static BitmapComponent* Create();
 
 	private:
 		BitmapTextures* _vecTextures{ nullptr };
 		int _currentTextureIndex{ 0 };
+		Mathf::Rect _rect{ 0, 0, 0, 0 };
 	};
 }

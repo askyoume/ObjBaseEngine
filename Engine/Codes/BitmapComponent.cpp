@@ -3,34 +3,36 @@
 
 void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	if (_isVisible == false)
-	{
-		return;
-	}
-
-	if (_vecTextures == nullptr)
-	{
-		return;
-	}
-
-	if (_vecTextures->empty())
-	{
-		return;
-	}
+	if (_isVisible == false) { return; }
+	if (_vecTextures == nullptr) { return; }
+	if (_vecTextures->empty()) { return; }
 
 	if (_currentTextureIndex >= _vecTextures->size())
 	{
 		_currentTextureIndex = 0;
 	}
 
-	Matrix3x2 Transform = _renderMatrix * _WorldTransform;
+	//Mathf::Matrix3x2 Transform = _renderMatrix * _WorldTransform;
 
-	pRenderTarget->SetTransform(Transform);
+	//pRenderTarget->SetTransform(Transform);
 
 	Texture* pTexture = _vecTextures->at(_currentTextureIndex);
-	pRenderTarget->DrawBitmap((*pTexture)[0], D2D1::RectF(0, 0, 1000, 590));
 
-	//1.f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, _transform.GetRect());
+	if (0 == _rect.right && 0 == _rect.bottom)
+	{
+		SetTextureRect(pTexture);
+	}
+	
+	pRenderTarget->DrawBitmap((*pTexture)[0], _rect);
+
+	/*1.f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, _transform.GetRect());*/
+}
+
+void Core::BitmapComponent::SetTextureRect(Texture* pTexture)
+{
+	D2D1_SIZE_F _size = (*pTexture)[0]->GetSize();
+
+	_rect = D2D1::RectF(0, 0, _size.width, _size.height);
 }
 
 bool Core::BitmapComponent::Initialize()
@@ -43,10 +45,9 @@ void Core::BitmapComponent::Remove()
 	_vecTextures = nullptr;
 }
 
-Core::BitmapComponent* Core::BitmapComponent::Create(BitmapTextures* vecTextures)
+Core::BitmapComponent* Core::BitmapComponent::Create()
 {
 	BitmapComponent* pInstance = new BitmapComponent;
-	pInstance->_vecTextures = vecTextures;
 	if (pInstance->Initialize())
 	{
 		return pInstance;

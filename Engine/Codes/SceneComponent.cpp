@@ -1,4 +1,5 @@
 #include "SceneComponent.h"
+#include "Mathf.h"
 
 void Core::SceneComponent::TickComponent(_float deltaTime)
 {
@@ -38,9 +39,9 @@ void Core::SceneComponent::AddRelativeRotation(float rotation)
 	_RelativeRotation = fmodf(_RelativeRotation, 360.f);
 }
 
-const Vector2& Core::SceneComponent::GetWorldLocation() const
+const Mathf::Vector2& Core::SceneComponent::GetWorldLocation() const
 {
-	Vector2 result{ UnitVector::Zero };
+	Mathf::Vector2 result{ UnitVector::Zero };
 	result.x = _WorldTransform._31;
 	result.y = _WorldTransform._32;
 	return result;
