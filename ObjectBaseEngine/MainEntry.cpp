@@ -26,16 +26,16 @@ void Game::MainEntry::Initialize(::Core::CoreManager::GameSetting _gameSetting)
 
 	if (_gameSetting.width <= 0 || _gameSetting.height <= 0)
 	{
-		_gameSetting.width = _width;
-		_gameSetting.height = _height;
+		_gameSetting.width = (float)_width;
+		_gameSetting.height = (float)_height;
 	}
 
 	RECT rect
 	{	
 		SCREEN_START_LEFT, 
 		SCREEN_START_TOP,
-		SCREEN_START_LEFT + _gameSetting.width, 
-		SCREEN_START_TOP + _gameSetting.height 
+		SCREEN_START_LEFT + (LONG)_gameSetting.width, 
+		SCREEN_START_TOP + (LONG)_gameSetting.height 
 	};
 
 	::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);

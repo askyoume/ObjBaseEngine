@@ -25,6 +25,7 @@ bool Game::System::Initialize(::Core::CoreManager::GameSetting gameSetting)
     if(!gameSetting.pWorld)
     {
 		MessageBoxEx(nullptr, L"World is nullptr", L"Error", MB_OK, MB_ICONERROR);
+		return false;
     }
 
     _pCoreMgr = ::Core::CoreManager::GetInstance();
