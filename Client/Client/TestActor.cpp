@@ -83,10 +83,11 @@ void Client::TestActor::Move(float x, float y)
 	::Core::BitmapComponent* pBitmapComponent =
 		GetComponent<::Core::BitmapComponent>("BitmapComponent");
 
-	Mathf::Vector2 location = Mathf::Vector2(x * 10.f, y * 10.f);
+	_position.x += x;
+	_position.y -= y;
 
-	pBitmapComponent->AddRelativeLocation(location);
-	std::cout << "Move" << std::endl;
+	pBitmapComponent->SetRelativeLocation(_position);
+	std::cout << x << y << std::endl;
 }
 //test code end
 void Client::TestActor::Remove()

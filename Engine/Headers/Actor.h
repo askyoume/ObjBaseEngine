@@ -1,6 +1,7 @@
 #pragma once
 #include "Core_Define.h"
 #include "Object.h"
+#include "Mathf.h"
 
 namespace Core
 {
@@ -44,12 +45,16 @@ namespace Core
 			return nullptr;
 		}
 
+		void SetPosition(Mathf::Vector2 position) { _position = position; }
+		Mathf::Vector2 GetPosition() { return _position; }
+
 	protected:
 		virtual void Remove() override PURE;
 
 	protected:
 		Actor*					_pParent{ nullptr };
 		World*					_pOwnerWorld{ nullptr };
+		Mathf::Vector2			_position{ 0,0 };
 		int						_layerIndex{ 0 };
 		std::vector<Component*> _vecComponents;
 		std::vector<Texture*>	_vecTextures;

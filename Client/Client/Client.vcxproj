@@ -130,11 +130,13 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="ClientWorld.h" />
     <ClInclude Include="TestActor.h" />
+    <ClInclude Include="TestActor2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ClientWorld.cpp" />
     <ClCompile Include="TestActor.cpp" />
+    <ClCompile Include="TestActor2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ObjectBaseEngine\ObjectBaseEngine.vcxproj">

@@ -25,6 +25,9 @@
     <ClInclude Include="TestActor.h">
       <Filter>TestCode</Filter>
     </ClInclude>
+    <ClInclude Include="TestActor2.h">
+      <Filter>TestCode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -35,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="ClientWorld.cpp">
       <Filter>ClientWorld</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor2.cpp">
+      <Filter>TestCode</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

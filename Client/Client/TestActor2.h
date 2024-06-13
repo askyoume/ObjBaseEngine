@@ -1,15 +1,14 @@
 #pragma once
-
 #include "../../Engine/Headers/Core_Define.h"
 #include "../../Engine/Headers/Actor.h"
 
 namespace Client
 {
-	class TestActor : public Core::Actor
+	class TestActor2 : public Core::Actor
 	{
 	protected:
-		explicit TestActor() DEFAULT;
-		virtual ~TestActor() DEFAULT;
+		explicit TestActor2() DEFAULT;
+		virtual ~TestActor2() DEFAULT;
 	public:
 		void BeginPlay() override;
 		void Tick(_float deltaTime) override;
@@ -17,13 +16,8 @@ namespace Client
 		void Render(ID2D1RenderTarget* pRenderTarget) override;
 		void EndPlay() override;
 
-		//testCode
-		void Fire();
-		void Rotate(float degree);
-		void Move(float x, float y);
-
 	public:
-		static TestActor* Create() { return new TestActor; }
+		static TestActor2* Create() { return new TestActor2; }
 
 	private:
 		void Remove() override;
