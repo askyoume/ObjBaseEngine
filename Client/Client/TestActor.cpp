@@ -9,8 +9,6 @@ void Client::TestActor::BeginPlay()
 {
 	Actor::BeginPlay();
 
-	::Core::CoreManager* pCore = ::Core::CoreManager::GetInstance();
-
 	CreateComponent<::Core::InputComponent>("InputComponent");
 	CreateComponent<::Core::BitmapComponent>("BitmapComponent");
 
@@ -66,28 +64,22 @@ void Client::TestActor::EndPlay()
 void Client::TestActor::Fire()
 {
 	std::cout << "Fire" << std::endl;
-	//OnDestroyMark(true);
-	//std::cout << (IsDestroyMarked() ? "ture" : "false") << std::endl;
 }
+
 void Client::TestActor::Rotate(float degree)
 {
 	::Core::BitmapComponent* pBitmapComponent =
 		GetComponent<::Core::BitmapComponent>("BitmapComponent");
 
 	pBitmapComponent->AddRelativeRotation(degree);
-	std::cout << "Rotate" << std::endl;
-
 }
+
 void Client::TestActor::Move(float x, float y)
 {
 	::Core::BitmapComponent* pBitmapComponent =
 		GetComponent<::Core::BitmapComponent>("BitmapComponent");
 
-	_position.x += x;
-	_position.y -= y;
-
-	pBitmapComponent->SetRelativeLocation(_position);
-	std::cout << x << y << std::endl;
+	pBitmapComponent->AddRelativeLocation(Mathf::Vector2(x,-y));
 }
 //test code end
 void Client::TestActor::Remove()

@@ -13,7 +13,7 @@ void Core::Actor::BeginPlay()
 	_bstr_t convertName = this->name;
 	_pwstring tempName = convertName;
 
-	_vecTextures.push_back(pCore->FindTexture(L"TestActor"));
+	_vecTextures.push_back(pCore->FindTexture(convertName));
 
 }
 
