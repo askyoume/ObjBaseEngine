@@ -20,9 +20,24 @@ void Client::TestActor::BeginPlay()
 	::Core::BitmapComponent* pBitmapComponent =
 		GetComponent<::Core::BitmapComponent>("BitmapComponent");
 
+	pInputComponent->BindInputEvent(DIP_RX, InputType::AXIS, [&](const InputEvent& inputEvent)
+		{
+			Rotate(inputEvent.value);
+		});
+
 	pInputComponent->BindInputEvent(DIP_A, InputType::PRESS, [&](const InputEvent& inputEvent)
 		{
 			Fire();
+		});
+
+	pInputComponent->BindInputEvent(DIP_LX, InputType::AXIS, [&](const InputEvent& inputEvent)
+		{
+			Move(inputEvent.value, 0);
+		});
+
+	pInputComponent->BindInputEvent(DIP_LY, InputType::AXIS, [&](const InputEvent& inputEvent)
+		{
+			Move(0, inputEvent.value);
 		});
 
 	pInputComponent->AttachToInputManager();
@@ -53,6 +68,25 @@ void Client::TestActor::Fire()
 	std::cout << "Fire" << std::endl;
 	//OnDestroyMark(true);
 	//std::cout << (IsDestroyMarked() ? "ture" : "false") << std::endl;
+}
+void Client::TestActor::Rotate(float degree)
+{
+	::Core::BitmapComponent* pBitmapComponent =
+		GetComponent<::Core::BitmapComponent>("BitmapComponent");
+
+	pBitmapComponent->AddRelativeRotation(degree);
+	std::cout << "Rotate" << std::endl;
+
+}
+void Client::TestActor::Move(float x, float y)
+{
+	::Core::BitmapComponent* pBitmapComponent =
+		GetComponent<::Core::BitmapComponent>("BitmapComponent");
+
+	Mathf::Vector2 location = Mathf::Vector2(x * 10.f, y * 10.f);
+
+	pBitmapComponent->AddRelativeLocation(location);
+	std::cout << "Move" << std::endl;
 }
 //test code end
 void Client::TestActor::Remove()

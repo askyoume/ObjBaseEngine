@@ -11,19 +11,25 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	{
 		_currentTextureIndex = 0;
 	}
-
-	//Mathf::Matrix3x2 Transform = _renderMatrix * _WorldTransform;
-
-	//pRenderTarget->SetTransform(Transform);
-
 	Texture* pTexture = _vecTextures->at(_currentTextureIndex);
 
-	if (0 == _rect.right && 0 == _rect.bottom)
-	{
-		SetTextureRect(pTexture);
-	}
+	SetTextureRect(pTexture);
+
+	//_RelativeLocation = D2D1::Matrix3x2F::Translation(_rect.right/2, _rect.bottom/2);
+
+	_RelativeLocation.x = 720.f;
+	_RelativeLocation.y = 450.f;
+
+
+	_LocalLocation.x = _rect.right / 2;
+	_LocalLocation.y = _rect.bottom / 2;
+
+	Mathf::Matrix3x2 Transform = _renderMatrix * _WorldTransform;
+
+	pRenderTarget->SetTransform(Transform);
+
 	
-	pRenderTarget->DrawBitmap((*pTexture)[0], _rect);
+	pRenderTarget->DrawBitmap((*pTexture)[0]);
 
 	/*1.f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, _transform.GetRect());*/
 }
@@ -37,6 +43,11 @@ void Core::BitmapComponent::SetTextureRect(Texture* pTexture)
 
 bool Core::BitmapComponent::Initialize()
 {
+	if (!RenderComponent::Initialize())
+	{
+		return false;
+	}
+
     return true;
 }
 

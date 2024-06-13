@@ -39,13 +39,13 @@
 
 #define GAMEPAD_NORMALIZE 32767.f
 
-#define DIP_LX 0
-#define DIP_LY 1
-#define DIP_RX 2
-#define DIP_RY 3
+#define DIP_LX 0x00020000
+#define DIP_LY 0x00020001
+#define DIP_RX 0x00020002
+#define DIP_RY 0x00020003
 
-#define DIP_LT 0
-#define DIP_RT 1
+#define DIP_LT 0x00020000
+#define DIP_RT 0x00020001
 
 #define DIP_DPAD_UP          0x00020000  // 1 << 0
 #define DIP_DPAD_DOWN        0x00020001  // 1 << 1

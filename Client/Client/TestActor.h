@@ -19,6 +19,8 @@ namespace Client
 
 		//testCode
 		void Fire();
+		void Rotate(float degree);
+		void Move(float x, float y);
 
 	public:
 		static TestActor* Create() { return new TestActor; }

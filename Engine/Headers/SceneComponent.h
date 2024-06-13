@@ -50,6 +50,7 @@ namespace Core
 
 	protected:
 		//BoxCollider _BoxCollider;
+		Mathf::Vector2		_LocalLocation{ UnitVector::Zero };
 		Mathf::Vector2		_WorldLocation{ UnitVector::Zero };
 		Mathf::Vector2		_RelativeLocation{ UnitVector::Zero };
 		Mathf::Vector2		_RelativeScale{ UnitVector::One };
