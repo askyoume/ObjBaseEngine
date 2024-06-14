@@ -33,7 +33,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR lpszCmdParam, 
 	_In_ int nCmdShow)
 {
-	//_CrtSetBreakAlloc(257);
+	_CrtSetBreakAlloc(86);
 
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpszCmdParam);

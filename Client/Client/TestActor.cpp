@@ -25,7 +25,13 @@ void Client::TestActor::BeginPlay()
 
 	pInputComponent->BindInputEvent(DIP_A, InputType::PRESS, [&](const InputEvent& inputEvent)
 		{
+			pInputComponent->SetVibration(0.f, 1.f);
 			Fire();
+		});
+
+	pInputComponent->BindInputEvent(DIP_A, InputType::RELEASE, [&](const InputEvent& inputEvent)
+		{
+			pInputComponent->SetVibration(0.f, 0.f);
 		});
 
 	pInputComponent->BindInputEvent(DIP_LX, InputType::AXIS, [&](const InputEvent& inputEvent)
@@ -64,6 +70,9 @@ void Client::TestActor::EndPlay()
 void Client::TestActor::Fire()
 {
 	std::cout << "Fire" << std::endl;
+
+		::Core::InputComponent* pInputComponent = 
+		GetComponent<::Core::InputComponent>("InputComponent");
 }
 
 void Client::TestActor::Rotate(float degree)

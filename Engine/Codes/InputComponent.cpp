@@ -27,6 +27,7 @@ void Core::InputComponent::AttachToInputManager()
 {
 	CoreManager* pCore = CoreManager::GetInstance();
 	InputManager* Manager = pCore->GetInputManager();
+
 	for (auto& [key, types] : _eventHandlers)
 	{
 		for (auto& [type, _] : types)
@@ -34,6 +35,28 @@ void Core::InputComponent::AttachToInputManager()
 			Manager->RegisterReceiver(key, type, this);
 		}
 	}
+}
+
+void Core::InputComponent::SetVibration(float leftMotorSpeed, float rightMotorSpeed)
+{
+	_vibration.wLeftMotorSpeed = static_cast<_uint>(leftMotorSpeed * USHRT_MAX);
+	_vibration.wRightMotorSpeed = static_cast<_uint>(rightMotorSpeed * USHRT_MAX);
+
+	XInputSetState(0, &_vibration);
+}
+
+Core::InputComponent* Core::InputComponent::Create()
+{
+	static InputComponent* pInputComponent = new InputComponent;
+	if (pInputComponent->Initialize())
+		return pInputComponent;
+
+	return nullptr;
+}
+
+bool Core::InputComponent::Initialize()
+{
+	return true;
 }
 
 void Core::InputComponent::Remove()

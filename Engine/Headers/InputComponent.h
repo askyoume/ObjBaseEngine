@@ -19,15 +19,19 @@ namespace Core
 		void BindInputEvent(_uint key, InputType type, Callback handler);
 		void OnInputReceived(const InputEvent& inputEvent) override; // IInputReceiver 인터페이스 구현부
 		void AttachToInputManager();
+		void SetVibration(float leftMotorSpeed, float rightMotorSpeed);
 
 	public:
-		static InputComponent* Create() { return new InputComponent; }
+		static InputComponent* Create();/* { return new InputComponent; }*/
 
 	private:
 		void BeginPlay() override {};
+		bool Initialize() override;
 		void TickComponent(_float deltaTime) override {};
 		void EndPlay() override {};
-		bool Initialize() override { return true; }
 		void Remove() override;
+
+	private:
+		XINPUT_VIBRATION _vibration{ 0, 0 };
 	};
 }
