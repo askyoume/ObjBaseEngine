@@ -2,6 +2,8 @@
 #include "Core_Enum.h"
 #include "Core_Define.h"
 #include "Core_Struct.h"
+#include "CoreManager.h"
+#include "TimeManager.h"
 
 #include <dinput.h>
 
@@ -198,10 +200,33 @@ void Core::InputManager::ProcessKeyboardInput()
 	}
 	else
 	{
+		CoreManager* _pCoreMgr = CoreManager::GetInstance();
+
+		_elapsedTime += _pCoreMgr->GetTimeManager()->GetTick();
+
 		for(_uint i = 0; i < 256; i++)
 		{
+			bool isArrowKey = (i == DIK_LEFT || i == DIK_RIGHT || i == DIK_UP || i == DIK_DOWN);
 			bool isPressed = (keyState[i] & 0x80) != 0;
-			DispatchInput(InputDevice::KEYBOARD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
+
+			if(isArrowKey && isPressed)
+			{
+				if (i == DIK_LEFT || i == DIK_RIGHT)
+				{
+					float AxisValue_X = i == DIK_LEFT ? -1.f : 1.f;
+					DispatchInput(InputDevice::KEYBOARD, InputType::AXIS, DIK_AXIS, 0.f, isPressed, (long)AxisValue_X);
+				}
+				else if (i == DIK_UP || i == DIK_DOWN)
+				{
+					float AxisValue_Y = i == DIK_UP ? -1.f : 1.f;
+					DispatchInput(InputDevice::KEYBOARD, InputType::AXIS, DIK_AXIS, 0.f, isPressed, 0, (long)AxisValue_Y);
+				}
+			}
+			else
+			{
+				DispatchInput(InputDevice::KEYBOARD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
+				_elapsedTime = 0.f;
+			}
 		}
 	}
 }

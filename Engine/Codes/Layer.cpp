@@ -1,6 +1,7 @@
 #include "Layer.h"
 #include "Actor.h"
 #include "CoreManager.h"
+#include "RenderComponent.h"
 
 void Core::Layer::Tick(_float deltaTime)
 {
@@ -26,13 +27,22 @@ void Core::Layer::Fixed()
 
 void Core::Layer::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	for(auto& actor : _actors)
+	if(!_pLayer)
 	{
-		if(actor->IsDestroyMarked())
+		pRenderTarget->CreateLayer(&_pLayer);
+	}
+
+	pRenderTarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect()), _pLayer);
+
+	for (auto& renderComponent : _renderQueue)
+	{
+		if (renderComponent->GetOwner()->IsDestroyMarked())
 			continue;
 
-		actor->Render(pRenderTarget);
+		renderComponent->Render(pRenderTarget);
 	}
+
+	pRenderTarget->PopLayer();
 }
 
 void Core::Layer::EndPlay()
@@ -44,9 +54,6 @@ void Core::Layer::EndPlay()
 
 	for (auto it = _actors.begin(); it != _actors.end(); )
 	{
-		if (_actors.empty())
-			break;
-
 		if (nullptr == *it)
 		{
 			++it;
@@ -61,6 +68,7 @@ void Core::Layer::EndPlay()
 
 		(*it)->EndPlay();
 		pCoreMgr->AddDestroyList(*it);
+		pCoreMgr->EraseActorMap(*it);
 		it = _actors.erase(it); // 요소를 삭제하고 반복자를 다음 요소로 이동
 	}
 }
@@ -73,6 +81,7 @@ void Core::Layer::Remove()
 	}
 
 	_actors.clear();
+	SafeRelease(_pLayer);
 }
 
 Core::Layer* Core::Layer::Begin()
@@ -112,4 +121,12 @@ bool Core::Layer::DestroyActor()
 	}
 
 	return false;
+}
+
+void Core::Layer::AddRenderQueue(RenderComponent* pRenderComponent)
+{
+	if (nullptr == pRenderComponent)
+		return;
+
+	_renderQueue.insert(pRenderComponent);
 }

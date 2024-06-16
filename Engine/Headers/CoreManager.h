@@ -2,6 +2,7 @@
 #include "Core_Define.h"
 #include "Core.h"
 #include "Singleton.h"
+#include "Mathf.h"
 
 namespace Core
 {
@@ -53,11 +54,27 @@ namespace Core
 		bool LoadTexture(_pwstring filePath);
 		Texture* FindTexture(_pwstring filePath);
 
+		Mathf::Matrix3x2 GetCenterTransform() const { return _centerTransform; }
+
 		//test code
+		//Input
 		InputManager* GetInputManager() const { return _pInputMgr; }
-		//void LoadWorld(World* pWorld) { _pWorld = pWorld; } //지금은 필요 없지만 추후에 월드를 로드할 때 사용할 수 있음.
+
+		//Time
+		TimeManager* GetTimeManager() const { return _pTimeMgr; }
+
+		//World
 		World* GetWorld() const { return _pWorld; }
+		//void LoadWorld(World* pWorld) { _pWorld = pWorld; } //지금은 필요 없지만 추후에 월드를 로드할 때 사용할 수 있음.
+		void EraseActorMap(Object* pObject);
+
+		//Layer
+		Layer* GetLayer(int layerIndex) const;
+		void AddRenderQueue(int layerIndex, RenderComponent* pRenderComponent);
+
+		//Graphics
 		GraphicsPtrPackage* GetGraphicsPackage() const;
+
 		//test code end
 
 
@@ -78,6 +95,7 @@ namespace Core
 		GraphicsManager*		_pGraphicsMgr{ nullptr };
 		TextureManager*			_pTextureMgr{ nullptr };
 		World*					_pWorld{ nullptr };
+		Mathf::Matrix3x2		_centerTransform{ D2D1::Matrix3x2F::Identity() };
 		float					_elapsedTick{ 0.f };
 		float					_width{ 0.f };
 		float					_height{ 0.f };

@@ -44,6 +44,8 @@ namespace Core
 		DWORD _gamePadIndex = 0;
 		HWND hWnd = nullptr;
 
+		float _elapsedTime = 0.f;
+
 		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<IInputReceiver*>>> Receivers;
 	};
 }

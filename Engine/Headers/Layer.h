@@ -7,7 +7,8 @@ namespace Core
 	class Layer : public Core
 	{
 	private:
-		using Actors = std::list<Actor*>;
+		using Actors = std::deque<Actor*>;
+		using RenderQueue = std::set<RenderComponent*>;
 	private:
 		Layer() DEFAULT;
 		~Layer() DEFAULT;
@@ -23,11 +24,15 @@ namespace Core
 		Actor* GetActor(_pstring name);
 		bool DestroyActor();
 
+		void AddRenderQueue(RenderComponent* pRenderComponent);
+
 	public:
 		static Layer* Begin();
 		void Remove() override;
 
 	private:
 		Actors _actors;
+		RenderQueue _renderQueue;
+		ID2D1Layer* _pLayer{ nullptr };
 	};
 }

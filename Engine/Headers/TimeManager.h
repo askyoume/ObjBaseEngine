@@ -13,6 +13,7 @@ namespace Core
 		bool Initialize();
 		void UpdateTick();
 		_float GetTick() const;
+		int GetFPS() const;
 
 	public:
 		static TimeManager* Create();

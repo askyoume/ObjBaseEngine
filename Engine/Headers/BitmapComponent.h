@@ -15,7 +15,7 @@ namespace Core
 
 	public:
 		virtual void Render(ID2D1RenderTarget* pRenderTarget);
-		void SetTextures(BitmapTextures* vecTextures) { _vecTextures = vecTextures; }
+		void SetTextures(BitmapTextures* vecTextures);
 		void SetTextureIndex(int index) { _currentTextureIndex = index; }
 		void SetTextureRect(Texture* pTexture);
 

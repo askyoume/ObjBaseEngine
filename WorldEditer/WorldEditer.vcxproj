@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{dad063fd-4e42-45ac-a1c8-9a09d43eeab3}</ProjectGuid>
-    <RootNamespace>ObjectBaseEngine</RootNamespace>
+    <ProjectGuid>{043b1c49-1805-484d-b83f-cad4ca415905}</ProjectGuid>
+    <RootNamespace>WorldEditer</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -70,21 +70,15 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>../Client/Bin/</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>../Client/Bin/Release</OutDir>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -94,11 +88,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -108,13 +102,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>Client/Codes;Client/Headers;../Engine/Codes/;../Engine/Headers/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -124,72 +116,36 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>Client/Codes;Client/Headers;../Engine/Codes/;../Engine/Headers/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Engine\Headers\Actor.h" />
-    <ClInclude Include="..\Engine\Headers\BitmapComponent.h" />
-    <ClInclude Include="..\Engine\Headers\CameraComponent.h" />
-    <ClInclude Include="..\Engine\Headers\Component.h" />
-    <ClInclude Include="..\Engine\Headers\Core.h" />
-    <ClInclude Include="..\Engine\Headers\CoreManager.h" />
-    <ClInclude Include="..\Engine\Headers\Core_Define.h" />
-    <ClInclude Include="..\Engine\Headers\Core_Enum.h" />
-    <ClInclude Include="..\Engine\Headers\Core_Function.h" />
-    <ClInclude Include="..\Engine\Headers\Core_Macro.h" />
-    <ClInclude Include="..\Engine\Headers\Core_Struct.h" />
-    <ClInclude Include="..\Engine\Headers\Core_Type.h" />
-    <ClInclude Include="..\Engine\Headers\Event.h" />
-    <ClInclude Include="..\Engine\Headers\GraphicsManager.h" />
-    <ClInclude Include="..\Engine\Headers\IInputReceiver.h" />
-    <ClInclude Include="..\Engine\Headers\InputComponent.h" />
-    <ClInclude Include="..\Engine\Headers\InputManager.h" />
-    <ClInclude Include="..\Engine\Headers\Layer.h" />
-    <ClInclude Include="..\Engine\Headers\Mathf.h" />
-    <ClInclude Include="..\Engine\Headers\Matrix.h" />
-    <ClInclude Include="..\Engine\Headers\Object.h" />
-    <ClInclude Include="..\Engine\Headers\RenderComponent.h" />
-    <ClInclude Include="..\Engine\Headers\SceneComponent.h" />
-    <ClInclude Include="..\Engine\Headers\Singleton.h" />
-    <ClInclude Include="..\Engine\Headers\Texture.h" />
-    <ClInclude Include="..\Engine\Headers\TextureManager.h" />
-    <ClInclude Include="..\Engine\Headers\TimeManager.h" />
-    <ClInclude Include="..\Engine\Headers\Transform.h" />
-    <ClInclude Include="..\Engine\Headers\Vector2.h" />
-    <ClInclude Include="..\Engine\Headers\World.h" />
-    <ClInclude Include="Client_Macro.h" />
-    <ClInclude Include="MainEntry.h" />
-    <ClInclude Include="System.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="WorldEditer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Engine\Codes\Actor.cpp" />
-    <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp" />
-    <ClCompile Include="..\Engine\Codes\CameraComponent.cpp" />
-    <ClCompile Include="..\Engine\Codes\CoreManager.cpp" />
-    <ClCompile Include="..\Engine\Codes\GraphicsManager.cpp" />
-    <ClCompile Include="..\Engine\Codes\InputComponent.cpp" />
-    <ClCompile Include="..\Engine\Codes\InputManager.cpp" />
-    <ClCompile Include="..\Engine\Codes\Layer.cpp" />
-    <ClCompile Include="..\Engine\Codes\Object.cpp" />
-    <ClCompile Include="..\Engine\Codes\RenderComponent.cpp" />
-    <ClCompile Include="..\Engine\Codes\SceneComponent.cpp" />
-    <ClCompile Include="..\Engine\Codes\Texture.cpp" />
-    <ClCompile Include="..\Engine\Codes\TextureManager.cpp" />
-    <ClCompile Include="..\Engine\Codes\TimeManager.cpp" />
-    <ClCompile Include="..\Engine\Codes\Transform.cpp" />
-    <ClCompile Include="..\Engine\Codes\World.cpp" />
-    <ClCompile Include="MainEntry.cpp" />
-    <ClCompile Include="System.cpp" />
+    <ClCompile Include="WorldEditer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WorldEditer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico" />
+    <Image Include="WorldEditer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ObjectBaseEngine\ObjectBaseEngine.vcxproj">
+      <Project>{dad063fd-4e42-45ac-a1c8-9a09d43eeab3}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,7 +2,7 @@
 #include "Core_Define.h"
 #include "Core_Type.h"
 
-enum class LayerGroup : _uint
+enum LayerGroup : int
 {
 	BACKGROUND,
 	BACKOBJECT,

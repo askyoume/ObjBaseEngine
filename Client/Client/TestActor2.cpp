@@ -9,12 +9,13 @@ void Client::TestActor2::BeginPlay()
 {
 	Actor::BeginPlay();
 
-	CreateComponent<::Core::BitmapComponent>("BitmapComponent");
+	AddComponent<::Core::BitmapComponent>("BitmapComponent");
 
 	::Core::BitmapComponent* pBitmapComponent =
 		GetComponent<::Core::BitmapComponent>("BitmapComponent");
 
 		pBitmapComponent->SetTextures(&_vecTextures);
+		pBitmapComponent->AddRenderQueueInLayer();
 }
 
 void Client::TestActor2::Tick(_float deltaTime)
@@ -24,11 +25,6 @@ void Client::TestActor2::Tick(_float deltaTime)
 
 void Client::TestActor2::Fixed()
 {
-}
-
-void Client::TestActor2::Render(ID2D1RenderTarget* pRenderTarget)
-{
-	Actor::Render(pRenderTarget);
 }
 
 void Client::TestActor2::EndPlay()

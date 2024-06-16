@@ -14,7 +14,6 @@ namespace Client
 		void BeginPlay() override;
 		void Tick(_float deltaTime) override;
 		void Fixed() override;
-		void Render(ID2D1RenderTarget* pRenderTarget) override;
 		void EndPlay() override;
 
 		//testCode

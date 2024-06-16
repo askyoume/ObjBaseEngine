@@ -5,12 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Engine\Interface">
-      <UniqueIdentifier>{c39d5b61-b594-4bb0-a63c-20dcaca11c30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\header">
-      <UniqueIdentifier>{de6ca2d2-2c01-4ab5-82f5-40b132342386}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Component">
       <UniqueIdentifier>{8815f8bc-8535-4615-b869-864176b1977b}</UniqueIdentifier>
     </Filter>
@@ -28,9 +22,6 @@
     </Filter>
     <Filter Include="Engine\Utility">
       <UniqueIdentifier>{74dc1f56-6ee3-48cb-9110-0223254be563}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Actor">
-      <UniqueIdentifier>{406242c6-bc3a-4343-891a-e73115081933}</UniqueIdentifier>
     </Filter>
     <Filter Include="Client">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
@@ -67,17 +58,11 @@
     <Filter Include="Engine\Manager\World">
       <UniqueIdentifier>{dd844ada-7a22-4db4-9b7c-dd8887947dbc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Component\RenderComponent">
-      <UniqueIdentifier>{d726ca43-2937-46e9-bf52-9cf1a0744052}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Client\Header">
       <UniqueIdentifier>{ad728146-4e41-4590-872b-9a9c0b555c52}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Component\SceneComponent">
       <UniqueIdentifier>{1c874fa5-5ccb-43f3-a7ab-5d0939e2b7d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Component\InputComponent">
-      <UniqueIdentifier>{1e685de1-557a-4137-a2af-2b6ab1d36e72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\BaseClass\Layer">
       <UniqueIdentifier>{490dd329-328e-4e45-a96d-1fc593b49164}</UniqueIdentifier>
@@ -88,9 +73,6 @@
     <Filter Include="Engine\Utility\Mathf">
       <UniqueIdentifier>{9eb24cea-469d-4039-bd7d-545c459c1677}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Component\BitmapComponent">
-      <UniqueIdentifier>{b9d675a3-075d-454d-9b17-5817a018bd27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Utility\Singleton">
       <UniqueIdentifier>{4541ae21-7168-48ab-aea9-e234ffc68ae1}</UniqueIdentifier>
     </Filter>
@@ -99,6 +81,33 @@
     </Filter>
     <Filter Include="Engine\Utility\Mathf\Vector2">
       <UniqueIdentifier>{7be90afb-ac78-4b63-a22a-5315b40d3039}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\SceneComponent\RenderComponent">
+      <UniqueIdentifier>{d726ca43-2937-46e9-bf52-9cf1a0744052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\SceneComponent\BitmapComponent">
+      <UniqueIdentifier>{b9d675a3-075d-454d-9b17-5817a018bd27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\ActorComponent">
+      <UniqueIdentifier>{c1a923d5-848a-49e0-8d75-3ef3a040f5ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\ActorComponent\InputComponent">
+      <UniqueIdentifier>{1e685de1-557a-4137-a2af-2b6ab1d36e72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\Transform">
+      <UniqueIdentifier>{05de7cac-9c3f-4370-a641-2a875e15489c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseClass\Actor">
+      <UniqueIdentifier>{406242c6-bc3a-4343-891a-e73115081933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\SceneComponent\CameraComponent">
+      <UniqueIdentifier>{41f9a5c8-1285-4a14-9e69-6abc493d5ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseClass\Interface">
+      <UniqueIdentifier>{c39d5b61-b594-4bb0-a63c-20dcaca11c30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utility\header">
+      <UniqueIdentifier>{de6ca2d2-2c01-4ab5-82f5-40b132342386}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +121,7 @@
       <Filter>Client\System</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Actor.h">
-      <Filter>Engine\Actor</Filter>
+      <Filter>Engine\BaseClass\Actor</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Core.h">
       <Filter>Engine\BaseClass\Core</Filter>
@@ -130,34 +139,31 @@
       <Filter>Engine\BaseClass\Event</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\InputComponent.h">
-      <Filter>Engine\Component\InputComponent</Filter>
+      <Filter>Engine\Component\ActorComponent\InputComponent</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\RenderComponent.h">
-      <Filter>Engine\Component\RenderComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine\Headers\Component.h">
-      <Filter>Engine\Component</Filter>
+      <Filter>Engine\Component\SceneComponent\RenderComponent</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Core_Define.h">
-      <Filter>Engine\header</Filter>
+      <Filter>Engine\Utility\header</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Core_Enum.h">
-      <Filter>Engine\header</Filter>
+      <Filter>Engine\Utility\header</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Core_Function.h">
-      <Filter>Engine\header</Filter>
+      <Filter>Engine\Utility\header</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Core_Macro.h">
-      <Filter>Engine\header</Filter>
+      <Filter>Engine\Utility\header</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Core_Struct.h">
-      <Filter>Engine\header</Filter>
+      <Filter>Engine\Utility\header</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Core_Type.h">
-      <Filter>Engine\header</Filter>
+      <Filter>Engine\Utility\header</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\IInputReceiver.h">
-      <Filter>Engine\Interface</Filter>
+      <Filter>Engine\BaseClass\Interface</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Layer.h">
       <Filter>Engine\BaseClass\Layer</Filter>
@@ -178,7 +184,7 @@
       <Filter>Engine\Manager\Time</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\BitmapComponent.h">
-      <Filter>Engine\Component\BitmapComponent</Filter>
+      <Filter>Engine\Component\SceneComponent\BitmapComponent</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Mathf.h">
       <Filter>Engine\Utility\Mathf</Filter>
@@ -194,6 +200,15 @@
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Singleton.h">
       <Filter>Engine\Utility\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Component.h">
+      <Filter>Engine\Component\ActorComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Transform.h">
+      <Filter>Engine\Utility\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\CameraComponent.h">
+      <Filter>Engine\Component\SceneComponent\CameraComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +228,7 @@
       <Filter>Engine\BaseClass\World</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\InputComponent.cpp">
-      <Filter>Engine\Component\InputComponent</Filter>
+      <Filter>Engine\Component\ActorComponent\InputComponent</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\Layer.cpp">
       <Filter>Engine\BaseClass\Layer</Filter>
@@ -234,16 +249,22 @@
       <Filter>Engine\Manager\Time</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\Actor.cpp">
-      <Filter>Engine\Actor</Filter>
+      <Filter>Engine\BaseClass\Actor</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp">
-      <Filter>Engine\Component\BitmapComponent</Filter>
+      <Filter>Engine\Component\SceneComponent\BitmapComponent</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\SceneComponent.cpp">
       <Filter>Engine\Component\SceneComponent</Filter>
     </ClCompile>
-    <ClCompile Include="..\Engine\Headers\RenderComponent.cpp">
-      <Filter>Engine\Component\RenderComponent</Filter>
+    <ClCompile Include="..\Engine\Codes\Transform.cpp">
+      <Filter>Engine\Utility\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\CameraComponent.cpp">
+      <Filter>Engine\Component\SceneComponent\CameraComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\RenderComponent.cpp">
+      <Filter>Engine\Component\SceneComponent\RenderComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -16,20 +16,28 @@ namespace Core
 		virtual void BeginPlay();
 		virtual void Tick(_float deltaTime);
 		virtual void Fixed();
-		virtual void Render(ID2D1RenderTarget* pRenderTarget);
+		//virtual void Render(ID2D1RenderTarget* pRenderTarget);
 		virtual void EndPlay();
 
 	public:
 		template <typename T>
-		T* CreateComponent(_pstring name)
+		T* AddComponent(_pstring name)
 		{
 			bool isBaseComponent = std::is_base_of<Component, T>::value;
 			static_assert(std::is_base_of<Component, T>::value, "T must derive form Component");
-			assert(isBaseComponent);
 
 			T* pComponent = T::Create();
 			pComponent->SetOwner(this);
 			pComponent->SetName(name);
+			//이게 맞니? ㅋㅋㅋㅋ
+			bool isSceneComponent = std::is_base_of<SceneComponent, T>::value;
+			bool isRootComponent = (nullptr == _pRootComponent);
+			if (isSceneComponent && !isRootComponent)
+			{
+				SceneComponent* pSceneComponent = dynamic_cast<SceneComponent*>(pComponent);
+				pSceneComponent->AttachToComponent(_pRootComponent);
+			}
+
 			_vecComponents.push_back(pComponent);
 			return pComponent;
 		}
@@ -45,16 +53,19 @@ namespace Core
 			return nullptr;
 		}
 
-		void SetPosition(Mathf::Vector2 position) { _position = position; }
-		Mathf::Vector2 GetPosition() { return _position; }
+		bool SetRootComponent(SceneComponent* pRootComponent);
+		SceneComponent* GetRootComponent() const { return _pRootComponent; }
+
+		void SetLayerIndex(int layerIndex) { _layerIndex = layerIndex; }
+		int GetLayerIndex() const { return _layerIndex; }
 
 	protected:
 		virtual void Remove() override PURE;
 
 	protected:
+		SceneComponent*			_pRootComponent{ nullptr };
 		Actor*					_pParent{ nullptr };
 		World*					_pOwnerWorld{ nullptr };
-		Mathf::Vector2			_position{ 0,0 };
 		int						_layerIndex{ 0 };
 		std::vector<Component*> _vecComponents;
 		std::vector<Texture*>	_vecTextures;

@@ -16,7 +16,10 @@ namespace Client
 		virtual ~ClientWorld() DEFAULT;
 
 	public:
-		static ClientWorld* Create() { return new ClientWorld; }
 		bool BeginPlay() override;
+		void Tick(_float deltaTime) override;
+
+	public:
+		static ClientWorld* Create() { return new ClientWorld; }
 	};
 }

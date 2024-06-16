@@ -13,6 +13,7 @@ namespace Core
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) PURE;
 
 	public:
+		void AddRenderQueueInLayer();
 		void SetOrder(int order) { _order = order; }
 		int GetOrder() const { return _order; }
 		void SetVisible(bool isVisible) { _isVisible = isVisible; }

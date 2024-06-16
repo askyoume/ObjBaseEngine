@@ -5,6 +5,8 @@
 #include "TextureManager.h"
 #include "Object.h"
 #include "World.h"
+#include "Layer.h"
+#include "Mathf.h"
 
 Core::CoreManager::CoreManager()
 {
@@ -12,9 +14,7 @@ Core::CoreManager::CoreManager()
     _pInputMgr = InputManager::Create();
     _pGraphicsMgr = GraphicsManager::Create();
     _pTextureMgr = TextureManager::Create();
-    //클라이언트에서 월드를 생성하고 전달해야함.
-	//비긴 삭제하고 클라이언트에서 월드를 생성하고 전달하게 수정해야함.
-    /*_pWorld = World::Begin(); */
+    //클라이언트에서 월드를 생성하고 엔진(?)에 전달해야함.
     // 추후에 현 월드 클래스를 -> 레벨 클래스로 변경, 이후 월드 클래스는 레벨을 관리, 전환하는 역활을 수행
     
     BeginDestroy();
@@ -92,12 +92,12 @@ void Core::CoreManager::Initialize(const GameSetting& info)
 	//_pSwapChain = _pGraphicsMgr->GetPackage()->_pSwapChain;
     _pRenderTarget = _pGraphicsMgr->GetPackage()->_pHwndRenderTarget;
 
-    _pTextureMgr->Initialize(_pGraphicsMgr->GetPackage());
+	//엔진의 월드 좌표계의 중심을 화면의 중심으로 변환하고 통상적인 4분면 좌표계로 변환하는
+    //행렬(스케일 값을 -1로 주어 y축을 뒤집음)
+	_centerTransform = D2D1::Matrix3x2F::Scale(1.f, -1.f, D2D1::Point2F(0.f, _height / 2)) * 
+	                   D2D1::Matrix3x2F::Translation(_width / 2.f, _height / 2.f);
 
-	//if (!_pWorld)
- //   {
-	//	_pWorld = World::Begin();
- //   }
+    _pTextureMgr->Initialize(_pGraphicsMgr->GetPackage());
 
     _pWorld->InitializeWorld(info.layerSize);
 }
@@ -141,6 +141,29 @@ bool Core::CoreManager::LoadTexture(_pwstring filePath)
 Core::Texture* Core::CoreManager::FindTexture(_pwstring filePath)
 {
 	return _pTextureMgr->FindTexture(filePath);
+}
+
+void Core::CoreManager::EraseActorMap(Object* pObject)
+{
+    _pWorld->GetActorMap().erase(pObject->GetName());
+}
+
+Core::Layer* Core::CoreManager::GetLayer(int layerIndex) const
+{
+	if (_pWorld)
+    {
+		return _pWorld->GetLayer(layerIndex);
+    }
+
+    return nullptr;
+}
+
+void Core::CoreManager::AddRenderQueue(int layerIndex, RenderComponent* pRenderComponent)
+{
+	if (_pWorld)
+	{
+		_pWorld->GetLayer(layerIndex)->AddRenderQueue(pRenderComponent);
+	}
 }
 
 GraphicsPtrPackage* Core::CoreManager::GetGraphicsPackage() const

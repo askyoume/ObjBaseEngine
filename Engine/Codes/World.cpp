@@ -1,6 +1,7 @@
 #include "World.h"
 #include "Actor.h"
 #include "Layer.h"
+#include "SceneComponent.h"
 
 bool Core::World::InitializeWorld(int layerSize)
 {
@@ -44,6 +45,7 @@ void Core::World::EndPlay()
 	{
 		(*iter)->EndPlay();
 	}
+
 }
 
 bool Core::World::InitializeLayer(int layerSize)
@@ -56,6 +58,16 @@ bool Core::World::InitializeLayer(int layerSize)
 	}
 
 	return true;
+}
+
+Core::Layer* Core::World::GetLayer(int layerIndex) const
+{
+	if (layerIndex < _vecLayers.size())
+	{
+		return _vecLayers[layerIndex];
+	}
+
+	return nullptr;
 }
 
 void Core::World::AddLayer(int layerIndex, Layer* pLayer)
@@ -86,15 +98,40 @@ void Core::World::ClearLayer()
 	_vecLayers.clear();
 }
 
-bool Core::World::AddActor(int layerIndex, _pstring name, Actor* pActor)
+bool Core::World::SpawnActor(int layerIndex, _pstring name, Actor* pActor)
 {
 	pActor->SetName(name);
+	pActor->SetRootComponent(pActor->AddComponent<SceneComponent>("RootComponent"));
+	pActor->SetLayerIndex(layerIndex);
+
+	_actorMap.insert(std::make_pair(name, pActor));
 	_vecLayers[layerIndex]->AddActor(pActor);
 
-    return true;
+	return true;
 }
 
-Core::Actor* Core::World::FindActor(int layerIndex, _pstring name)
+bool Core::World::SpawnActor(int layerIndex, _pstring name, Actor* pActor, const Mathf::Vector2& location)
 {
-    return _vecLayers[layerIndex]->GetActor(name);
+	pActor->SetName(name);
+	pActor->SetRootComponent(pActor->AddComponent<SceneComponent>("RootComponent"));
+	pActor->SetLayerIndex(layerIndex);
+
+	pActor->GetRootComponent()->SetRelativeLocation(location);
+
+	_actorMap.insert(std::make_pair(name, pActor));
+	_vecLayers[layerIndex]->AddActor(pActor);
+
+	return true;
+}
+
+bool Core::World::RemoveActor(_pstring name)
+{
+	_actorMap.find(name)->second->OnDestroyMark(true);
+
+	return true;
+}
+
+Core::Actor* Core::World::FindActor(_pstring name)
+{
+    return _actorMap.find(name)->second;
 }

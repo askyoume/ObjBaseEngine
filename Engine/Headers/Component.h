@@ -20,6 +20,7 @@ namespace Core
 
 	public:
 		virtual void SetOwner(Actor* owner) { _owner = owner; }
+		Actor* GetOwner() const { return _owner; }
 
 	protected:
 		virtual bool Initialize() PURE;

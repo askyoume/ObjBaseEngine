@@ -12,14 +12,17 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	{
 		_currentTextureIndex = 0;
 	}
+
 	Texture* pTexture = _vecTextures->at(_currentTextureIndex);
 
 	SetTextureRect(pTexture);
 
-	_LocalLocation.x = _rect.right / 2;
-	_LocalLocation.y = _rect.bottom / 2;
+	_LocalLocation.x = _rect.right / 2.f;
+	_LocalLocation.y = _rect.bottom / 2.f;
 
-	Mathf::Matrix3x2 Transform = _renderMatrix * _WorldTransform;
+	//이거 맞니? 2탄(뭔가 만들때 마다 생겼다가 지워졌다가...)
+	//변환 행렬 : 뷰포트 = 렌더 y축 반전 * 카메라 행렬 * 윈도우 중앙 기준 월드 좌표계(스크린 좌표계) 행렬
+	Mathf::Matrix3x2 Transform = _renderMatrix * _ViewTransform * _MidCalculateTransform;
 
 	pRenderTarget->SetTransform(Transform);
 		
@@ -27,6 +30,16 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	pRenderTarget->SetTransform(_renderMatrix);
 
+}
+
+void Core::BitmapComponent::SetTextures(BitmapTextures* vecTextures)
+{
+	if (nullptr != _parent)
+	{
+		SetRelativeLocation(_parent->GetRelativeLocation());
+	}
+
+	_vecTextures = vecTextures;
 }
 
 void Core::BitmapComponent::SetTextureRect(Texture* pTexture)

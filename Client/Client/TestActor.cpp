@@ -9,8 +9,8 @@ void Client::TestActor::BeginPlay()
 {
 	Actor::BeginPlay();
 
-	CreateComponent<::Core::InputComponent>("InputComponent");
-	CreateComponent<::Core::BitmapComponent>("BitmapComponent");
+	AddComponent<::Core::InputComponent>("InputComponent");
+	AddComponent<::Core::BitmapComponent>("BitmapComponent");
 
 	::Core::InputComponent* pInputComponent = 
 		GetComponent<::Core::InputComponent>("InputComponent");
@@ -34,9 +34,9 @@ void Client::TestActor::BeginPlay()
 			pInputComponent->SetVibration(0.f, 0.f);
 		});
 
-	pInputComponent->BindInputEvent(DIP_LX, InputType::AXIS, [&](const InputEvent& inputEvent)
+	pInputComponent->BindInputEvent(DIK_AXIS, InputType::AXIS, [&](const InputEvent& inputEvent)
 		{
-			Move(inputEvent.value, 0);
+			Move((float)inputEvent.x, (float)-inputEvent.y);
 		});
 
 	pInputComponent->BindInputEvent(DIP_LY, InputType::AXIS, [&](const InputEvent& inputEvent)
@@ -47,20 +47,20 @@ void Client::TestActor::BeginPlay()
 	pInputComponent->AttachToInputManager();
 
 	pBitmapComponent->SetTextures(&_vecTextures);
+
+	pBitmapComponent->AddRenderQueueInLayer();
 }
 
 void Client::TestActor::Tick(_float deltaTime)
 {
+	std::cout << _pRootComponent->GetWorldLocation().x << " " 
+		<< _pRootComponent->GetWorldLocation().y << std::endl;
+
 	Actor::Tick(deltaTime);
 }
 
 void Client::TestActor::Fixed()
 {
-}
-
-void Client::TestActor::Render(ID2D1RenderTarget* pRenderTarget)
-{
-	Actor::Render(pRenderTarget);
 }
 
 void Client::TestActor::EndPlay()
@@ -71,24 +71,16 @@ void Client::TestActor::Fire()
 {
 	std::cout << "Fire" << std::endl;
 
-		::Core::InputComponent* pInputComponent = 
-		GetComponent<::Core::InputComponent>("InputComponent");
 }
 
 void Client::TestActor::Rotate(float degree)
 {
-	::Core::BitmapComponent* pBitmapComponent =
-		GetComponent<::Core::BitmapComponent>("BitmapComponent");
-
-	pBitmapComponent->AddRelativeRotation(degree);
+	_pRootComponent->AddRelativeRotation(degree);
 }
 
 void Client::TestActor::Move(float x, float y)
 {
-	::Core::BitmapComponent* pBitmapComponent =
-		GetComponent<::Core::BitmapComponent>("BitmapComponent");
-
-	pBitmapComponent->AddRelativeLocation(Mathf::Vector2(x,-y));
+	_pRootComponent->AddRelativeLocation(Mathf::Vector2{x, y});
 }
 //test code end
 void Client::TestActor::Remove()

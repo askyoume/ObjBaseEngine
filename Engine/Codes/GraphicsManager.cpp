@@ -209,7 +209,7 @@ HRESULT Core::GraphicsManager::InitializeD2D(HWND hWnd)
 
 
 	hresult = D2D1CreateFactory(
-		D2D1_FACTORY_TYPE_SINGLE_THREADED, 
+		D2D1_FACTORY_TYPE_SINGLE_THREADED,
 		&_pGraphicsPtrPackage._pD2DFactory
 	);
 	if (FAILED(hresult))
@@ -222,7 +222,7 @@ HRESULT Core::GraphicsManager::InitializeD2D(HWND hWnd)
 
 	D2D1_RENDER_TARGET_PROPERTIES renderTargetProperties = 
 		D2D1::RenderTargetProperties(
-			D2D1_RENDER_TARGET_TYPE_DEFAULT,
+			D2D1_RENDER_TARGET_TYPE_HARDWARE,
 			D2D1::PixelFormat(DXGI_FORMAT_UNKNOWN, D2D1_ALPHA_MODE_PREMULTIPLIED),
 			dpi,
 			dpi
@@ -263,10 +263,12 @@ HRESULT Core::GraphicsManager::InitializeD2D(HWND hWnd)
 		(_uint)_pCoreMgr->GetWidth(), 
 		(_uint)_pCoreMgr->GetHeight()
 	);
+	//FPS Lock 현상의 범인... 계단현상은 누가 범인일까?
+	D2D1_PRESENT_OPTIONS presentOptions = D2D1_PRESENT_OPTIONS_IMMEDIATELY;
 
 	hresult = _pGraphicsPtrPackage._pD2DFactory->CreateHwndRenderTarget(
 		renderTargetProperties,
-		D2D1::HwndRenderTargetProperties(hWnd, screenSize),
+		D2D1::HwndRenderTargetProperties(hWnd, screenSize, presentOptions),
 		&_pGraphicsPtrPackage._pHwndRenderTarget
 	);
 	if (FAILED(hresult))
