@@ -23,25 +23,32 @@ void Client::TestActor::BeginPlay()
 			Rotate(inputEvent.value);
 		});
 
-	pInputComponent->BindInputEvent(DIP_A, InputType::PRESS, [&](const InputEvent& inputEvent)
+	pInputComponent->BindInputEvent(DIP_RT, InputType::TRIGGER, [&](const InputEvent& inputEvent)
 		{
-			pInputComponent->SetVibration(0.f, 1.f);
+			XINPUT_VIBRATION vibration{
+				0, 
+				static_cast<WORD>(inputEvent.value * USHRT_MAX)
+			};
+
+			XInputSetState(0, &vibration);
+
 			Fire();
 		});
 
-	pInputComponent->BindInputEvent(DIP_A, InputType::RELEASE, [&](const InputEvent& inputEvent)
+	pInputComponent->BindInputEvent(DIP_RT, InputType::RELEASE, [&](const InputEvent& inputEvent)
 		{
-			pInputComponent->SetVibration(0.f, 0.f);
+			XINPUT_VIBRATION vibration{ 0, 0 };
+			XInputSetState(0, &vibration);
 		});
 
-	pInputComponent->BindInputEvent(DIK_AXIS, InputType::AXIS, [&](const InputEvent& inputEvent)
+	pInputComponent->BindInputEvent(DIP_LX, InputType::AXIS, [&](const InputEvent& inputEvent)
 		{
-			Move((float)inputEvent.x, (float)-inputEvent.y);
+			Move(inputEvent.value, 0);
 		});
 
 	pInputComponent->BindInputEvent(DIP_LY, InputType::AXIS, [&](const InputEvent& inputEvent)
 		{
-			Move(0, inputEvent.value);
+			Move(0, -inputEvent.value);
 		});
 
 	pInputComponent->AttachToInputManager();
@@ -53,8 +60,8 @@ void Client::TestActor::BeginPlay()
 
 void Client::TestActor::Tick(_float deltaTime)
 {
-	std::cout << _pRootComponent->GetWorldLocation().x << " " 
-		<< _pRootComponent->GetWorldLocation().y << std::endl;
+	//std::cout << _pRootComponent->GetWorldLocation().x << " " 
+	//	<< _pRootComponent->GetWorldLocation().y << std::endl;
 
 	Actor::Tick(deltaTime);
 }
@@ -69,6 +76,7 @@ void Client::TestActor::EndPlay()
 //test code
 void Client::TestActor::Fire()
 {
+
 	std::cout << "Fire" << std::endl;
 
 }

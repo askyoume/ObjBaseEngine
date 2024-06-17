@@ -37,7 +37,7 @@ namespace Core
 
 	public:
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor);
-		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor, const Mathf::Vector2& location);
+		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor, Mathf::Vector2 location);
 		bool RemoveActor(_pstring name);
 		Actor* FindActor(_pstring name);
 

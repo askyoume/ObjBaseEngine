@@ -19,10 +19,9 @@ namespace Core
 		void BindInputEvent(_uint key, InputType type, Callback handler);
 		void OnInputReceived(const InputEvent& inputEvent) override; // IInputReceiver 인터페이스 구현부
 		void AttachToInputManager();
-		void SetVibration(float leftMotorSpeed, float rightMotorSpeed);
 
 	public:
-		static InputComponent* Create();/* { return new InputComponent; }*/
+		static InputComponent* Create();
 
 	private:
 		void BeginPlay() override {};
@@ -31,7 +30,5 @@ namespace Core
 		void EndPlay() override {};
 		void Remove() override;
 
-	private:
-		XINPUT_VIBRATION _vibration{ 0, 0 };
 	};
 }

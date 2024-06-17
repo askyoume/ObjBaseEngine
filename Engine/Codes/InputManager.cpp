@@ -296,13 +296,13 @@ void Core::InputManager::ProcessGamePadInput()
 			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_RY, gamePadRY);
 		}
 
-		float gamePadLT = static_cast<float>(_pGamePad->Gamepad.bLeftTrigger) / 255.f;
+		float gamePadLT = static_cast<float>(_pGamePad->Gamepad.bLeftTrigger);
 		if (gamePadLT > XINPUT_GAMEPAD_TRIGGER_THRESHOLD)
 		{
 			DispatchInput(InputDevice::GAMEPAD, InputType::TRIGGER, DIP_LT, gamePadLT);
 		}
 
-		float gamePadRT = static_cast<float>(_pGamePad->Gamepad.bRightTrigger) / 255.f;
+		float gamePadRT = static_cast<float>(_pGamePad->Gamepad.bRightTrigger);
 		if (gamePadRT > XINPUT_GAMEPAD_TRIGGER_THRESHOLD)
 		{
 			DispatchInput(InputDevice::GAMEPAD, InputType::TRIGGER, DIP_RT, gamePadRT);

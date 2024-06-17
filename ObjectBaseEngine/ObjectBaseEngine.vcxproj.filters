@@ -267,4 +267,7 @@
       <Filter>Engine\Component\SceneComponent\RenderComponent</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>

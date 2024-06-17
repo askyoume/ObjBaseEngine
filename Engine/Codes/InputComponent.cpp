@@ -37,14 +37,6 @@ void Core::InputComponent::AttachToInputManager()
 	}
 }
 
-void Core::InputComponent::SetVibration(float leftMotorSpeed, float rightMotorSpeed)
-{
-	_vibration.wLeftMotorSpeed = static_cast<_uint>(leftMotorSpeed * USHRT_MAX);
-	_vibration.wRightMotorSpeed = static_cast<_uint>(rightMotorSpeed * USHRT_MAX);
-
-	XInputSetState(0, &_vibration);
-}
-
 Core::InputComponent* Core::InputComponent::Create()
 {
 	static InputComponent* pInputComponent = new InputComponent;

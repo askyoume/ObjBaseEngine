@@ -110,7 +110,7 @@ bool Core::World::SpawnActor(int layerIndex, _pstring name, Actor* pActor)
 	return true;
 }
 
-bool Core::World::SpawnActor(int layerIndex, _pstring name, Actor* pActor, const Mathf::Vector2& location)
+bool Core::World::SpawnActor(int layerIndex, _pstring name, Actor* pActor, Mathf::Vector2 location)
 {
 	pActor->SetName(name);
 	pActor->SetRootComponent(pActor->AddComponent<SceneComponent>("RootComponent"));

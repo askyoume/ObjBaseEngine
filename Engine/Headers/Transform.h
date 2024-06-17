@@ -43,16 +43,19 @@ namespace Core
 		const Mathf::Vector2& GetVelocity() const { return _ComponentVelocity; }
 	
 	protected:
+		Mathf::Matrix3x2	_LocalTransform{ D2D1::Matrix3x2F::Identity() };
 		Mathf::Matrix3x2	_ViewTransform{ D2D1::Matrix3x2F::Identity() };
 		Mathf::Matrix3x2	_MidCalculateTransform{ D2D1::Matrix3x2F::Identity() };
 		Mathf::Matrix3x2	_CenterTransform{ D2D1::Matrix3x2F::Identity() }; //윈도우 중앙축을 기준으로 변환
 		Mathf::Matrix3x2	_RelativeTransform{ D2D1::Matrix3x2F::Identity() };
 		Mathf::Matrix3x2	_WorldTransform{ D2D1::Matrix3x2F::Identity() };
+		Mathf::Vector2		_LocalScale{ UnitVector::Zero };
 		Mathf::Vector2		_LocalLocation{ UnitVector::Zero };
 		Mathf::Vector2		_WorldLocation{ UnitVector::Zero };
 		Mathf::Vector2		_RelativeLocation{ UnitVector::Zero };
 		Mathf::Vector2		_RelativeScale{ UnitVector::One };
 		Mathf::Vector2		_ComponentVelocity{ UnitVector::Zero };
 		float				_RelativeRotation{ 0.f };
+		float				_LocalRotation{ 0.f };
 	};
 }

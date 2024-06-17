@@ -92,11 +92,6 @@ void Core::CoreManager::Initialize(const GameSetting& info)
 	//_pSwapChain = _pGraphicsMgr->GetPackage()->_pSwapChain;
     _pRenderTarget = _pGraphicsMgr->GetPackage()->_pHwndRenderTarget;
 
-	//엔진의 월드 좌표계의 중심을 화면의 중심으로 변환하고 통상적인 4분면 좌표계로 변환하는
-    //행렬(스케일 값을 -1로 주어 y축을 뒤집음)
-	_centerTransform = D2D1::Matrix3x2F::Scale(1.f, -1.f, D2D1::Point2F(0.f, _height / 2)) * 
-	                   D2D1::Matrix3x2F::Translation(_width / 2.f, _height / 2.f);
-
     _pTextureMgr->Initialize(_pGraphicsMgr->GetPackage());
 
     _pWorld->InitializeWorld(info.layerSize);

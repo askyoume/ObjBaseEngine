@@ -46,6 +46,7 @@
 #include <thread>
 #include <condition_variable>
 #include <comdef.h>
+//#include <memory_resource>
 
 //Core
 #include "Core_Struct.h"

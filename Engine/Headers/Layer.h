@@ -7,8 +7,9 @@ namespace Core
 	class Layer : public Core
 	{
 	private:
-		using Actors = std::deque<Actor*>;
+		using Actors = std::list<Actor*>;
 		using RenderQueue = std::set<RenderComponent*>;
+
 	private:
 		Layer() DEFAULT;
 		~Layer() DEFAULT;

@@ -34,12 +34,16 @@
 	class SceneComponent;
 
 //////////////////////////////////////////////
+// Define KeyArrow                          //
+//////////////////////////////////////////////
+
+#define DIK_AXIS 0x00001011
+
+//////////////////////////////////////////////
 // Define GAMEPAD                           //
 //////////////////////////////////////////////
 
 #define GAMEPAD_NORMALIZE 32767.f
-
-#define DIK_AXIS 0x00001011
 
 #define DIP_LX 0x00020000
 #define DIP_LY 0x00020001

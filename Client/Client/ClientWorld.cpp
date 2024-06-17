@@ -7,8 +7,8 @@
 bool Client::ClientWorld::BeginPlay()
 {
 	//test code
-	SpawnActor(OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ 0, 0 });
-	SpawnActor(BACKGROUND, "TestActor2", TestActor2::Create(), Mathf::Vector2{ 0, 0 });
+	SpawnActor(OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ 960.f , 0 });
+	SpawnActor(BACKGROUND, "TestActor2", TestActor2::Create(), Mathf::Vector2{ 960.f, 530.f });
 	//test code end
 
     return true;

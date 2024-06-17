@@ -4,7 +4,7 @@
 namespace Core
 {
 	CORECLASS()
-	class CameraComponent : public SceneComponent, public Transform
+	class CameraComponent : public SceneComponent
 	{
 	protected:
 		explicit CameraComponent() DEFAULT;
