@@ -11,6 +11,11 @@ namespace UnitVector
 	const Mathf::Vector2 Right{ 1.f, 0.f };
 }
 
+namespace Matx
+{
+	const Mathf::Matrix3x2 Identity{ D2D1::Matrix3x2F::Identity() };
+}
+
 namespace Mathf
 {
 	const float Rad2Deg = 180.f / DirectX::XM_PI;

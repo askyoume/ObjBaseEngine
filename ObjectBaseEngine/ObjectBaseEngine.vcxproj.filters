@@ -109,6 +109,9 @@
     <Filter Include="Engine\Utility\header">
       <UniqueIdentifier>{de6ca2d2-2c01-4ab5-82f5-40b132342386}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\BaseClass\Actor\CameraActor">
+      <UniqueIdentifier>{0a22a1bf-5f81-41ea-a2a9-f93b2dd415c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainEntry.h">
@@ -209,6 +212,9 @@
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\CameraComponent.h">
       <Filter>Engine\Component\SceneComponent\CameraComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\CameraActor.h">
+      <Filter>Engine\BaseClass\Actor\CameraActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

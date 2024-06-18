@@ -15,10 +15,6 @@ namespace Core
 		virtual void UpdateTransform() PURE;
 		virtual void UpdateVelocity() PURE;
 
-		//Local Offset을 사용할때 사용
-		void SetLocalLocation(const Mathf::Vector2& location) { _LocalLocation = location; }
-		const Mathf::Vector2& GetLocalLocation() const { return _LocalLocation; }
-
 		//상대 스케일 값
 		void SetRelativeScale(const Mathf::Vector2& scale) { _RelativeScale = scale; }
 		void AddRelativeScale(const Mathf::Vector2& scale) { _RelativeScale += scale; }
@@ -43,14 +39,11 @@ namespace Core
 		const Mathf::Vector2& GetVelocity() const { return _ComponentVelocity; }
 	
 	protected:
-		Mathf::Matrix3x2	_LocalTransform{ D2D1::Matrix3x2F::Identity() };
-		Mathf::Matrix3x2	_ViewTransform{ D2D1::Matrix3x2F::Identity() };
-		Mathf::Matrix3x2	_MidCalculateTransform{ D2D1::Matrix3x2F::Identity() };
-		Mathf::Matrix3x2	_CenterTransform{ D2D1::Matrix3x2F::Identity() }; //윈도우 중앙축을 기준으로 변환
-		Mathf::Matrix3x2	_RelativeTransform{ D2D1::Matrix3x2F::Identity() };
-		Mathf::Matrix3x2	_WorldTransform{ D2D1::Matrix3x2F::Identity() };
-		Mathf::Vector2		_LocalScale{ UnitVector::Zero };
-		Mathf::Vector2		_LocalLocation{ UnitVector::Zero };
+		Mathf::Matrix3x2	_CameraTransform{ Matx::Identity };
+		Mathf::Matrix3x2	_MidCalculateTransform{ Matx::Identity };
+		Mathf::Matrix3x2	_CenterTransform{ Matx::Identity }; //윈도우 중앙축을 기준으로 변환
+		Mathf::Matrix3x2	_RelativeTransform{ Matx::Identity };
+		Mathf::Matrix3x2	_WorldTransform{ Matx::Identity };
 		Mathf::Vector2		_WorldLocation{ UnitVector::Zero };
 		Mathf::Vector2		_RelativeLocation{ UnitVector::Zero };
 		Mathf::Vector2		_RelativeScale{ UnitVector::One };

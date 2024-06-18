@@ -59,6 +59,10 @@ namespace Core
 		void SetLayerIndex(int layerIndex) { _layerIndex = layerIndex; }
 		int GetLayerIndex() const { return _layerIndex; }
 
+		void AttachToActor(Actor* pParent);
+		void DetachFromActor();
+		Actor* GetParent() const { return _pParent; }
+
 	protected:
 		virtual void Remove() override PURE;
 
@@ -67,6 +71,7 @@ namespace Core
 		Actor*					_pParent{ nullptr };
 		World*					_pOwnerWorld{ nullptr };
 		int						_layerIndex{ 0 };
+		std::vector<Actor*>		_vecChildren;
 		std::vector<Component*> _vecComponents;
 		std::vector<Texture*>	_vecTextures;
 	};

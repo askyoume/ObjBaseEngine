@@ -23,7 +23,7 @@ namespace Core
 		virtual void Remove() override PURE;
 
 	protected:
-		D2D1::Matrix3x2F _renderMatrix;
+		D2D1::Matrix3x2F _renderMatrix{};
 		bool _isVisible{ true };
 		int  _order{ 0 };
 	};

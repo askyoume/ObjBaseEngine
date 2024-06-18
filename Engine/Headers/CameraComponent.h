@@ -15,10 +15,6 @@ namespace Core
 		virtual void TickComponent(_float deltaTime) override;
 		virtual void EndPlay() override {};
 
-	public:
-		void UpdateTransform() override;
-		void UpdateVelocity() override;
-
 	protected:
 		virtual bool Initialize() { return true; }
 		virtual void Remove() {};
@@ -26,5 +22,7 @@ namespace Core
 	public:
 		static CameraComponent* Create() { return new CameraComponent; }
 
+	private:
+		Mathf::Matrix3x2 _cameraMatrix{ Matx::Identity };
 	};
 }

@@ -40,3 +40,15 @@ bool Core::Actor::SetRootComponent(SceneComponent* pRootComponent)
 
 	return true;
 }
+
+void Core::Actor::AttachToActor(Actor* pParent)
+{
+	_pParent = pParent;
+	_pRootComponent->AttachToComponent(_pParent->GetRootComponent());
+}
+
+void Core::Actor::DetachFromActor()
+{
+	_pRootComponent->AttachToComponent(nullptr);
+	_pParent = nullptr;
+}

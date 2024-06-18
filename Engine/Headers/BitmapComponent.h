@@ -18,6 +18,7 @@ namespace Core
 		void SetTextures(BitmapTextures* vecTextures);
 		void SetTextureIndex(int index) { _currentTextureIndex = index; }
 		void SetTextureRect(Texture* pTexture);
+		void SetBitmapLocalTransform();
 
 	protected:
 		virtual bool Initialize();
@@ -27,8 +28,11 @@ namespace Core
 		static BitmapComponent* Create();
 
 	private:
-		BitmapTextures* _vecTextures{ nullptr };
-		int _currentTextureIndex{ 0 };
-		Mathf::Rect _rect{ 0, 0, 0, 0 };
+		BitmapTextures*		_vecTextures{ nullptr };
+		int					_currentTextureIndex{ 0 };
+		Mathf::Rect			_rect{ 0, 0, 0, 0 };
+		Mathf::Matrix3x2	_LocalTransform{ Matx::Identity };
+		Mathf::Vector2		_LocalScale{ UnitVector::Zero };
+		Mathf::Vector2		_LocalLocation{ UnitVector::Zero };
 	};
 }

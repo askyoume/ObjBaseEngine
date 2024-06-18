@@ -17,17 +17,15 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	SetTextureRect(pTexture);
 
-	_LocalLocation.x = _rect.right / 2.f;
-	_LocalLocation.y = _rect.bottom / 2.f;
+	SetBitmapLocalTransform();
 
-	Mathf::Matrix3x2 Transform = _renderMatrix * _ViewTransform * _WorldTransform;
+	Mathf::Matrix3x2 Transform = _renderMatrix * _LocalTransform * _WorldTransform;
 
 	pRenderTarget->SetTransform(Transform);
 		
 	pRenderTarget->DrawBitmap((*pTexture)[0]);
 
 	pRenderTarget->SetTransform(_renderMatrix);
-
 }
 
 void Core::BitmapComponent::SetTextures(BitmapTextures* vecTextures)
@@ -40,6 +38,16 @@ void Core::BitmapComponent::SetTextureRect(Texture* pTexture)
 	D2D1_SIZE_F _size = (*pTexture)[0]->GetSize();
 
 	_rect = D2D1::RectF(0, 0, _size.width, _size.height);
+}
+
+void Core::BitmapComponent::SetBitmapLocalTransform()
+{
+	_LocalLocation.x = _rect.right / 2.f;
+	_LocalLocation.y = _rect.bottom / 2.f;
+
+	_LocalTransform = D2D1::Matrix3x2F::Translation(_LocalLocation.x, _LocalLocation.y);
+
+	D2D1InvertMatrix(&_LocalTransform);
 }
 
 bool Core::BitmapComponent::Initialize()

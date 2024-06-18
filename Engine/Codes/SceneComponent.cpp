@@ -11,14 +11,9 @@ void Core::SceneComponent::TickComponent(_float deltaTime)
 void Core::SceneComponent::UpdateTransform()
 {
 	_RelativeTransform = 
-		D2D1::Matrix3x2F::Scale(D2D1::SizeF(_RelativeScale.x, _RelativeScale.y), 
-			D2D1::Point2F(_LocalLocation.x, _LocalLocation.y)) *
-		D2D1::Matrix3x2F::Rotation(_RelativeRotation, 
-			D2D1::Point2F(_LocalLocation.x, _LocalLocation.y)) *
-		D2D1::Matrix3x2F::Translation(
-			_RelativeLocation.x - _LocalLocation.x, 
-			_RelativeLocation.y - _LocalLocation.y
-		);
+		D2D1::Matrix3x2F::Scale(D2D1::SizeF(_RelativeScale.x, _RelativeScale.y)) *
+		D2D1::Matrix3x2F::Rotation(_RelativeRotation) *
+		D2D1::Matrix3x2F::Translation(_RelativeLocation.x, _RelativeLocation.y);
 
 	if (_parent)
 	{
