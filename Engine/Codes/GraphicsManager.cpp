@@ -20,6 +20,83 @@ HRESULT Core::GraphicsManager::Initialize(HWND hWnd)
 	return hresult;
 }
 
+HRESULT Core::GraphicsManager::LoadFontFile(_pwstring fontFilePath, _pwstring fontName)
+{
+	HRESULT hresult = S_OK;
+
+	hresult = _pGraphicsPtrPackage._pDWriteFactory->CreateFontSetBuilder
+	(&_pGraphicsPtrPackage._pFontSetBuilder);
+
+	if (FAILED(hresult))
+	{
+		MessageBoxW(nullptr, L"Failed to create font set builder.", L"Error", MB_OK);
+		return hresult;
+	}
+
+	hresult = _pGraphicsPtrPackage._pDWriteFactory->CreateFontFileReference(
+		fontFilePath,
+		nullptr,
+		&_pGraphicsPtrPackage._pFontFile
+	);
+	if (FAILED(hresult))
+	{
+		MessageBoxW(nullptr, L"Failed to create font file reference.", L"Error", MB_OK);
+		return hresult;
+	}
+
+	hresult = _pGraphicsPtrPackage._pFontSetBuilder->
+		AddFontFile(_pGraphicsPtrPackage._pFontFile);
+	if (FAILED(hresult))
+	{
+		MessageBoxW(nullptr, L"Failed to add font file.", L"Error", MB_OK);
+		return hresult;
+	}
+
+	hresult = _pGraphicsPtrPackage._pFontSetBuilder->
+		CreateFontSet(&_pGraphicsPtrPackage._pFontSet);
+	if (FAILED(hresult))
+	{
+		MessageBoxW(nullptr, L"Failed to create font set.", L"Error", MB_OK);
+		return hresult;
+	}
+
+	_pGraphicsPtrPackage._pDWriteFactory->CreateFontCollectionFromFontSet(
+		_pGraphicsPtrPackage._pFontSet,
+		&_pGraphicsPtrPackage._pFontCollection
+	);
+
+	_pGraphicsPtrPackage._pFontCollection->GetFontFamily(
+		0,
+		&_pGraphicsPtrPackage._pFontFamily
+	);
+
+	_pGraphicsPtrPackage._pFontFamily->GetFamilyNames(
+		&_pGraphicsPtrPackage._pLocalizedStrings
+	);
+
+	WCHAR string[256]{};
+
+	_pGraphicsPtrPackage._pLocalizedStrings->GetString(
+		0,
+		string,
+		256
+	);
+
+	_pGraphicsPtrPackage._pDWriteFactory->CreateTextFormat(
+		string,
+		_pGraphicsPtrPackage._pFontCollection,
+		DWRITE_FONT_WEIGHT_REGULAR,
+		DWRITE_FONT_STYLE_NORMAL,
+		DWRITE_FONT_STRETCH_NORMAL,
+		16.0f,
+		L"en-us",
+		&_pGraphicsPtrPackage._pTextFormat
+	);
+
+	return hresult;
+
+}
+
 Core::GraphicsManager* Core::GraphicsManager::Create()
 {
 	return new GraphicsManager;
@@ -78,10 +155,6 @@ void Core::GraphicsManager::Remove()
 	if (_pGraphicsPtrPackage._pTextFormat)
 	{
 		SafeRelease(_pGraphicsPtrPackage._pTextFormat);
-	}
-	if (_pGraphicsPtrPackage._pDWriteFactory)
-	{
-		SafeRelease(_pGraphicsPtrPackage._pDWriteFactory);
 	}
 
 	CoUninitialize();
@@ -263,7 +336,7 @@ HRESULT Core::GraphicsManager::InitializeD2D(HWND hWnd)
 		(_uint)_pCoreMgr->GetWidth(), 
 		(_uint)_pCoreMgr->GetHeight()
 	);
-	//FPS Lock 현상의 범인... 계단현상은 누가 범인일까?
+
 	D2D1_PRESENT_OPTIONS presentOptions = D2D1_PRESENT_OPTIONS_IMMEDIATELY;
 
 	hresult = _pGraphicsPtrPackage._pD2DFactory->CreateHwndRenderTarget(
@@ -286,28 +359,6 @@ HRESULT Core::GraphicsManager::InitializeD2D(HWND hWnd)
 		MessageBoxW(hWnd, L"Failed to create D2D brush.", L"Error", MB_OK);
 		return hresult;
 	}
-
-	hresult = DWriteCreateFactory(
-		DWRITE_FACTORY_TYPE_SHARED,
-		__uuidof(IDWriteFactory),
-		(IUnknown**)&_pGraphicsPtrPackage._pDWriteFactory
-	);
-	if (FAILED(hresult))
-	{
-		MessageBoxW(hWnd, L"Failed to create DWrite factory.", L"Error", MB_OK);
-		return hresult;
-	}
-
-	hresult = _pGraphicsPtrPackage._pDWriteFactory->CreateTextFormat(
-		L"Arial",
-		NULL,
-		DWRITE_FONT_WEIGHT_REGULAR,
-		DWRITE_FONT_STYLE_NORMAL,
-		DWRITE_FONT_STRETCH_NORMAL,
-		16.0f,
-		L"en-us",
-		&_pGraphicsPtrPackage._pTextFormat
-	);
 
 	return hresult;
 }

@@ -10,4 +10,4 @@ typedef unsigned long long _ullong;
 typedef const float& _float;
 typedef const char* _pstring;
 typedef const wchar_t* _pwstring;
-
+typedef IDWriteTextFormat* _pFont;

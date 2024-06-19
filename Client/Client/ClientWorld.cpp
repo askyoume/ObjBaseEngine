@@ -29,3 +29,21 @@ void Client::ClientWorld::Tick(_float deltaTime)
 
 	World::Tick(deltaTime);
 }
+
+void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
+{
+ static const WCHAR sc_helloWorld[] = L"Hello, World!";
+
+	::Core::CoreManager* pCoreManager =
+		::Core::CoreManager::GetInstance();
+
+	pRenderTarget->DrawText(
+            sc_helloWorld,
+            ARRAYSIZE(sc_helloWorld) - 1,
+            pCoreManager->GetGraphicsPackage()->_pTextFormat,
+            D2D1::RectF(0, 0, 600, 600),
+            pCoreManager->GetGraphicsPackage()->_pBrush
+            );
+
+	World::Render(pRenderTarget);
+}

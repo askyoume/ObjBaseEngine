@@ -12,6 +12,8 @@ namespace Core
 	public:
 		HRESULT Initialize(HWND hWnd);
 		GraphicsPtrPackage* GetPackage() { return &_pGraphicsPtrPackage; }
+		//이 정도면 분리해야됨!
+		HRESULT LoadFontFile(_pwstring fontFilePath, _pwstring fontName);
 
 	public:
 		static GraphicsManager* Create();

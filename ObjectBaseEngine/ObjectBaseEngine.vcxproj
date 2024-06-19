@@ -151,6 +151,7 @@
     <ClInclude Include="..\Engine\Headers\Core_Struct.h" />
     <ClInclude Include="..\Engine\Headers\Core_Type.h" />
     <ClInclude Include="..\Engine\Headers\Event.h" />
+    <ClInclude Include="..\Engine\Headers\FontManager.h" />
     <ClInclude Include="..\Engine\Headers\GraphicsManager.h" />
     <ClInclude Include="..\Engine\Headers\IInputReceiver.h" />
     <ClInclude Include="..\Engine\Headers\InputComponent.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\CameraComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\CoreManager.cpp" />
+    <ClCompile Include="..\Engine\Codes\FontManager.cpp" />
     <ClCompile Include="..\Engine\Codes\GraphicsManager.cpp" />
     <ClCompile Include="..\Engine\Codes\InputComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\InputManager.cpp" />

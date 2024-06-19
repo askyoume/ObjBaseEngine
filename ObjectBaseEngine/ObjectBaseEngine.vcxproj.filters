@@ -112,6 +112,9 @@
     <Filter Include="Engine\BaseClass\Actor\CameraActor">
       <UniqueIdentifier>{0a22a1bf-5f81-41ea-a2a9-f93b2dd415c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Manager\Font">
+      <UniqueIdentifier>{89b472a4-cce8-4d39-9b02-3f3b89381eff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainEntry.h">
@@ -216,6 +219,9 @@
     <ClInclude Include="..\Engine\Headers\CameraActor.h">
       <Filter>Engine\BaseClass\Actor\CameraActor</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Headers\FontManager.h">
+      <Filter>Engine\Manager\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainEntry.cpp">
@@ -271,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\RenderComponent.cpp">
       <Filter>Engine\Component\SceneComponent\RenderComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\FontManager.cpp">
+      <Filter>Engine\Manager\Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
