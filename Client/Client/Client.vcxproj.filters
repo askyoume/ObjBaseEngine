@@ -14,6 +14,15 @@
     <Filter Include="ClientWorld">
       <UniqueIdentifier>{8961d331-89bb-4b2b-961a-7a361a8482cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestCode\BackGround">
+      <UniqueIdentifier>{d52545ba-8d56-43fe-bc91-2ef061e29869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCode\Map">
+      <UniqueIdentifier>{4f7f6e98-81f3-4696-b90d-32b62130904b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCode\Character">
+      <UniqueIdentifier>{84990419-493e-45cb-8642-48bbf1a7d24a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -22,25 +31,25 @@
     <ClInclude Include="ClientWorld.h">
       <Filter>ClientWorld</Filter>
     </ClInclude>
-    <ClInclude Include="TestActor.h">
-      <Filter>TestCode</Filter>
-    </ClInclude>
     <ClInclude Include="TestActor2.h">
-      <Filter>TestCode</Filter>
+      <Filter>TestCode\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="TestActor.h">
+      <Filter>TestCode\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
       <Filter>Client</Filter>
     </ClCompile>
-    <ClCompile Include="TestActor.cpp">
-      <Filter>TestCode</Filter>
-    </ClCompile>
     <ClCompile Include="ClientWorld.cpp">
       <Filter>ClientWorld</Filter>
     </ClCompile>
     <ClCompile Include="TestActor2.cpp">
-      <Filter>TestCode</Filter>
+      <Filter>TestCode\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp">
+      <Filter>TestCode\Character</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

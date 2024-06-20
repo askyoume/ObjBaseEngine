@@ -9,53 +9,34 @@ void Client::TestActor::BeginPlay()
 {
 	Actor::BeginPlay();
 
-	AddComponent<::Core::InputComponent>("InputComponent");
-	AddComponent<::Core::BitmapComponent>("BitmapComponent");
+	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
+	_pBitmapComponent = AddComponent<::Core::BitmapComponent>("BitmapComponent");
 
-	::Core::InputComponent* pInputComponent = 
-		GetComponent<::Core::InputComponent>("InputComponent");
-
-	::Core::BitmapComponent* pBitmapComponent =
-		GetComponent<::Core::BitmapComponent>("BitmapComponent");
-
-	pInputComponent->BindInputEvent(DIP_RX, InputType::AXIS, [&](const InputEvent& inputEvent)
+	_pInputComponent->BindInputEvent(DIP_RX, InputType::AXIS, [&](const InputEvent& inputEvent)
 		{
 			Rotate(inputEvent.value);
 		});
 
-	pInputComponent->BindInputEvent(DIP_RT, InputType::TRIGGER, [&](const InputEvent& inputEvent)
+	_pInputComponent->BindInputEvent(DIP_RT, InputType::TRIGGER, [&](const InputEvent& inputEvent)
 		{
-			XINPUT_VIBRATION vibration{
-				0, 
-				static_cast<WORD>(inputEvent.value * USHRT_MAX)
-			};
-
-			XInputSetState(0, &vibration);
+			_pInputComponent->SetVibration(0, inputEvent.value);
 
 			Fire();
 		});
 
-	pInputComponent->BindInputEvent(DIP_RT, InputType::RELEASE, [&](const InputEvent& inputEvent)
-		{
-			XINPUT_VIBRATION vibration{ 0, 0 };
-			XInputSetState(0, &vibration);
-		});
-
-	pInputComponent->BindInputEvent(DIP_LX, InputType::AXIS, [&](const InputEvent& inputEvent)
+	_pInputComponent->BindInputEvent(DIP_LX, InputType::AXIS, [&](const InputEvent& inputEvent)
 		{
 			Move(inputEvent.value, 0);
 		});
 
-	pInputComponent->BindInputEvent(DIP_LY, InputType::AXIS, [&](const InputEvent& inputEvent)
+	_pInputComponent->BindInputEvent(DIP_LY, InputType::AXIS, [&](const InputEvent& inputEvent)
 		{
-			Move(0, -inputEvent.value);
+			Move(0, inputEvent.value);
 		});
 
-	pInputComponent->AttachToInputManager();
+	_pInputComponent->AttachToInputManager();
 
-	pBitmapComponent->SetTextures(&_vecTextures);
-
-	pBitmapComponent->AddRenderQueueInLayer();
+	_pBitmapComponent->SetTextures(&_vecTextures);
 }
 
 void Client::TestActor::Tick(_float deltaTime)
@@ -76,9 +57,7 @@ void Client::TestActor::EndPlay()
 //test code
 void Client::TestActor::Fire()
 {
-
 	std::cout << "Fire" << std::endl;
-
 }
 
 void Client::TestActor::Rotate(float degree)
@@ -91,10 +70,3 @@ void Client::TestActor::Move(float x, float y)
 	_pRootComponent->AddRelativeLocation(Mathf::Vector2{x, y});
 }
 //test code end
-void Client::TestActor::Remove()
-{
-	for (auto& component : _vecComponents)
-		SafeDelete(component);
-
-	_vecComponents.clear();
-}

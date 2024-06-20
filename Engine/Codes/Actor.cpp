@@ -52,3 +52,11 @@ void Core::Actor::DetachFromActor()
 	_pRootComponent->AttachToComponent(nullptr);
 	_pParent = nullptr;
 }
+
+void Core::Actor::Remove()
+{
+	for (auto& component : _vecComponents)
+		SafeDelete(component);
+
+	_vecComponents.clear();
+}

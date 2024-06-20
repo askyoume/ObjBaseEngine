@@ -19,6 +19,7 @@ namespace Core
 		void BindInputEvent(_uint key, InputType type, Callback handler);
 		void OnInputReceived(const InputEvent& inputEvent) override; // IInputReceiver 인터페이스 구현부
 		void AttachToInputManager();
+		void SetVibration(float leftMotor, float rightMotor);
 
 	public:
 		static InputComponent* Create();

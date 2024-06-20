@@ -3,6 +3,12 @@
 #include "../../Engine/Headers/Core_Define.h"
 #include "../../Engine/Headers/Actor.h"
 
+namespace Core
+{
+	class InputComponent;
+	class BitmapComponent;
+}
+
 namespace Client
 {
 	class TestActor : public Core::Actor
@@ -20,14 +26,13 @@ namespace Client
 		void Fire();
 		void Rotate(float degree);
 		void Move(float x, float y);
+		//testCodeEnd
 
 	public:
 		static TestActor* Create() { return new TestActor; }
 
 	private:
-		void Remove() override;
-
-	private:
-		Mathf::Vector2 _position{ 0,0 };
+		::Core::InputComponent* _pInputComponent{ nullptr };
+		::Core::BitmapComponent* _pBitmapComponent{ nullptr };
 	};
 }

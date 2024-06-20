@@ -115,6 +115,9 @@
     <Filter Include="Engine\Manager\Font">
       <UniqueIdentifier>{89b472a4-cce8-4d39-9b02-3f3b89381eff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\BaseClass\Actor\TextRenderActor">
+      <UniqueIdentifier>{8a79fbde-c755-46eb-9561-259db5b40b19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainEntry.h">
@@ -280,6 +283,9 @@
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\FontManager.cpp">
       <Filter>Engine\Manager\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Headers\CameraActor.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

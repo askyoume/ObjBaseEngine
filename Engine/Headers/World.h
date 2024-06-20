@@ -34,12 +34,17 @@ namespace Core
 		void RemoveLayer(int layerIndex);
 		void ClearLayer();
 		int GetLayerSize() const { return _layerSize;}
+		void SettingTrackingCameraTarget(Actor* pTargetActor);
 
 	public:
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor);
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor, Mathf::Vector2 location);
 		bool RemoveActor(_pstring name);
 		Actor* FindActor(_pstring name);
+
+	protected:
+		CoreManager* _pCoreManager{ nullptr };
+		CameraActor* _pCameraActor{ nullptr };
 
 	private:
 		ActorMap _actorMap;

@@ -20,83 +20,6 @@ HRESULT Core::GraphicsManager::Initialize(HWND hWnd)
 	return hresult;
 }
 
-HRESULT Core::GraphicsManager::LoadFontFile(_pwstring fontFilePath, _pwstring fontName)
-{
-	HRESULT hresult = S_OK;
-
-	hresult = _pGraphicsPtrPackage._pDWriteFactory->CreateFontSetBuilder
-	(&_pGraphicsPtrPackage._pFontSetBuilder);
-
-	if (FAILED(hresult))
-	{
-		MessageBoxW(nullptr, L"Failed to create font set builder.", L"Error", MB_OK);
-		return hresult;
-	}
-
-	hresult = _pGraphicsPtrPackage._pDWriteFactory->CreateFontFileReference(
-		fontFilePath,
-		nullptr,
-		&_pGraphicsPtrPackage._pFontFile
-	);
-	if (FAILED(hresult))
-	{
-		MessageBoxW(nullptr, L"Failed to create font file reference.", L"Error", MB_OK);
-		return hresult;
-	}
-
-	hresult = _pGraphicsPtrPackage._pFontSetBuilder->
-		AddFontFile(_pGraphicsPtrPackage._pFontFile);
-	if (FAILED(hresult))
-	{
-		MessageBoxW(nullptr, L"Failed to add font file.", L"Error", MB_OK);
-		return hresult;
-	}
-
-	hresult = _pGraphicsPtrPackage._pFontSetBuilder->
-		CreateFontSet(&_pGraphicsPtrPackage._pFontSet);
-	if (FAILED(hresult))
-	{
-		MessageBoxW(nullptr, L"Failed to create font set.", L"Error", MB_OK);
-		return hresult;
-	}
-
-	_pGraphicsPtrPackage._pDWriteFactory->CreateFontCollectionFromFontSet(
-		_pGraphicsPtrPackage._pFontSet,
-		&_pGraphicsPtrPackage._pFontCollection
-	);
-
-	_pGraphicsPtrPackage._pFontCollection->GetFontFamily(
-		0,
-		&_pGraphicsPtrPackage._pFontFamily
-	);
-
-	_pGraphicsPtrPackage._pFontFamily->GetFamilyNames(
-		&_pGraphicsPtrPackage._pLocalizedStrings
-	);
-
-	WCHAR string[256]{};
-
-	_pGraphicsPtrPackage._pLocalizedStrings->GetString(
-		0,
-		string,
-		256
-	);
-
-	_pGraphicsPtrPackage._pDWriteFactory->CreateTextFormat(
-		string,
-		_pGraphicsPtrPackage._pFontCollection,
-		DWRITE_FONT_WEIGHT_REGULAR,
-		DWRITE_FONT_STYLE_NORMAL,
-		DWRITE_FONT_STRETCH_NORMAL,
-		16.0f,
-		L"en-us",
-		&_pGraphicsPtrPackage._pTextFormat
-	);
-
-	return hresult;
-
-}
-
 Core::GraphicsManager* Core::GraphicsManager::Create()
 {
 	return new GraphicsManager;
@@ -151,10 +74,6 @@ void Core::GraphicsManager::Remove()
 	if (_pGraphicsPtrPackage._pDevice)
 	{
 		SafeRelease(_pGraphicsPtrPackage._pDevice);
-	}
-	if (_pGraphicsPtrPackage._pTextFormat)
-	{
-		SafeRelease(_pGraphicsPtrPackage._pTextFormat);
 	}
 
 	CoUninitialize();

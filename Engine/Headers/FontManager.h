@@ -10,9 +10,9 @@ namespace Core
 		virtual ~FontManager() DEFAULT;
 
 	public:
-		HRESULT Initialize();
+		bool Initialize();
 		_pFont GetFont(_pwstring fontName);
-		HRESULT LoadFontFile(_pwstring fontFilePath, _pwstring fontName);
+		HRESULT LoadFontFile(_pwstring fontFilePath, _pwstring fontName, float fontSize);
 
 	public:
 		static FontManager* Create();
@@ -20,10 +20,11 @@ namespace Core
 
 	private:
 		HRESULT InitializeDWrite();
-		HRESULT AddFont(_pwstring fontName, _pFont* ppTextFormat);
+		HRESULT AddFont(_pwstring fontName, float fontSize,IDWriteFontCollection1* pFontCollection, _pFont* ppTextFormat);
 
 	private:
-		IDWriteFactory* _pDWriteFactory{ nullptr };
+		IDWriteFactory5*		_pDWriteFactory{ nullptr };
+		IDWriteFontSetBuilder1*	_pFontSetBuilder{ nullptr };
 		std::unordered_map<_pwstring, _pFont> _fontMap;
 	};
 }

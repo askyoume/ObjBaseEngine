@@ -1,5 +1,4 @@
 #pragma once
-#include "CameraComponent.h"
 #include "Actor.h"
 
 namespace Core
@@ -13,14 +12,15 @@ namespace Core
 	public:
 		//Actor
 		virtual void BeginPlay() override {};
+		virtual void Tick(_float deltaTime) override;
 		virtual CameraComponent* GetCameraComponent() { return _cameraComponent; }
 
 	protected:
-		virtual bool Initialize() { return true; }
+		virtual bool Initialize();
 		virtual void Remove() {};
 
 	public:
-		static CameraActor* Create() { return new CameraActor; }
+		static CameraActor* Create();
 
 	private:
 		CameraComponent* _cameraComponent{ nullptr };

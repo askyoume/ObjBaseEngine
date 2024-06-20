@@ -23,12 +23,14 @@
     class TextureManager;           \
     class ObjectManager;            \
     class SceneManager;             \
-    class Scene;                    \
-    class Camera;                   \
     class InputManager;             \
+	class FontManager;              \
+    class Scene;                    \
+    class CameraActor;              \
     class Layer;                    \
     class Actor;                    \
     class World;					\
+    class CameraComponent;          \
 	class RenderComponent;          \
 	class BitmapComponent;          \
 	class SceneComponent;

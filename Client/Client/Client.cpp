@@ -8,7 +8,6 @@
 #include "TestActor.h"
 #include "ClientWorld.h"
 
-
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
@@ -39,7 +38,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(lpszCmdParam);
 
 	Client::ClientGame winApp;
+
 	winApp.CreateWorld();
+
     ::Core::CoreManager::GameSetting gameSetting{};
 
     gameSetting.hInstance = hInstance;

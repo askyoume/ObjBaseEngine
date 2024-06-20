@@ -2,9 +2,19 @@
 #include "Actor.h"
 #include "Layer.h"
 #include "SceneComponent.h"
+#include "CoreManager.h"
+#include "CameraActor.h"
 
 bool Core::World::InitializeWorld(int layerSize)
 {
+	_pCameraActor = CameraActor::Create();
+	_pCoreManager = CoreManager::GetInstance();
+	_pCameraActor->GetRootComponent()->SetRelativeLocation(
+		Mathf::Vector2(
+			-_pCoreManager->GetWidth() / 2.f, 
+			-_pCoreManager->GetHeight() / 2.f
+		));
+
     InitializeLayer(layerSize);
 
 	return true;
@@ -17,6 +27,7 @@ void Core::World::Remove()
 
 void Core::World::Tick(_float deltaTime)
 {
+	_pCameraActor->Tick(deltaTime);
 	for(auto iter = _vecLayers.begin(); iter != _vecLayers.end(); iter++)
 	{
 		(*iter)->Tick(deltaTime);
@@ -54,6 +65,7 @@ bool Core::World::InitializeLayer(int layerSize)
 	for (int i = 0; i < layerSize; i++)
 	{
 		Layer* pLayer = Layer::Begin();
+		pLayer->SettingCamera(_pCameraActor);
 		_vecLayers.push_back(pLayer);
 	}
 
@@ -96,6 +108,11 @@ void Core::World::ClearLayer()
 	}
 
 	_vecLayers.clear();
+}
+
+void Core::World::SettingTrackingCameraTarget(Actor* pTargetActor)
+{
+	_pCameraActor->AttachToActor(pTargetActor);
 }
 
 bool Core::World::SpawnActor(int layerIndex, _pstring name, Actor* pActor)

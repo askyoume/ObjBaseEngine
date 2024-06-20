@@ -2,6 +2,8 @@
 #include "Actor.h"
 #include "CoreManager.h"
 #include "RenderComponent.h"
+#include "CameraActor.h"
+#include "CameraComponent.h"
 
 void Core::Layer::Tick(_float deltaTime)
 {
@@ -34,11 +36,14 @@ void Core::Layer::Render(ID2D1RenderTarget* pRenderTarget)
 
 	pRenderTarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect()), _pLayer);
 
+	const Mathf::Matrix3x2& matrixCamera = _pCameraActor->GetCameraComponent()->GetWorldTransform();
+
 	for (auto& renderComponent : _renderQueue)
 	{
 		if (renderComponent->GetOwner()->IsDestroyMarked())
 			continue;
 
+		renderComponent->SetCameraMatrix(matrixCamera);
 		renderComponent->Render(pRenderTarget);
 	}
 
@@ -52,7 +57,7 @@ void Core::Layer::EndPlay()
 	if (_actors.empty())
 		return;
 
-	for (auto it = _actors.begin(); it != _actors.end(); )
+	for (auto it = _actors.begin(); it != _actors.end();)
 	{
 		if (nullptr == *it)
 		{

@@ -19,7 +19,9 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	SetBitmapLocalTransform();
 
-	Mathf::Matrix3x2 Transform = _renderMatrix * _LocalTransform * _WorldTransform;
+	D2D1InvertMatrix(&_cameraMatrix);
+
+	Mathf::Matrix3x2 Transform = /*_renderMatrix * */_LocalTransform * _WorldTransform * _cameraMatrix;
 
 	pRenderTarget->SetTransform(Transform);
 		
@@ -31,6 +33,8 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 void Core::BitmapComponent::SetTextures(BitmapTextures* vecTextures)
 {
 	_vecTextures = vecTextures;
+
+	AddRenderQueueInLayer();
 }
 
 void Core::BitmapComponent::SetTextureRect(Texture* pTexture)

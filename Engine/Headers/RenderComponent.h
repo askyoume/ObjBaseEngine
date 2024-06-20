@@ -17,13 +17,15 @@ namespace Core
 		void SetOrder(int order) { _order = order; }
 		int GetOrder() const { return _order; }
 		void SetVisible(bool isVisible) { _isVisible = isVisible; }
+		void SetCameraMatrix(const Mathf::Matrix3x2& cameraMatrix) { _cameraMatrix = cameraMatrix; }
 
 	protected:
 		virtual bool Initialize() PURE;
 		virtual void Remove() override PURE;
 
 	protected:
-		D2D1::Matrix3x2F _renderMatrix{};
+		Mathf::Matrix3x2 _renderMatrix{};
+		Mathf::Matrix3x2 _cameraMatrix{};
 		bool _isVisible{ true };
 		int  _order{ 0 };
 	};

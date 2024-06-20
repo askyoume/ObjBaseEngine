@@ -12,6 +12,7 @@ enum class InputDevice
 
 enum class InputType
 {
+	IDLE = -1,
 	PRESS,
 	RELEASE,
 	HELD,
@@ -62,18 +63,6 @@ struct GraphicsPtrPackage
 	ID2D1HwndRenderTarget*  _pHwndRenderTarget{ nullptr };
 	// Windows Imaging Component
 	IWICImagingFactory*		_pWICFactory{ nullptr };
-	// DirectX 2D Text
-	IDWriteFactory5*		_pDWriteFactory{ nullptr };
-	IDWriteTextFormat*		_pTextFormat{ nullptr };
-	IDWriteTextLayout*		_pTextLayout{ nullptr };
-	IDWriteFontSetBuilder1*	_pFontSetBuilder{ nullptr };
-
-	IDWriteFontFile*		_pFontFile{ nullptr };
-	IDWriteFontSet*			_pFontSet{ nullptr };
-	IDWriteFontCollection1*	_pFontCollection{ nullptr };
-	IDWriteFontFamily*		_pFontFamily{ nullptr };
-
-	IDWriteLocalizedStrings* _pLocalizedStrings{ nullptr };
 };
 
 struct BitmapPtrPackage

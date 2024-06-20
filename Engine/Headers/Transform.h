@@ -39,7 +39,6 @@ namespace Core
 		const Mathf::Vector2& GetVelocity() const { return _ComponentVelocity; }
 	
 	protected:
-		Mathf::Matrix3x2	_CameraTransform{ Matx::Identity };
 		Mathf::Matrix3x2	_MidCalculateTransform{ Matx::Identity };
 		Mathf::Matrix3x2	_CenterTransform{ Matx::Identity }; //윈도우 중앙축을 기준으로 변환
 		Mathf::Matrix3x2	_RelativeTransform{ Matx::Identity };

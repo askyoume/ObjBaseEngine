@@ -29,11 +29,13 @@ namespace Core
 
 	public:
 		static Layer* Begin();
+		void SettingCamera(CameraActor* pCameraActor){ _pCameraActor = pCameraActor; }
 		void Remove() override;
 
 	private:
 		Actors _actors;
 		RenderQueue _renderQueue;
 		ID2D1Layer* _pLayer{ nullptr };
+		CameraActor* _pCameraActor{ nullptr };
 	};
 }

@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "GraphicsManager.h"
 #include "TextureManager.h"
+#include "FontManager.h"
 #include "Object.h"
 #include "World.h"
 #include "Layer.h"
@@ -14,6 +15,7 @@ Core::CoreManager::CoreManager()
     _pInputMgr = InputManager::Create();
     _pGraphicsMgr = GraphicsManager::Create();
     _pTextureMgr = TextureManager::Create();
+	_pFontMgr = FontManager::Create();
     //클라이언트에서 월드를 생성하고 엔진(?)에 전달해야함.
     // 추후에 현 월드 클래스를 -> 레벨 클래스로 변경, 이후 월드 클래스는 레벨을 관리, 전환하는 역활을 수행
     
@@ -166,6 +168,18 @@ GraphicsPtrPackage* Core::CoreManager::GetGraphicsPackage() const
 	return _pGraphicsMgr->GetPackage();
 }
 
+_pFont Core::CoreManager::LoadFont(_pwstring fontName, _pwstring fontPath, float fontSize)
+{
+	_pFontMgr->LoadFontFile(fontPath, fontName, fontSize);
+
+	return _pFontMgr->GetFont(fontName);
+}
+
+_pFont Core::CoreManager::GetFont(_pwstring fontName)
+{
+	return _pFontMgr->GetFont(fontName);
+}
+
 void Core::CoreManager::Remove()
 {
 	//_pSwapChain = nullptr;
@@ -174,6 +188,7 @@ void Core::CoreManager::Remove()
     EndDestroy();
 
 	SafeDelete(_pWorld);
+	SafeDelete(_pFontMgr);
     SafeDelete(_pTimeMgr);
 	SafeDelete(_pInputMgr);
 	SafeDelete(_pTextureMgr);

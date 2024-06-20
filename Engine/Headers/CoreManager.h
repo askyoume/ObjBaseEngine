@@ -54,8 +54,6 @@ namespace Core
 		bool LoadTexture(_pwstring filePath);
 		Texture* FindTexture(_pwstring filePath);
 
-		Mathf::Matrix3x2 GetCenterTransform() const { return _centerTransform; }
-
 		//test code
 		//Input
 		InputManager* GetInputManager() const { return _pInputMgr; }
@@ -65,7 +63,6 @@ namespace Core
 
 		//World
 		World* GetWorld() const { return _pWorld; }
-		//void LoadWorld(World* pWorld) { _pWorld = pWorld; } //지금은 필요 없지만 추후에 월드를 로드할 때 사용할 수 있음.
 		void EraseActorMap(Object* pObject);
 
 		//Layer
@@ -74,6 +71,10 @@ namespace Core
 
 		//Graphics
 		GraphicsPtrPackage* GetGraphicsPackage() const;
+
+		//Font
+		_pFont LoadFont(_pwstring fontName, _pwstring fontPath, float fontSize);
+		_pFont GetFont(_pwstring fontName);
 
 		//test code end
 
@@ -85,17 +86,21 @@ namespace Core
 		std::thread				 _destructionThread;
 		std::mutex				_mutex;
 		std::condition_variable _variable;
+		DestroyList				_toBeDestroyed;
+
 		ID2D1HwndRenderTarget*	_pRenderTarget{ nullptr };
 		//ID2D1RenderTarget*		_pRenderTarget{ nullptr };
 		//IDXGISwapChain*			_pSwapChain{ nullptr };
 		HWND 					_hWnd{ nullptr };
-		DestroyList				_toBeDestroyed;
+		//Managers
 		TimeManager*			_pTimeMgr{ nullptr };
 		InputManager*			_pInputMgr{ nullptr };
 		GraphicsManager*		_pGraphicsMgr{ nullptr };
 		TextureManager*			_pTextureMgr{ nullptr };
+		FontManager*			_pFontMgr{ nullptr };
 		World*					_pWorld{ nullptr };
-		Mathf::Matrix3x2		_centerTransform{ D2D1::Matrix3x2F::Identity() };
+
+		//Mathf::Matrix3x2		_centerTransform{ D2D1::Matrix3x2F::Identity() };
 		float					_elapsedTick{ 0.f };
 		float					_width{ 0.f };
 		float					_height{ 0.f };

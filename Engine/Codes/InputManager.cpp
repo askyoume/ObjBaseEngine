@@ -270,6 +270,8 @@ void Core::InputManager::ProcessGamePadInput()
 		{
 			bool isPressed = (_pGamePad->Gamepad.wButtons & (1 << i)) != 0;
 			DispatchInput(InputDevice::GAMEPAD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
+
+			std::cout << (_pGamePad->Gamepad.wButtons & (1 << i)) << std::endl;
 		}
 
 		float gamePadLX = static_cast<float>(_pGamePad->Gamepad.sThumbLX) / GAMEPAD_NORMALIZE;
@@ -281,7 +283,7 @@ void Core::InputManager::ProcessGamePadInput()
 		float gamePadLY = static_cast<float>(_pGamePad->Gamepad.sThumbLY) / GAMEPAD_NORMALIZE;
 		if (abs(_pGamePad->Gamepad.sThumbLY) > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE)
 		{
-			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_LY, gamePadLY);
+			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_LY, -gamePadLY);
 		}
 
 		float gamePadRX = static_cast<float>(_pGamePad->Gamepad.sThumbRX) / GAMEPAD_NORMALIZE;
@@ -293,7 +295,7 @@ void Core::InputManager::ProcessGamePadInput()
 		float gamePadRY = static_cast<float>(_pGamePad->Gamepad.sThumbRY) / GAMEPAD_NORMALIZE;
 		if (abs(_pGamePad->Gamepad.sThumbRY) > XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE)
 		{
-			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_RY, gamePadRY);
+			DispatchInput(InputDevice::GAMEPAD, InputType::AXIS, DIP_RY, -gamePadRY);
 		}
 
 		float gamePadLT = static_cast<float>(_pGamePad->Gamepad.bLeftTrigger);
@@ -301,11 +303,21 @@ void Core::InputManager::ProcessGamePadInput()
 		{
 			DispatchInput(InputDevice::GAMEPAD, InputType::TRIGGER, DIP_LT, gamePadLT);
 		}
+		else
+		{
+			XINPUT_VIBRATION vibration{};
+			XInputSetState(_gamePadIndex, &vibration);
+		}
 
 		float gamePadRT = static_cast<float>(_pGamePad->Gamepad.bRightTrigger);
 		if (gamePadRT > XINPUT_GAMEPAD_TRIGGER_THRESHOLD)
 		{
 			DispatchInput(InputDevice::GAMEPAD, InputType::TRIGGER, DIP_RT, gamePadRT);
+		}
+		else
+		{
+			XINPUT_VIBRATION vibration{};
+			XInputSetState(_gamePadIndex, &vibration);
 		}
 	}
 }

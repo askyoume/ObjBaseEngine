@@ -64,7 +64,7 @@ namespace Core
 		Actor* GetParent() const { return _pParent; }
 
 	protected:
-		virtual void Remove() override PURE;
+		void Remove() override;
 
 	protected:
 		SceneComponent*			_pRootComponent{ nullptr };

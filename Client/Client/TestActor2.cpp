@@ -15,6 +15,7 @@ void Client::TestActor2::BeginPlay()
 		GetComponent<::Core::BitmapComponent>("BitmapComponent");
 
 		pBitmapComponent->SetTextures(&_vecTextures);
+		pBitmapComponent->SetRelativeScale(Mathf::Vector2(8.f, 8.f));
 		pBitmapComponent->AddRenderQueueInLayer();
 }
 
@@ -29,12 +30,4 @@ void Client::TestActor2::Fixed()
 
 void Client::TestActor2::EndPlay()
 {
-}
-
-void Client::TestActor2::Remove()
-{
-	for (auto& component : _vecComponents)
-		SafeDelete(component);
-
-	_vecComponents.clear();
 }

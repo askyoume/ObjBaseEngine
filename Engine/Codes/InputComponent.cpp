@@ -37,6 +37,16 @@ void Core::InputComponent::AttachToInputManager()
 	}
 }
 
+void Core::InputComponent::SetVibration(float leftMotor, float rightMotor)
+{
+	XINPUT_VIBRATION vibration{
+		static_cast<WORD>(leftMotor * USHRT_MAX),
+		static_cast<WORD>(rightMotor * USHRT_MAX)
+	};
+
+	XInputSetState(0, &vibration);
+}
+
 Core::InputComponent* Core::InputComponent::Create()
 {
 	static InputComponent* pInputComponent = new InputComponent;

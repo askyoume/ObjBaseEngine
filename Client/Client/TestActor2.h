@@ -17,11 +17,5 @@ namespace Client
 
 	public:
 		static TestActor2* Create() { return new TestActor2; }
-
-	private:
-		void Remove() override;
-
-	private:
-		Mathf::Vector2 _position{ 0,0 };
 	};
 }

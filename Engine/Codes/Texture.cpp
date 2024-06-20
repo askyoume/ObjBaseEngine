@@ -2,7 +2,6 @@
 
 ID2D1Bitmap* Core::Texture::LoadTexture(LPCWSTR filePath)
 {
-
 	HRESULT hresult = _pPackage->_pWICFactory->CreateDecoderFromFilename(
 		filePath, nullptr, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pBitmapPtrPackage._pDecoder);
 	if(SUCCEEDED(hresult))

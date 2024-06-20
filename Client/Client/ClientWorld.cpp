@@ -7,8 +7,12 @@
 bool Client::ClientWorld::BeginPlay()
 {
 	//test code
-	SpawnActor(OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ 960.f , 0 });
+	//_pCoreManager->LoadFont(L"DemoFont", L"Client/Resources/Font/EFKratos.ttf", 34.f);
+
+	SpawnActor(OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ 0.f , 0.f });
 	SpawnActor(BACKGROUND, "TestActor2", TestActor2::Create(), Mathf::Vector2{ 960.f, 530.f });
+	
+	SettingTrackingCameraTarget(FindActor("TestActor"));
 	//test code end
 
     return true;
@@ -18,12 +22,10 @@ void Client::ClientWorld::Tick(_float deltaTime)
 {
 	static float elapsedTime = 0.f;
 	elapsedTime += deltaTime;
-	::Core::CoreManager* pCoreManager =
-		::Core::CoreManager::GetInstance();
 
 	if (elapsedTime > 1.f)
 	{
-			std::cout << pCoreManager->GetTimeManager()->GetFPS() << std::endl;
+			std::cout << _pCoreManager->GetTimeManager()->GetFPS() << std::endl;
 			elapsedTime = 0.f;
 	}
 
@@ -32,18 +34,26 @@ void Client::ClientWorld::Tick(_float deltaTime)
 
 void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 {
- static const WCHAR sc_helloWorld[] = L"Hello, World!";
-
-	::Core::CoreManager* pCoreManager =
-		::Core::CoreManager::GetInstance();
-
-	pRenderTarget->DrawText(
-            sc_helloWorld,
-            ARRAYSIZE(sc_helloWorld) - 1,
-            pCoreManager->GetGraphicsPackage()->_pTextFormat,
-            D2D1::RectF(0, 0, 600, 600),
-            pCoreManager->GetGraphicsPackage()->_pBrush
-            );
 
 	World::Render(pRenderTarget);
+
+	//static const WCHAR sc_helloWorld[] = L"Please!!!";
+	//
+	//pRenderTarget->DrawTextW(
+	//	sc_helloWorld,
+	//	ARRAYSIZE(sc_helloWorld) - 1,
+	//	_pCoreManager->GetFont(L"DemoFont"),
+	//	D2D1::RectF(500, 500, 100, 100),
+	//	_pCoreManager->GetGraphicsPackage()->_pBrush
+	//);
+
+	//IDWriteTextLayout* pTextLayout = nullptr;
+	//_pCoreManager->GetGraphicsPackage()->_pDWriteFactory->CreateTextLayout(
+	//	sc_helloWorld,
+	//	ARRAYSIZE(sc_helloWorld) - 1,
+	//	_pCoreManager->GetFont(L"DemoFont"),
+	//	1000,
+	//	1000,
+	//	&pTextLayout
+	//);
 }
