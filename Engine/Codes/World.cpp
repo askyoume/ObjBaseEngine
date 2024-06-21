@@ -4,16 +4,20 @@
 #include "SceneComponent.h"
 #include "CoreManager.h"
 #include "CameraActor.h"
+#include "CameraComponent.h"
 
 bool Core::World::InitializeWorld(int layerSize)
 {
 	_pCameraActor = CameraActor::Create();
 	_pCoreManager = CoreManager::GetInstance();
-	_pCameraActor->GetRootComponent()->SetRelativeLocation(
-		Mathf::Vector2(
-			-_pCoreManager->GetWidth() / 2.f, 
-			-_pCoreManager->GetHeight() / 2.f
-		));
+
+	CameraComponent* pCameraComponent = _pCameraActor->GetCameraComponent();
+
+	pCameraComponent->SetCenterPosition(
+		Mathf::Vector2(_pCoreManager->GetWidth() / 2.f, 
+						_pCoreManager->GetHeight() / 2.f)
+	);
+
 
     InitializeLayer(layerSize);
 
@@ -112,7 +116,28 @@ void Core::World::ClearLayer()
 
 void Core::World::SettingTrackingCameraTarget(Actor* pTargetActor)
 {
-	_pCameraActor->AttachToActor(pTargetActor);
+	_pCameraActor->TrackTarget(pTargetActor);
+	_pCameraActor->SettingTracking(true);
+}
+
+void Core::World::SetCameraLerpFactor(float lerpFactor)
+{
+	_pCameraActor->SetCameraLerpFactor(lerpFactor);
+}
+
+void Core::World::SettingTrackingCamera(bool isTracking)
+{
+	_pCameraActor->SettingTracking(isTracking);
+}
+
+bool Core::World::IsTrackingCamera() const
+{
+	return _pCameraActor->IsTracking();
+}
+
+void Core::World::SettingCameraOffset(Mathf::Vector2 offset)
+{
+	_pCameraActor->GetCameraComponent()->SetCameraOffset(offset);
 }
 
 bool Core::World::SpawnActor(int layerIndex, _pstring name, Actor* pActor)

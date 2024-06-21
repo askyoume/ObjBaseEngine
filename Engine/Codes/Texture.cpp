@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include "Mathf.h"
 
 ID2D1Bitmap* Core::Texture::LoadTexture(LPCWSTR filePath)
 {

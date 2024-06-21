@@ -29,13 +29,6 @@ void Core::Layer::Fixed()
 
 void Core::Layer::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	if(!_pLayer)
-	{
-		pRenderTarget->CreateLayer(&_pLayer);
-	}
-
-	pRenderTarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect()), _pLayer);
-
 	const Mathf::Matrix3x2& matrixCamera = _pCameraActor->GetCameraComponent()->GetWorldTransform();
 
 	for (auto& renderComponent : _renderQueue)
@@ -46,8 +39,6 @@ void Core::Layer::Render(ID2D1RenderTarget* pRenderTarget)
 		renderComponent->SetCameraMatrix(matrixCamera);
 		renderComponent->Render(pRenderTarget);
 	}
-
-	pRenderTarget->PopLayer();
 }
 
 void Core::Layer::EndPlay()

@@ -29,10 +29,10 @@ namespace Core
 
 	private:
 		BitmapTextures*		_vecTextures{ nullptr };
-		int					_currentTextureIndex{ 0 };
-		Mathf::Rect			_rect{ 0, 0, 0, 0 };
-		Mathf::Matrix3x2	_LocalTransform{ Matx::Identity };
-		Mathf::Vector2		_LocalScale{ UnitVector::Zero };
-		Mathf::Vector2		_LocalLocation{ UnitVector::Zero };
+		Mathf::Rect			_textureRect{};
+		Mathf::Matrix3x2	_localTransform{ Matx::Identity };
+		Mathf::Vector2		_localScale{ UnitVector::Zero };
+		Mathf::Vector2		_localLocation{ UnitVector::Zero };
+		int					_currentTextureIndex{};
 	};
 }

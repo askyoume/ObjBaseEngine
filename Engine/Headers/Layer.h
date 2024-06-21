@@ -24,7 +24,6 @@ namespace Core
 		bool AddActor(Actor* pActor);
 		Actor* GetActor(_pstring name);
 		bool DestroyActor();
-
 		void AddRenderQueue(RenderComponent* pRenderComponent);
 
 	public:

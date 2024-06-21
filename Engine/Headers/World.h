@@ -27,16 +27,30 @@ namespace Core
 		virtual void EndPlay();
 
 	public:
+		//Layer
 		bool InitializeLayer(int layerSize);
 		Layer* GetLayer(int layerIndex) const;
-		ActorMap& GetActorMap() { return _actorMap; }
 		void AddLayer(int layerIndex, Layer* pLayer);
 		void RemoveLayer(int layerIndex);
 		void ClearLayer();
 		int GetLayerSize() const { return _layerSize;}
-		void SettingTrackingCameraTarget(Actor* pTargetActor);
 
 	public:
+		//Camera
+		void SettingTrackingCameraTarget(Actor* pTargetActor);
+		CameraActor* GetCameraActor() { return _pCameraActor; }
+		void SetCameraLerpFactor(float lerpFactor);
+		void SettingTrackingCamera(bool isTracking);
+		bool IsTrackingCamera() const;
+		void SettingCameraOffset(Mathf::Vector2 offset);
+
+	public:
+		//WorldSize
+		void SetWorldSize(Mathf::Rect worldSize) { _worldSize = worldSize; }
+
+	public:
+		//Actor
+		ActorMap& GetActorMap() { return _actorMap; }
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor);
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor, Mathf::Vector2 location);
 		bool RemoveActor(_pstring name);
@@ -47,8 +61,9 @@ namespace Core
 		CameraActor* _pCameraActor{ nullptr };
 
 	private:
-		ActorMap _actorMap;
-		Layers _vecLayers;
-		int _layerSize{ 0 };
+		ActorMap	_actorMap;
+		Layers		_vecLayers;
+		Mathf::Rect _worldSize{};
+		int			_layerSize{};
 	};
 }

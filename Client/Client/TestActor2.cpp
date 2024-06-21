@@ -15,7 +15,7 @@ void Client::TestActor2::BeginPlay()
 		GetComponent<::Core::BitmapComponent>("BitmapComponent");
 
 		pBitmapComponent->SetTextures(&_vecTextures);
-		pBitmapComponent->SetRelativeScale(Mathf::Vector2(8.f, 8.f));
+		pBitmapComponent->SetRelativeScale(Mathf::Vector2(5.f, 5.f));
 		pBitmapComponent->AddRenderQueueInLayer();
 }
 

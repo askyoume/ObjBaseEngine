@@ -150,12 +150,13 @@
     <ClInclude Include="..\Engine\Headers\Core_Macro.h" />
     <ClInclude Include="..\Engine\Headers\Core_Struct.h" />
     <ClInclude Include="..\Engine\Headers\Core_Type.h" />
-    <ClInclude Include="..\Engine\Headers\Event.h" />
     <ClInclude Include="..\Engine\Headers\FontManager.h" />
     <ClInclude Include="..\Engine\Headers\GraphicsManager.h" />
     <ClInclude Include="..\Engine\Headers\IInputReceiver.h" />
     <ClInclude Include="..\Engine\Headers\InputComponent.h" />
     <ClInclude Include="..\Engine\Headers\InputManager.h" />
+    <ClInclude Include="..\Engine\Headers\Khala.h" />
+    <ClInclude Include="..\Engine\Headers\KhalaBase.h" />
     <ClInclude Include="..\Engine\Headers\Layer.h" />
     <ClInclude Include="..\Engine\Headers\Mathf.h" />
     <ClInclude Include="..\Engine\Headers\Matrix.h" />
@@ -169,9 +170,12 @@
     <ClInclude Include="..\Engine\Headers\Transform.h" />
     <ClInclude Include="..\Engine\Headers\Vector2.h" />
     <ClInclude Include="..\Engine\Headers\World.h" />
+    <ClInclude Include="..\Engine\Headers\WorldManager.h" />
+    <ClInclude Include="..\Engine\Headers\KhalaSystem.h" />
     <ClInclude Include="Client_Macro.h" />
     <ClInclude Include="MainEntry.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="ToDoList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine\Codes\Actor.cpp" />
@@ -194,9 +198,6 @@
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp" />
     <ClCompile Include="MainEntry.cpp" />
     <ClCompile Include="System.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

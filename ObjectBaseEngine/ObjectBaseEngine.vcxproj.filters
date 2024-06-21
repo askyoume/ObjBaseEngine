@@ -67,9 +67,6 @@
     <Filter Include="Engine\BaseClass\Layer">
       <UniqueIdentifier>{490dd329-328e-4e45-a96d-1fc593b49164}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\BaseClass\Event">
-      <UniqueIdentifier>{21578d08-8f7c-4d3d-93c1-d6253f5e9a17}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Utility\Mathf">
       <UniqueIdentifier>{9eb24cea-469d-4039-bd7d-545c459c1677}</UniqueIdentifier>
     </Filter>
@@ -118,6 +115,27 @@
     <Filter Include="Engine\BaseClass\Actor\TextRenderActor">
       <UniqueIdentifier>{8a79fbde-c755-46eb-9561-259db5b40b19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Utility\Random">
+      <UniqueIdentifier>{3085c436-8b7b-4bc6-bea6-3b51edbdb6d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\TodoList">
+      <UniqueIdentifier>{493735a2-89c0-4065-a378-2c0827f125c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Khala">
+      <UniqueIdentifier>{a87f9333-1982-431b-af0a-b72054d829f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Khala\RefPtr">
+      <UniqueIdentifier>{8dee2f9e-1e63-4165-8d89-f77c003c1d92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Khala\System">
+      <UniqueIdentifier>{4e6aa5cd-a47d-440d-a462-b1aee44405e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Khala\Event">
+      <UniqueIdentifier>{9c36a2d2-1f7a-48fc-9e86-44f4b3d7889f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Khala\Base">
+      <UniqueIdentifier>{fe4290f8-a45f-4e5b-a58a-bfda9b2b89c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainEntry.h">
@@ -143,9 +161,6 @@
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\World.h">
       <Filter>Engine\BaseClass\World</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Engine\Headers\Event.h">
-      <Filter>Engine\BaseClass\Event</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\InputComponent.h">
       <Filter>Engine\Component\ActorComponent\InputComponent</Filter>
@@ -225,6 +240,21 @@
     <ClInclude Include="..\Engine\Headers\FontManager.h">
       <Filter>Engine\Manager\Font</Filter>
     </ClInclude>
+    <ClInclude Include="ToDoList.h">
+      <Filter>Engine\TodoList</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\WorldManager.h">
+      <Filter>Engine\Manager\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\KhalaSystem.h">
+      <Filter>Engine\Khala\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Khala.h">
+      <Filter>Engine\Khala\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\KhalaBase.h">
+      <Filter>Engine\Khala\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainEntry.cpp">
@@ -285,10 +315,7 @@
       <Filter>Engine\Manager\Font</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp">
-      <Filter>Engine</Filter>
+      <Filter>Engine\BaseClass\Actor\CameraActor</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

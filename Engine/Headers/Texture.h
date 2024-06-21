@@ -28,5 +28,6 @@ namespace Core
 		std::vector<ID2D1Bitmap*> _vecOriginBitmaps;
 		GraphicsPtrPackage* _pPackage{ nullptr };
 		BitmapPtrPackage pBitmapPtrPackage;
+
 	};
 }

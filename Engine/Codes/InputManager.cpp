@@ -270,8 +270,6 @@ void Core::InputManager::ProcessGamePadInput()
 		{
 			bool isPressed = (_pGamePad->Gamepad.wButtons & (1 << i)) != 0;
 			DispatchInput(InputDevice::GAMEPAD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
-
-			std::cout << (_pGamePad->Gamepad.wButtons & (1 << i)) << std::endl;
 		}
 
 		float gamePadLX = static_cast<float>(_pGamePad->Gamepad.sThumbLX) / GAMEPAD_NORMALIZE;
