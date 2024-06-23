@@ -6,8 +6,9 @@ void Game::MainEntry::Initialize(::Core::CoreManager::GameSetting _gameSetting)
 {
 	constexpr int SCREEN_START_LEFT = 10;
 	constexpr int SCREEN_START_TOP = 10;
+	constexpr int SCREEN_DPI = 96;
 
-	const TCHAR* appName = TEXT("Test D2D FrameWork");
+	const TCHAR* appName = _gameSetting.title;
 
 	WNDCLASS wndClass{};
 
@@ -40,8 +41,14 @@ void Game::MainEntry::Initialize(::Core::CoreManager::GameSetting _gameSetting)
 
 	::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-	_gameSetting.width = static_cast<float>(rect.right - rect.left);
-	_gameSetting.height = static_cast<float>(rect.bottom - rect.top);
+	UINT  dpi = GetDpiForSystem();
+	float dpiScale = dpi / static_cast<float>(SCREEN_DPI);
+
+	int width = static_cast<int>((rect.right - rect.left) * dpiScale);
+	int height = static_cast<int>((rect.bottom - rect.top) * dpiScale);
+
+	_gameSetting.width = static_cast<float>(width);
+	_gameSetting.height = static_cast<float>(height);
 
 	_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
 		SCREEN_START_LEFT, SCREEN_START_TOP, 
@@ -49,7 +56,7 @@ void Game::MainEntry::Initialize(::Core::CoreManager::GameSetting _gameSetting)
 		(int)_gameSetting.height, 
 		NULL, NULL, _gameSetting.hInstance, NULL);
 
-	ShowWindow(_hWnd, SW_NORMAL);
+	ShowWindow(_hWnd, SW_SHOWNORMAL);
 	UpdateWindow(_hWnd);
 
 	_gameSetting.hWnd = _hWnd;

@@ -1,42 +1,11 @@
 #pragma once
+#include <tuple>
 #include "KhalaBase.h"
-//이벤트를 정의할 수 있도록 하는 부모 클래스(인풋 이벤트 제외!)
 
-namespace KhalaSpace
+template <typename... Args>
+struct Khala : public KhalaBase
 {
-	class Khala : public KhalaBase
-	{
-	protected:
-		explicit Khala() DEFAULT;
-		virtual ~Khala() DEFAULT;
+	std::tuple<Args...> params;
 
-	public:
-		bool IsConnect() const { return _IsConnect; }
-		bool IsDisconnect() const { return _IsDisconnect; }
-
-	public:
-		void Connect() 
-		{ 
-			_RefernceCount++;
-			_IsConnect = true; 
-		}
-
-		void Disconnect() 
-		{
-			_RefernceCount--;
-			_IsDisconnect = true; 
-		}
-
-	public:
-		void Salvation()
-		{
-			if (_RefernceCount == 0)
-				delete this;
-		}
-
-	protected:
-		bool _IsConnect{ false };
-		bool _IsDisconnect{ false };
-		_uint _RefernceCount{ 0 };
-	};
-}
+	Khala(Args... args) : params(std::make_tuple(args...)) {}
+};

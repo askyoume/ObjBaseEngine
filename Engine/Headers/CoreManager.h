@@ -15,6 +15,7 @@ namespace Core
 	public:
 		struct GameSetting
 		{
+			const TCHAR* title;
 			HINSTANCE hInstance;
 			HWND hWnd;
 			World* pWorld;
@@ -68,6 +69,7 @@ namespace Core
 		//Layer
 		Layer* GetLayer(int layerIndex) const;
 		void AddRenderQueue(int layerIndex, RenderComponent* pRenderComponent);
+		void RemoveRenderQueue(int layerIndex, RenderComponent* pRenderComponent);
 
 		//Graphics
 		GraphicsPtrPackage* GetGraphicsPackage() const;

@@ -63,6 +63,9 @@ namespace Core
 		void DetachFromActor();
 		Actor* GetParent() const { return _pParent; }
 
+		void SetWorld(World* world) { _pOwnerWorld = world; }
+		World* GetWorld() const { return _pOwnerWorld; }
+
 	protected:
 		void Remove() override;
 

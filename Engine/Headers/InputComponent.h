@@ -30,6 +30,5 @@ namespace Core
 		void TickComponent(_float deltaTime) override {};
 		void EndPlay() override {};
 		void Remove() override;
-
 	};
 }

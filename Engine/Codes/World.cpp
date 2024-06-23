@@ -5,11 +5,14 @@
 #include "CoreManager.h"
 #include "CameraActor.h"
 #include "CameraComponent.h"
+#include "KhalaSystem.h"
 
 bool Core::World::InitializeWorld(int layerSize)
 {
 	_pCameraActor = CameraActor::Create();
 	_pCoreManager = CoreManager::GetInstance();
+	_pCameraActor->SetWorld(this);
+	_pCameraActor->SetName("CameraActor");
 
 	CameraComponent* pCameraComponent = _pCameraActor->GetCameraComponent();
 
@@ -18,7 +21,6 @@ bool Core::World::InitializeWorld(int layerSize)
 						_pCoreManager->GetHeight() / 2.f)
 	);
 
-
     InitializeLayer(layerSize);
 
 	return true;
@@ -26,6 +28,8 @@ bool Core::World::InitializeWorld(int layerSize)
 
 void Core::World::Remove()
 {
+	__Khala->Release();
+	SafeRelease(_pCameraActor);
 	ClearLayer();
 }
 
@@ -157,7 +161,7 @@ bool Core::World::SpawnActor(int layerIndex, _pstring name, Actor* pActor, Mathf
 	pActor->SetName(name);
 	pActor->SetRootComponent(pActor->AddComponent<SceneComponent>("RootComponent"));
 	pActor->SetLayerIndex(layerIndex);
-
+	pActor->SetWorld(this);
 	pActor->GetRootComponent()->SetRelativeLocation(location);
 
 	_actorMap.insert(std::make_pair(name, pActor));

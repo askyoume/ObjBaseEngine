@@ -6,6 +6,14 @@ namespace Core
 	CORECLASS()
 	class CameraActor : public Actor
 	{
+	public:
+		enum MoveDirectionFlag
+		{
+			Up = 1 << 0,
+			Down = 1 << 1,
+			Left = 1 << 2,
+			Right = 1 << 3,
+		};
 	protected:
 		explicit CameraActor() DEFAULT;
 		virtual ~CameraActor() DEFAULT;
@@ -19,17 +27,20 @@ namespace Core
 		void SetCameraLerpFactor(float lerpFactor) { _cameraLerpFactor = lerpFactor; }
 		void SettingTracking(bool isTracking) { _isTracking = isTracking; }
 		bool IsTracking() const { return _isTracking; }
+		bool IsMove() const { return _isMove; }
 
 	protected:
 		virtual bool Initialize();
-		virtual void Remove() {};
 
 	public:
 		static CameraActor* Create();
 
 	private:
-		CameraComponent* _cameraComponent{ nullptr };
-		float _cameraLerpFactor{ 3.5f };
-		bool _isTracking{ false };
+		CameraComponent*	_cameraComponent{ nullptr };
+		Mathf::Vector2		_oldLocation{};
+		float				_cameraLerpFactor{ 3.5f };
+		_uint				_moveDirectionFlag{};
+		bool				_isTracking{ false };
+		bool				_isMove{ false };
 	};
 }

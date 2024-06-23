@@ -2,15 +2,18 @@
 #include "Core_Define.h"
 #include "Core_Type.h"
 
-enum LayerGroup : int
+namespace LAYER
 {
-	BACKGROUND,
-	BACKOBJECT,
-	OBJECT,
-	FRONTOBJECT,
-	UI,
-	END
-};
+	enum LayerIndex : int
+	{
+		BACKGROUND = 0,
+		BACKOBJECT,
+		OBJECT,
+		FRONTOBJECT,
+		UI,
+		END
+	};
+}
 
 enum BufferIndex : _uint
 {

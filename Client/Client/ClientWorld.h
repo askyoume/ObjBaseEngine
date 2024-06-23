@@ -9,6 +9,7 @@ namespace Core
 
 namespace Client
 {
+	class TestActor;
 	class ClientWorld : public Core::World
 	{
 	private:
@@ -22,5 +23,6 @@ namespace Client
 
 	public:
 		static ClientWorld* Create() { return new ClientWorld; }
+
 	};
 }

@@ -124,9 +124,6 @@
     <Filter Include="Engine\Khala">
       <UniqueIdentifier>{a87f9333-1982-431b-af0a-b72054d829f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Khala\RefPtr">
-      <UniqueIdentifier>{8dee2f9e-1e63-4165-8d89-f77c003c1d92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Khala\System">
       <UniqueIdentifier>{4e6aa5cd-a47d-440d-a462-b1aee44405e6}</UniqueIdentifier>
     </Filter>
@@ -135,6 +132,15 @@
     </Filter>
     <Filter Include="Engine\Khala\Base">
       <UniqueIdentifier>{fe4290f8-a45f-4e5b-a58a-bfda9b2b89c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\ActorComponent\StateComponent">
+      <UniqueIdentifier>{9db16d7f-20ad-4e2f-919f-7fc4d16c45d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\SceneComponent\AnimationComponent">
+      <UniqueIdentifier>{34798aee-1aa0-4995-8a55-9ab6fb79dc76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\SceneComponent\CollisionComponent">
+      <UniqueIdentifier>{85fa73e3-109e-41c2-8aaf-3e022b04cdee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -246,14 +252,14 @@
     <ClInclude Include="..\Engine\Headers\WorldManager.h">
       <Filter>Engine\Manager\World</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine\Headers\KhalaSystem.h">
-      <Filter>Engine\Khala\System</Filter>
+    <ClInclude Include="..\Engine\Headers\KhalaBase.h">
+      <Filter>Engine\Khala\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Khala.h">
       <Filter>Engine\Khala\Event</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine\Headers\KhalaBase.h">
-      <Filter>Engine\Khala\Base</Filter>
+    <ClInclude Include="..\Engine\Headers\KhalaSystem.h">
+      <Filter>Engine\Khala\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

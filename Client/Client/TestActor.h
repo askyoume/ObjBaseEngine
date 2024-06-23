@@ -34,5 +34,6 @@ namespace Client
 	private:
 		::Core::InputComponent* _pInputComponent{ nullptr };
 		::Core::BitmapComponent* _pBitmapComponent{ nullptr };
+		bool _isMove{ false };
 	};
 }

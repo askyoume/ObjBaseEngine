@@ -157,6 +157,7 @@
     <ClInclude Include="..\Engine\Headers\InputManager.h" />
     <ClInclude Include="..\Engine\Headers\Khala.h" />
     <ClInclude Include="..\Engine\Headers\KhalaBase.h" />
+    <ClInclude Include="..\Engine\Headers\KhalaSystem.h" />
     <ClInclude Include="..\Engine\Headers\Layer.h" />
     <ClInclude Include="..\Engine\Headers\Mathf.h" />
     <ClInclude Include="..\Engine\Headers\Matrix.h" />
@@ -171,7 +172,6 @@
     <ClInclude Include="..\Engine\Headers\Vector2.h" />
     <ClInclude Include="..\Engine\Headers\World.h" />
     <ClInclude Include="..\Engine\Headers\WorldManager.h" />
-    <ClInclude Include="..\Engine\Headers\KhalaSystem.h" />
     <ClInclude Include="Client_Macro.h" />
     <ClInclude Include="MainEntry.h" />
     <ClInclude Include="System.h" />

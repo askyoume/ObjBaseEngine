@@ -17,16 +17,16 @@ namespace Core
 
 	public:
 		void SetCenterPosition(Mathf::Vector2 centerPosition) { _centerPosition = centerPosition; }
-		Mathf::Vector2 GetCenterPosition() { return _centerPosition; }
+		Mathf::Vector2 GetCenterPosition() const { return _centerPosition; }
 
 		void SetCameraSize(Mathf::Vector2 cameraSize) { _cameraSize = cameraSize; }
-		Mathf::Vector2 GetCameraSize() { return _cameraSize; }
+		Mathf::Vector2 GetCameraSize() const { return _cameraSize; }
 
 		void SetCameraOffset(Mathf::Vector2 cameraOffset) { _cameraOffset = cameraOffset; }
-		Mathf::Vector2 GetCameraOffset() { return _cameraOffset; }
+		Mathf::Vector2 GetCameraOffset() const { return _cameraOffset; }
 
 		void SetCameraZoomScale(Mathf::Vector2 cameraZoomScale) { _cameraZoomScale = cameraZoomScale; }
-		Mathf::Vector2 GetCameraZoomScale() { return _cameraZoomScale; }
+		Mathf::Vector2 GetCameraZoomScale() const { return _cameraZoomScale; }
 
 	protected:
 		virtual bool Initialize() { return true; }

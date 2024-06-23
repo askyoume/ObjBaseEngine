@@ -23,6 +23,18 @@
     <Filter Include="TestCode\Character">
       <UniqueIdentifier>{84990419-493e-45cb-8642-48bbf1a7d24a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestCode\ETC">
+      <UniqueIdentifier>{25cb5cea-cdf8-4a3b-ab76-43a60b1bd7c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCode\Platform">
+      <UniqueIdentifier>{1b7b7ce4-ad25-4ee1-b889-32d88952606d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCode\ETC\Moon">
+      <UniqueIdentifier>{dddb6f86-0155-4f5e-9ee2-c47d550cfbd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCode\ETC\NightSky">
+      <UniqueIdentifier>{0d7963f4-c44d-4d81-a77a-ffb08fbf1c11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -31,11 +43,20 @@
     <ClInclude Include="ClientWorld.h">
       <Filter>ClientWorld</Filter>
     </ClInclude>
-    <ClInclude Include="TestActor2.h">
-      <Filter>TestCode\BackGround</Filter>
-    </ClInclude>
     <ClInclude Include="TestActor.h">
       <Filter>TestCode\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="TestActor2.h">
+      <Filter>TestCode\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>TestCode\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Moon.h">
+      <Filter>TestCode\ETC\Moon</Filter>
+    </ClInclude>
+    <ClInclude Include="NightSky.h">
+      <Filter>TestCode\ETC\NightSky</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -45,11 +66,20 @@
     <ClCompile Include="ClientWorld.cpp">
       <Filter>ClientWorld</Filter>
     </ClCompile>
-    <ClCompile Include="TestActor2.cpp">
-      <Filter>TestCode\BackGround</Filter>
-    </ClCompile>
     <ClCompile Include="TestActor.cpp">
       <Filter>TestCode\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor2.cpp">
+      <Filter>TestCode\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>TestCode\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Moon.cpp">
+      <Filter>TestCode\ETC\Moon</Filter>
+    </ClCompile>
+    <ClCompile Include="NightSky.cpp">
+      <Filter>TestCode\ETC\NightSky</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

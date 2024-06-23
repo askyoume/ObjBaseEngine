@@ -1,9 +1,7 @@
 #include "System.h"
 #include "CoreManager.h"
 #include "Core_Function.h"
-//test code
 #include "World.h"
-#include "Actor.h"
 
 bool Game::System::MainLoop()
 {

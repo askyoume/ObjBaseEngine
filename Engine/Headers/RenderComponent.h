@@ -14,6 +14,7 @@ namespace Core
 
 	public:
 		void AddRenderQueueInLayer();
+		void RemoveRenderQueueInLayer();
 		void SetOrder(int order) { _order = order; }
 		int GetOrder() const { return _order; }
 		void SetVisible(bool isVisible) { _isVisible = isVisible; }

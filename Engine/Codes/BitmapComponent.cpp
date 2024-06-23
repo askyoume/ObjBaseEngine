@@ -39,6 +39,45 @@ void Core::BitmapComponent::SetTextureRect(Texture* pTexture)
 	_textureRect = D2D1::RectF(0, 0, _size.width, _size.height);
 }
 
+Mathf::Rect Core::BitmapComponent::GetTextureRect()
+{
+	if (!_vecTextures) { return Mathf::Rect(); }
+	if (0 == _textureRect.right || 0 == _textureRect.bottom) 
+	{ 
+		Texture* pTexture = _vecTextures->at(_currentTextureIndex);
+		SetTextureRect(pTexture); 
+	}
+
+	return _textureRect;
+}
+
+Mathf::Rect Core::BitmapComponent::GetTransformedTextureRect()
+{
+	if (!_vecTextures) { return Mathf::Rect(); }
+	if (0 == _textureRect.right || 0 == _textureRect.bottom) 
+	{ 
+		Texture* pTexture = _vecTextures->at(_currentTextureIndex);
+	
+		SetTextureRect(pTexture); 
+	}
+
+	Mathf::Vector2 WorldLocation{};
+
+	WorldLocation.x = _MidCalculateTransform._31;
+	WorldLocation.y = _MidCalculateTransform._32;
+
+	Mathf::Rect transformedRect{
+		WorldLocation.x - _textureRect.right * 0.5f,
+		WorldLocation.y - _textureRect.bottom * 0.5f,
+		WorldLocation.x + _textureRect.right * 0.5f,
+		WorldLocation.y + _textureRect.bottom * 0.5f
+	};
+
+	std::cout << "Transformed Rect : " << transformedRect.left << " " << transformedRect.top << " " << transformedRect.right << " " << transformedRect.bottom << std::endl;
+
+	return transformedRect;
+}
+
 void Core::BitmapComponent::SetBitmapLocalTransform()
 {
 	_localLocation.x = _textureRect.right * 0.5f;
@@ -58,6 +97,8 @@ bool Core::BitmapComponent::Initialize()
 
 void Core::BitmapComponent::Remove()
 {
+	RemoveRenderQueueInLayer();
+
 	_vecTextures = nullptr;
 }
 

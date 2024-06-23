@@ -8,7 +8,7 @@ namespace Core
 	{
 	private:
 		using Actors = std::list<Actor*>;
-		using RenderQueue = std::set<RenderComponent*>;
+		using RenderQueue = std::vector<RenderComponent*>;
 
 	private:
 		Layer() DEFAULT;
@@ -25,6 +25,7 @@ namespace Core
 		Actor* GetActor(_pstring name);
 		bool DestroyActor();
 		void AddRenderQueue(RenderComponent* pRenderComponent);
+		void RemoveRenderQueue(RenderComponent* pRenderComponent);
 
 	public:
 		static Layer* Begin();

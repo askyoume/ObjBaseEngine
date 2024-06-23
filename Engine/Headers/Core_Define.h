@@ -50,6 +50,8 @@
 #include <thread>
 #include <condition_variable>
 #include <comdef.h>
+#include <typeindex>
+#include <any>
 //#include <memory_resource>
 
 //Core

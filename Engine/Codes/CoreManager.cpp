@@ -34,9 +34,12 @@ void Core::CoreManager::Tick()
 
 void Core::CoreManager::Fixed(int count)
 {
+	bool isZero = count == 0;
+	if (isZero) return;
+
     _elapsedTick += _pTimeMgr->GetTick();
 
-    float fixedTick = 1.f / count;
+	float fixedTick = 1.f / count;
 
     if(_elapsedTick >= fixedTick)
 	{
@@ -108,11 +111,14 @@ void Core::CoreManager::AddDestroyList(Object* pObject)
 {
     if (pObject == nullptr) return;  // 유효하지 않은 포인터 검증
 
-    std::lock_guard<std::mutex> lock(_mutex);
-    _toBeDestroyed.push_back(pObject);
+	if(20 >= _toBeDestroyed.size())
+	{
+		std::lock_guard<std::mutex> lock(_mutex);
+		_toBeDestroyed.push_back(pObject);
+	}
     
     // 조건을 충족하면 스레드에 신호 보냄
-    if (_toBeDestroyed.size() >= 20)
+    if (20 == _toBeDestroyed.size())
     {
         _variable.notify_one();
     }
@@ -160,6 +166,14 @@ void Core::CoreManager::AddRenderQueue(int layerIndex, RenderComponent* pRenderC
 	if (_pWorld)
 	{
 		_pWorld->GetLayer(layerIndex)->AddRenderQueue(pRenderComponent);
+	}
+}
+
+void Core::CoreManager::RemoveRenderQueue(int layerIndex, RenderComponent* pRenderComponent)
+{
+	if (_pWorld)
+	{
+		_pWorld->GetLayer(layerIndex)->RemoveRenderQueue(pRenderComponent);
 	}
 }
 

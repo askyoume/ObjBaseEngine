@@ -7,7 +7,7 @@
 void Core::Actor::BeginPlay()
 {
 	Object::CreateObjectDirectory();
-		
+
 	::Core::CoreManager* pCore = ::Core::CoreManager::GetInstance();
 
 	_bstr_t convertName = this->name;

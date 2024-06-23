@@ -4,11 +4,14 @@
 #include "RenderComponent.h"
 #include "CameraActor.h"
 #include "CameraComponent.h"
+#include "KhalaSystem.h"
 
 void Core::Layer::Tick(_float deltaTime)
 {
 	for(auto& actor : _actors)
 	{
+		__Khala->ExecuteNerveCord();
+
 		if(actor->IsDestroyMarked())
 			continue;
 
@@ -20,6 +23,8 @@ void Core::Layer::Fixed()
 {
 	for(auto& actor : _actors)
 	{
+		__Khala->ExecuteNerveCord();
+
 		if(actor->IsDestroyMarked())
 			continue;
 
@@ -124,5 +129,14 @@ void Core::Layer::AddRenderQueue(RenderComponent* pRenderComponent)
 	if (nullptr == pRenderComponent)
 		return;
 
-	_renderQueue.insert(pRenderComponent);
+	_renderQueue.push_back(pRenderComponent);
+}
+
+void Core::Layer::RemoveRenderQueue(RenderComponent* pRenderComponent)
+{
+	if (nullptr == pRenderComponent)
+		return;
+
+	_renderQueue.erase(
+		std::find(_renderQueue.begin(), _renderQueue.end(), pRenderComponent));
 }

@@ -17,3 +17,9 @@ void Core::RenderComponent::AddRenderQueueInLayer()
 	int index = _owner->GetLayerIndex();
 	CoreManager::GetInstance()->AddRenderQueue(index, this);
 }
+
+void Core::RenderComponent::RemoveRenderQueueInLayer()
+{
+	int index = _owner->GetLayerIndex();
+	CoreManager::GetInstance()->RemoveRenderQueue(index, this);
+}

@@ -32,7 +32,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR lpszCmdParam, 
 	_In_ int nCmdShow)
 {
-	_CrtSetBreakAlloc(86);
+	_CrtSetBreakAlloc(0); //메모리 누수가 발생한 라인을 찾기 위한 코드 -> 디버그 창을 유심히 보면 라인값이 출력됨.
 
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpszCmdParam);
@@ -43,6 +43,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     ::Core::CoreManager::GameSetting gameSetting{};
 
+	gameSetting.title = TEXT("Super Castlevania IV - Q2_Project Create by Hero.P");
     gameSetting.hInstance = hInstance;
 	gameSetting.pWorld = winApp.LoadWorld();
     gameSetting.width = SCREEN_WIDTH;

@@ -18,6 +18,8 @@ namespace Core
 		void SetTextures(BitmapTextures* vecTextures);
 		void SetTextureIndex(int index) { _currentTextureIndex = index; }
 		void SetTextureRect(Texture* pTexture);
+		Mathf::Rect GetTextureRect();
+		Mathf::Rect GetTransformedTextureRect();
 		void SetBitmapLocalTransform();
 
 	protected:

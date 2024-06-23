@@ -47,6 +47,7 @@ namespace Core
 	public:
 		//WorldSize
 		void SetWorldSize(Mathf::Rect worldSize) { _worldSize = worldSize; }
+		Mathf::Rect GetWorldSize() const { return _worldSize; }
 
 	public:
 		//Actor
@@ -60,10 +61,11 @@ namespace Core
 		CoreManager* _pCoreManager{ nullptr };
 		CameraActor* _pCameraActor{ nullptr };
 
-	private:
+	protected:
 		ActorMap	_actorMap;
 		Layers		_vecLayers;
 		Mathf::Rect _worldSize{};
 		int			_layerSize{};
+
 	};
 }
