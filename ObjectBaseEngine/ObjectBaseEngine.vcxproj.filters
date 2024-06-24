@@ -261,6 +261,9 @@
     <ClInclude Include="..\Engine\Headers\KhalaSystem.h">
       <Filter>Engine\Khala\System</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Headers\AnimationComponent.h">
+      <Filter>Engine\Component\SceneComponent\AnimationComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainEntry.cpp">

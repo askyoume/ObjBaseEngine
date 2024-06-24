@@ -38,6 +38,18 @@ bool Client::ClientWorld::BeginPlay()
 
 			return false;
 		});
+
+	__Khala->DefineNerveCord("OuterMove", [](__KhalaArgs args)
+		{
+			::Core::Actor* pActor = __KhalaCast<::Core::Actor*>(args[0]);
+			float x = __KhalaCast<float>(args[1]);
+			float y = __KhalaCast<float>(args[2]);
+
+			pActor->GetRootComponent()->AddRelativeLocation(Mathf::Vector2{ x, y });
+
+			return true;
+
+		});
 	
 	SettingTrackingCameraTarget(FindActor("TestActor"));
 	SettingCameraOffset(Mathf::Vector2{0.f, 250.f});
@@ -87,3 +99,4 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 	// 
 	//test code end
 }
+

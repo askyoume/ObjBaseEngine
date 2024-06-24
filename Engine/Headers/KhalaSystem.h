@@ -51,6 +51,8 @@ public:
 
 			return false;
 		}
+
+		return false;
 	}
 
 	void BindNerveCord(NerveCord callBack, const NerveData& args) //순차적으로 실행할 이벤트 등록

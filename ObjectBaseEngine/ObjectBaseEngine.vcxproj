@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Engine\Headers\Actor.h" />
+    <ClInclude Include="..\Engine\Headers\AnimationComponent.h" />
     <ClInclude Include="..\Engine\Headers\BitmapComponent.h" />
     <ClInclude Include="..\Engine\Headers\CameraActor.h" />
     <ClInclude Include="..\Engine\Headers\CameraComponent.h" />

@@ -53,7 +53,10 @@ void Client::TestActor::BeginPlay()
 	_pInputComponent->BindInputEvent(DIK_AXIS, InputType::AXIS, [&](const InputEvent& inputEvent)
 		{
 			//Move((float)inputEvent.x, (float)inputEvent.y);
-			__Khala->ConnectNerveCord("Move", { (float)inputEvent.x, (float)inputEvent.y });
+			//__Khala->ConnectNerveCord("Move", { (float)inputEvent.x, (float)inputEvent.y });
+			__Khala->ConnectNerveCord("OuterMove", 
+				{ (::Core::Actor*)this, (float)inputEvent.x, (float)inputEvent.y });
+			
 			if(inputEvent.x > 0)
 				_isMove = true;
 			//이런식으로 인풋 이벤트와 연동해서 이벤트를 발생시킬 수 있음

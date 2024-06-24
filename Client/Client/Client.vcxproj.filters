@@ -5,35 +5,35 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="TestCode">
-      <UniqueIdentifier>{a3459b21-6e8d-43a6-a9f6-fc4407977fdd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Client">
       <UniqueIdentifier>{c418bc29-eae3-42cc-ade3-c73fa5d1d287}</UniqueIdentifier>
     </Filter>
     <Filter Include="ClientWorld">
       <UniqueIdentifier>{8961d331-89bb-4b2b-961a-7a361a8482cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestCode\BackGround">
+    <Filter Include="ClientActors">
+      <UniqueIdentifier>{a3459b21-6e8d-43a6-a9f6-fc4407977fdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\BackGround">
       <UniqueIdentifier>{d52545ba-8d56-43fe-bc91-2ef061e29869}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestCode\Map">
+    <Filter Include="ClientActors\Map">
       <UniqueIdentifier>{4f7f6e98-81f3-4696-b90d-32b62130904b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestCode\Character">
+    <Filter Include="ClientActors\Character">
       <UniqueIdentifier>{84990419-493e-45cb-8642-48bbf1a7d24a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestCode\ETC">
+    <Filter Include="ClientActors\ETC">
       <UniqueIdentifier>{25cb5cea-cdf8-4a3b-ab76-43a60b1bd7c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestCode\Platform">
-      <UniqueIdentifier>{1b7b7ce4-ad25-4ee1-b889-32d88952606d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestCode\ETC\Moon">
+    <Filter Include="ClientActors\ETC\Moon">
       <UniqueIdentifier>{dddb6f86-0155-4f5e-9ee2-c47d550cfbd5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestCode\ETC\NightSky">
+    <Filter Include="ClientActors\ETC\NightSky">
       <UniqueIdentifier>{0d7963f4-c44d-4d81-a77a-ffb08fbf1c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Platform">
+      <UniqueIdentifier>{1b7b7ce4-ad25-4ee1-b889-32d88952606d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,19 +44,19 @@
       <Filter>ClientWorld</Filter>
     </ClInclude>
     <ClInclude Include="TestActor.h">
-      <Filter>TestCode\Character</Filter>
+      <Filter>ClientActors\Character</Filter>
     </ClInclude>
     <ClInclude Include="TestActor2.h">
-      <Filter>TestCode\Map</Filter>
+      <Filter>ClientActors\Map</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
-      <Filter>TestCode\BackGround</Filter>
+      <Filter>ClientActors\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="Moon.h">
-      <Filter>TestCode\ETC\Moon</Filter>
+      <Filter>ClientActors\ETC\Moon</Filter>
     </ClInclude>
     <ClInclude Include="NightSky.h">
-      <Filter>TestCode\ETC\NightSky</Filter>
+      <Filter>ClientActors\ETC\NightSky</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,19 +67,19 @@
       <Filter>ClientWorld</Filter>
     </ClCompile>
     <ClCompile Include="TestActor.cpp">
-      <Filter>TestCode\Character</Filter>
+      <Filter>ClientActors\Character</Filter>
     </ClCompile>
     <ClCompile Include="TestActor2.cpp">
-      <Filter>TestCode\Map</Filter>
+      <Filter>ClientActors\Map</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
-      <Filter>TestCode\BackGround</Filter>
+      <Filter>ClientActors\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="Moon.cpp">
-      <Filter>TestCode\ETC\Moon</Filter>
+      <Filter>ClientActors\ETC\Moon</Filter>
     </ClCompile>
     <ClCompile Include="NightSky.cpp">
-      <Filter>TestCode\ETC\NightSky</Filter>
+      <Filter>ClientActors\ETC\NightSky</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
