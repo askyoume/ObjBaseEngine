@@ -13,7 +13,8 @@ namespace Core
 	public:
 		_uint GetInstanceID() const { return instanceID; }
 		_pstring GetName() const { return name; }
-		void SetName(const _pstring& name) { this->name = name; }
+		void SetName(_pstring name) { this->name = name; }
+		_pstring GetName() { return name; }
 				
 	public:
 		void OnDestroyMark(bool isMark) { this->_isMark = isMark; }

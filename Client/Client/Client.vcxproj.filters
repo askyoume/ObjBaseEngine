@@ -35,6 +35,9 @@
     <Filter Include="ClientActors\Platform">
       <UniqueIdentifier>{1b7b7ce4-ad25-4ee1-b889-32d88952606d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientActors\Character\TrackingTestActor">
+      <UniqueIdentifier>{05cdde12-b47d-4268-a030-1d5808b5d223}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -42,9 +45,6 @@
     </ClInclude>
     <ClInclude Include="ClientWorld.h">
       <Filter>ClientWorld</Filter>
-    </ClInclude>
-    <ClInclude Include="TestActor.h">
-      <Filter>ClientActors\Character</Filter>
     </ClInclude>
     <ClInclude Include="TestActor2.h">
       <Filter>ClientActors\Map</Filter>
@@ -58,6 +58,12 @@
     <ClInclude Include="NightSky.h">
       <Filter>ClientActors\ETC\NightSky</Filter>
     </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>ClientActors\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="TestActor.h">
+      <Filter>ClientActors\Character\TrackingTestActor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -65,9 +71,6 @@
     </ClCompile>
     <ClCompile Include="ClientWorld.cpp">
       <Filter>ClientWorld</Filter>
-    </ClCompile>
-    <ClCompile Include="TestActor.cpp">
-      <Filter>ClientActors\Character</Filter>
     </ClCompile>
     <ClCompile Include="TestActor2.cpp">
       <Filter>ClientActors\Map</Filter>
@@ -80,6 +83,12 @@
     </ClCompile>
     <ClCompile Include="NightSky.cpp">
       <Filter>ClientActors\ETC\NightSky</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>ClientActors\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp">
+      <Filter>ClientActors\Character\TrackingTestActor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

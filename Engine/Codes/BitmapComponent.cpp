@@ -19,10 +19,10 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	Mathf::Matrix3x2 Transform = _localTransform * _WorldTransform * _cameraMatrix;
 
 	pRenderTarget->SetTransform(Transform);
-		
+
 	pRenderTarget->DrawBitmap((*pTexture)[0]);
 
-	pRenderTarget->SetTransform(_renderMatrix);
+	//pRenderTarget->SetTransform(_renderMatrix);
 }
 
 void Core::BitmapComponent::SetTextures(BitmapTextures* vecTextures)

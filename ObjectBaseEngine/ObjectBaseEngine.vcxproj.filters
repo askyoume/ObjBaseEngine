@@ -326,5 +326,8 @@
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp">
       <Filter>Engine\BaseClass\Actor\CameraActor</Filter>
     </ClCompile>
+    <ClCompile Include="..\Engine\Headers\AnimationComponent.cpp">
+      <Filter>Engine\Component\SceneComponent\AnimationComponent</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

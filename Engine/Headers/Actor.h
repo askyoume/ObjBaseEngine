@@ -66,6 +66,10 @@ namespace Core
 		void SetWorld(World* world) { _pOwnerWorld = world; }
 		World* GetWorld() const { return _pOwnerWorld; }
 
+		void AddTexture(Texture* pTexture) { _vecTextures.push_back(pTexture); }
+		size_t GetTextureSize() const { return _vecTextures.size(); }
+		Texture* GetFrame(int index) const { return _vecTextures[index]; }
+
 	protected:
 		void Remove() override;
 

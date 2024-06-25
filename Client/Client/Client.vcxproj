@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ClientWorld.h" />
     <ClInclude Include="Moon.h" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ClientWorld.cpp" />
     <ClCompile Include="Moon.cpp" />

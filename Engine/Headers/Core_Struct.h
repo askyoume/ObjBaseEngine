@@ -43,6 +43,20 @@ struct InputEvent
 	InputEvent(InputDevice _device, InputType _type, unsigned int _key, float _value, bool _state, long x, long y)
 		: device(_device), type(_type), key(_key), value(_value), state(_state), x(x), y(y) {}
 };
+namespace Core
+{
+	class Texture;
+	struct AnimationClip
+	{
+		const char* clipName{};
+		int clipIndex{};
+		float frameTime{};
+		bool isLoop{};
+
+		AnimationClip(const char* name) : clipName(name), clipIndex(0) {};
+	};
+}
+
 
 struct GraphicsPtrPackage
 {

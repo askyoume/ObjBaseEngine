@@ -196,6 +196,7 @@
     <ClCompile Include="..\Engine\Codes\TimeManager.cpp" />
     <ClCompile Include="..\Engine\Codes\Transform.cpp" />
     <ClCompile Include="..\Engine\Codes\World.cpp" />
+    <ClCompile Include="..\Engine\Headers\AnimationComponent.cpp" />
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp" />
     <ClCompile Include="MainEntry.cpp" />
     <ClCompile Include="System.cpp" />
