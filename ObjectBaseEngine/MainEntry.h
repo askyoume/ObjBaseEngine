@@ -13,7 +13,7 @@ namespace Core
 namespace Game
 {
 	CLIENTCLASS()
-	class MainEntry
+	class MainEntry abstract
 	{
 	public:
 		MainEntry() DEFAULT;

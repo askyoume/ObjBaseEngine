@@ -21,7 +21,7 @@ namespace Core
 		void SetCameraMatrix(const Mathf::Matrix3x2& cameraMatrix) { _cameraMatrix = cameraMatrix; }
 
 	protected:
-		virtual bool Initialize() PURE;
+		virtual bool Initialize();
 		virtual void Remove() override PURE;
 
 	protected:

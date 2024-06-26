@@ -5,7 +5,7 @@
 namespace Core
 {
 	CORECLASS()
-	class World : public Core
+	class World abstract : public Core
 	{
 	private:
 		using Layers = std::vector<Layer*>;

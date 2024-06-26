@@ -13,20 +13,14 @@ namespace Client
 	class Charactor : public Core::Actor
 	{
 	private:
-		enum State
-		{
-			IDLE = 0,
-			MOVE,
-			DUCK,
-			ATTACK
-		};
-
 		enum StateFlag
 		{
 			STATE_IDLE = 1 << 1,
 			STATE_MOVE = 1 << 2,
 			STATE_DUCK = 1 << 3,
-			STATE_ATTACK = 1 << 4
+			STATE_ATTACK = 1 << 4,
+			STATE_JUMP = 1 << 5,
+			STATE_JUMPING = 1 << 6
 		};
 	protected:
 		explicit Charactor() DEFAULT;
@@ -38,13 +32,22 @@ namespace Client
 		void Fixed() override;
 		void EndPlay() override;
 
+		void Jump(_float deltaTime);
+
 	public:
 		static Charactor* Create() { return new Charactor; }
 
 	private:
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::InputComponent* _pInputComponent{ nullptr };
+
+	private:
 		_uint _stateFlag{ 0 };
-		bool _isMove{ false };
+		float _directionX{ 1.f };
+		float _directionY{ 1.f };
+		float _jumpPower{ 300.f };
+		float _gravity{ 0.f };
+		float _jumpTime{ 0.f };
+		float _jumpMaxTime{ 0.5f };
 	};
 }
