@@ -95,7 +95,8 @@ void Client::Charactor::Tick(_float deltaTime)
 	{
 		Jump(deltaTime);
 	}
-	else if(220.f > _pRootComponent->GetRelativeLocation().y)
+
+	if(220.f > _pRootComponent->GetRelativeLocation().y)
 	{
 		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ 0.f, _jumpPower * deltaTime });
 	}
