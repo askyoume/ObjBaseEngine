@@ -47,6 +47,24 @@ void Core::InputComponent::SetVibration(float leftMotor, float rightMotor)
 	XInputSetState(0, &vibration);
 }
 
+void Core::InputComponent::TriggerAction(_pstring actionName)
+{
+	auto iter = _actions.find(actionName);
+	if (iter != _actions.end())
+	{
+			iter->second->action();
+	}
+}
+
+void Core::InputComponent::TriggerKeyAction(InputDevice device, _uint key)
+{
+	auto iter = _keyActions.find({ device, key });
+	if (iter != _keyActions.end())
+	{
+		iter->second->action();
+	}
+}
+
 Core::InputComponent* Core::InputComponent::Create()
 {
 	static InputComponent* pInputComponent = new InputComponent;

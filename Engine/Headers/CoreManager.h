@@ -12,6 +12,10 @@ namespace Core
 		friend class Singleton;
 	private:
 		using DestroyList = std::vector<Object*>;
+
+	public:
+		
+
 	public:
 		struct GameSetting
 		{
@@ -58,6 +62,10 @@ namespace Core
 		//test code
 		//Input
 		InputManager* GetInputManager() const { return _pInputMgr; }
+		void RegisterAction(_pstring actionName, InputComponent* component);
+		void UnRegisterAction(_pstring actionName, InputComponent* component);
+		void RegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component);
+		void UnRegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component);
 
 		//Time
 		TimeManager* GetTimeManager() const { return _pTimeMgr; }
