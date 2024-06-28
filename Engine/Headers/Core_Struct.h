@@ -46,11 +46,11 @@ struct InputEvent
 
 struct InputAction
 {
-	_pstring actionName;
+	const char* actionName;
 	bool isTriggered;
 	std::function<void()> action;
 
-	InputAction(_pstring name, bool triggered, const std::function<void()>& function)
+	InputAction(const char* name, bool triggered, const std::function<void()>& function)
 		: actionName(name), isTriggered(triggered), action(function) {}
 };
 

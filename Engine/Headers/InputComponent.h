@@ -28,7 +28,7 @@ namespace Core
 		InputAction* BindAction(_pstring actionName, T* object, F function)
 		{
 			InputAction* result = new InputAction{ 
-				action, false, [object, function]() { (object->*function)(); 
+				actionName, false, [object, function]() { (object->*function)(); 
 				}};
 
 			_actions[actionName].push_back(result);
@@ -36,7 +36,7 @@ namespace Core
 		}
 
 		template <typename T, typename F>
-		void BindKey(InputDevice device, _uint key, T* object, F function)
+		void BindAction(InputDevice device, _uint key, T* object, F function)
 		{
 			_keyActions[{device, key}] = BindAction(_pstring{ device, key }, object, function);
 		}

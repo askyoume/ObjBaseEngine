@@ -196,7 +196,7 @@ HRESULT Core::FontManager::InitializeDWrite()
 	return hresult;
 }
 
-HRESULT Core::FontManager::AddFont(_pwstring fontName, float fontSize,IDWriteFontCollection1* pFontCollection , _pFont* ppTextFormat)
+HRESULT Core::FontManager::AddFont(_pwstring fontName, float fontSize, IDWriteFontCollection1* pFontCollection, _pFont* ppTextFormat)
 {
 	HRESULT hresult = S_OK;
 

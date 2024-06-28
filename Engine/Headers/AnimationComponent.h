@@ -3,7 +3,7 @@
 
 namespace Core
 {
-	class AnimationComponent : public BitmapComponent
+	class AnimationComponent final : public BitmapComponent
 	{
 	protected:
 		explicit AnimationComponent() DEFAULT;

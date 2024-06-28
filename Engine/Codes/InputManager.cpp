@@ -201,10 +201,6 @@ void Core::InputManager::ProcessKeyboardInput()
 	}
 	else
 	{
-		CoreManager* _pCoreMgr = CoreManager::GetInstance();
-
-		_elapsedTime += _pCoreMgr->GetTimeManager()->GetTick();
-
 		for(_uint i = 0; i < 256; i++)
 		{
 			bool isArrowKey = (i == DIK_LEFT || i == DIK_RIGHT || i == DIK_UP || i == DIK_DOWN);
@@ -226,7 +222,7 @@ void Core::InputManager::ProcessKeyboardInput()
 			else
 			{
 				DispatchInput(InputDevice::KEYBOARD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
-				_elapsedTime = 0.f;
+				DispatchKeyInput(InputDevice::KEYBOARD, i);
 			}
 		}
 	}
@@ -249,6 +245,7 @@ void Core::InputManager::ProcessMouseInput()
         {
             bool isPressed = (mouseState.rgbButtons[i] & 0x80) != 0;
             DispatchInput(InputDevice::MOUSE, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.0f, isPressed);
+			DispatchKeyInput(InputDevice::MOUSE, i);
         }
 
         if (mouseState.lZ != 0)
@@ -378,10 +375,26 @@ void Core::InputManager::DispatchInput(InputDevice Device, InputType Type, _uint
 
 void Core::InputManager::DispatchInput(_pstring actionName)
 {
+	auto find = actionReceivers.find(actionName);
+	if (find != actionReceivers.end())
+	{
+		for (auto& receiver : find->second)
+		{
+			receiver->TriggerAction(actionName);
+		}
+	}
 }
 
 void Core::InputManager::DispatchKeyInput(InputDevice device, _uint key)
 {
+	auto find = keyReceivers.find(std::make_pair(device, key));
+	if (find != keyReceivers.end())
+	{
+		for (auto& receiver : find->second)
+		{
+			receiver->TriggerKeyAction(device, key);
+		}
+	}
 }
 
 Core::InputManager* Core::InputManager::Create()
