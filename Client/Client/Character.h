@@ -8,6 +8,8 @@ namespace Core
 	class InputComponent;
 }
 
+struct InputEvent;
+
 namespace Client
 {
 	class Charactor : public Core::Actor
@@ -33,6 +35,7 @@ namespace Client
 		void EndPlay() override;
 
 		void Jump(_float deltaTime);
+		void Attack(const InputEvent& inputEvent);
 
 	public:
 		static Charactor* Create() { return new Charactor; }

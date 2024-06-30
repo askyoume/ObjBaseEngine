@@ -12,9 +12,6 @@ namespace Core
 		virtual ~InputComponent() DEFAULT;
 
 	public:
-		using Action = std::function<void()>;
-		using ActionMap = std::unordered_map<_pstring, InputAction*>;
-		using KeyActionMap = std::unordered_map<std::pair<InputDevice, _uint>, InputAction*, PairHash>;
 		using Callback = std::function<void(const InputEvent&)>;
 		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<Callback>>> _eventHandlers;
 
@@ -24,26 +21,15 @@ namespace Core
 		void AttachToInputManager();
 		void SetVibration(float leftMotor, float rightMotor);
 
-		template <typename T, typename F>
-		InputAction* BindAction(_pstring actionName, T* object, F function)
+		template<typename T, typename U>
+		void BindAction(_uint key, InputType type, T* object, void (U::*method)(const InputEvent&))
 		{
-			InputAction* result = new InputAction{ 
-				actionName, false, [object, function]() { (object->*function)(); 
-				}};
-
-			_actions[actionName].push_back(result);
-
+			Callback handler = [object, method](const InputEvent& inputEvent)
+				{
+					(object->*method)(inputEvent);
+				};
+			_eventHandlers[key][type].push_back(handler);
 		}
-
-		template <typename T, typename F>
-		void BindAction(InputDevice device, _uint key, T* object, F function)
-		{
-			_keyActions[{device, key}] = BindAction(_pstring{ device, key }, object, function);
-		}
-
-		void TriggerAction(_pstring actionName);
-		void TriggerKeyAction(InputDevice device, _uint key);
-
 
 	public:
 		static InputComponent* Create();
@@ -54,9 +40,5 @@ namespace Core
 		void TickComponent(_float deltaTime) override {};
 		void EndPlay() override {};
 		void Remove() override;
-
-	private:
-		KeyActionMap _keyActions;
-		ActionMap _actions;
 	};
 }

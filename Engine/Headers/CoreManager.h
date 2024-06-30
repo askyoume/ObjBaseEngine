@@ -62,10 +62,8 @@ namespace Core
 		//test code
 		//Input
 		InputManager* GetInputManager() const { return _pInputMgr; }
-		void RegisterAction(_pstring actionName, InputComponent* component);
-		void UnRegisterAction(_pstring actionName, InputComponent* component);
-		void RegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component);
-		void UnRegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component);
+		void RegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver);
+		void UnRegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver);
 
 		//Time
 		TimeManager* GetTimeManager() const { return _pTimeMgr; }

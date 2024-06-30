@@ -146,24 +146,14 @@ Core::Texture* Core::CoreManager::FindTexture(_pwstring filePath)
 	return _pTextureMgr->FindTexture(filePath);
 }
 
-void Core::CoreManager::RegisterAction(_pstring actionName, InputComponent* component)
+void Core::CoreManager::RegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver)
 {
-	_pInputMgr->RegisterAction(actionName, component);
+	_pInputMgr->RegisterReceiver(key, Type, Receiver);
 }
 
-void Core::CoreManager::UnRegisterAction(_pstring actionName, InputComponent* component)
+void Core::CoreManager::UnRegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver)
 {
-	_pInputMgr->UnRegisterAction(actionName, component);
-}
-
-void Core::CoreManager::RegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component)
-{
-	_pInputMgr->RegisterKey(device, key, type, component);
-}
-
-void Core::CoreManager::UnRegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component)
-{
-	_pInputMgr->UnRegisterKey(device, key, type, component);
+	_pInputMgr->UnRegisterReceiver(key, Type, Receiver);
 }
 
 void Core::CoreManager::EraseActorMap(Object* pObject)

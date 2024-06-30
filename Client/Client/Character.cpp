@@ -5,6 +5,7 @@
 #include "../../Engine/Headers/CoreManager.h"
 #include "../../Engine/Headers/Texture.h"
 #include "../../Engine/Headers/KhalaSystem.h"
+#include "../../Engine/Headers/Core_Struct.h"
 
 void Client::Charactor::BeginPlay()
 {
@@ -46,8 +47,10 @@ void Client::Charactor::BeginPlay()
 
 	_pInputComponent->BindInputEvent(DIP_A, InputType::PRESS, [&](const InputEvent& inputEvent)
 		{
-				_stateFlag |= STATE_JUMP;
+			_stateFlag |= STATE_JUMP;
 		});
+
+	_pInputComponent->BindAction(DIK_SPACE, InputType::PRESS, this, &Charactor::Attack);
 
 	_pAnimationComponent->SetRelativeScale(Mathf::Vector2(5.f, 5.f));
 
@@ -129,4 +132,9 @@ void Client::Charactor::EndPlay()
 void Client::Charactor::Jump(_float deltaTime)
 {
 	_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _directionX * _jumpPower * deltaTime, -_jumpPower * deltaTime });
+}
+
+void Client::Charactor::Attack(const InputEvent& inputEvent)
+{
+	_stateFlag |= STATE_ATTACK;
 }

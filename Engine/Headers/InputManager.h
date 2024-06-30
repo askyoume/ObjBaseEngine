@@ -24,15 +24,7 @@ namespace Core
 		void ProcessGamePadInput();
 
 	public:
-		void RegisterAction(_pstring actionName, InputComponent* component);
-		void UnRegisterAction(_pstring actionName, InputComponent* component);
-		void RegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component);
-		void UnRegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component);
-
-	public:
 		void DispatchInput(InputDevice Device, InputType Type, _uint Key, _float Value = 0.f, bool State = false, long x = 0, long y = 0);
-		void DispatchInput(_pstring actionName);
-		void DispatchKeyInput(InputDevice device, _uint key);
 
 	public:
 		static InputManager* Create();
@@ -56,6 +48,5 @@ namespace Core
 
 		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<IInputReceiver*>>> Receivers;
 		std::unordered_map<std::string, std::vector<InputComponent*>> actionReceivers;
-        std::unordered_map<std::pair<InputDevice, _uint>, std::vector<InputComponent*>, PairHash> keyReceivers;
 	};
 }

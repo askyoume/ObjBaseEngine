@@ -222,7 +222,6 @@ void Core::InputManager::ProcessKeyboardInput()
 			else
 			{
 				DispatchInput(InputDevice::KEYBOARD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
-				DispatchKeyInput(InputDevice::KEYBOARD, i);
 			}
 		}
 	}
@@ -245,7 +244,6 @@ void Core::InputManager::ProcessMouseInput()
         {
             bool isPressed = (mouseState.rgbButtons[i] & 0x80) != 0;
             DispatchInput(InputDevice::MOUSE, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.0f, isPressed);
-			DispatchKeyInput(InputDevice::MOUSE, i);
         }
 
         if (mouseState.lZ != 0)
@@ -268,7 +266,6 @@ void Core::InputManager::ProcessGamePadInput()
 		{
 			bool isPressed = (_pGamePad->Gamepad.wButtons & (1 << i)) != 0;
 			DispatchInput(InputDevice::GAMEPAD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
-			DispatchKeyInput(InputDevice::GAMEPAD, i);
 		}
 
 		float gamePadLX = static_cast<float>(_pGamePad->Gamepad.sThumbLX) / GAMEPAD_NORMALIZE;
@@ -319,42 +316,6 @@ void Core::InputManager::ProcessGamePadInput()
 	}
 }
 
-void Core::InputManager::RegisterAction(_pstring actionName, InputComponent* component)
-{
-	actionReceivers[actionName].push_back(component);
-}
-
-void Core::InputManager::UnRegisterAction(_pstring actionName, InputComponent* component)
-{
-	auto find = actionReceivers.find(actionName);
-	if (find != actionReceivers.end())
-	{
-		auto findReceiver = std::find(find->second.begin(), find->second.end(), component);
-		if (findReceiver != find->second.end())
-		{
-			find->second.erase(findReceiver);
-		}
-	}
-}
-
-void Core::InputManager::RegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component)
-{
-	keyReceivers[std::make_pair(device, key)].push_back(component);
-}
-
-void Core::InputManager::UnRegisterKey(InputDevice device, _uint key, InputType type, InputComponent* component)
-{
-	auto find = keyReceivers.find(std::make_pair(device, key));
-	if (find != keyReceivers.end())
-	{
-		auto findReceiver = std::find(find->second.begin(), find->second.end(), component);
-		if (findReceiver != find->second.end())
-		{
-			find->second.erase(findReceiver);
-		}
-	}
-}
-
 void Core::InputManager::DispatchInput(InputDevice Device, InputType Type, _uint Key, _float Value, bool State, long x, long y)
 {
 	_uint uniqueKey = (static_cast<_uint>(Device) << 16 | Key);
@@ -369,30 +330,6 @@ void Core::InputManager::DispatchInput(InputDevice Device, InputType Type, _uint
 			{
 				receiver->OnInputReceived(event);
 			}
-		}
-	}
-}
-
-void Core::InputManager::DispatchInput(_pstring actionName)
-{
-	auto find = actionReceivers.find(actionName);
-	if (find != actionReceivers.end())
-	{
-		for (auto& receiver : find->second)
-		{
-			receiver->TriggerAction(actionName);
-		}
-	}
-}
-
-void Core::InputManager::DispatchKeyInput(InputDevice device, _uint key)
-{
-	auto find = keyReceivers.find(std::make_pair(device, key));
-	if (find != keyReceivers.end())
-	{
-		for (auto& receiver : find->second)
-		{
-			receiver->TriggerKeyAction(device, key);
 		}
 	}
 }

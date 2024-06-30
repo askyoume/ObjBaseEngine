@@ -26,13 +26,12 @@ void Core::InputComponent::OnInputReceived(const InputEvent& inputEvent)
 void Core::InputComponent::AttachToInputManager()
 {
 	CoreManager* pCore = CoreManager::GetInstance();
-	InputManager* Manager = pCore->GetInputManager();
 
 	for (auto& [key, types] : _eventHandlers)
 	{
 		for (auto& [type, _] : types)
 		{
-			Manager->RegisterReceiver(key, type, this);
+			pCore->RegisterReceiver(key, type, this);
 		}
 	}
 }
@@ -45,24 +44,6 @@ void Core::InputComponent::SetVibration(float leftMotor, float rightMotor)
 	};
 
 	XInputSetState(0, &vibration);
-}
-
-void Core::InputComponent::TriggerAction(_pstring actionName)
-{
-	auto iter = _actions.find(actionName);
-	if (iter != _actions.end())
-	{
-			iter->second->action();
-	}
-}
-
-void Core::InputComponent::TriggerKeyAction(InputDevice device, _uint key)
-{
-	auto iter = _keyActions.find({ device, key });
-	if (iter != _keyActions.end())
-	{
-		iter->second->action();
-	}
 }
 
 Core::InputComponent* Core::InputComponent::Create()
@@ -82,13 +63,12 @@ bool Core::InputComponent::Initialize()
 void Core::InputComponent::Remove()
 {
 	CoreManager* pCore = CoreManager::GetInstance();
-	InputManager* Manager = pCore->GetInputManager();
 
 	for (auto& [key, types] : _eventHandlers)
 	{
 		for (auto& [type, _] : types)
 		{
-			Manager->UnRegisterReceiver(key, type, this);
+			pCore->UnRegisterReceiver(key, type, this);
 		}
 	}
 

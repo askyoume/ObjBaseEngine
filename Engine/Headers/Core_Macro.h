@@ -30,6 +30,7 @@
     class Layer;                    \
     class Actor;                    \
     class World;					\
+	class IInputReceiver;           \
 	class InputComponent;           \
     class CameraComponent;          \
 	class RenderComponent;          \
