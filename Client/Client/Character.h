@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Engine/Headers/Core_Define.h"
 #include "../../Engine/Headers/Actor.h"
+#include "../../Engine/Headers/Mathf.h"
 
 namespace Core
 {
@@ -34,8 +35,11 @@ namespace Client
 		void Fixed() override;
 		void EndPlay() override;
 
-		void Jump(_float deltaTime);
 		void Attack(const InputEvent& inputEvent);
+		void Move(const InputEvent& inputEvent);
+		void Duck(const InputEvent& inputEvent);
+		void JumpHandle(const InputEvent& inputEvent);
+		void Jump(_float deltaTime);
 
 	public:
 		static Charactor* Create() { return new Charactor; }
@@ -46,11 +50,9 @@ namespace Client
 
 	private:
 		_uint _stateFlag{ 0 };
-		float _directionX{ 1.f };
-		float _directionY{ 1.f };
-		float _jumpPower{ 300.f };
-		float _gravity{ 0.f };
-		float _jumpTime{ 0.f };
-		float _jumpMaxTime{ 0.5f };
+		Mathf::Vector2 _direction{ UnitVector::One };
+		Mathf::Vector2 _velocity{ 200.f, -200.f };
+		Mathf::Vector2 _gravity{ 0.f , 98.f };
+		float _elapsedTime{ 0.f };
 	};
 }

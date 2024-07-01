@@ -8,6 +8,7 @@ void Core::AnimationComponent::TickComponent(_float deltaTime)
 	SceneComponent::TickComponent(deltaTime);
 
 	if (_isVisible == false) { return; }
+	if (0 == _currentFrame) { _isFrameEnd = false; }
 
 	_currentFrameTime += deltaTime;
 
@@ -19,6 +20,7 @@ void Core::AnimationComponent::TickComponent(_float deltaTime)
 
 		if (_currentFrame >= _frameCount)
 		{
+			_isFrameEnd = true;
 			if(_isLoop)
 			{
 				_currentFrame = 0;
@@ -26,6 +28,7 @@ void Core::AnimationComponent::TickComponent(_float deltaTime)
 			else
 			{
 				_currentFrame = _frameCount - 1;
+
 			}
 		}
 	}
@@ -42,6 +45,12 @@ void Core::AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	SetBitmapLocalTransform();
 
 	D2D1InvertMatrix(&_cameraMatrix);
+
+	if (_isFlip)
+	{
+		_localTransform = D2D1::Matrix3x2F::Scale(-1, 1, 
+				D2D1::Point2F(_textureRect.right * 0.5f, _textureRect.bottom * 0.5f)) * _localTransform;
+	}
 
 	Mathf::Matrix3x2 Transform = _localTransform * _WorldTransform * _cameraMatrix;
 
@@ -74,8 +83,23 @@ void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool
 	GetOwner()->AddTexture(pCore->FindTexture(textureName));
 }
 
+bool Core::AnimationComponent::IsClipEnd(_pstring clipName)
+{
+	if (_isFrameEnd == false && _vecClips[clipName]->clipIndex == _currentClipIndex)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 void Core::AnimationComponent::SetPlayClip(_pstring clipName)
 {
+	if (_isFrameEnd == false && _vecClips[clipName]->clipIndex == _currentClipIndex)
+	{
+		return;
+	}
+
 	if(_vecClips[clipName]->clipIndex == _currentClipIndex)
 	{
 		return;

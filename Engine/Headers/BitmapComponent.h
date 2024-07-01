@@ -19,8 +19,10 @@ namespace Core
 		void SetTextureIndex(int index) { _currentTextureIndex = index; }
 		void SetTextureRect(Texture* pTexture);
 		Mathf::Rect GetTextureRect();
-		Mathf::Rect GetTransformedTextureRect();
+		//Mathf::Rect GetTransformedTextureRect();
 		void SetBitmapLocalTransform();
+		void SetFlip(bool isFlip) { _isFlip = isFlip; }
+		bool IsFlip() { return _isFlip; }
 
 	protected:
 		virtual bool Initialize() override;
@@ -36,5 +38,6 @@ namespace Core
 		Mathf::Vector2		_localScale{ UnitVector::Zero };
 		Mathf::Vector2		_localLocation{ UnitVector::Zero };
 		int					_currentTextureIndex{};
+		bool 				_isFlip{ false };
 	};
 }

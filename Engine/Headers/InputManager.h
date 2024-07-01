@@ -47,6 +47,6 @@ namespace Core
 		float _elapsedTime = 0.f;
 
 		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<IInputReceiver*>>> Receivers;
-		std::unordered_map<std::string, std::vector<InputComponent*>> actionReceivers;
+		std::unordered_map<_uint, bool> _previousButtonStates;
 	};
 }

@@ -13,6 +13,7 @@ namespace Core
 		virtual void TickComponent(_float deltaTime) override;
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override;
 		void AddClip(_pstring clipName, _float frameTime, bool isLoop);
+		bool IsClipEnd(_pstring clipName);
 		void SetPlayClip(_pstring clipName);
 		void RemoveClip(_pstring clipName);
 		
@@ -33,6 +34,7 @@ namespace Core
 		int		_currentClipIndex{ -1 };
 		bool	_isLoop{};
 		bool    _isInLayer{ false };
+		bool    _isFrameEnd{ false };
 	};
 
 }

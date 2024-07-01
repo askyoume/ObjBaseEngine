@@ -140,8 +140,10 @@
     <ClInclude Include="..\Engine\Headers\Actor.h" />
     <ClInclude Include="..\Engine\Headers\AnimationComponent.h" />
     <ClInclude Include="..\Engine\Headers\BitmapComponent.h" />
+    <ClInclude Include="..\Engine\Headers\BoxComponent.h" />
     <ClInclude Include="..\Engine\Headers\CameraActor.h" />
     <ClInclude Include="..\Engine\Headers\CameraComponent.h" />
+    <ClInclude Include="..\Engine\Headers\CollisionComponent.h" />
     <ClInclude Include="..\Engine\Headers\Component.h" />
     <ClInclude Include="..\Engine\Headers\Core.h" />
     <ClInclude Include="..\Engine\Headers\CoreManager.h" />

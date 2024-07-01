@@ -16,6 +16,12 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	D2D1InvertMatrix(&_cameraMatrix);
 
+	if (_isFlip)
+	{
+		_localTransform = D2D1::Matrix3x2F::Scale(-1, 1, 
+				D2D1::Point2F(_textureRect.right * 0.5f, _textureRect.bottom * 0.5f)) * _localTransform;
+	}
+
 	Mathf::Matrix3x2 Transform = _localTransform * _WorldTransform * _cameraMatrix;
 
 	pRenderTarget->SetTransform(Transform);
@@ -51,32 +57,32 @@ Mathf::Rect Core::BitmapComponent::GetTextureRect()
 	return _textureRect;
 }
 
-Mathf::Rect Core::BitmapComponent::GetTransformedTextureRect()
-{
-	if (!_vecTextures) { return Mathf::Rect(); }
-	if (0 == _textureRect.right || 0 == _textureRect.bottom) 
-	{ 
-		Texture* pTexture = _vecTextures->at(_currentTextureIndex);
-	
-		SetTextureRect(pTexture); 
-	}
-
-	Mathf::Vector2 WorldLocation{};
-
-	WorldLocation.x = _MidCalculateTransform._31;
-	WorldLocation.y = _MidCalculateTransform._32;
-
-	Mathf::Rect transformedRect{
-		WorldLocation.x - _textureRect.right * 0.5f,
-		WorldLocation.y - _textureRect.bottom * 0.5f,
-		WorldLocation.x + _textureRect.right * 0.5f,
-		WorldLocation.y + _textureRect.bottom * 0.5f
-	};
-
-	std::cout << "Transformed Rect : " << transformedRect.left << " " << transformedRect.top << " " << transformedRect.right << " " << transformedRect.bottom << std::endl;
-
-	return transformedRect;
-}
+//Mathf::Rect Core::BitmapComponent::GetTransformedTextureRect()
+//{
+//	/*if (!_vecTextures) { return Mathf::Rect(); }
+//	if (0 == _textureRect.right || 0 == _textureRect.bottom) 
+//	{ 
+//		Texture* pTexture = _vecTextures->at(_currentTextureIndex);
+//	
+//		SetTextureRect(pTexture); 
+//	}
+//
+//	Mathf::Vector2 WorldLocation{};
+//
+//	WorldLocation.x = _MidCalculateTransform._31;
+//	WorldLocation.y = _MidCalculateTransform._32;
+//
+//	Mathf::Rect transformedRect{
+//		WorldLocation.x - _textureRect.right * 0.5f,
+//		WorldLocation.y - _textureRect.bottom * 0.5f,
+//		WorldLocation.x + _textureRect.right * 0.5f,
+//		WorldLocation.y + _textureRect.bottom * 0.5f
+//	};
+//
+//	std::cout << "Transformed Rect : " << transformedRect.left << " " << transformedRect.top << " " << transformedRect.right << " " << transformedRect.bottom << std::endl;
+//
+//	return transformedRect;*/
+//}
 
 void Core::BitmapComponent::SetBitmapLocalTransform()
 {

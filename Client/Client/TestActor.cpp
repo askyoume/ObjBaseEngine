@@ -4,26 +4,26 @@
 #include "../../Engine/Headers/BitmapComponent.h"
 #include "../../Engine/Headers/CoreManager.h"
 #include "../../Engine/Headers/Texture.h"
-#include "../../Engine/Headers/KhalaSystem.h"
+//#include "../../Engine/Headers/KhalaSystem.h"
 
 void Client::TestActor::BeginPlay()
 {
 	Actor::BeginPlay();
 
-	__Khala->DefineNerveCord("Move", [&](__KhalaArgs args)
-		{
-			float x = __KhalaCast<float>(args[0]); //any_cast를 사용하여 인자를 캐스팅 -> 인자를 0번 인덱스부터 등록
-			float y = __KhalaCast<float>(args[1]);
+	//__Khala->DefineNerveCord("Move", [&](__KhalaArgs args)
+	//	{
+	//		float x = __KhalaCast<float>(args[0]); //any_cast를 사용하여 인자를 캐스팅 -> 인자를 0번 인덱스부터 등록
+	//		float y = __KhalaCast<float>(args[1]);
 
-			Move(x, y);
+	//		Move(x, y);
 
-			return true;
-		});
+	//		return true;
+	//	});
 
-	__Khala->DefineNerveCord("IsMove", [&](__KhalaArgs args)
-		{
-			return _isMove;
-		});
+	//__Khala->DefineNerveCord("IsMove", [&](__KhalaArgs args)
+	//	{
+	//		return _isMove;
+	//	});
 
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pBitmapComponent = AddComponent<::Core::BitmapComponent>("BitmapComponent");
@@ -54,8 +54,8 @@ void Client::TestActor::BeginPlay()
 		{
 			//Move((float)inputEvent.x, (float)inputEvent.y);
 			//__Khala->ConnectNerveCord("Move", { (float)inputEvent.x, (float)inputEvent.y });
-			__Khala->ConnectNerveCord("OuterMove", 
-				{ (::Core::Actor*)this, (float)inputEvent.x, (float)inputEvent.y });
+			//__Khala->ConnectNerveCord("OuterMove", 
+			//	{ (::Core::Actor*)this, (float)inputEvent.x, (float)inputEvent.y });
 			
 			if(inputEvent.x > 0)
 				_isMove = true;
@@ -75,7 +75,7 @@ void Client::TestActor::Tick(_float deltaTime)
 	//std::cout << _pRootComponent->GetWorldLocation().x << " " 
 	//	<< _pRootComponent->GetWorldLocation().y << std::endl;
 
-	__Khala->ConnectNerveCord("Fire", {}); //이벤트 설계자가 원하는 위치에 이벤트를 발생하는 함수
+	//__Khala->ConnectNerveCord("Fire", {}); //이벤트 설계자가 원하는 위치에 이벤트를 발생하는 함수
 
 	Actor::Tick(deltaTime);
 

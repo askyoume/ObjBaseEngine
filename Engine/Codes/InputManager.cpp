@@ -265,7 +265,21 @@ void Core::InputManager::ProcessGamePadInput()
 		for (_uint i = 0; i < DIP_MAX; i++)
 		{
 			bool isPressed = (_pGamePad->Gamepad.wButtons & (1 << i)) != 0;
-			DispatchInput(InputDevice::GAMEPAD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
+			/*DispatchInput(InputDevice::GAMEPAD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);*/
+			if (isPressed && !_previousButtonStates[i])
+            {
+                DispatchInput(InputDevice::GAMEPAD, InputType::PRESS, i, 0.f, true);
+            }
+            else if (isPressed && _previousButtonStates[i])
+            {
+                DispatchInput(InputDevice::GAMEPAD, InputType::HELD, i, 0.f, true);
+            }
+            else if (!isPressed && _previousButtonStates[i])
+            {
+                DispatchInput(InputDevice::GAMEPAD, InputType::RELEASE, i, 0.f, false);
+            }
+
+			_previousButtonStates[i] = isPressed;
 		}
 
 		float gamePadLX = static_cast<float>(_pGamePad->Gamepad.sThumbLX) / GAMEPAD_NORMALIZE;

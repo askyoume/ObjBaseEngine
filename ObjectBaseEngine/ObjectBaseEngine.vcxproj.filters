@@ -142,6 +142,9 @@
     <Filter Include="Engine\Component\SceneComponent\CollisionComponent">
       <UniqueIdentifier>{85fa73e3-109e-41c2-8aaf-3e022b04cdee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component\SceneComponent\CollisionComponent\BoxComponent">
+      <UniqueIdentifier>{f605ff79-46b3-498f-93c7-a1f619e58382}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainEntry.h">
@@ -263,6 +266,12 @@
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\AnimationComponent.h">
       <Filter>Engine\Component\SceneComponent\AnimationComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\CollisionComponent.h">
+      <Filter>Engine\Component\SceneComponent\CollisionComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\BoxComponent.h">
+      <Filter>Engine\Component\SceneComponent\CollisionComponent\BoxComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

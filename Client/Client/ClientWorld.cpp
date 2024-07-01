@@ -10,7 +10,7 @@
 #include "../../Engine/Headers/TimeManager.h"
 #include "../../Engine/Headers/CameraActor.h"
 #include "../../Engine/Headers/CameraComponent.h"
-#include "../../Engine/Headers/KhalaSystem.h"
+//#include "../../Engine/Headers/KhalaSystem.h"
 
 bool Client::ClientWorld::BeginPlay()
 {
@@ -25,18 +25,6 @@ bool Client::ClientWorld::BeginPlay()
 	SpawnActor(LAYER::BACKGROUND, "BackGround", BackGround::Create(), Mathf::Vector2{ 240.f, -180.f });
 
 	TestActor2* _pTestActor2 = static_cast<TestActor2*>(FindActor("TestActor2"));
-
-	__Khala->DefineNerveCord("OuterMove", [](__KhalaArgs args)
-		{
-			::Core::Actor* pActor = __KhalaCast<::Core::Actor*>(args[0]);
-			float x = __KhalaCast<float>(args[1]);
-			float y = __KhalaCast<float>(args[2]);
-
-			pActor->GetRootComponent()->AddRelativeLocation(Mathf::Vector2{ x, y });
-
-			return true;
-
-		});
 	
 	SettingTrackingCameraTarget(FindActor("Character"));
 	SettingCameraOffset(Mathf::Vector2{0.f, 250.f});
@@ -64,6 +52,9 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 {
 	World::Render(pRenderTarget);
 	//test code
+
+	pRenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+
 	static const WCHAR sc_helloWorld[] = L"Please!!!";
 	
 	pRenderTarget->DrawTextW(
