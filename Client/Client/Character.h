@@ -22,8 +22,10 @@ namespace Client
 			STATE_MOVE = 1 << 2,
 			STATE_DUCK = 1 << 3,
 			STATE_ATTACK = 1 << 4,
-			STATE_JUMP = 1 << 5,
-			STATE_JUMPING = 1 << 6
+			STATE_UP_ATTACK = 1 << 5,
+			STATE_DIR_ATTACK = 1 << 6,
+			STATE_JUMP = 1 << 7,
+			STATE_JUMPING = 1 << 8
 		};
 	protected:
 		explicit Charactor() DEFAULT;
@@ -51,7 +53,7 @@ namespace Client
 	private:
 		_uint _stateFlag{ 0 };
 		Mathf::Vector2 _direction{ UnitVector::One };
-		Mathf::Vector2 _velocity{ 200.f, -200.f };
+		Mathf::Vector2 _velocity{ 200.f, 0.f };
 		Mathf::Vector2 _gravity{ 0.f , 98.f };
 		float _elapsedTime{ 0.f };
 	};

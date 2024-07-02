@@ -19,6 +19,8 @@ void Client::Charactor::BeginPlay()
 	_pAnimationComponent->AddClip("Walk", 0.1f, true);
 	_pAnimationComponent->AddClip("Jump", 0.1f, true);
 	_pAnimationComponent->AddClip("NormalAttack", 0.1f, false);
+	_pAnimationComponent->AddClip("NormalDirAttack", 0.1f, false);
+	_pAnimationComponent->AddClip("NormalUpAttack", 0.1f, false);
 	_pAnimationComponent->AddClip("CrouchAttack", 0.1f, false);
 	_pAnimationComponent->AddClip("JumpAttack", 0.1f, false);
 	//_pAnimationComponent->SetPlayClip("Walk");
@@ -48,7 +50,18 @@ void Client::Charactor::Tick(_float deltaTime)
 	else if (_stateFlag & STATE_MOVE && _stateFlag & STATE_ATTACK)
 	{
 		_pInputComponent->SetVibration(0.f, 255.f);
-		_pAnimationComponent->SetPlayClip("NormalAttack");
+		if(_stateFlag & STATE_DIR_ATTACK)
+		{
+			_pAnimationComponent->SetPlayClip("NormalDirAttack");
+		}
+		else if (_stateFlag & STATE_UP_ATTACK)
+		{
+			_pAnimationComponent->SetPlayClip("NormalUpAttack");
+		}
+		else
+		{
+			_pAnimationComponent->SetPlayClip("NormalAttack");
+		}
 	}
 	else if (_stateFlag & STATE_MOVE && _stateFlag & STATE_DUCK)
 	{
@@ -71,7 +84,18 @@ void Client::Charactor::Tick(_float deltaTime)
 	else if (_stateFlag & STATE_ATTACK)
 	{
 		_pInputComponent->SetVibration(0.f, 255.f);
-		_pAnimationComponent->SetPlayClip("NormalAttack");
+		if(_stateFlag & STATE_DIR_ATTACK)
+		{
+			_pAnimationComponent->SetPlayClip("NormalDirAttack");
+		}
+		else if (_stateFlag & STATE_UP_ATTACK)
+		{
+			_pAnimationComponent->SetPlayClip("NormalUpAttack");
+		}
+		else
+		{
+			_pAnimationComponent->SetPlayClip("NormalAttack");
+		}
 	}
 	else
 	{
@@ -86,9 +110,13 @@ void Client::Charactor::Tick(_float deltaTime)
 
 	if (_pAnimationComponent->IsClipEnd("NormalAttack") && 
 		_pAnimationComponent->IsClipEnd("CrouchAttack") && 
-		_pAnimationComponent->IsClipEnd("JumpAttack"))
+		_pAnimationComponent->IsClipEnd("JumpAttack") &&
+		_pAnimationComponent->IsClipEnd("NormalDirAttack") &&
+		_pAnimationComponent->IsClipEnd("NormalUpAttack"))
 	{
 		_stateFlag &= ~STATE_ATTACK;
+		_stateFlag &= ~STATE_DIR_ATTACK;
+		_stateFlag &= ~STATE_UP_ATTACK;
 	}
 
 	if (_direction.x > 0)
@@ -123,9 +151,9 @@ void Client::Charactor::Jump(_float deltaTime)
 		_velocity.y += _gravity.y * 5.f * deltaTime;
 	}
 	//temp code before made collision component
-	if (_pRootComponent->GetWorldLocation().y > 220.f)
+	if (_pRootComponent->GetWorldLocation().y > 100.f)
 	{
-		_pRootComponent->SetRelativeLocation(Mathf::Vector2(_pRootComponent->GetWorldLocation().x, 220.f));
+		_pRootComponent->SetRelativeLocation(Mathf::Vector2(_pRootComponent->GetWorldLocation().x, 100.f));
 		_velocity.y = 0.f;
 			_stateFlag &= ~STATE_JUMPING;
 			_stateFlag &= ~STATE_JUMP;
@@ -135,6 +163,18 @@ void Client::Charactor::Jump(_float deltaTime)
 void Client::Charactor::Attack(const InputEvent& inputEvent)
 {
 	_stateFlag |= STATE_ATTACK;
+
+	if(_stateFlag & STATE_DIR_ATTACK && _stateFlag & STATE_UP_ATTACK)
+		return;
+
+	if(_direction.y < -0.6f && _direction.y > -0.85f)
+	{
+		_stateFlag |= STATE_DIR_ATTACK;
+	}
+	else if (_direction.y < -0.85f)
+	{
+		_stateFlag |= STATE_UP_ATTACK;
+	}
 }
 
 void Client::Charactor::Move(const InputEvent& inputEvent)

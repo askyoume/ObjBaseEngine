@@ -16,6 +16,9 @@ bool Core::World::InitializeWorld(int layerSize)
 
 	CameraComponent* pCameraComponent = _pCameraActor->GetCameraComponent();
 
+	//_worldCenter = Mathf::Vector2(_pCoreManager->GetWidth() / 2.f, _pCoreManager->GetHeight() / 2.f);
+	//_worldTransform = D2D1::Matrix3x2F::Translation(-_worldCenter.x, -_worldCenter.y);
+
 	pCameraComponent->SetCenterPosition(
 		Mathf::Vector2(_pCoreManager->GetWidth() / 2.f, 
 						_pCoreManager->GetHeight() / 2.f)
@@ -52,6 +55,7 @@ void Core::World::Fixed()
 
 void Core::World::Render(ID2D1RenderTarget* pRenderTarget)
 {
+	pRenderTarget->SetTransform(_worldTransform);
 	for(auto iter = _vecLayers.begin(); iter != _vecLayers.end(); iter++)
 	{
 		(*iter)->Render(pRenderTarget);

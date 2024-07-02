@@ -62,10 +62,12 @@ namespace Core
 		CameraActor* _pCameraActor{ nullptr };
 
 	protected:
-		ActorMap	_actorMap;
-		Layers		_vecLayers;
-		Mathf::Rect _worldSize{};
-		int			_layerSize{};
+		ActorMap			_actorMap;
+		Layers				_vecLayers;
+		Mathf::Matrix3x2	_worldTransform{ Matx::Identity };
+		Mathf::Vector2		_worldCenter{ UnitVector::Zero };
+		Mathf::Rect			_worldSize{};
+		int					_layerSize{};
 
 	};
 }

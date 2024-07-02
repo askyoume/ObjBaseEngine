@@ -4,9 +4,9 @@
 
 void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	if (_isVisible == false) { return; }
-	if (_vecTextures == nullptr) { return; }
+	if (!_vecTextures) { return; }
 	if (_vecTextures->empty()) { return; }
+	if (!_isVisible) { return; }
 
 	Texture* pTexture = _vecTextures->at(_currentTextureIndex);
 
