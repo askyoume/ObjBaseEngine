@@ -55,11 +55,12 @@ void Core::World::Fixed()
 
 void Core::World::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	pRenderTarget->SetTransform(_worldTransform);
+	//pRenderTarget->SetTransform(_worldTransform);
 	for(auto iter = _vecLayers.begin(); iter != _vecLayers.end(); iter++)
 	{
 		(*iter)->Render(pRenderTarget);
 	}
+	_pCameraActor->Render(pRenderTarget);
 }
 
 void Core::World::EndPlay()

@@ -21,6 +21,7 @@ namespace Core
 		//Actor
 		virtual void BeginPlay() override {};
 		virtual void Tick(_float deltaTime) override;
+		void Render(ID2D1RenderTarget* pRenderTarget);
 		virtual CameraComponent* GetCameraComponent() { return _cameraComponent; }
 
 		void TrackTarget(Actor* pTarget);

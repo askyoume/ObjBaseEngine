@@ -145,6 +145,9 @@
     <Filter Include="Engine\Component\SceneComponent\CollisionComponent\BoxComponent">
       <UniqueIdentifier>{f605ff79-46b3-498f-93c7-a1f619e58382}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\BaseClass\ACollision">
+      <UniqueIdentifier>{d065eec0-2096-4ca5-8284-ef7c45965467}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainEntry.h">
@@ -273,6 +276,9 @@
     <ClInclude Include="..\Engine\Headers\BoxComponent.h">
       <Filter>Engine\Component\SceneComponent\CollisionComponent\BoxComponent</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Headers\ACollision.h">
+      <Filter>Engine\BaseClass\ACollision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainEntry.cpp">
@@ -337,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="..\Engine\Headers\AnimationComponent.cpp">
       <Filter>Engine\Component\SceneComponent\AnimationComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\ACollision.cpp">
+      <Filter>Engine\BaseClass\ACollision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

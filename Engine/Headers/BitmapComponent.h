@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
+#include "ACollision.h"
 
 namespace Core
 {

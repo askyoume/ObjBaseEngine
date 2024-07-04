@@ -35,7 +35,6 @@ namespace Core
 	private:
 		Actors _actors;
 		RenderQueue _renderQueue;
-		ID2D1Layer* _pLayer{ nullptr };
 		CameraActor* _pCameraActor{ nullptr };
 	};
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneComponent.h"
+#include "ACollision.h"
 
 namespace Core
 {
@@ -13,6 +14,7 @@ namespace Core
 		//Component
 		virtual void BeginPlay() override {};
 		virtual void TickComponent(_float deltaTime) override;
+		void Render(ID2D1RenderTarget* pRenderTarget);
 		virtual void EndPlay() override {};
 
 	public:
@@ -28,12 +30,14 @@ namespace Core
 		void SetCameraZoomScale(Mathf::Vector2 cameraZoomScale) { _cameraZoomScale = cameraZoomScale; }
 		Mathf::Vector2 GetCameraZoomScale() const { return _cameraZoomScale; }
 
+		bool CheckCollision(ACollision* pCollision);
+
 	protected:
-		virtual bool Initialize() { return true; }
+		virtual bool Initialize();
 		virtual void Remove() {};
 
 	public:
-		static CameraComponent* Create() { return new CameraComponent; }
+		static CameraComponent* Create();
 
 	private:
 		Mathf::Matrix3x2 _cameraMatrix{ Matx::Identity };
@@ -41,5 +45,6 @@ namespace Core
 		Mathf::Vector2   _centerPosition{ 0.f, 0.f };
 		Mathf::Vector2   _cameraSize{ 0.f, 0.f };
 		Mathf::Vector2   _cameraOffset{ 0.f, 0.f };
+		ACollision*		 _pCollision{ nullptr };
 	};
 }

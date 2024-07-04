@@ -89,6 +89,11 @@ void Core::CameraActor::Tick(_float deltaTime)
 	_oldLocation = targetLocation;
 }
 
+void Core::CameraActor::Render(ID2D1RenderTarget* pRenderTarget)
+{
+	_cameraComponent->Render(pRenderTarget);
+}
+
 void Core::CameraActor::TrackTarget(Actor* pTarget)
 {
 	_pParent = pTarget;

@@ -28,7 +28,7 @@ bool Client::ClientWorld::BeginPlay()
 	
 	SettingTrackingCameraTarget(FindActor("Character"));
 	SettingCameraOffset(Mathf::Vector2{0.f, 250.f});
-	SetWorldSize(Mathf::Rect{ -3500.f, -1580.f, 1580.f, -100.f });
+	//SetWorldSize(Mathf::Rect{ -3500.f, -1580.f, 1580.f, -100.f });
 	//1920,1480
 	//test code end
 

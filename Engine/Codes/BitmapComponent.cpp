@@ -1,4 +1,5 @@
 #include "BitmapComponent.h"
+#include "CoreManager.h"
 #include "Texture.h"
 #include "Actor.h"
 
@@ -28,6 +29,30 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	pRenderTarget->DrawBitmap((*pTexture)[0]);
 
+	CoreManager* _pCore = CoreManager::GetInstance();
+
+	_pCollision->SetCollisionOffset({ _textureRect.right * 0.5f, _textureRect.bottom * 0.5f });
+	//_pCollision->SetCollisionScale(_localScale);
+	_pCore->GetGraphicsPackage()->_pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
+	float collisionOffsetX = _pCollision->GetCollisionOffset().x;
+	float collisionOffsetY = _pCollision->GetCollisionOffset().y;
+
+	//float collisionOffsetX = _WorldTransform.dx;
+	//float collisionOffsetY = _WorldTransform.dy;
+
+	Mathf::Vector2 point = { collisionOffsetX, collisionOffsetY };
+	pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
+	pRenderTarget->DrawLine(D2D1::Point2F(point.x, point.y - 5.0f), D2D1::Point2F(point.x, point.y + 5.0f), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
+
+	Mathf::Rect collisionRect = { 
+		(_pCollision->GetCollisionOffset().x - _pCollision->GetCollisionSize().x * 0.5f), 
+		(_pCollision->GetCollisionOffset().y - _pCollision->GetCollisionSize().y * 0.5f),
+		(_pCollision->GetCollisionOffset().x + _pCollision->GetCollisionSize().x * 0.5f),
+		(_pCollision->GetCollisionOffset().y + _pCollision->GetCollisionSize().y * 0.5f)
+	};
+
+	pRenderTarget->DrawRectangle(D2D1::RectF(collisionRect.left, collisionRect.top, collisionRect.right, collisionRect.bottom), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
+
 	//pRenderTarget->SetTransform(_renderMatrix);
 }
 
@@ -43,6 +68,9 @@ void Core::BitmapComponent::SetTextureRect(Texture* pTexture)
 	D2D1_SIZE_F _size = (*pTexture)[0]->GetSize();
 
 	_textureRect = D2D1::RectF(0, 0, _size.width, _size.height);
+
+	_pCollision->SetCollisionSize({ _textureRect.right, _textureRect.bottom });
+
 }
 
 Mathf::Rect Core::BitmapComponent::GetTextureRect()
@@ -98,12 +126,16 @@ bool Core::BitmapComponent::Initialize()
 {
 	if (!RenderComponent::Initialize())	{ return false; }
 
+	_pCollision = ACollision::Create();
+
     return true;
 }
 
 void Core::BitmapComponent::Remove()
 {
 	RemoveRenderQueueInLayer();
+
+	SafeRelease(_pCollision);
 
 	_vecTextures = nullptr;
 }

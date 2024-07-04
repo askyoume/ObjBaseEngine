@@ -17,6 +17,21 @@ void Core::Layer::Tick(_float deltaTime)
 
 		actor->Tick(deltaTime);
 	}
+
+	for (auto& renderComponent  : _renderQueue)
+	{
+		if (renderComponent->GetOwner()->IsDestroyMarked())
+			continue;
+
+		if(_pCameraActor->GetCameraComponent()->CheckCollision(renderComponent->GetCollision()))
+		{
+			renderComponent->SetVisible(true);
+		}
+		else
+		{
+			renderComponent->SetVisible(false);
+		}
+	}
 }
 
 void Core::Layer::Fixed()
@@ -82,7 +97,6 @@ void Core::Layer::Remove()
 	}
 
 	_actors.clear();
-	SafeRelease(_pLayer);
 }
 
 Core::Layer* Core::Layer::Begin()

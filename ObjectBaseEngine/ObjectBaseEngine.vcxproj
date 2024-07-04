@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Engine\Headers\ACollision.h" />
     <ClInclude Include="..\Engine\Headers\Actor.h" />
     <ClInclude Include="..\Engine\Headers\AnimationComponent.h" />
     <ClInclude Include="..\Engine\Headers\BitmapComponent.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="ToDoList.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Engine\Codes\ACollision.cpp" />
     <ClCompile Include="..\Engine\Codes\Actor.cpp" />
     <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\CameraComponent.cpp" />
