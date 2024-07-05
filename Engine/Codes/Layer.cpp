@@ -17,7 +17,7 @@ void Core::Layer::Tick(_float deltaTime)
 
 		actor->Tick(deltaTime);
 	}
-
+		//TODO: Debug Code
 	for (auto& renderComponent  : _renderQueue)
 	{
 		if (renderComponent->GetOwner()->IsDestroyMarked())
@@ -30,6 +30,7 @@ void Core::Layer::Tick(_float deltaTime)
 		else
 		{
 			renderComponent->SetVisible(false);
+			std::cout << "Not Visible" << std::endl;
 		}
 	}
 }

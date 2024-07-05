@@ -23,7 +23,6 @@ namespace Core
 		template <typename T>
 		T* AddComponent(_pstring name)
 		{
-			bool isBaseComponent = std::is_base_of<Component, T>::value;
 			static_assert(std::is_base_of<Component, T>::value, "T must derive form Component");
 
 			T* pComponent = T::Create();

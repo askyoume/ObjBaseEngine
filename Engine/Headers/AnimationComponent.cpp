@@ -60,11 +60,11 @@ void Core::AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	pRenderTarget->SetTransform(D2D1::IdentityMatrix());
 
-	//test code
+	//TODO: Debug Code
 	CoreManager* _pCore = CoreManager::GetInstance();
 
 	_pCore->GetGraphicsPackage()->_pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
-	Mathf::Vector2 point = {Transform.dx, Transform.dy};
+	Mathf::Vector2 point = {_WorldTransform.dx + _cameraMatrix.dx, _WorldTransform.dy + _cameraMatrix.dy};
 	pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
 	pRenderTarget->DrawLine(D2D1::Point2F(point.x, point.y - 5.0f), D2D1::Point2F(point.x, point.y + 5.0f), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
 

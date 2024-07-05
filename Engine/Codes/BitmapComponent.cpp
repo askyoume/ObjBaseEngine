@@ -28,17 +28,15 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	pRenderTarget->SetTransform(Transform);
 
 	pRenderTarget->DrawBitmap((*pTexture)[0]);
-
+	//TODO: Debug Code
 	CoreManager* _pCore = CoreManager::GetInstance();
 
 	_pCollision->SetCollisionOffset({ _textureRect.right * 0.5f, _textureRect.bottom * 0.5f });
-	//_pCollision->SetCollisionScale(_localScale);
 	_pCore->GetGraphicsPackage()->_pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
 	float collisionOffsetX = _pCollision->GetCollisionOffset().x;
 	float collisionOffsetY = _pCollision->GetCollisionOffset().y;
 
-	//float collisionOffsetX = _WorldTransform.dx;
-	//float collisionOffsetY = _WorldTransform.dy;
+	std::cout << "Collision Offset : " << collisionOffsetX << " " << collisionOffsetY << std::endl;
 
 	Mathf::Vector2 point = { collisionOffsetX, collisionOffsetY };
 	pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
@@ -53,7 +51,6 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	pRenderTarget->DrawRectangle(D2D1::RectF(collisionRect.left, collisionRect.top, collisionRect.right, collisionRect.bottom), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
 
-	//pRenderTarget->SetTransform(_renderMatrix);
 }
 
 void Core::BitmapComponent::SetTextures(BitmapTextures* vecTextures)

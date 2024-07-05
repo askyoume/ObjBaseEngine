@@ -15,7 +15,6 @@ void Client::NightSky::BeginPlay()
 
 	pBitmapComponent->SetTextures(&_vecTextures);
 	pBitmapComponent->SetRelativeScale(Mathf::Vector2(12.f, 12.f));
-	pBitmapComponent->AddRenderQueueInLayer();
 }
 
 void Client::NightSky::Tick(_float deltaTime)

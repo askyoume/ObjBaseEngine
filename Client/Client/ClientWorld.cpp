@@ -17,17 +17,15 @@ bool Client::ClientWorld::BeginPlay()
 	//test code
 	_pCoreManager->LoadFont(L"DemoFont", L"Client/Resources/Font/EFKratos.ttf", 34.f);
 
-	SpawnActor(LAYER::OBJECT,"Character", Charactor::Create(), Mathf::Vector2{ -2000.f , 100.f });
-	//SpawnActor(LAYER::OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ -2000.f , 0.f });
+	//SpawnActor(LAYER::OBJECT,"Character", Charactor::Create(), Mathf::Vector2{ -2000.f , 150.f });
+	SpawnActor(LAYER::OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ -2000.f , 0.f });
 	SpawnActor(LAYER::BACKOBJECT, "TestActor2", TestActor2::Create(), Mathf::Vector2{ 0.f, 0.f });
 	SpawnActor(LAYER::BACKGROUND, "NightSky", NightSky::Create(), Mathf::Vector2{ 0.f, 0.f });
 	SpawnActor(LAYER::BACKGROUND, "Moon", Moon::Create(), Mathf::Vector2{ 300.f, -450.f });
 	SpawnActor(LAYER::BACKGROUND, "BackGround", BackGround::Create(), Mathf::Vector2{ 240.f, -180.f });
-
-	TestActor2* _pTestActor2 = static_cast<TestActor2*>(FindActor("TestActor2"));
-	
-	SettingTrackingCameraTarget(FindActor("Character"));
-	SettingCameraOffset(Mathf::Vector2{0.f, 250.f});
+	//TODO: Debug Code
+	SettingTrackingCameraTarget(FindActor("TestActor"));
+	SettingCameraOffset(Mathf::Vector2{0.f, 30.f});
 	//SetWorldSize(Mathf::Rect{ -3500.f, -1580.f, 1580.f, -100.f });
 	//1920,1480
 	//test code end

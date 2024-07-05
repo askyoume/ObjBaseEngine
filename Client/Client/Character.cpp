@@ -23,6 +23,8 @@ void Client::Charactor::BeginPlay()
 	_pAnimationComponent->AddClip("NormalUpAttack", 0.1f, false);
 	_pAnimationComponent->AddClip("CrouchAttack", 0.1f, false);
 	_pAnimationComponent->AddClip("JumpAttack", 0.1f, false);
+	_pAnimationComponent->AddClip("JumpDirAttack", 0.1f, false);
+	_pAnimationComponent->AddClip("JumpDownAttack", 0.1f, false);
 	//_pAnimationComponent->SetPlayClip("Walk");
 
 	_pInputComponent->BindAction(DIP_LX, InputType::AXIS, this, &Charactor::Move);
@@ -40,7 +42,20 @@ void Client::Charactor::Tick(_float deltaTime)
 	if(0.f != _velocity.y && _stateFlag & STATE_ATTACK)
 	{
 		_pInputComponent->SetVibration(0.f, 255.f);
-		_pAnimationComponent->SetPlayClip("JumpAttack");
+
+		if(_stateFlag & STATE_DIR_ATTACK)
+		{
+			_pAnimationComponent->SetPlayClip("JumpDirAttack");
+			std::cout << "attack" << std::endl;
+		}
+		else if (_stateFlag & STATE_UP_ATTACK)
+		{
+			_pAnimationComponent->SetPlayClip("JumpDownAttack");
+		}
+		else
+		{
+			_pAnimationComponent->SetPlayClip("JumpAttack");
+		}
 	}
 	else if (_stateFlag & STATE_DUCK && _stateFlag & STATE_ATTACK)
 	{
@@ -112,7 +127,9 @@ void Client::Charactor::Tick(_float deltaTime)
 		_pAnimationComponent->IsClipEnd("CrouchAttack") && 
 		_pAnimationComponent->IsClipEnd("JumpAttack") &&
 		_pAnimationComponent->IsClipEnd("NormalDirAttack") &&
-		_pAnimationComponent->IsClipEnd("NormalUpAttack"))
+		_pAnimationComponent->IsClipEnd("NormalUpAttack") &&
+		_pAnimationComponent->IsClipEnd("JumpDirAttack") &&
+		_pAnimationComponent->IsClipEnd("JumpDownAttack"))
 	{
 		_stateFlag &= ~STATE_ATTACK;
 		_stateFlag &= ~STATE_DIR_ATTACK;
@@ -147,13 +164,13 @@ void Client::Charactor::Jump(_float deltaTime)
 	{
 		_stateFlag |= STATE_JUMPING;
 		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ 0.f, _velocity.y * 5.f * deltaTime });
-		std::cout << _velocity.y << std::endl;
+		//std::cout << _velocity.y << std::endl;
 		_velocity.y += _gravity.y * 5.f * deltaTime;
 	}
 	//temp code before made collision component
-	if (_pRootComponent->GetWorldLocation().y > 100.f)
+	if (_pRootComponent->GetWorldLocation().y > 150.f)
 	{
-		_pRootComponent->SetRelativeLocation(Mathf::Vector2(_pRootComponent->GetWorldLocation().x, 100.f));
+		_pRootComponent->SetRelativeLocation(Mathf::Vector2(_pRootComponent->GetWorldLocation().x, 150.f));
 		_velocity.y = 0.f;
 			_stateFlag &= ~STATE_JUMPING;
 			_stateFlag &= ~STATE_JUMP;
@@ -167,11 +184,22 @@ void Client::Charactor::Attack(const InputEvent& inputEvent)
 	if(_stateFlag & STATE_DIR_ATTACK && _stateFlag & STATE_UP_ATTACK)
 		return;
 
-	if(_direction.y < -0.6f && _direction.y > -0.85f)
+			std::cout << _direction.x << _direction.y << std::endl;
+
+	if (0.f != _velocity.y && _direction.y > 0.6f && _direction.y < 0.98f)
+	{
+		_stateFlag |= STATE_DIR_ATTACK;
+
+	}
+	else if (0.f != _velocity.y && _direction.y > 0.95f)
+	{
+		_stateFlag |= STATE_UP_ATTACK;
+	}
+	else if(_direction.y < -0.6f && _direction.y > -0.95f)
 	{
 		_stateFlag |= STATE_DIR_ATTACK;
 	}
-	else if (_direction.y < -0.85f)
+	else if (_direction.y < -0.95f)
 	{
 		_stateFlag |= STATE_UP_ATTACK;
 	}

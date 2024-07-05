@@ -18,7 +18,7 @@ bool Core::World::InitializeWorld(int layerSize)
 
 	//_worldCenter = Mathf::Vector2(_pCoreManager->GetWidth() / 2.f, _pCoreManager->GetHeight() / 2.f);
 	//_worldTransform = D2D1::Matrix3x2F::Translation(-_worldCenter.x, -_worldCenter.y);
-
+		//TODO: Debug Code
 	pCameraComponent->SetCenterPosition(
 		Mathf::Vector2(_pCoreManager->GetWidth() / 2.f, 
 						_pCoreManager->GetHeight() / 2.f)

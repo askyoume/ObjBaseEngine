@@ -9,12 +9,16 @@ void Core::CameraComponent::TickComponent(_float deltaTime)
 
 void Core::CameraComponent::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	
+	pRenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+
 	CoreManager* _pCore = CoreManager::GetInstance();
 	_pCore->GetGraphicsPackage()->_pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
 
 	float collisionOffsetX = _pCollision->GetCollisionOffset().x;
 	float collisionOffsetY = _pCollision->GetCollisionOffset().y;
+	//TODO: Debug Code
+	std::cout << "Camera Collision Offset : " << collisionOffsetX << " " << collisionOffsetY << std::endl;
+
 	_pCollision->SetCollisionOffset({collisionOffsetX, collisionOffsetY});
 	//Mathf::Vector2 point = { _WorldLocation.x, _WorldLocation.y };
 	Mathf::Vector2 point = { collisionOffsetX, collisionOffsetY };

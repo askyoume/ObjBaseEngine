@@ -19,8 +19,6 @@ void Client::BackGround::BeginPlay()
 
 	pBitmapComponent->SetTextures(&_vecTextures);
 	pBitmapComponent->SetRelativeScale(Mathf::Vector2(5.f, 5.f));
-	pBitmapComponent->AddRenderQueueInLayer();
-
 }
 
 void Client::BackGround::Tick(_float deltaTime)
