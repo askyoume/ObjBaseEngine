@@ -14,7 +14,6 @@ namespace Core
 		//Component
 		virtual void BeginPlay() override {};
 		virtual void TickComponent(_float deltaTime) override;
-		void Render(ID2D1RenderTarget* pRenderTarget);
 		virtual void EndPlay() override {};
 
 	public:
@@ -34,7 +33,7 @@ namespace Core
 
 	protected:
 		virtual bool Initialize();
-		virtual void Remove() {};
+		virtual void Remove();
 
 	public:
 		static CameraComponent* Create();

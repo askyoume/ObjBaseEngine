@@ -5,7 +5,6 @@
 #include "CoreManager.h"
 #include "CameraActor.h"
 #include "CameraComponent.h"
-#include "KhalaSystem.h"
 
 bool Core::World::InitializeWorld(int layerSize)
 {
@@ -19,10 +18,10 @@ bool Core::World::InitializeWorld(int layerSize)
 	//_worldCenter = Mathf::Vector2(_pCoreManager->GetWidth() / 2.f, _pCoreManager->GetHeight() / 2.f);
 	//_worldTransform = D2D1::Matrix3x2F::Translation(-_worldCenter.x, -_worldCenter.y);
 		//TODO: Debug Code
-	pCameraComponent->SetCenterPosition(
-		Mathf::Vector2(_pCoreManager->GetWidth() / 2.f, 
-						_pCoreManager->GetHeight() / 2.f)
-	);
+	//pCameraComponent->SetCenterPosition(
+	//	Mathf::Vector2(_pCoreManager->GetWidth() / 2.f, 
+	//					_pCoreManager->GetHeight() / 2.f)
+	//);
 
     InitializeLayer(layerSize);
 
@@ -31,7 +30,7 @@ bool Core::World::InitializeWorld(int layerSize)
 
 void Core::World::Remove()
 {
-	__Khala->Release();
+	//__Khala->Release();
 	SafeRelease(_pCameraActor);
 	ClearLayer();
 }
@@ -55,12 +54,10 @@ void Core::World::Fixed()
 
 void Core::World::Render(ID2D1RenderTarget* pRenderTarget)
 {
-	//pRenderTarget->SetTransform(_worldTransform);
 	for(auto iter = _vecLayers.begin(); iter != _vecLayers.end(); iter++)
 	{
 		(*iter)->Render(pRenderTarget);
 	}
-	_pCameraActor->Render(pRenderTarget);
 }
 
 void Core::World::EndPlay()

@@ -159,9 +159,6 @@
     <ClInclude Include="..\Engine\Headers\IInputReceiver.h" />
     <ClInclude Include="..\Engine\Headers\InputComponent.h" />
     <ClInclude Include="..\Engine\Headers\InputManager.h" />
-    <ClInclude Include="..\Engine\Headers\Khala.h" />
-    <ClInclude Include="..\Engine\Headers\KhalaBase.h" />
-    <ClInclude Include="..\Engine\Headers\KhalaSystem.h" />
     <ClInclude Include="..\Engine\Headers\Layer.h" />
     <ClInclude Include="..\Engine\Headers\Mathf.h" />
     <ClInclude Include="..\Engine\Headers\Matrix.h" />
@@ -169,6 +166,7 @@
     <ClInclude Include="..\Engine\Headers\RenderComponent.h" />
     <ClInclude Include="..\Engine\Headers\SceneComponent.h" />
     <ClInclude Include="..\Engine\Headers\Singleton.h" />
+    <ClInclude Include="..\Engine\Headers\StateComponent.h" />
     <ClInclude Include="..\Engine\Headers\Texture.h" />
     <ClInclude Include="..\Engine\Headers\TextureManager.h" />
     <ClInclude Include="..\Engine\Headers\TimeManager.h" />

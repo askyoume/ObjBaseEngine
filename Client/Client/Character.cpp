@@ -6,7 +6,7 @@
 #include "../../Engine/Headers/Texture.h"
 #include "../../Engine/Headers/Core_Struct.h"
 
-void Client::Charactor::BeginPlay()
+void Client::Character::BeginPlay()
 {
 	Actor::BeginPlay();
 
@@ -27,17 +27,17 @@ void Client::Charactor::BeginPlay()
 	_pAnimationComponent->AddClip("JumpDownAttack", 0.1f, false);
 	//_pAnimationComponent->SetPlayClip("Walk");
 
-	_pInputComponent->BindAction(DIP_LX, InputType::AXIS, this, &Charactor::Move);
-	_pInputComponent->BindAction(DIP_LY, InputType::AXIS, this, &Charactor::Duck);
-	_pInputComponent->BindAction(DIP_A, InputType::PRESS, this, &Charactor::JumpHandle);
-	_pInputComponent->BindAction(DIP_RIGHT_SHOULDER, InputType::PRESS, this, &Charactor::Attack);
+	_pInputComponent->BindAction(DIP_LX, InputType::AXIS, this, &Character::Move);
+	_pInputComponent->BindAction(DIP_LY, InputType::AXIS, this, &Character::Duck);
+	_pInputComponent->BindAction(DIP_A, InputType::PRESS, this, &Character::JumpHandle);
+	_pInputComponent->BindAction(DIP_RIGHT_SHOULDER, InputType::PRESS, this, &Character::Attack);
 
 	_pAnimationComponent->SetRelativeScale(Mathf::Vector2(5.f, 5.f));
 
 	_pInputComponent->AttachToInputManager();
 }
 
-void Client::Charactor::Tick(_float deltaTime)
+void Client::Character::Tick(_float deltaTime)
 {
 	if(0.f != _velocity.y && _stateFlag & STATE_ATTACK)
 	{
@@ -148,36 +148,43 @@ void Client::Charactor::Tick(_float deltaTime)
 	Actor::Tick(deltaTime);
 }
 
-void Client::Charactor::Fixed()
+void Client::Character::Fixed()
 {
 
 }
 
-void Client::Charactor::EndPlay()
+void Client::Character::EndPlay()
 {
 
 }
 
-void Client::Charactor::Jump(_float deltaTime)
+void Client::Character::Jump(_float deltaTime)
 {
 	if (_stateFlag & STATE_JUMP)
 	{
 		_stateFlag |= STATE_JUMPING;
-		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ 0.f, _velocity.y * 5.f * deltaTime });
+
+		_velocity.x = _direction.x * 70.f;
+
+		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _velocity.x * 5.f * deltaTime, _velocity.y * 5.f * deltaTime });
 		//std::cout << _velocity.y << std::endl;
 		_velocity.y += _gravity.y * 5.f * deltaTime;
+		_velocity.x += _velocity.x * 5.f * deltaTime;
+
+
 	}
 	//temp code before made collision component
 	if (_pRootComponent->GetWorldLocation().y > 150.f)
 	{
 		_pRootComponent->SetRelativeLocation(Mathf::Vector2(_pRootComponent->GetWorldLocation().x, 150.f));
+		_velocity.x = 200.f;
 		_velocity.y = 0.f;
 			_stateFlag &= ~STATE_JUMPING;
 			_stateFlag &= ~STATE_JUMP;
 	}
 }
 
-void Client::Charactor::Attack(const InputEvent& inputEvent)
+void Client::Character::Attack(const InputEvent& inputEvent)
 {
 	_stateFlag |= STATE_ATTACK;
 
@@ -205,13 +212,13 @@ void Client::Charactor::Attack(const InputEvent& inputEvent)
 	}
 }
 
-void Client::Charactor::Move(const InputEvent& inputEvent)
+void Client::Character::Move(const InputEvent& inputEvent)
 {
 	_direction.x = inputEvent.value;
 	_stateFlag |= STATE_MOVE;
 }
 
-void Client::Charactor::Duck(const InputEvent& inputEvent)
+void Client::Character::Duck(const InputEvent& inputEvent)
 {
 	_direction.y = inputEvent.value;
 	if(DIP_LY == inputEvent.key && inputEvent.value > 0.5f)
@@ -220,7 +227,7 @@ void Client::Charactor::Duck(const InputEvent& inputEvent)
 	}
 }
 
-void Client::Charactor::JumpHandle(const InputEvent& inputEvent)
+void Client::Character::JumpHandle(const InputEvent& inputEvent)
 {
 	_stateFlag |= STATE_JUMP;
 	if(0.f == _velocity.y)

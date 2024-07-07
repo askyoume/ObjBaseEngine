@@ -21,8 +21,7 @@ namespace Core
 		//Actor
 		virtual void BeginPlay() override {};
 		virtual void Tick(_float deltaTime) override;
-		void Render(ID2D1RenderTarget* pRenderTarget);
-		virtual CameraComponent* GetCameraComponent() { return _cameraComponent; }
+		CameraComponent* GetCameraComponent() { return _cameraComponent; }
 
 		void TrackTarget(Actor* pTarget);
 		void SetCameraLerpFactor(float lerpFactor) { _cameraLerpFactor = lerpFactor; }
@@ -32,6 +31,7 @@ namespace Core
 
 	protected:
 		virtual bool Initialize();
+		virtual void Remove() override;
 
 	public:
 		static CameraActor* Create();

@@ -10,7 +10,7 @@ void Core::Layer::Tick(_float deltaTime)
 {
 	for(auto& actor : _actors)
 	{
-		__Khala->ExecuteNerveCord();
+		//__Khala->ExecuteNerveCord();
 
 		if(actor->IsDestroyMarked())
 			continue;
@@ -18,28 +18,28 @@ void Core::Layer::Tick(_float deltaTime)
 		actor->Tick(deltaTime);
 	}
 		//TODO: Debug Code
-	for (auto& renderComponent  : _renderQueue)
-	{
-		if (renderComponent->GetOwner()->IsDestroyMarked())
-			continue;
+	//for (auto& renderComponent  : _renderQueue)
+	//{
+	//	if (renderComponent->GetOwner()->IsDestroyMarked())
+	//		continue;
 
-		if(_pCameraActor->GetCameraComponent()->CheckCollision(renderComponent->GetCollision()))
-		{
-			renderComponent->SetVisible(true);
-		}
-		else
-		{
-			renderComponent->SetVisible(false);
-			std::cout << "Not Visible" << std::endl;
-		}
-	}
+	//	if(_pCameraActor->GetCameraComponent()->CheckCollision(renderComponent->GetCollision()))
+	//	{
+	//		renderComponent->SetVisible(true);
+	//	}
+	//	else
+	//	{
+	//		renderComponent->SetVisible(false);
+	//		std::cout << "Not Visible" << std::endl;
+	//	}
+	//}
 }
 
 void Core::Layer::Fixed()
 {
 	for(auto& actor : _actors)
 	{
-		__Khala->ExecuteNerveCord();
+		//__Khala->ExecuteNerveCord();
 
 		if(actor->IsDestroyMarked())
 			continue;

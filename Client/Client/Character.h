@@ -13,7 +13,7 @@ struct InputEvent;
 
 namespace Client
 {
-	class Charactor : public Core::Actor
+	class Character : public Core::Actor
 	{
 	private:
 		enum StateFlag
@@ -28,8 +28,8 @@ namespace Client
 			STATE_JUMPING = 1 << 8
 		};
 	protected:
-		explicit Charactor() DEFAULT;
-		virtual ~Charactor() DEFAULT;
+		explicit Character() DEFAULT;
+		virtual ~Character() DEFAULT;
 
 	public:
 		void BeginPlay() override;
@@ -44,7 +44,7 @@ namespace Client
 		void Jump(_float deltaTime);
 
 	public:
-		static Charactor* Create() { return new Charactor; }
+		static Character* Create() { return new Character; }
 
 	private:
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
@@ -52,7 +52,7 @@ namespace Client
 
 	private:
 		_uint _stateFlag{ 0 };
-		Mathf::Vector2 _direction{ UnitVector::One };
+		Mathf::Vector2 _direction{ UnitVector::Zero };
 		Mathf::Vector2 _velocity{ 200.f, 0.f };
 		Mathf::Vector2 _gravity{ 0.f , 98.f };
 		float _elapsedTime{ 0.f };

@@ -9,7 +9,7 @@ void ACollision::SetCollisionScale(Mathf::Vector2 collisionScale)
 	_collisionOffset.y *= collisionScale.y;
 }
 
-bool ACollision::CheckCollision(ACollision* pCollision)
+bool ACollision::CheckCollision(ACollision* pCollision) const
 {
 	float thisLeft = _collisionOffset.x - _collisionSize.x * 0.5f;
 	float thisRight = _collisionOffset.x + _collisionSize.x * 0.5f;

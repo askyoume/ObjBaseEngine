@@ -17,7 +17,7 @@ public:
 	void SetCollisionScale(Mathf::Vector2 collisionScale);
 	Mathf::Vector2 GetCollisionScale() const { return _collisionSize; }
 
-	bool CheckCollision(ACollision* pCollision);
+	bool CheckCollision(ACollision* pCollision) const;
 
 public:
 	static ACollision* Create() { return new ACollision(); }

@@ -15,8 +15,6 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	SetBitmapLocalTransform();
 
-	D2D1InvertMatrix(&_cameraMatrix);
-
 	if (_isFlip)
 	{
 		_localTransform = D2D1::Matrix3x2F::Scale(-1, 1, 
@@ -36,7 +34,7 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	float collisionOffsetX = _pCollision->GetCollisionOffset().x;
 	float collisionOffsetY = _pCollision->GetCollisionOffset().y;
 
-	std::cout << "Collision Offset : " << collisionOffsetX << " " << collisionOffsetY << std::endl;
+	//std::cout << "Collision Offset : " << collisionOffsetX << " " << collisionOffsetY << std::endl;
 
 	Mathf::Vector2 point = { collisionOffsetX, collisionOffsetY };
 	pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
@@ -82,41 +80,12 @@ Mathf::Rect Core::BitmapComponent::GetTextureRect()
 	return _textureRect;
 }
 
-//Mathf::Rect Core::BitmapComponent::GetTransformedTextureRect()
-//{
-//	/*if (!_vecTextures) { return Mathf::Rect(); }
-//	if (0 == _textureRect.right || 0 == _textureRect.bottom) 
-//	{ 
-//		Texture* pTexture = _vecTextures->at(_currentTextureIndex);
-//	
-//		SetTextureRect(pTexture); 
-//	}
-//
-//	Mathf::Vector2 WorldLocation{};
-//
-//	WorldLocation.x = _MidCalculateTransform._31;
-//	WorldLocation.y = _MidCalculateTransform._32;
-//
-//	Mathf::Rect transformedRect{
-//		WorldLocation.x - _textureRect.right * 0.5f,
-//		WorldLocation.y - _textureRect.bottom * 0.5f,
-//		WorldLocation.x + _textureRect.right * 0.5f,
-//		WorldLocation.y + _textureRect.bottom * 0.5f
-//	};
-//
-//	std::cout << "Transformed Rect : " << transformedRect.left << " " << transformedRect.top << " " << transformedRect.right << " " << transformedRect.bottom << std::endl;
-//
-//	return transformedRect;*/
-//}
-
 void Core::BitmapComponent::SetBitmapLocalTransform()
 {
 	_localLocation.x = _textureRect.right * 0.5f;
 	_localLocation.y = _textureRect.bottom * 0.5f;
 
-	_localTransform = D2D1::Matrix3x2F::Translation(_localLocation.x, _localLocation.y);
-
-	D2D1InvertMatrix(&_localTransform);
+	_localTransform = D2D1::Matrix3x2F::Translation(-_localLocation.x, -_localLocation.y);
 }
 
 bool Core::BitmapComponent::Initialize()

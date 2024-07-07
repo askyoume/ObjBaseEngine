@@ -20,7 +20,7 @@ namespace Core
 		int GetOrder() const { return _order; }
 		void SetVisible(bool isVisible) { _isVisible = isVisible; }
 		bool IsVisible() const { return _isVisible; }
-		void SetCameraMatrix(const Mathf::Matrix3x2& cameraMatrix) { _cameraMatrix = cameraMatrix; }
+		void SetCameraMatrix(const Mathf::Matrix3x2& cameraMatrix);
 
 		ACollision* GetCollision() const { return _pCollision; }
 

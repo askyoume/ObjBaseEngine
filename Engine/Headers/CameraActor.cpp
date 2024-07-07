@@ -21,9 +21,12 @@ void Core::CameraActor::Tick(_float deltaTime)
 	float halfHeight = _pCoreManager->GetHeight() / 2.f;
 
 	Mathf::Vector2 parentLocation = _pParent->GetRootComponent()->GetRelativeLocation();
-	Mathf::Vector2 cameraCenter = _cameraComponent->GetCenterPosition();
+	//Mathf::Vector2 cameraCenter = _cameraComponent->GetCenterPosition();
+	Mathf::Vector2 cameraCenter = Mathf::Vector2{ halfWidth, halfHeight };
 	Mathf::Vector2 cameraOffset = _cameraComponent->GetCameraOffset();
 	Mathf::Vector2 cameraLocation = _cameraComponent->GetRelativeLocation();
+
+	_cameraLerpFactor = fmin(3.0f, _cameraLerpFactor + deltaTime * 0.1f);
 
 	Mathf::Vector2 targetLocation = ( parentLocation - cameraCenter - cameraOffset );
 	Mathf::Vector2 newLocation = Mathf::Lerp(cameraLocation, targetLocation, _cameraLerpFactor * deltaTime);
@@ -89,11 +92,6 @@ void Core::CameraActor::Tick(_float deltaTime)
 	_oldLocation = targetLocation;
 }
 
-void Core::CameraActor::Render(ID2D1RenderTarget* pRenderTarget)
-{
-	_cameraComponent->Render(pRenderTarget);
-}
-
 void Core::CameraActor::TrackTarget(Actor* pTarget)
 {
 	_pParent = pTarget;
@@ -107,46 +105,13 @@ bool Core::CameraActor::Initialize()
 	SetRootComponent(_cameraComponent);
 	_vecComponents.push_back(_cameraComponent);
 
-	__Khala->DefineNerveCord("IsCameraMove", [&](__KhalaArgs)
-		{
-			return _isMove;
-		});
-
-	__Khala->DefineNerveCord("IsCameraRightMove", [&](__KhalaArgs)
-		{
-			if (_moveDirectionFlag & MoveDirectionFlag::Right)
-				return true;
-			else
-				return false;
-		});
-
-	__Khala->DefineNerveCord("IsCameraLeftMove", [&](__KhalaArgs)
-		{
-			if (_moveDirectionFlag & MoveDirectionFlag::Left)
-				return true;
-			else
-				return false;
-		});
-
-	__Khala->DefineNerveCord("IsCameraUpMove", [&](__KhalaArgs)
-		{
-			if (_moveDirectionFlag & MoveDirectionFlag::Up)
-				return true;
-			else
-				return false;
-			
-		});
-
-	__Khala->DefineNerveCord("IsCameraDownMove", [&](__KhalaArgs)
-		{
-			if (_moveDirectionFlag & MoveDirectionFlag::Down)
-				return true;
-			else
-				return false;
-		});
-
-
     return true;
+}
+
+void Core::CameraActor::Remove()
+{
+	_cameraComponent->Release();
+	_cameraComponent = nullptr;
 }
 
 Core::CameraActor* Core::CameraActor::Create()
