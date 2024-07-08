@@ -36,18 +36,18 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	//std::cout << "Collision Offset : " << collisionOffsetX << " " << collisionOffsetY << std::endl;
 
-	Mathf::Vector2 point = { collisionOffsetX, collisionOffsetY };
-	pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
-	pRenderTarget->DrawLine(D2D1::Point2F(point.x, point.y - 5.0f), D2D1::Point2F(point.x, point.y + 5.0f), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
+	//Mathf::Vector2 point = { collisionOffsetX, collisionOffsetY };
+	//pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
+	//pRenderTarget->DrawLine(D2D1::Point2F(point.x, point.y - 5.0f), D2D1::Point2F(point.x, point.y + 5.0f), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
 
-	Mathf::Rect collisionRect = { 
-		(_pCollision->GetCollisionOffset().x - _pCollision->GetCollisionSize().x * 0.5f), 
-		(_pCollision->GetCollisionOffset().y - _pCollision->GetCollisionSize().y * 0.5f),
-		(_pCollision->GetCollisionOffset().x + _pCollision->GetCollisionSize().x * 0.5f),
-		(_pCollision->GetCollisionOffset().y + _pCollision->GetCollisionSize().y * 0.5f)
-	};
+	//Mathf::Rect collisionRect = { 
+	//	(_pCollision->GetCollisionOffset().x - _pCollision->GetCollisionSize().x * 0.5f), 
+	//	(_pCollision->GetCollisionOffset().y - _pCollision->GetCollisionSize().y * 0.5f),
+	//	(_pCollision->GetCollisionOffset().x + _pCollision->GetCollisionSize().x * 0.5f),
+	//	(_pCollision->GetCollisionOffset().y + _pCollision->GetCollisionSize().y * 0.5f)
+	//};
 
-	pRenderTarget->DrawRectangle(D2D1::RectF(collisionRect.left, collisionRect.top, collisionRect.right, collisionRect.bottom), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
+	//pRenderTarget->DrawRectangle(D2D1::RectF(collisionRect.left, collisionRect.top, collisionRect.right, collisionRect.bottom), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
 
 }
 

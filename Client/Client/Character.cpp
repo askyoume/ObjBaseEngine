@@ -25,7 +25,6 @@ void Client::Character::BeginPlay()
 	_pAnimationComponent->AddClip("JumpAttack", 0.1f, false);
 	_pAnimationComponent->AddClip("JumpDirAttack", 0.1f, false);
 	_pAnimationComponent->AddClip("JumpDownAttack", 0.1f, false);
-	//_pAnimationComponent->SetPlayClip("Walk");
 
 	_pInputComponent->BindAction(DIP_LX, InputType::AXIS, this, &Character::Move);
 	_pInputComponent->BindAction(DIP_LY, InputType::AXIS, this, &Character::Duck);
@@ -164,13 +163,12 @@ void Client::Character::Jump(_float deltaTime)
 	{
 		_stateFlag |= STATE_JUMPING;
 
-		_velocity.x = _direction.x * 70.f;
+		_velocity.x = _direction.x * 90.f;
 
 		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _velocity.x * 5.f * deltaTime, _velocity.y * 5.f * deltaTime });
 		//std::cout << _velocity.y << std::endl;
 		_velocity.y += _gravity.y * 5.f * deltaTime;
 		_velocity.x += _velocity.x * 5.f * deltaTime;
-
 
 	}
 	//temp code before made collision component

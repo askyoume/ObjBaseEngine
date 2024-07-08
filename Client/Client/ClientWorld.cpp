@@ -16,7 +16,7 @@ bool Client::ClientWorld::BeginPlay()
 	//test code
 	_pCoreManager->LoadFont(L"DemoFont", L"Client/Resources/Font/EFKratos.ttf", 34.f);
 
-	SpawnActor(LAYER::OBJECT,"Character", Character::Create(), Mathf::Vector2{ -1000.f , 150.f });
+	SpawnActor(LAYER::OBJECT,"Character", Character::Create(), Mathf::Vector2{ -2000.f , 150.f });
 	//SpawnActor(LAYER::OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ -2000.f , 0.f });
 	SpawnActor(LAYER::BACKOBJECT, "TestActor2", TestActor2::Create(), Mathf::Vector2{ 0.f, 0.f });
 	SpawnActor(LAYER::BACKGROUND, "NightSky", NightSky::Create(), Mathf::Vector2{ 0.f, 0.f });

@@ -14,9 +14,6 @@ namespace Core
 		using DestroyList = std::vector<Object*>;
 
 	public:
-		
-
-	public:
 		struct GameSetting
 		{
 			const TCHAR* title;
@@ -47,10 +44,7 @@ namespace Core
 
 		void Initialize(const GameSetting& info);
 		void AddDestroyList(Object* pObject);
-		void BeginDestroy();
-		void EndDestroy();
 
-		bool IsEndDestroy() const { return _endDestroyThread; }
 		bool IsEndPlay() const { return _endPlay; }
 
 		float GetWidth() const { return _width; }
@@ -59,7 +53,6 @@ namespace Core
 		bool LoadTexture(_pwstring filePath);
 		Texture* FindTexture(_pwstring filePath);
 
-		//test code
 		//Input
 		InputManager* GetInputManager() const { return _pInputMgr; }
 		void RegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver);
@@ -83,17 +76,14 @@ namespace Core
 		//Font
 		_pFont LoadFont(_pwstring fontName, _pwstring fontPath, float fontSize);
 		_pFont GetFont(_pwstring fontName);
+		//test code
 
 		//test code end
-
 
 	private:
 		void Remove() override;
 
 	private:
-		std::thread				 _destructionThread;
-		std::mutex				_mutex;
-		std::condition_variable _variable;
 		DestroyList				_toBeDestroyed;
 
 		ID2D1HwndRenderTarget*	_pRenderTarget{ nullptr };
@@ -112,7 +102,6 @@ namespace Core
 		float					_elapsedTick{ 0.f };
 		float					_width{ 0.f };
 		float					_height{ 0.f };
-		bool					_endDestroyThread{ false };
 		bool					_endPlay{ false };
 	};
 }
