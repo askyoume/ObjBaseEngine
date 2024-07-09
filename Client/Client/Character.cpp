@@ -30,6 +30,7 @@ void Client::Character::BeginPlay()
 	_pInputComponent->BindAction(DIP_LY, InputType::AXIS, this, &Character::Duck);
 	_pInputComponent->BindAction(DIP_A, InputType::PRESS, this, &Character::JumpHandle);
 	_pInputComponent->BindAction(DIP_RIGHT_SHOULDER, InputType::PRESS, this, &Character::Attack);
+	_pInputComponent->BindAction(DIK_AXIS, InputType::AXIS, this, &Character::Move);
 
 	_pAnimationComponent->SetRelativeScale(Mathf::Vector2(5.f, 5.f));
 

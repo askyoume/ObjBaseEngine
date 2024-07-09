@@ -14,7 +14,7 @@ void Core::CameraComponent::TickComponent(_float deltaTime)
 	float halfHeight = Height * 0.5f;
 
 	Mathf::Vector2 CollisionPosition = 
-	{ _RelativeLocation.x + Width, _RelativeLocation.y + Height};
+	{ _RelativeLocation.x + halfWidth, _RelativeLocation.y + halfHeight };
 
 	_pCollision->SetCollisionSize({ Width, Height });
 	_pCollision->SetCollisionOffset(CollisionPosition);

@@ -211,12 +211,12 @@ void Core::InputManager::ProcessKeyboardInput()
 				if (i == DIK_LEFT || i == DIK_RIGHT)
 				{
 					float AxisValue_X = i == DIK_LEFT ? -1.f : 1.f;
-					DispatchInput(InputDevice::KEYBOARD, InputType::AXIS, DIK_AXIS, 0.f, isPressed, (long)AxisValue_X);
+					DispatchInput(InputDevice::KEYBOARD, InputType::AXIS, DIK_AXIS, AxisValue_X, isPressed, (long)AxisValue_X);
 				}
 				else if (i == DIK_UP || i == DIK_DOWN)
 				{
 					float AxisValue_Y = i == DIK_UP ? -1.f : 1.f;
-					DispatchInput(InputDevice::KEYBOARD, InputType::AXIS, DIK_AXIS, 0.f, isPressed, 0, (long)AxisValue_Y);
+					DispatchInput(InputDevice::KEYBOARD, InputType::AXIS, DIK_AXIS, AxisValue_Y, isPressed, 0, (long)AxisValue_Y);
 				}
 			}
 			else

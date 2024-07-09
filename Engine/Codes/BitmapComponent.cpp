@@ -34,7 +34,12 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	float collisionOffsetX = _pCollision->GetCollisionOffset().x;
 	float collisionOffsetY = _pCollision->GetCollisionOffset().y;
 
-	//std::cout << "Collision Offset : " << collisionOffsetX << " " << collisionOffsetY << std::endl;
+	//Mathf::Matrix3x2 collisionMatrix = _WorldTransform * _cameraMatrix;
+
+	_pCollision->SetCollisionOffset({ Transform.dx, Transform.dy });
+
+	std::cout << "Collision Offset : " << collisionOffsetX << " " << collisionOffsetY << std::endl;
+	std::cout << "Collision Size : " << _pCollision->GetCollisionSize().x << " " << _pCollision->GetCollisionSize().y << std::endl;
 
 	//Mathf::Vector2 point = { collisionOffsetX, collisionOffsetY };
 	//pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
@@ -64,7 +69,7 @@ void Core::BitmapComponent::SetTextureRect(Texture* pTexture)
 
 	_textureRect = D2D1::RectF(0, 0, _size.width, _size.height);
 
-	_pCollision->SetCollisionSize({ _textureRect.right, _textureRect.bottom });
+	_pCollision->SetCollisionSize({ _textureRect.right * _RelativeScale.x, _textureRect.bottom * _RelativeScale.y });
 
 }
 
