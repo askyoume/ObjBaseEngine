@@ -19,7 +19,7 @@ void Core::CameraComponent::TickComponent(_float deltaTime)
 	_pCollision->SetCollisionSize({ Width, Height });
 	_pCollision->SetCollisionOffset(CollisionPosition);
 
-	std::cout << "Camera Position : " << CollisionPosition.x << " " << CollisionPosition.y << std::endl;
+	//std::cout << "Camera Position : " << CollisionPosition.x << " " << CollisionPosition.y << std::endl;
 }
 
 bool Core::CameraComponent::CheckCollision(ACollision* pCollision)

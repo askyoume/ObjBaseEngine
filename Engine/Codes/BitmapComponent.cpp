@@ -34,25 +34,7 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	float collisionOffsetX = _pCollision->GetCollisionOffset().x;
 	float collisionOffsetY = _pCollision->GetCollisionOffset().y;
 
-	//Mathf::Matrix3x2 collisionMatrix = _WorldTransform * _cameraMatrix;
-
 	_pCollision->SetCollisionOffset({ Transform.dx, Transform.dy });
-
-	std::cout << "Collision Offset : " << collisionOffsetX << " " << collisionOffsetY << std::endl;
-	std::cout << "Collision Size : " << _pCollision->GetCollisionSize().x << " " << _pCollision->GetCollisionSize().y << std::endl;
-
-	//Mathf::Vector2 point = { collisionOffsetX, collisionOffsetY };
-	//pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
-	//pRenderTarget->DrawLine(D2D1::Point2F(point.x, point.y - 5.0f), D2D1::Point2F(point.x, point.y + 5.0f), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
-
-	//Mathf::Rect collisionRect = { 
-	//	(_pCollision->GetCollisionOffset().x - _pCollision->GetCollisionSize().x * 0.5f), 
-	//	(_pCollision->GetCollisionOffset().y - _pCollision->GetCollisionSize().y * 0.5f),
-	//	(_pCollision->GetCollisionOffset().x + _pCollision->GetCollisionSize().x * 0.5f),
-	//	(_pCollision->GetCollisionOffset().y + _pCollision->GetCollisionSize().y * 0.5f)
-	//};
-
-	//pRenderTarget->DrawRectangle(D2D1::RectF(collisionRect.left, collisionRect.top, collisionRect.right, collisionRect.bottom), _pCore->GetGraphicsPackage()->_pBrush, 1.0f);
 
 }
 

@@ -27,7 +27,7 @@ void Core::AnimationComponent::TickComponent(_float deltaTime)
 			}
 			else
 			{
-				_currentFrame = _frameCount - 1;
+				_currentFrame = _isFrameEnd;
 
 			}
 		}

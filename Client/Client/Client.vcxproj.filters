@@ -34,6 +34,30 @@
     <Filter Include="ClientActors\Character\TrackingTestActor">
       <UniqueIdentifier>{05cdde12-b47d-4268-a030-1d5808b5d223}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientActors\Character\FSMTestActor">
+      <UniqueIdentifier>{d53a728c-e587-4d6d-8bfb-5c8e5d1b801c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM">
+      <UniqueIdentifier>{79bff297-cb1b-430f-9b92-ab1a56a6dc85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\Aoko">
+      <UniqueIdentifier>{5cf4fae9-f66d-4a18-be94-ea9651cbffc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\Aoko\State">
+      <UniqueIdentifier>{c3ba54f7-de70-4442-8239-04a533a43790}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\Aoko\Transit">
+      <UniqueIdentifier>{9fe6614d-4d49-4958-aa5e-9dd8d0f32052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\Aoko\State\Idle">
+      <UniqueIdentifier>{a5f5056b-77e4-4ae7-b99a-54075ae3278f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\Aoko\State\Runing">
+      <UniqueIdentifier>{0b4ab142-c0f6-4bf3-9721-6c1b2541aec7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\Aoko\Transit\IdleToRuning">
+      <UniqueIdentifier>{59125c70-61b9-4668-bf4b-c055ad349bf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -60,6 +84,21 @@
     <ClInclude Include="TestActor.h">
       <Filter>ClientActors\Character\TrackingTestActor</Filter>
     </ClInclude>
+    <ClInclude Include="Aoko.h">
+      <Filter>ClientActors\Character\FSMTestActor</Filter>
+    </ClInclude>
+    <ClInclude Include="AokoFSMContainer.h">
+      <Filter>ClientFSM\Aoko</Filter>
+    </ClInclude>
+    <ClInclude Include="Idle.h">
+      <Filter>ClientFSM\Aoko\State\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="Runing.h">
+      <Filter>ClientFSM\Aoko\State\Runing</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleToRuning.h">
+      <Filter>ClientFSM\Aoko\Transit\IdleToRuning</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -85,6 +124,21 @@
     </ClCompile>
     <ClCompile Include="TestActor.cpp">
       <Filter>ClientActors\Character\TrackingTestActor</Filter>
+    </ClCompile>
+    <ClCompile Include="Aoko.cpp">
+      <Filter>ClientActors\Character\FSMTestActor</Filter>
+    </ClCompile>
+    <ClCompile Include="AokoFSMContainer.cpp">
+      <Filter>ClientFSM\Aoko</Filter>
+    </ClCompile>
+    <ClCompile Include="Idle.cpp">
+      <Filter>ClientFSM\Aoko\State\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="Runing.cpp">
+      <Filter>ClientFSM\Aoko\State\Runing</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleToRuning.cpp">
+      <Filter>ClientFSM\Aoko\Transit\IdleToRuning</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

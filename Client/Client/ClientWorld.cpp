@@ -1,3 +1,9 @@
+//Engine
+#include "../../Engine/Headers/CoreManager.h"
+#include "../../Engine/Headers/TimeManager.h"
+#include "../../Engine/Headers/CameraActor.h"
+#include "../../Engine/Headers/CameraComponent.h"
+//Client
 #include "ClientWorld.h"
 #include "TestActor.h"
 #include "TestActor2.h"
@@ -5,25 +11,22 @@
 #include "Moon.h"
 #include "NightSky.h"
 #include "Character.h"
-//Engine
-#include "../../Engine/Headers/CoreManager.h"
-#include "../../Engine/Headers/TimeManager.h"
-#include "../../Engine/Headers/CameraActor.h"
-#include "../../Engine/Headers/CameraComponent.h"
+#include "Aoko.h"
 
 bool Client::ClientWorld::BeginPlay()
 {
 	//test code
 	_pCoreManager->LoadFont(L"DemoFont", L"Client/Resources/Font/EFKratos.ttf", 34.f);
 
-	SpawnActor(LAYER::OBJECT,"Character", Character::Create(), Mathf::Vector2{ -2000.f , 150.f });
+	//SpawnActor(LAYER::OBJECT,"Character", Character::Create(), Mathf::Vector2{ -2000.f , 150.f });
+	SpawnActor(LAYER::OBJECT, "Aoko", Aoko::Create(), Mathf::Vector2{ -2000.f , 150.f });
 	//SpawnActor(LAYER::OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ -2000.f , 0.f });
 	SpawnActor(LAYER::BACKOBJECT, "TestActor2", TestActor2::Create(), Mathf::Vector2{ 0.f, 0.f });
 	SpawnActor(LAYER::BACKGROUND, "NightSky", NightSky::Create(), Mathf::Vector2{ 0.f, 0.f });
 	SpawnActor(LAYER::BACKGROUND, "Moon", Moon::Create(), Mathf::Vector2{ 300.f, -450.f });
 	SpawnActor(LAYER::BACKGROUND, "BackGround", BackGround::Create(), Mathf::Vector2{ 240.f, -180.f });
 	//TODO: Debug Code
-	SettingTrackingCameraTarget(FindActor("Character"));
+	SettingTrackingCameraTarget(FindActor("Aoko"));
 	SettingCameraOffset(Mathf::Vector2{0.f, 30.f});
 	SetWorldSize(Mathf::Rect{ -3500.f, -1580.f, 1580.f, -100.f });
 	//1920,1480

@@ -91,9 +91,6 @@
     <Filter Include="Engine\Component\ActorComponent\InputComponent">
       <UniqueIdentifier>{1e685de1-557a-4137-a2af-2b6ab1d36e72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Utility\Transform">
-      <UniqueIdentifier>{05de7cac-9c3f-4370-a641-2a875e15489c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\BaseClass\Actor">
       <UniqueIdentifier>{406242c6-bc3a-4343-891a-e73115081933}</UniqueIdentifier>
     </Filter>
@@ -135,6 +132,21 @@
     </Filter>
     <Filter Include="Engine\BaseClass\ACollision">
       <UniqueIdentifier>{d065eec0-2096-4ca5-8284-ef7c45965467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseClass\Transform">
+      <UniqueIdentifier>{05de7cac-9c3f-4370-a641-2a875e15489c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseClass\State">
+      <UniqueIdentifier>{dd749eb7-1695-4ebd-82c1-43a8827f7181}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseClass\State\StateContainer">
+      <UniqueIdentifier>{ef669ea8-feb1-4046-8909-7482601815c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseClass\State\StateTransition">
+      <UniqueIdentifier>{7a937592-70a0-4cac-ad21-9cf6769d898b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseClass\State\State">
+      <UniqueIdentifier>{8b06e8d9-1ba8-407b-8e0a-c29185e310d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +241,7 @@
       <Filter>Engine\Component\ActorComponent</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\Transform.h">
-      <Filter>Engine\Utility\Transform</Filter>
+      <Filter>Engine\BaseClass\Transform</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\CameraComponent.h">
       <Filter>Engine\Component\SceneComponent\CameraComponent</Filter>
@@ -260,6 +272,15 @@
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\StateComponent.h">
       <Filter>Engine\Component\ActorComponent\StateComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\State.h">
+      <Filter>Engine\BaseClass\State\State</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\StateTransition.h">
+      <Filter>Engine\BaseClass\State\StateTransition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\StateContainer.h">
+      <Filter>Engine\BaseClass\State\StateContainer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -309,7 +330,7 @@
       <Filter>Engine\Component\SceneComponent</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\Transform.cpp">
-      <Filter>Engine\Utility\Transform</Filter>
+      <Filter>Engine\BaseClass\Transform</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\CameraComponent.cpp">
       <Filter>Engine\Component\SceneComponent\CameraComponent</Filter>
@@ -328,6 +349,15 @@
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\ACollision.cpp">
       <Filter>Engine\BaseClass\ACollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\State.cpp">
+      <Filter>Engine\BaseClass\State\State</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\StateComponent.cpp">
+      <Filter>Engine\Component\ActorComponent\StateComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\StateContainer.cpp">
+      <Filter>Engine\BaseClass\State\StateContainer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -128,22 +128,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Aoko.h" />
+    <ClInclude Include="AokoFSMContainer.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ClientWorld.h" />
+    <ClInclude Include="Idle.h" />
+    <ClInclude Include="IdleToRuning.h" />
     <ClInclude Include="Moon.h" />
     <ClInclude Include="NightSky.h" />
+    <ClInclude Include="Runing.h" />
     <ClInclude Include="TestActor.h" />
     <ClInclude Include="TestActor2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Aoko.cpp" />
+    <ClCompile Include="AokoFSMContainer.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ClientWorld.cpp" />
+    <ClCompile Include="Idle.cpp" />
+    <ClCompile Include="IdleToRuning.cpp" />
     <ClCompile Include="Moon.cpp" />
     <ClCompile Include="NightSky.cpp" />
+    <ClCompile Include="Runing.cpp" />
     <ClCompile Include="TestActor.cpp" />
     <ClCompile Include="TestActor2.cpp" />
   </ItemGroup>

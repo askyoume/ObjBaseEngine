@@ -166,7 +166,10 @@
     <ClInclude Include="..\Engine\Headers\RenderComponent.h" />
     <ClInclude Include="..\Engine\Headers\SceneComponent.h" />
     <ClInclude Include="..\Engine\Headers\Singleton.h" />
+    <ClInclude Include="..\Engine\Headers\State.h" />
     <ClInclude Include="..\Engine\Headers\StateComponent.h" />
+    <ClInclude Include="..\Engine\Headers\StateContainer.h" />
+    <ClInclude Include="..\Engine\Headers\StateTransition.h" />
     <ClInclude Include="..\Engine\Headers\Texture.h" />
     <ClInclude Include="..\Engine\Headers\TextureManager.h" />
     <ClInclude Include="..\Engine\Headers\TimeManager.h" />
@@ -193,6 +196,9 @@
     <ClCompile Include="..\Engine\Codes\Object.cpp" />
     <ClCompile Include="..\Engine\Codes\RenderComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\SceneComponent.cpp" />
+    <ClCompile Include="..\Engine\Codes\State.cpp" />
+    <ClCompile Include="..\Engine\Codes\StateComponent.cpp" />
+    <ClCompile Include="..\Engine\Codes\StateContainer.cpp" />
     <ClCompile Include="..\Engine\Codes\Texture.cpp" />
     <ClCompile Include="..\Engine\Codes\TextureManager.cpp" />
     <ClCompile Include="..\Engine\Codes\TimeManager.cpp" />
