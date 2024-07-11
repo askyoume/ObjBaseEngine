@@ -1,15 +1,14 @@
 #pragma once
 #include "../../Engine/Headers/State.h"
-#include "../../Engine/Headers/Mathf.h"
 
 namespace Client
 {
 	class Aoko;
-	class Runing : public Core::State
+	class LowKick : public Core::State
 	{
 	protected:
-		explicit Runing() DEFAULT;
-		virtual ~Runing() DEFAULT;
+		explicit LowKick() DEFAULT;
+		virtual ~LowKick() DEFAULT;
 
 	public:
 		void Enter() override;
@@ -18,12 +17,12 @@ namespace Client
 		void Remove() override;
 
 	public:
-		static Runing* Create();
+		static LowKick* Create();
 
 	private:
 		Aoko* pAoko{ nullptr };
-		bool isRuning{ false };
+		bool isLowKick{ false };
 		float _elapsedTime{ 0.f };
-		float _runSpeed{ 5.f };
+		float _lowKickSpeed{ 5.f };
 	};
 }

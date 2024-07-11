@@ -16,36 +16,27 @@ void Client::Aoko::BeginPlay()
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
 
 	_pAnimationComponent->AddClip("Idle", 0.1f, true);
+	_pAnimationComponent->AddClip("ReadyToRuning", 0.1f, false);
+	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f, false);
 	_pAnimationComponent->AddClip("Runing", 0.1f, true);
+	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
 
 	_pInputComponent->BindAction(DIP_LX, InputType::AXIS, this, &Aoko::Move);
+	_pInputComponent->BindAction(DIK_RIGHT, InputType::PRESS, this, &Aoko::Move);
+	_pInputComponent->BindAction(DIK_LEFT, InputType::PRESS, this, &Aoko::Move);
+	_pInputComponent->BindAction(DIK_RIGHT, InputType::RELEASE, this, &Aoko::Move);
+	_pInputComponent->BindAction(DIK_LEFT, InputType::RELEASE, this, &Aoko::Move);
+
 	_pInputComponent->AttachToInputManager();
 
 	_pStateComponent = AddComponent<::Core::StateComponent>("StateComponent");
 	_pStateComponent->AddContainer<AokoFSMContainer>();
+
+	SetPlayClip("Idle");
 }
 
 void Client::Aoko::Tick(_float deltaTime)
 {
-	//if (0.5f < _direction.x || -0.5 > _direction.x)
-	//{
-	//	_pAnimationComponent->SetPlayClip("Runing");
-	//	if (_direction.x > 0.f)
-	//		_pAnimationComponent->SetFlip(false);
-	//	else
-	//		_pAnimationComponent->SetFlip(true);
-	//	Mathf::Vector2 _velocity{ 1.f, 0.f };
-	//	Mathf::Vector2 _position = _pRootComponent->GetRelativeLocation();
-
-	//	_pRootComponent->SetRelativeLocation(_position + _velocity * _direction.x);
-	//	std::cout << _direction.x << std::endl;
-	//}
-	//else
-	//{
-	//	_pAnimationComponent->SetPlayClip("Idle");
-	//}
-
-
 	Actor::Tick(deltaTime);
 }
 
@@ -63,8 +54,20 @@ void Client::Aoko::Attack(const InputEvent& inputEvent)
 
 void Client::Aoko::Move(const InputEvent& inputEvent)
 {
-	_direction.x = inputEvent.value;
-	_direction.y = inputEvent.value;
+	//_direction.x = inputEvent.value;
+	//_direction.y = inputEvent.value;
+	if (inputEvent.key == DIK_LEFT && inputEvent.type == InputType::PRESS)
+	{
+		_direction.x = -1;
+	}
+	else if (inputEvent.key == DIK_RIGHT && inputEvent.type == InputType::PRESS)
+	{
+		_direction.x = 1;
+	}
+	else if (inputEvent.type == InputType::RELEASE)
+	{
+		_direction.x = 0;
+	}
 }
 
 void Client::Aoko::Dead()

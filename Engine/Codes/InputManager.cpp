@@ -190,8 +190,7 @@ void Core::InputManager::InitializeGamePad()
 
 void Core::InputManager::ProcessKeyboardInput()
 {
-	_byte keyState[256]{};
-	HRESULT hresult = _pKeyboard->GetDeviceState(sizeof(keyState), (LPVOID)&keyState);
+	HRESULT hresult = _pKeyboard->GetDeviceState(sizeof(_keyboardState), (LPVOID)&_keyboardState);
 	if(FAILED(hresult))
 	{
 		if(hresult == DIERR_INPUTLOST || hresult == DIERR_NOTACQUIRED)
@@ -203,26 +202,23 @@ void Core::InputManager::ProcessKeyboardInput()
 	{
 		for(_uint i = 0; i < 256; i++)
 		{
-			bool isArrowKey = (i == DIK_LEFT || i == DIK_RIGHT || i == DIK_UP || i == DIK_DOWN);
-			bool isPressed = (keyState[i] & 0x80) != 0;
+			bool isPressed = (_keyboardState[i] & 0x80) != 0;
+			bool wasPressed = (_previousKeyboardState[i] & 0x80) != 0;
 
-			if(isArrowKey && isPressed)
+			if (isPressed && !wasPressed)
 			{
-				if (i == DIK_LEFT || i == DIK_RIGHT)
-				{
-					float AxisValue_X = i == DIK_LEFT ? -1.f : 1.f;
-					DispatchInput(InputDevice::KEYBOARD, InputType::AXIS, DIK_AXIS, AxisValue_X, isPressed, (long)AxisValue_X);
-				}
-				else if (i == DIK_UP || i == DIK_DOWN)
-				{
-					float AxisValue_Y = i == DIK_UP ? -1.f : 1.f;
-					DispatchInput(InputDevice::KEYBOARD, InputType::AXIS, DIK_AXIS, AxisValue_Y, isPressed, 0, (long)AxisValue_Y);
-				}
+				DispatchInput(InputDevice::KEYBOARD, InputType::PRESS, i, 0.f, true);
 			}
-			else
+			else if (isPressed && wasPressed)
 			{
-				DispatchInput(InputDevice::KEYBOARD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);
+				DispatchInput(InputDevice::KEYBOARD, InputType::HELD, i, 0.f, true);
 			}
+			else if (!isPressed && wasPressed)
+			{
+				DispatchInput(InputDevice::KEYBOARD, InputType::RELEASE, i, 0.f, false);
+			}
+
+			_previousKeyboardState[i] = _keyboardState[i];
 		}
 	}
 }

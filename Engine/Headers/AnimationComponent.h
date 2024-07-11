@@ -13,6 +13,7 @@ namespace Core
 		virtual void TickComponent(_float deltaTime) override;
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override;
 		void AddClip(_pstring clipName, _float frameTime, bool isLoop);
+		bool IsClipPlay(_pstring clipName);
 		bool IsClipEnd(_pstring clipName);
 		void SetPlayClip(_pstring clipName);
 		void RemoveClip(_pstring clipName);
@@ -26,15 +27,16 @@ namespace Core
 
 	private:
 		std::unordered_map<_pstring, AnimationClip*> _vecClips;
-		float	_frameTime{};
-		float	_currentFrameTime{ -1 };
-		int		_prevFrame{ -1 };
-		int		_currentFrame{ -1 };
-		int		_frameCount{ -1 };
-		int		_currentClipIndex{ -1 };
-		bool	_isLoop{};
-		bool    _isInLayer{ false };
-		bool    _isFrameEnd{ false };
+		_pstring _currentClipName;
+		float	 _frameTime{ 0 };
+		float	 _currentFrameTime{ -1 };
+		int		 _prevFrame{ -1 };
+		int		 _currentFrame{ -1 };
+		int		 _frameCount{ -1 };
+		int		 _currentClipIndex{ -1 };
+		bool	 _isLoop{ false };
+		bool     _isInLayer{ false };
+		bool     _isFrameEnd{ false };
 	};
 
 }

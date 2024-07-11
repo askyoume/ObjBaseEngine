@@ -4,6 +4,7 @@
 namespace Client
 {
 	class Aoko;
+	class Character;
 	class Idle : public Core::State
 	{
 	protected:
@@ -21,5 +22,6 @@ namespace Client
 
 	private:
 		Aoko* pAoko{ nullptr };
+		Character* pCharacter{ nullptr };
 	};
 }

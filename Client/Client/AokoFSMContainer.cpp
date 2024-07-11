@@ -14,7 +14,7 @@ void Client::AokoFSMContainer::ContainStep()
 
 	IdleToRuning* idleToRuning = IdleToRuning::Create();
 	idle->AddTransition(idleToRuning);
-	runing->AddTransition(idleToRuning);
+	//runing->AddTransition(idleToRuning);
 }
 
 void Client::AokoFSMContainer::Update(float deltaTime)

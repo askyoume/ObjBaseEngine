@@ -58,6 +58,12 @@
     <Filter Include="ClientFSM\Aoko\Transit\IdleToRuning">
       <UniqueIdentifier>{59125c70-61b9-4668-bf4b-c055ad349bf6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientFSM\Aoko\State\LowKick">
+      <UniqueIdentifier>{03887250-a91c-4cf4-a5df-02468a9effa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\Aoko\Transit\IdleToKick">
+      <UniqueIdentifier>{0a1b6d21-3878-49b3-bf46-b66dbc7dd26b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -99,6 +105,9 @@
     <ClInclude Include="IdleToRuning.h">
       <Filter>ClientFSM\Aoko\Transit\IdleToRuning</Filter>
     </ClInclude>
+    <ClInclude Include="LowKick.h">
+      <Filter>ClientFSM\Aoko\State\LowKick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -139,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="IdleToRuning.cpp">
       <Filter>ClientFSM\Aoko\Transit\IdleToRuning</Filter>
+    </ClCompile>
+    <ClCompile Include="LowKick.cpp">
+      <Filter>ClientFSM\Aoko\State\LowKick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

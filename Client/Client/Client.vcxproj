@@ -136,6 +136,7 @@
     <ClInclude Include="ClientWorld.h" />
     <ClInclude Include="Idle.h" />
     <ClInclude Include="IdleToRuning.h" />
+    <ClInclude Include="LowKick.h" />
     <ClInclude Include="Moon.h" />
     <ClInclude Include="NightSky.h" />
     <ClInclude Include="Runing.h" />
@@ -151,6 +152,7 @@
     <ClCompile Include="ClientWorld.cpp" />
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="IdleToRuning.cpp" />
+    <ClCompile Include="LowKick.cpp" />
     <ClCompile Include="Moon.cpp" />
     <ClCompile Include="NightSky.cpp" />
     <ClCompile Include="Runing.cpp" />

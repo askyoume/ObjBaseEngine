@@ -38,7 +38,7 @@ void Core::StateContainer::Update(float deltaTime)
 
 	if (_previousState == _currentState)
 	{
-		for(auto& pTransition : _currentState->GetTransitions())
+		for(auto& pTransition : _initialState->GetTransitions())
 		{
 			if (!pTransition->ShouldTransition())
 			{
@@ -54,7 +54,7 @@ void Core::StateContainer::Remove()
 {
 	for (auto& state : _states)
 	{
-		state.second->Remove();
+		SafeDelete(state.second);
 	}
 }
 

@@ -27,10 +27,11 @@ void Core::AnimationComponent::TickComponent(_float deltaTime)
 			}
 			else
 			{
-				_currentFrame = _isFrameEnd;
-
+				_currentFrame = _frameCount - 1;
 			}
 		}
+
+		std::cout << _currentClipName << " " << _currentFrame << std::endl;
 	}
 }
 
@@ -82,19 +83,32 @@ void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool
 	GetOwner()->AddTexture(pCore->FindTexture(textureName));
 }
 
-bool Core::AnimationComponent::IsClipEnd(_pstring clipName)
+bool Core::AnimationComponent::IsClipPlay(_pstring clipName)
 {
-	if (_isFrameEnd == false && _vecClips[clipName]->clipIndex == _currentClipIndex)
+	if (_currentClipName && !strcmp(_currentClipName, clipName))
 	{
-		return false;
+		return true;
 	}
 
-	return true;
+	return false;
+}
+
+bool Core::AnimationComponent::IsClipEnd(_pstring clipName)
+{
+	if (_currentClipName && !strcmp(_currentClipName, clipName))
+	{
+		return _isFrameEnd;
+	}
 }
 
 void Core::AnimationComponent::SetPlayClip(_pstring clipName)
 {
-	if (_isFrameEnd == false && _vecClips[clipName]->clipIndex == _currentClipIndex)
+	if (_currentClipName && !strcmp(_currentClipName, clipName))
+	{
+		return;
+	}
+
+	if (_isFrameEnd == false && _vecClips[clipName]->clipIndex == _currentFrame)
 	{
 		return;
 	}
@@ -104,6 +118,7 @@ void Core::AnimationComponent::SetPlayClip(_pstring clipName)
 		return;
 	}
 
+	_currentClipName = clipName;
 	_currentClipIndex = _vecClips[clipName]->clipIndex;
 	_frameTime = _vecClips[clipName]->frameTime;
 	_isLoop = _vecClips[clipName]->isLoop;

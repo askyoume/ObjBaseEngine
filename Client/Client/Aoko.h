@@ -31,6 +31,7 @@ namespace Client
 		void Dead();
 
 		Mathf::Vector2 GetDirection() const { return _direction; }
+		Mathf::Vector2 GetVelocity() const { return _velocity; }
 
 		void SetPlayClip(_pstring clipName);
 

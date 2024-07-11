@@ -10,7 +10,7 @@ void Client::Character::BeginPlay()
 {
 	Actor::BeginPlay();
 
-	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
+	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent1");
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
 
 	_pAnimationComponent->AddClip("Idle", 0.1f, true);

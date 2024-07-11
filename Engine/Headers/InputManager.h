@@ -46,6 +46,9 @@ namespace Core
 
 		float _elapsedTime = 0.f;
 
+		_byte _previousKeyboardState[256];
+		_byte _keyboardState[256];
+
 		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<IInputReceiver*>>> Receivers;
 		std::unordered_map<_uint, bool> _previousButtonStates;
 	};
