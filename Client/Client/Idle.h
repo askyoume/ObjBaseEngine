@@ -1,10 +1,14 @@
 #pragma once
 #include "../../Engine/Headers/State.h"
 
+namespace Core
+{
+	class Actor;
+	class AnimationComponent;
+};
+
 namespace Client
 {
-	class Aoko;
-	class Character;
 	class Idle : public Core::State
 	{
 	protected:
@@ -21,7 +25,7 @@ namespace Client
 		static Idle* Create();
 
 	private:
-		Aoko* pAoko{ nullptr };
-		Character* pCharacter{ nullptr };
+		::Core::Actor* pActor{ nullptr };
+		::Core::AnimationComponent* pAnimationComponent{ nullptr };
 	};
 }

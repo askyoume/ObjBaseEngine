@@ -43,7 +43,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     ::Core::CoreManager::GameSetting gameSetting{};
 
-	gameSetting.title = TEXT("Super Castlevania IV - Q2_Project Create by Hero.P");
+	gameSetting.title = TEXT("MELTY BLOOD - Q2_Project Create by Hero.P");
     gameSetting.hInstance = hInstance;
 	gameSetting.pWorld = winApp.LoadWorld();
     gameSetting.width = SCREEN_WIDTH;

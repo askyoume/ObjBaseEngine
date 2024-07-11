@@ -26,6 +26,10 @@ namespace Core
 		void SetOwner(StateComponent* pOwnerComponent) { _pOwnerComponent = pOwnerComponent; }
 		StateComponent* GetOwnerComponent() const { return _pOwnerComponent; }
 
+	public:
+		//use Debugging
+		_pstring GetCurrentStateName() const;
+
 	protected:
 		StateComponent*		_pOwnerComponent{ nullptr };
 		State*				_previousState{ nullptr };

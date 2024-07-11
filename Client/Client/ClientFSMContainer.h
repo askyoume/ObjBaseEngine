@@ -3,11 +3,11 @@
 
 namespace Client
 {
-	class AokoFSMContainer : public Core::StateContainer
+	class ClientFSMContainer : public Core::StateContainer
 	{
 	protected:
-		explicit AokoFSMContainer() DEFAULT;
-		virtual ~AokoFSMContainer() DEFAULT;
+		explicit ClientFSMContainer() DEFAULT;
+		virtual ~ClientFSMContainer() DEFAULT;
 
 	public:
 		void ContainStep() override;
@@ -15,6 +15,6 @@ namespace Client
 		void Remove() override;
 
 	public:
-		static AokoFSMContainer* Create();
+		static ClientFSMContainer* Create();
 	};
 }

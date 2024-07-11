@@ -1,18 +1,22 @@
-#include "Aoko.h"
-#include "IdleToRuning.h"
 #include "../../Engine/Headers/StateContainer.h"
 #include "../../Engine/Headers/StateComponent.h"
 #include "../../Engine/Headers/AnimationComponent.h"
+#include "../../Engine/Headers/Actor.h"
+
+#include "../../ObjectBaseEngine/MovementComponent.h" //temp
+
+#include "Aoko.h"
+#include "IdleToRuning.h"
 
 bool Client::IdleToRuning::ShouldTransition()
 {
-	if(!pAoko)
+	if(!pActor)
 	{
-		pAoko = static_cast<Aoko*>(_pOwnerComponent->GetOwner());
+		pActor = _pOwnerComponent->GetOwner();
+		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
 	
-
-	Mathf::Vector2 _direction = pAoko->GetDirection();
+	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
 	if (0.5f < _direction.x || -0.5 > _direction.x)
 	{
 		SetTargetState("RUNING");

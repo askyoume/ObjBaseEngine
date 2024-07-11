@@ -148,6 +148,9 @@
     <Filter Include="Engine\BaseClass\State\State">
       <UniqueIdentifier>{8b06e8d9-1ba8-407b-8e0a-c29185e310d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component\tempComponent%28MOVE%29">
+      <UniqueIdentifier>{712fb5ae-096c-4127-b501-c1ccc9b69fc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainEntry.h">
@@ -282,6 +285,9 @@
     <ClInclude Include="..\Engine\Headers\StateContainer.h">
       <Filter>Engine\BaseClass\State\StateContainer</Filter>
     </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Engine\Component\tempComponent%28MOVE%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainEntry.cpp">
@@ -358,6 +364,9 @@
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\StateContainer.cpp">
       <Filter>Engine\BaseClass\State\StateContainer</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Engine\Component\tempComponent%28MOVE%29</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

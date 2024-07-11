@@ -13,56 +13,62 @@
     <Filter Include="ClientActors\BackGround">
       <UniqueIdentifier>{d52545ba-8d56-43fe-bc91-2ef061e29869}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientActors\Map">
-      <UniqueIdentifier>{4f7f6e98-81f3-4696-b90d-32b62130904b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientActors\Character">
       <UniqueIdentifier>{84990419-493e-45cb-8642-48bbf1a7d24a}</UniqueIdentifier>
     </Filter>
     <Filter Include="ClientActors\ETC">
       <UniqueIdentifier>{25cb5cea-cdf8-4a3b-ab76-43a60b1bd7c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientActors\ETC\Moon">
-      <UniqueIdentifier>{dddb6f86-0155-4f5e-9ee2-c47d550cfbd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\ETC\NightSky">
-      <UniqueIdentifier>{0d7963f4-c44d-4d81-a77a-ffb08fbf1c11}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientActors\Platform">
       <UniqueIdentifier>{1b7b7ce4-ad25-4ee1-b889-32d88952606d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\Character\TrackingTestActor">
-      <UniqueIdentifier>{05cdde12-b47d-4268-a030-1d5808b5d223}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\Character\FSMTestActor">
-      <UniqueIdentifier>{d53a728c-e587-4d6d-8bfb-5c8e5d1b801c}</UniqueIdentifier>
     </Filter>
     <Filter Include="ClientFSM">
       <UniqueIdentifier>{79bff297-cb1b-430f-9b92-ab1a56a6dc85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\Aoko">
+    <Filter Include="ClientActors\OldProject">
+      <UniqueIdentifier>{785111bf-58cc-4f8f-a9d5-d888739e5c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\OldProject\Map">
+      <UniqueIdentifier>{4f7f6e98-81f3-4696-b90d-32b62130904b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\OldProject\NightSky">
+      <UniqueIdentifier>{0d7963f4-c44d-4d81-a77a-ffb08fbf1c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\OldProject\Moon">
+      <UniqueIdentifier>{dddb6f86-0155-4f5e-9ee2-c47d550cfbd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\Aoko">
+      <UniqueIdentifier>{d53a728c-e587-4d6d-8bfb-5c8e5d1b801c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\OldProject\TrackingTestActor">
+      <UniqueIdentifier>{05cdde12-b47d-4268-a030-1d5808b5d223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM">
       <UniqueIdentifier>{5cf4fae9-f66d-4a18-be94-ea9651cbffc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\Aoko\State">
+    <Filter Include="ClientFSM\CommonMovementFSM\State">
       <UniqueIdentifier>{c3ba54f7-de70-4442-8239-04a533a43790}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\Aoko\Transit">
-      <UniqueIdentifier>{9fe6614d-4d49-4958-aa5e-9dd8d0f32052}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientFSM\Aoko\State\Idle">
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Idle">
       <UniqueIdentifier>{a5f5056b-77e4-4ae7-b99a-54075ae3278f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\Aoko\State\Runing">
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Runing">
       <UniqueIdentifier>{0b4ab142-c0f6-4bf3-9721-6c1b2541aec7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\Aoko\Transit\IdleToRuning">
-      <UniqueIdentifier>{59125c70-61b9-4668-bf4b-c055ad349bf6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientFSM\Aoko\State\LowKick">
+    <Filter Include="ClientFSM\CommonMovementFSM\State\LowKick">
       <UniqueIdentifier>{03887250-a91c-4cf4-a5df-02468a9effa4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\Aoko\Transit\IdleToKick">
+    <Filter Include="ClientFSM\CommonMovementFSM\Transit">
+      <UniqueIdentifier>{9fe6614d-4d49-4958-aa5e-9dd8d0f32052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\Transit\IdleToRuning">
+      <UniqueIdentifier>{59125c70-61b9-4668-bf4b-c055ad349bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\Transit\IdleToKick">
       <UniqueIdentifier>{0a1b6d21-3878-49b3-bf46-b66dbc7dd26b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\Neko">
+      <UniqueIdentifier>{6d1289b1-9479-4798-85d9-ffe9e8eaf82b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,40 +79,43 @@
       <Filter>ClientWorld</Filter>
     </ClInclude>
     <ClInclude Include="TestActor2.h">
-      <Filter>ClientActors\Map</Filter>
+      <Filter>ClientActors\OldProject\Map</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
       <Filter>ClientActors\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="Moon.h">
-      <Filter>ClientActors\ETC\Moon</Filter>
+      <Filter>ClientActors\OldProject\Moon</Filter>
     </ClInclude>
     <ClInclude Include="NightSky.h">
-      <Filter>ClientActors\ETC\NightSky</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>ClientActors\Character</Filter>
+      <Filter>ClientActors\OldProject\NightSky</Filter>
     </ClInclude>
     <ClInclude Include="TestActor.h">
-      <Filter>ClientActors\Character\TrackingTestActor</Filter>
+      <Filter>ClientActors\OldProject\TrackingTestActor</Filter>
     </ClInclude>
     <ClInclude Include="Aoko.h">
-      <Filter>ClientActors\Character\FSMTestActor</Filter>
+      <Filter>ClientActors\Character\Aoko</Filter>
     </ClInclude>
-    <ClInclude Include="AokoFSMContainer.h">
-      <Filter>ClientFSM\Aoko</Filter>
+    <ClInclude Include="ClientFSMContainer.h">
+      <Filter>ClientFSM\CommonMovementFSM</Filter>
     </ClInclude>
     <ClInclude Include="Idle.h">
-      <Filter>ClientFSM\Aoko\State\Idle</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\State\Idle</Filter>
     </ClInclude>
     <ClInclude Include="Runing.h">
-      <Filter>ClientFSM\Aoko\State\Runing</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\State\Runing</Filter>
     </ClInclude>
     <ClInclude Include="IdleToRuning.h">
-      <Filter>ClientFSM\Aoko\Transit\IdleToRuning</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToRuning</Filter>
     </ClInclude>
     <ClInclude Include="LowKick.h">
-      <Filter>ClientFSM\Aoko\State\LowKick</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\State\LowKick</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>ClientActors\OldProject</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleToKick.h">
+      <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToKick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -117,40 +126,43 @@
       <Filter>ClientWorld</Filter>
     </ClCompile>
     <ClCompile Include="TestActor2.cpp">
-      <Filter>ClientActors\Map</Filter>
+      <Filter>ClientActors\OldProject\Map</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>ClientActors\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="Moon.cpp">
-      <Filter>ClientActors\ETC\Moon</Filter>
+      <Filter>ClientActors\OldProject\Moon</Filter>
     </ClCompile>
     <ClCompile Include="NightSky.cpp">
-      <Filter>ClientActors\ETC\NightSky</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>ClientActors\Character</Filter>
+      <Filter>ClientActors\OldProject\NightSky</Filter>
     </ClCompile>
     <ClCompile Include="TestActor.cpp">
-      <Filter>ClientActors\Character\TrackingTestActor</Filter>
+      <Filter>ClientActors\OldProject\TrackingTestActor</Filter>
     </ClCompile>
     <ClCompile Include="Aoko.cpp">
-      <Filter>ClientActors\Character\FSMTestActor</Filter>
+      <Filter>ClientActors\Character\Aoko</Filter>
     </ClCompile>
-    <ClCompile Include="AokoFSMContainer.cpp">
-      <Filter>ClientFSM\Aoko</Filter>
+    <ClCompile Include="ClientFSMContainer.cpp">
+      <Filter>ClientFSM\CommonMovementFSM</Filter>
     </ClCompile>
     <ClCompile Include="Idle.cpp">
-      <Filter>ClientFSM\Aoko\State\Idle</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\State\Idle</Filter>
     </ClCompile>
     <ClCompile Include="Runing.cpp">
-      <Filter>ClientFSM\Aoko\State\Runing</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\State\Runing</Filter>
     </ClCompile>
     <ClCompile Include="IdleToRuning.cpp">
-      <Filter>ClientFSM\Aoko\Transit\IdleToRuning</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToRuning</Filter>
     </ClCompile>
     <ClCompile Include="LowKick.cpp">
-      <Filter>ClientFSM\Aoko\State\LowKick</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\State\LowKick</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>ClientActors\OldProject</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleToKick.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToKick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,9 +2,15 @@
 #include "../../Engine/Headers/State.h"
 #include "../../Engine/Headers/Mathf.h"
 
+namespace Core
+{
+	class Actor;
+	class MovementComponent;
+	class AnimationComponent;
+}
+
 namespace Client
 {
-	class Aoko;
 	class Runing : public Core::State
 	{
 	protected:
@@ -21,7 +27,9 @@ namespace Client
 		static Runing* Create();
 
 	private:
-		Aoko* pAoko{ nullptr };
+		::Core::Actor* pActor{ nullptr };
+		::Core::MovementComponent* pMovementComponent{ nullptr };
+		::Core::AnimationComponent* pAnimationComponent{ nullptr };
 		bool isRuning{ false };
 		float _elapsedTime{ 0.f };
 		float _runSpeed{ 5.f };

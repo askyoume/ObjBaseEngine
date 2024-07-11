@@ -101,3 +101,8 @@ void Core::StateContainer::AddState(State* pState)
 	}
 }
 
+_pstring Core::StateContainer::GetCurrentStateName() const
+{
+	return _currentState->GetName();
+}
+

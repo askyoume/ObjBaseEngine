@@ -179,6 +179,7 @@
     <ClInclude Include="..\Engine\Headers\WorldManager.h" />
     <ClInclude Include="Client_Macro.h" />
     <ClInclude Include="MainEntry.h" />
+    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="ToDoList.h" />
   </ItemGroup>
@@ -207,6 +208,7 @@
     <ClCompile Include="..\Engine\Headers\AnimationComponent.cpp" />
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp" />
     <ClCompile Include="MainEntry.cpp" />
+    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="System.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

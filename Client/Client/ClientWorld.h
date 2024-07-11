@@ -9,8 +9,8 @@ namespace Core
 
 namespace Client
 {
-	class TestActor;
-	class ClientWorld : public Core::World
+	class Aoko;
+	class ClientWorld final : public Core::World
 	{
 	private:
 		explicit ClientWorld() DEFAULT;
@@ -24,5 +24,7 @@ namespace Client
 	public:
 		static ClientWorld* Create() { return new ClientWorld; }
 
+	private:
+		Aoko* _pAoko{ nullptr };
 	};
 }

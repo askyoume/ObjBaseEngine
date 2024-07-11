@@ -1,9 +1,9 @@
-#include "AokoFSMContainer.h"
+#include "ClientFSMContainer.h"
 #include "Idle.h"
 #include "Runing.h"
 #include "IdleToRuning.h"
 
-void Client::AokoFSMContainer::ContainStep()
+void Client::ClientFSMContainer::ContainStep()
 {
 	Idle* idle = Idle::Create();
 	AddState(idle);
@@ -17,17 +17,17 @@ void Client::AokoFSMContainer::ContainStep()
 	//runing->AddTransition(idleToRuning);
 }
 
-void Client::AokoFSMContainer::Update(float deltaTime)
+void Client::ClientFSMContainer::Update(float deltaTime)
 {
 	StateContainer::Update(deltaTime);
 }
 
-void Client::AokoFSMContainer::Remove()
+void Client::ClientFSMContainer::Remove()
 {
 	StateContainer::Remove();
 }
 
-Client::AokoFSMContainer* Client::AokoFSMContainer::Create()
+Client::ClientFSMContainer* Client::ClientFSMContainer::Create()
 {
-	return new AokoFSMContainer;
+	return new ClientFSMContainer;
 }

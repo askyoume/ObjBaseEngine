@@ -31,6 +31,9 @@ namespace Core
 	public:
 		static StateComponent* Create() { return new StateComponent; }
 
+	public:
+		_pstring GetCurrentStateName() const;
+
 	protected:
 		StateContainer* _pContainer{ nullptr };
 	};

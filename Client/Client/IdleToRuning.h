@@ -1,9 +1,14 @@
 #pragma once
 #include "../../Engine/Headers/StateTransition.h"
 
+namespace Core
+{
+	class Actor;
+	class MovementComponent;
+}
+
 namespace Client
 {
-	class Aoko;
 	class IdleToRuning : public Core::StateTransition
 	{
 	protected:
@@ -18,6 +23,7 @@ namespace Client
 		static IdleToRuning* Create();
 
 	private:
-		Aoko* pAoko{ nullptr };
+		::Core::Actor* pActor{ nullptr };
+		::Core::MovementComponent* pMovementComponent{ nullptr };
 	};
 }

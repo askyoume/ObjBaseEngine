@@ -1,5 +1,5 @@
 #include "Aoko.h"
-#include "AokoFSMContainer.h"
+#include "ClientFSMContainer.h"
 #include "../../Engine/Headers/Core_Struct.h"
 #include "../../Engine/Headers/Actor.h"
 #include "../../Engine/Headers/InputComponent.h"
@@ -8,16 +8,20 @@
 #include "../../Engine/Headers/Texture.h"
 #include "../../Engine/Headers/StateComponent.h"
 
+#include "../../ObjectBaseEngine/MovementComponent.h"
+
 void Client::Aoko::BeginPlay()
 {
 	Actor::BeginPlay();
 
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
+	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
+	_pMovementComponent->SetGroundPosition(80.f);
 
 	_pAnimationComponent->AddClip("Idle", 0.1f, true);
-	_pAnimationComponent->AddClip("ReadyToRuning", 0.1f, false);
-	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f, false);
+	_pAnimationComponent->AddClip("ReadyToRuning", 0.05f, false);
+	_pAnimationComponent->AddClip("ReadyToIdle", 0.05f, false);
 	_pAnimationComponent->AddClip("Runing", 0.1f, true);
 	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
 
@@ -30,7 +34,7 @@ void Client::Aoko::BeginPlay()
 	_pInputComponent->AttachToInputManager();
 
 	_pStateComponent = AddComponent<::Core::StateComponent>("StateComponent");
-	_pStateComponent->AddContainer<AokoFSMContainer>();
+	_pStateComponent->AddContainer<ClientFSMContainer>();
 
 	SetPlayClip("Idle");
 }
@@ -56,17 +60,25 @@ void Client::Aoko::Move(const InputEvent& inputEvent)
 {
 	//_direction.x = inputEvent.value;
 	//_direction.y = inputEvent.value;
+	if(	inputEvent.key == DIP_LX && inputEvent.type == InputType::AXIS)
+	{
+		if(	inputEvent.value > 0.7f || inputEvent.value < -0.7f )
+		_pMovementComponent->SetInputDirection({ inputEvent.value, 0.f });
+		else
+		_pMovementComponent->SetInputDirection({ 0.f, 0.f });
+	}
+
 	if (inputEvent.key == DIK_LEFT && inputEvent.type == InputType::PRESS)
 	{
-		_direction.x = -1;
+		_pMovementComponent->SetInputDirection({-1.f,0.f});
 	}
 	else if (inputEvent.key == DIK_RIGHT && inputEvent.type == InputType::PRESS)
 	{
-		_direction.x = 1;
+		_pMovementComponent->SetInputDirection({1.f,0.f});
 	}
 	else if (inputEvent.type == InputType::RELEASE)
 	{
-		_direction.x = 0;
+		_pMovementComponent->SetInputDirection({0.f,0.f});
 	}
 }
 

@@ -2,6 +2,11 @@
 #include "../../Engine/Headers/Core_Define.h"
 #include "../../Engine/Headers/Actor.h"
 
+namespace Core
+{
+	class AnimationComponent;
+}
+
 namespace Client
 {
 	class BackGround : public Core::Actor
@@ -18,6 +23,9 @@ namespace Client
 
 	public:
 		static BackGround* Create() { return new BackGround; }
+
+	private:
+		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 
 	};
 }

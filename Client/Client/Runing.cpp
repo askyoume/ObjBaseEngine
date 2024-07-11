@@ -1,20 +1,22 @@
 #include "../../Engine/Headers/StateComponent.h"
 #include "../../Engine/Headers/AnimationComponent.h"
+#include "../../ObjectBaseEngine/MovementComponent.h" //temp
+#include "../../Engine/Headers/Actor.h"
 
 #include "Runing.h"
 #include "Aoko.h"
-#include "AokoFSMContainer.h"
+#include "ClientFSMContainer.h"
 
 void Client::Runing::Enter()
 {
-	if(!pAoko)
+	if(!pActor)
 	{
-		pAoko = static_cast<Aoko*>(_pOwnerComponent->GetOwner());
+		pActor = _pOwnerComponent->GetOwner();
+		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
+		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 	}
-	//std::cout << "Runing Enter" << std::endl;
-	Mathf::Vector2 _direction = pAoko->GetDirection();
-	::Core::AnimationComponent* pAnimationComponent = 
-		pAoko->GetComponent<::Core::AnimationComponent>("AnimationComponent");
+
+	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
 	if (_direction.x > 0)
 	{
 		pAnimationComponent->SetFlip(false);
@@ -24,47 +26,23 @@ void Client::Runing::Enter()
 		pAnimationComponent->SetFlip(true);
 	}
 
-	_elapsedTime = 0.f;
-
-	pAoko->SetPlayClip("ReadyToRuning");
+	pAnimationComponent->SetPlayClip("ReadyToRuning");
 }
 
 void Client::Runing::Execute(float deltaTime)
 {
-	::Core::AnimationComponent* pAnimationComponent = 
-		pAoko->GetComponent<::Core::AnimationComponent>("AnimationComponent");
-
 	if(pAnimationComponent->IsClipEnd("ReadyToRuning"))
 	{
-		pAoko->SetPlayClip("Runing");
+		pAnimationComponent->SetPlayClip("Runing");
 	}
-
-	_elapsedTime += deltaTime;
-
-	Mathf::Vector2 _direction = pAoko->GetDirection();
-
-	Mathf::Vector2 _velocity = { _direction.x * _runSpeed * _elapsedTime, 0.f };
-
-	if(_velocity.x > 10.f)
-	{
-		_velocity.x = 10.f;
-	}
-	else if (_velocity.x < -10.f)
-	{
-		_velocity.x = -10.f;
-	}
-
-	pAoko->GetRootComponent()->AddRelativeLocation({_velocity.x, 0.f});
-
-	//std::cout << "Runing Execute" << std::endl;
+;
+	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
+	pMovementComponent->Move(deltaTime);
 }
 
 void Client::Runing::Exit()
 {
-		pAoko->SetPlayClip("ReadyToIdle");
-
-		_elapsedTime = 0.f;
-	//std::cout << "Runing Exit" << std::endl;
+	pAnimationComponent->SetPlayClip("ReadyToIdle");
 }
 
 void Client::Runing::Remove()

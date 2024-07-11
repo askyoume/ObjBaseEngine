@@ -7,26 +7,18 @@
 #include "Idle.h"
 #include "Character.h"
 #include "Aoko.h"
-#include "AokoFSMContainer.h"
+#include "ClientFSMContainer.h"
 
 void Client::Idle::Enter()
 {
-	if(!pAoko)
+	if(!pActor)
 	{
-		pAoko = static_cast<Aoko*>(_pOwnerComponent->GetOwner());
+		pActor = _pOwnerComponent->GetOwner();
+		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 	}
 
-	//if (!pCharacter)
-	//{
-	//	::Core::CoreManager* pCoreManager = ::Core::CoreManager::GetInstance();
-	//	pCharacter = dynamic_cast<Character*>(pCoreManager->GetWorld()->FindActor("Character"));
-	//}
-
-	::Core::AnimationComponent* pAnimationComponent = 
-		pAoko->GetComponent<::Core::AnimationComponent>("AnimationComponent");
-
 	if(pAnimationComponent->IsClipEnd("ReadyToIdle"))
-		pAoko->SetPlayClip("Idle");
+		pAnimationComponent->SetPlayClip("Idle");
 }
 
 void Client::Idle::Execute(float deltaTime)

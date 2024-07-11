@@ -3,14 +3,10 @@
 #include "../../Engine/Headers/TimeManager.h"
 #include "../../Engine/Headers/CameraActor.h"
 #include "../../Engine/Headers/CameraComponent.h"
+#include "../../Engine/Headers/StateComponent.h"
 //Client
 #include "ClientWorld.h"
-#include "TestActor.h"
-#include "TestActor2.h"
 #include "BackGround.h"
-#include "Moon.h"
-#include "NightSky.h"
-#include "Character.h"
 #include "Aoko.h"
 
 bool Client::ClientWorld::BeginPlay()
@@ -18,17 +14,15 @@ bool Client::ClientWorld::BeginPlay()
 	//test code
 	_pCoreManager->LoadFont(L"DemoFont", L"Client/Resources/Font/EFKratos.ttf", 34.f);
 
-	//SpawnActor(LAYER::OBJECT,"Character", Character::Create(), Mathf::Vector2{ -1500.f , 150.f });
-	SpawnActor(LAYER::FRONTOBJECT, "Aoko", Aoko::Create(), Mathf::Vector2{ -2000.f , 50.f });
-	//SpawnActor(LAYER::OBJECT, "TestActor", TestActor::Create(), Mathf::Vector2{ -2000.f , 0.f });
-	SpawnActor(LAYER::BACKOBJECT, "TestActor2", TestActor2::Create(), Mathf::Vector2{ 0.f, 0.f });
-	SpawnActor(LAYER::BACKGROUND, "NightSky", NightSky::Create(), Mathf::Vector2{ 0.f, 0.f });
-	SpawnActor(LAYER::BACKGROUND, "Moon", Moon::Create(), Mathf::Vector2{ 300.f, -450.f });
-	SpawnActor(LAYER::BACKGROUND, "BackGround", BackGround::Create(), Mathf::Vector2{ 240.f, -180.f });
+	SpawnActor(LAYER::FRONTOBJECT, "Aoko", Aoko::Create(), Mathf::Vector2{ 1750.f , 80.f });
+	SpawnActor(LAYER::BACKGROUND, "BackGround", BackGround::Create(), Mathf::Vector2{ 2750.f, -180.f });
+
+	_pAoko = static_cast<Aoko*>(FindActor("Aoko"));
+
 	//TODO: Debug Code
 	SettingTrackingCameraTarget(FindActor("Aoko"));
 	SettingCameraOffset(Mathf::Vector2{0.f, 30.f});
-	SetWorldSize(Mathf::Rect{ -3500.f, -1580.f, 1580.f, -100.f });
+	SetWorldSize(Mathf::Rect{ 0.f, -1580.f, 3500.f, -100.f });
 	//1920,1480
 	//test code end
 
@@ -54,13 +48,15 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 	World::Render(pRenderTarget);
 	//test code
 
-	pRenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
+	pRenderTarget->SetTransform(Matx::Identity);
 
-	static const WCHAR sc_helloWorld[] = L"Please!!!";
+	::Core::StateComponent* pStateComponent = _pAoko->GetComponent<::Core::StateComponent>("StateComponent");
+
+	_bstr_t StateName = pStateComponent->GetCurrentStateName();
 	
 	pRenderTarget->DrawTextW(
-		sc_helloWorld,
-		ARRAYSIZE(sc_helloWorld) - 1,
+		StateName,
+		StateName.length(),
 		_pCoreManager->GetFont(L"DemoFont"),
 		D2D1::RectF(500, 500, 100, 100),
 		_pCoreManager->GetGraphicsPackage()->_pBrush

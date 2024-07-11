@@ -8,6 +8,7 @@ namespace Core
 	class AnimationComponent;
 	class InputComponent;
 	class StateComponent;
+	class MovementComponent;
 }
 
 struct InputEvent;
@@ -39,15 +40,16 @@ namespace Client
 		static Aoko* Create() { return new Aoko; }
 
 	private:
+		::Core::MovementComponent*  _pMovementComponent{ nullptr };
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::InputComponent*		_pInputComponent{ nullptr };
 		::Core::StateComponent*		_pStateComponent{ nullptr };
 
 	private:
-		_uint _stateFlag{ 0 };
+		_uint		   _stateFlag{ 0 };
 		Mathf::Vector2 _direction{ UnitVector::Zero };
 		Mathf::Vector2 _velocity{ 200.f, 0.f };
 		Mathf::Vector2 _gravity{ 0.f , 98.f };
-		float _elapsedTime{ 0.f };
+		float		   _elapsedTime{ 0.f };
 	};
 }
