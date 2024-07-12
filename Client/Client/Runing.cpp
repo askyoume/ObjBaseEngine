@@ -4,7 +4,6 @@
 #include "../../Engine/Headers/Actor.h"
 
 #include "Runing.h"
-#include "Aoko.h"
 #include "ClientFSMContainer.h"
 
 void Client::Runing::Enter()
@@ -31,18 +30,21 @@ void Client::Runing::Enter()
 
 void Client::Runing::Execute(float deltaTime)
 {
-	if(pAnimationComponent->IsClipEnd("ReadyToRuning"))
+	if(!pMovementComponent->IsJumping() &&
+		pAnimationComponent->IsClipEnd("ReadyToRuning") &&
+		pAnimationComponent->IsClipEnd("Runing"))
 	{
 		pAnimationComponent->SetPlayClip("Runing");
 	}
-;
+
 	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
-	pMovementComponent->Move(deltaTime);
+	pMovementComponent->Run(deltaTime);
 }
 
 void Client::Runing::Exit()
 {
 	pAnimationComponent->SetPlayClip("ReadyToIdle");
+	pMovementComponent->SetRunning(false);
 }
 
 void Client::Runing::Remove()

@@ -3,6 +3,9 @@
 #include "Texture.h"
 #include "Actor.h"
 
+#undef min
+#undef max
+
 void Core::AnimationComponent::TickComponent(_float deltaTime)
 {
 	SceneComponent::TickComponent(deltaTime);
@@ -11,27 +14,30 @@ void Core::AnimationComponent::TickComponent(_float deltaTime)
 	if (0 == _currentFrame) { _isFrameEnd = false; }
 
 	_currentFrameTime += deltaTime;
-
+	
 	if (_currentFrameTime >= _frameTime)
 	{
-		_currentFrameTime = 0.f;
+		_currentFrameTime -= _frameTime;
 		_prevFrame = _currentFrame;
-		_currentFrame++;
+		//_currentFrame++;
 
-		if (_currentFrame >= _frameCount)
+		if (_isLoop)
 		{
-			_isFrameEnd = true;
-			if(_isLoop)
-			{
-				_currentFrame = 0;
-			}
-			else
-			{
-				_currentFrame = _frameCount - 1;
-			}
+			_currentFrame = (_currentFrame + 1) % _frameCount;
 		}
+		else
+		{
+			_currentFrame = std::min(_currentFrame + 1, _frameCount - 1);
+		}
+	}
 
-		std::cout << _currentClipName << " " << _currentFrame << std::endl;
+	if (_prevFrame != _currentFrame && _currentFrame == _frameCount - 1)
+	{
+		_isFrameEnd = true;
+	}
+	else
+	{
+		_isFrameEnd = false;
 	}
 }
 
@@ -87,10 +93,10 @@ bool Core::AnimationComponent::IsClipPlay(_pstring clipName)
 {
 	if (_currentClipName && !strcmp(_currentClipName, clipName))
 	{
-		return true;
+		return !_isFrameEnd;
 	}
 
-	return false;
+	//return false;
 }
 
 bool Core::AnimationComponent::IsClipEnd(_pstring clipName)
@@ -103,21 +109,6 @@ bool Core::AnimationComponent::IsClipEnd(_pstring clipName)
 
 void Core::AnimationComponent::SetPlayClip(_pstring clipName)
 {
-	if (_currentClipName && !strcmp(_currentClipName, clipName))
-	{
-		return;
-	}
-
-	if (_isFrameEnd == false && _vecClips[clipName]->clipIndex == _currentFrame)
-	{
-		return;
-	}
-
-	if(_vecClips[clipName]->clipIndex == _currentClipIndex)
-	{
-		return;
-	}
-
 	_currentClipName = clipName;
 	_currentClipIndex = _vecClips[clipName]->clipIndex;
 	_frameTime = _vecClips[clipName]->frameTime;

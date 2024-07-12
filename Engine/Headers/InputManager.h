@@ -8,8 +8,8 @@ namespace Core
 	class InputManager : public Core
 	{
 	private:
-		InputManager() DEFAULT;
-		~InputManager() DEFAULT;
+		InputManager() = default;
+		~InputManager() = default;
 
 	public:
 		bool Initialize(HINSTANCE hInst, HWND hWnd);

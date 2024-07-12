@@ -1,7 +1,9 @@
 #include "ClientFSMContainer.h"
 #include "Idle.h"
 #include "Runing.h"
+#include "Move.h"
 #include "IdleToRuning.h"
+#include "IdleToMove.h"
 
 void Client::ClientFSMContainer::ContainStep()
 {
@@ -12,8 +14,13 @@ void Client::ClientFSMContainer::ContainStep()
 	Runing* runing = Runing::Create();
 	AddState(runing);
 
+	Move* move = Move::Create();
+	AddState(move);
+
 	IdleToRuning* idleToRuning = IdleToRuning::Create();
-	idle->AddTransition(idleToRuning);
+	IdleToMove* idleToMove = IdleToMove::Create();
+	idle->AddTransition(idleToMove);
+	move->AddTransition(idleToRuning);
 	//runing->AddTransition(idleToRuning);
 }
 

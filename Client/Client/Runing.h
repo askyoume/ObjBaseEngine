@@ -30,8 +30,5 @@ namespace Client
 		::Core::Actor* pActor{ nullptr };
 		::Core::MovementComponent* pMovementComponent{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
-		bool isRuning{ false };
-		float _elapsedTime{ 0.f };
-		float _runSpeed{ 5.f };
 	};
 }

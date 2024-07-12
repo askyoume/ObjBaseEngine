@@ -19,6 +19,7 @@ namespace Core
 	public:
 		bool IsPriority() const { return _isPriority; }
 		void SetPriority(bool isPriority) { _isPriority = isPriority; }
+		void SetPreviousStateName(_pstring previousStateName) { _previousStateName = previousStateName; }
 
 	public:
 		bool IsPriorityState(State* pFindTarget);
@@ -35,6 +36,7 @@ namespace Core
 
 	protected:
 		bool						  _isPriority{ false };
+		_pstring                      _previousStateName{ nullptr };
 		_pstring					  _name{ nullptr };
 		StateComponent*				  _pOwnerComponent{ nullptr };
 		std::vector<StateTransition*> _transitions;

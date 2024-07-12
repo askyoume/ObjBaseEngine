@@ -55,9 +55,6 @@
     <Filter Include="ClientFSM\CommonMovementFSM\State\Runing">
       <UniqueIdentifier>{0b4ab142-c0f6-4bf3-9721-6c1b2541aec7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\LowKick">
-      <UniqueIdentifier>{03887250-a91c-4cf4-a5df-02468a9effa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\Transit">
       <UniqueIdentifier>{9fe6614d-4d49-4958-aa5e-9dd8d0f32052}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,30 @@
     </Filter>
     <Filter Include="ClientActors\Character\Neko">
       <UniqueIdentifier>{6d1289b1-9479-4798-85d9-ffe9e8eaf82b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Jump">
+      <UniqueIdentifier>{843a2f9d-6758-4452-b322-1b9fac6e3f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack">
+      <UniqueIdentifier>{f83d1cc9-1db9-4dad-bccb-e4a4a2ccfaa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\High">
+      <UniqueIdentifier>{b0fad545-3f5f-4d5a-8460-5f11df5ad748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Middle">
+      <UniqueIdentifier>{f5f058e9-68e3-4558-baf7-45a2a9883191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Low">
+      <UniqueIdentifier>{c1c28893-b0f9-48d2-bf6d-aebcbbe7deab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Low\LowKick">
+      <UniqueIdentifier>{03887250-a91c-4cf4-a5df-02468a9effa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Move">
+      <UniqueIdentifier>{7359d496-5962-4dc9-89ed-03d1845bd409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\Transit\IdleToMove">
+      <UniqueIdentifier>{3975ddfe-d86f-425b-918b-c62e6ade1fe2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,13 +130,22 @@
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToRuning</Filter>
     </ClInclude>
     <ClInclude Include="LowKick.h">
-      <Filter>ClientFSM\CommonMovementFSM\State\LowKick</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\State\Attack\Low\LowKick</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>ClientActors\OldProject</Filter>
     </ClInclude>
     <ClInclude Include="IdleToKick.h">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToKick</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
+      <Filter>ClientFSM\CommonMovementFSM\State\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>ClientFSM\CommonMovementFSM\State\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleToMove.h">
+      <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToMove</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -156,13 +186,22 @@
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToRuning</Filter>
     </ClCompile>
     <ClCompile Include="LowKick.cpp">
-      <Filter>ClientFSM\CommonMovementFSM\State\LowKick</Filter>
+      <Filter>ClientFSM\CommonMovementFSM\State\Attack\Low\LowKick</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>ClientActors\OldProject</Filter>
     </ClCompile>
     <ClCompile Include="IdleToKick.cpp">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToKick</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\State\Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\State\Move</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleToMove.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToMove</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

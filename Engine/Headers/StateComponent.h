@@ -33,6 +33,7 @@ namespace Core
 
 	public:
 		_pstring GetCurrentStateName() const;
+		_pstring GetPreviousStateName() const;
 
 	protected:
 		StateContainer* _pContainer{ nullptr };

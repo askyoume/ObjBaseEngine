@@ -51,8 +51,7 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 	pRenderTarget->SetTransform(Matx::Identity);
 
 	::Core::StateComponent* pStateComponent = _pAoko->GetComponent<::Core::StateComponent>("StateComponent");
-
-	_bstr_t StateName = pStateComponent->GetCurrentStateName();
+	_bstr_t StateName = "Aoko State : \n" + (_bstr_t)pStateComponent->GetCurrentStateName();
 	
 	pRenderTarget->DrawTextW(
 		StateName,

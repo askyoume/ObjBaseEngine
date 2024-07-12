@@ -5,7 +5,6 @@
 
 #include "../../ObjectBaseEngine/MovementComponent.h" //temp
 
-#include "Aoko.h"
 #include "IdleToRuning.h"
 
 bool Client::IdleToRuning::ShouldTransition()
@@ -17,10 +16,15 @@ bool Client::IdleToRuning::ShouldTransition()
 	}
 	
 	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
-	if (0.5f < _direction.x || -0.5 > _direction.x)
+	//std::cout << _direction.x << std::endl;
+	if (!pMovementComponent->IsGrounded())
+	{
+		return false;
+	}
+
+	if (pMovementComponent->IsRunning())
 	{
 		SetTargetState("RUNING");
-		//std::cout << _direction.x << std::endl;
 		return true;
 	}
 

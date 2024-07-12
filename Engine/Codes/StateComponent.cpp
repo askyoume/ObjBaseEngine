@@ -28,3 +28,8 @@ _pstring Core::StateComponent::GetCurrentStateName() const
 {
 	return _pContainer->GetCurrentStateName();
 }
+
+_pstring Core::StateComponent::GetPreviousStateName() const
+{
+	return _pContainer->GetPreviousStateName();
+}

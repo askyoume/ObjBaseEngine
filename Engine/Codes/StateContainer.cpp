@@ -38,6 +38,11 @@ void Core::StateContainer::Update(float deltaTime)
 
 	if (_previousState == _currentState)
 	{
+		if(_currentState == _initialState)
+		{
+			return;
+		}
+
 		for(auto& pTransition : _initialState->GetTransitions())
 		{
 			if (!pTransition->ShouldTransition())
@@ -60,16 +65,18 @@ void Core::StateContainer::Remove()
 
 void Core::StateContainer::ChangeState(_pstring targetState)
 {
+	_pstring previousState{ "None" }; 
 	if(_currentState)
 	{
+		previousState = _currentState->GetName();
 		_currentState->Exit();
 	}
 
 	auto pFindState = _states.find(targetState);
 	if (pFindState != _states.end())
 	{
+		pFindState->second->SetPreviousStateName(previousState);
 		_currentState = pFindState->second;
-
 		_currentState->Enter();
 	}
 	else
@@ -104,5 +111,10 @@ void Core::StateContainer::AddState(State* pState)
 _pstring Core::StateContainer::GetCurrentStateName() const
 {
 	return _currentState->GetName();
+}
+
+_pstring Core::StateContainer::GetPreviousStateName() const
+{
+	return _previousState->GetName();
 }
 

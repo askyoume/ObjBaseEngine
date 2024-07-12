@@ -26,6 +26,7 @@ namespace Core
 		float GetRelativeRotation() const { return _RelativeRotation; }
 
 		//상대 위치
+		void SetRelativeY(float y) { _RelativeLocation.y = y; }
 		void SetRelativeLocation(const Mathf::Vector2& location) { _RelativeLocation = location; }
 		void AddRelativeLocation(const Mathf::Vector2& location) { _RelativeLocation += location; }
 		const Mathf::Vector2& GetRelativeLocation() const { return _RelativeLocation; }

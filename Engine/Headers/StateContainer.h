@@ -29,6 +29,7 @@ namespace Core
 	public:
 		//use Debugging
 		_pstring GetCurrentStateName() const;
+		_pstring GetPreviousStateName() const;
 
 	protected:
 		StateComponent*		_pOwnerComponent{ nullptr };

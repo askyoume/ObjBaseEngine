@@ -3,10 +3,10 @@
 #include "../../Engine/Headers/AnimationComponent.h"
 #include "../../Engine/Headers/CoreManager.h"
 #include "../../Engine/Headers/World.h"
+#include "../../ObjectBaseEngine/MovementComponent.h" //temp
+#include "../../Engine/Headers/Actor.h"
 
 #include "Idle.h"
-#include "Character.h"
-#include "Aoko.h"
 #include "ClientFSMContainer.h"
 
 void Client::Idle::Enter()
@@ -15,14 +15,37 @@ void Client::Idle::Enter()
 	{
 		pActor = _pOwnerComponent->GetOwner();
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
+		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
 
-	if(pAnimationComponent->IsClipEnd("ReadyToIdle"))
+	if (pAnimationComponent->IsClipEnd("ReadyToIdle") && 
+		pAnimationComponent->IsClipEnd("Idle") &&
+		pAnimationComponent->IsClipEnd("Jump"))
+	{
 		pAnimationComponent->SetPlayClip("Idle");
+	}
 }
 
 void Client::Idle::Execute(float deltaTime)
 {
+	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
+	if (_direction.y < 0)
+	{
+		//_pOwnerComponent->ChangeState("JUMP");
+		pMovementComponent->Jump(deltaTime);
+	}
+
+	if (pMovementComponent->IsJumping())
+	{
+		std::cout << "Jump" << (pMovementComponent->IsJumping()? "true" : "false")<< std::endl;
+		pAnimationComponent->SetPlayClip("Jump");
+	}
+	else if (pAnimationComponent->IsClipEnd("ReadyToIdle") && 
+		pAnimationComponent->IsClipEnd("Idle") &&
+		pAnimationComponent->IsClipEnd("Jump"))
+	{
+		pAnimationComponent->SetPlayClip("Idle");
+	}
 }
 
 void Client::Idle::Exit()
