@@ -12,6 +12,9 @@ namespace Core
 		~InputManager() = default;
 
 	public:
+		using ReceiverMap = std::unordered_map<_uint, std::unordered_map<InputType, std::vector<IInputReceiver*>>>;
+
+	public:
 		bool Initialize(HINSTANCE hInst, HWND hWnd);
 		void InputUpdate();
 		void RegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver);
@@ -40,16 +43,17 @@ namespace Core
 		IDirectInputDevice8* _pKeyboard = nullptr;
 		IDirectInputDevice8* _pMouse = nullptr;
 
+	private:
 		XINPUT_STATE* _pGamePad = nullptr;
 		DWORD _gamePadIndex = 0;
 		HWND hWnd = nullptr;
 
-		float _elapsedTime = 0.f;
-
+	private:
 		_byte _previousKeyboardState[256];
 		_byte _keyboardState[256];
 
-		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<IInputReceiver*>>> Receivers;
+	private:
+		ReceiverMap Receivers;
 		std::unordered_map<_uint, bool> _previousButtonStates;
 	};
 }

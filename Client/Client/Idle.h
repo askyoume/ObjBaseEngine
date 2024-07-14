@@ -13,8 +13,8 @@ namespace Client
 	class Idle : public Core::State
 	{
 	protected:
-		explicit Idle() DEFAULT;
-		virtual ~Idle() DEFAULT;
+		explicit Idle() = default;
+		virtual ~Idle() = default;
 
 	public:
 		void Enter() override;

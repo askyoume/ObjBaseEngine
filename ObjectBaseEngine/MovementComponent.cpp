@@ -23,7 +23,7 @@ void Core::MovementComponent::BeginPlay()
 	_limitSpeed = 100.0f;
 
 	_acceleration = 4.f;
-	_friction = 0.98f;
+	_friction = 0.55f;
 	_targetSpeed = 0.f;
 }
 

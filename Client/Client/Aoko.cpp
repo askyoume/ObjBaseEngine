@@ -12,7 +12,7 @@
 
 void Client::Aoko::BeginPlay()
 {
-	Actor::BeginPlay();
+	Super::BeginPlay();
 
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
@@ -47,13 +47,13 @@ void Client::Aoko::BeginPlay()
 	_pStateComponent = AddComponent<::Core::StateComponent>("StateComponent");
 	_pStateComponent->AddContainer<ClientFSMContainer>();
 
-	SetPlayClip("Idle");
+	_pAnimationComponent->SetPlayClip("Idle");
 }
 
 void Client::Aoko::Tick(_float deltaTime)
 {
-	MatchCombo();
-	Actor::Tick(deltaTime);
+	MatchCombo(deltaTime);
+	Super::Tick(deltaTime);
 }
 
 void Client::Aoko::Fixed()
@@ -64,8 +64,10 @@ void Client::Aoko::EndPlay()
 {
 }
 
-void Client::Aoko::MatchCombo()
+void Client::Aoko::MatchCombo(_float deltaTime)
 {
+	_comboTime += deltaTime;
+
 	if (_inputQueue.size() > 12)
 	{
 		_inputQueue.pop_front();
@@ -73,19 +75,29 @@ void Client::Aoko::MatchCombo()
 
 	if (_inputQueue.size() > 3)
 	{
-		if (_inputQueue[0].key == DIK_RIGHT &&
-			_inputQueue[1].key == DIK_RIGHT)
-		{
-			_pMovementComponent->SetRunning(true);
-		}
+		//if (_inputQueue[0].key == DIK_RIGHT &&
+		//	_inputQueue[1].key == DIK_RIGHT)
+		//{
+		//	_pMovementComponent->SetRunning(true);
+		//}
 	}
+
+	//if (_comboTime > 0.5f)
+	//{
+	//	_comboTime = 0.f;
+	//	_inputQueue.clear();
+	//}
 }
 
 InputEvent Client::Aoko::GetPrevInputEvent()
 {
 	//std::cout << "Key : " << _inputQueue.front().key << std::endl;
 	//std::cout << "Type : " << (int)_inputQueue.front().type << std::endl;
-	return _inputQueue.front();
+	if (_inputQueue.size() < 2)
+	{
+		return _inputQueue.back();
+	}
+	return _inputQueue[_inputQueue.size() - 2];
 }
 
 void Client::Aoko::Attack(const InputEvent& inputEvent)
@@ -96,9 +108,10 @@ void Client::Aoko::Move(const InputEvent& inputEvent)
 {
 	//_direction.x = inputEvent.value;
 	//_direction.y = inputEvent.value;
+
 	if(inputEvent.type == InputType::PRESS || inputEvent.type == InputType::AXIS)
 	{
-		std::cout << inputEvent.key << std::endl;
+		//std::cout << inputEvent.key << std::endl;
 		_inputQueue.push_back(inputEvent);
 	}
 
@@ -112,23 +125,27 @@ void Client::Aoko::Move(const InputEvent& inputEvent)
 
 	if (inputEvent.key == DIK_LEFT && inputEvent.type == InputType::HELD)
 	{
-		if(_pMovementComponent->IsRunning())
+		if(GetPrevInputEvent().key == DIK_LEFT && GetPrevInputEvent().type == InputType::RELEASE)
 		{
+			_pMovementComponent->SetRunning(true);
 			_pMovementComponent->SetInputDirection({ -2.f,0.f });
 		}
 		else
 		{
+			_pMovementComponent->SetRunning(false);
 			_pMovementComponent->SetInputDirection({ -1.f,0.f });
 		}
 	}
 	if (inputEvent.key == DIK_RIGHT && inputEvent.type == InputType::HELD)
 	{
-		if(_pMovementComponent->IsRunning())
+		if(GetPrevInputEvent().key == DIK_RIGHT && GetPrevInputEvent().type == InputType::RELEASE)
 		{
+			_pMovementComponent->SetRunning(true);	
 			_pMovementComponent->SetInputDirection({ 2.f,0.f });
 		}
 		else
 		{
+			_pMovementComponent->SetRunning(false);
 			_pMovementComponent->SetInputDirection({ 1.f,0.f });
 		}
 	}
@@ -147,8 +164,10 @@ void Client::Aoko::MoveHandler(const InputEvent& inputEvent)
 {
 	if (inputEvent.type == InputType::RELEASE)
 	{
+		std::cout << inputEvent.key << std::endl;
 		_inputQueue.push_back(inputEvent);
 		_pMovementComponent->SetInputDirection({0.f,0.f});
+		_pMovementComponent->SetRunning(false);
 	}
 }
 

@@ -43,6 +43,11 @@ void Core::StateContainer::Update(float deltaTime)
 			return;
 		}
 
+		if (!_initialState)
+		{
+			return;
+		}
+
 		for(auto& pTransition : _initialState->GetTransitions())
 		{
 			if (!pTransition->ShouldTransition())
@@ -110,11 +115,21 @@ void Core::StateContainer::AddState(State* pState)
 
 _pstring Core::StateContainer::GetCurrentStateName() const
 {
+	if(!_currentState)
+	{
+		return "None";
+	}
+
 	return _currentState->GetName();
 }
 
 _pstring Core::StateContainer::GetPreviousStateName() const
 {
+	if(!_previousState)
+	{
+		return "None";
+	}
+
 	return _previousState->GetName();
 }
 

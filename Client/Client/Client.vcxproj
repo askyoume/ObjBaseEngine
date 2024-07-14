@@ -128,6 +128,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AIMovementFSMContainer.h" />
+    <ClInclude Include="AI_Attack.h" />
+    <ClInclude Include="AI_Chasing.h" />
+    <ClInclude Include="AI_ChasingToIdle.h" />
+    <ClInclude Include="AI_Idle.h" />
+    <ClInclude Include="AI_IdleToAttack.h" />
+    <ClInclude Include="AI_IdleToChasing.h" />
     <ClInclude Include="Aoko.h" />
     <ClInclude Include="ClientFSMContainer.h" />
     <ClInclude Include="BackGround.h" />
@@ -142,12 +149,20 @@
     <ClInclude Include="LowKick.h" />
     <ClInclude Include="Moon.h" />
     <ClInclude Include="Move.h" />
+    <ClInclude Include="Neko.h" />
     <ClInclude Include="NightSky.h" />
     <ClInclude Include="Runing.h" />
     <ClInclude Include="TestActor.h" />
     <ClInclude Include="TestActor2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIMovementFSMContainer.cpp" />
+    <ClCompile Include="AI_Attack.cpp" />
+    <ClCompile Include="AI_Chasing.cpp" />
+    <ClCompile Include="AI_ChasingToIdle.cpp" />
+    <ClCompile Include="AI_Idle.cpp" />
+    <ClCompile Include="AI_IdleToAttack.cpp" />
+    <ClCompile Include="AI_IdleToChasing.cpp" />
     <ClCompile Include="Aoko.cpp" />
     <ClCompile Include="ClientFSMContainer.cpp" />
     <ClCompile Include="BackGround.cpp" />
@@ -162,6 +177,7 @@
     <ClCompile Include="LowKick.cpp" />
     <ClCompile Include="Moon.cpp" />
     <ClCompile Include="Move.cpp" />
+    <ClCompile Include="Neko.cpp" />
     <ClCompile Include="NightSky.cpp" />
     <ClCompile Include="Runing.cpp" />
     <ClCompile Include="TestActor.cpp" />

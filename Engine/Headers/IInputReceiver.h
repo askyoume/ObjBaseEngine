@@ -5,12 +5,8 @@
 
 namespace Core
 {
-	class IInputReceiver
+	Interface IInputReceiver
 	{
-	protected:
-		explicit IInputReceiver() DEFAULT;
-		virtual ~IInputReceiver() DEFAULT;
-	public:
 		virtual void OnInputReceived(const InputEvent& inputEvent) PURE;
 	};
 }

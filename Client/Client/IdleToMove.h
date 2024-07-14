@@ -12,8 +12,8 @@ namespace Client
 	class IdleToMove : public Core::StateTransition
 	{
 	protected:
-		explicit IdleToMove() DEFAULT;
-		virtual ~IdleToMove() DEFAULT;
+		explicit IdleToMove() = default;
+		virtual ~IdleToMove() = default;
 
 	public:
 		bool ShouldTransition() override;

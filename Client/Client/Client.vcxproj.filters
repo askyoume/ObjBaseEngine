@@ -19,9 +19,6 @@
     <Filter Include="ClientActors\ETC">
       <UniqueIdentifier>{25cb5cea-cdf8-4a3b-ab76-43a60b1bd7c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientActors\Platform">
-      <UniqueIdentifier>{1b7b7ce4-ad25-4ee1-b889-32d88952606d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientFSM">
       <UniqueIdentifier>{79bff297-cb1b-430f-9b92-ab1a56a6dc85}</UniqueIdentifier>
     </Filter>
@@ -91,6 +88,39 @@
     <Filter Include="ClientFSM\CommonMovementFSM\Transit\IdleToMove">
       <UniqueIdentifier>{3975ddfe-d86f-425b-918b-c62e6ade1fe2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientActors\OldProject\Platform">
+      <UniqueIdentifier>{1b7b7ce4-ad25-4ee1-b889-32d88952606d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM">
+      <UniqueIdentifier>{4b5a7e7f-f1a4-4093-8c44-644deb45e358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\State">
+      <UniqueIdentifier>{59d1b392-9496-4653-8fb0-a91bc969bfdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\State\AI_Idle">
+      <UniqueIdentifier>{5b412b15-fb2c-4e52-af05-3b8dbdee4866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\State\AI_Chasing">
+      <UniqueIdentifier>{19a44aa6-23b3-4099-8b58-9183278c1eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\State\AI_Attack">
+      <UniqueIdentifier>{7043d5ed-0fba-4dbb-858b-214a542382eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\Transit">
+      <UniqueIdentifier>{3cfd0035-765d-4a4f-9be0-5d3e52c69de1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\Transit\AI_IdleToChasing">
+      <UniqueIdentifier>{e52e2060-1e14-4bdb-ab7e-a0b4c269715b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\Transit\AI_IdleToAttack">
+      <UniqueIdentifier>{662ed96d-5ebd-47c4-bbc9-9b8ec62f82e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\Transit\AI_ChasingToIdle">
+      <UniqueIdentifier>{6d18befd-a9b5-48e8-9b82-27ea66494bc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\Transit\AI_AttackToIdle">
+      <UniqueIdentifier>{0308ad60-5d0c-4ae0-839b-189cf163e7b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -147,6 +177,30 @@
     <ClInclude Include="IdleToMove.h">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToMove</Filter>
     </ClInclude>
+    <ClInclude Include="Neko.h">
+      <Filter>ClientActors\Character\Neko</Filter>
+    </ClInclude>
+    <ClInclude Include="AIMovementFSMContainer.h">
+      <Filter>ClientFSM\AIMovementFSM</Filter>
+    </ClInclude>
+    <ClInclude Include="AI_Idle.h">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="AI_Chasing.h">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Chasing</Filter>
+    </ClInclude>
+    <ClInclude Include="AI_Attack.h">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="AI_IdleToChasing.h">
+      <Filter>ClientFSM\AIMovementFSM\Transit\AI_IdleToChasing</Filter>
+    </ClInclude>
+    <ClInclude Include="AI_IdleToAttack.h">
+      <Filter>ClientFSM\AIMovementFSM\Transit\AI_IdleToAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="AI_ChasingToIdle.h">
+      <Filter>ClientFSM\AIMovementFSM\Transit\AI_ChasingToIdle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -202,6 +256,30 @@
     </ClCompile>
     <ClCompile Include="IdleToMove.cpp">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToMove</Filter>
+    </ClCompile>
+    <ClCompile Include="Neko.cpp">
+      <Filter>ClientActors\Character\Neko</Filter>
+    </ClCompile>
+    <ClCompile Include="AIMovementFSMContainer.cpp">
+      <Filter>ClientFSM\AIMovementFSM</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_Idle.cpp">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_Chasing.cpp">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Chasing</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_Attack.cpp">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_IdleToAttack.cpp">
+      <Filter>ClientFSM\AIMovementFSM\Transit\AI_IdleToAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_IdleToChasing.cpp">
+      <Filter>ClientFSM\AIMovementFSM\Transit\AI_IdleToChasing</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_ChasingToIdle.cpp">
+      <Filter>ClientFSM\AIMovementFSM\Transit\AI_ChasingToIdle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

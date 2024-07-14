@@ -20,7 +20,10 @@ void Core::InputComponent::OnInputReceived(const InputEvent& inputEvent)
 
 	auto& handlers = iter->second[inputEvent.type];
 	for (auto& handler : handlers)
+	{
 		handler(inputEvent);
+		//_inputEvents.push_back(inputEvent);
+	}
 }
 
 void Core::InputComponent::AttachToInputManager()

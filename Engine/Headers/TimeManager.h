@@ -10,10 +10,19 @@ namespace Core
 		~TimeManager() DEFAULT;
 
 	public:
+		using _clock = std::chrono::high_resolution_clock;
+		using _duration = std::chrono::duration<float>;
+		using _timePoint = std::chrono::high_resolution_clock::time_point;
+
+	public:
 		bool Initialize();
 		void UpdateTick();
-		_float GetTick() const;
+		void SetTimeScale(_float timeScale);
+
+	public:
 		int GetFPS() const;
+		_float GetDeltaSeconds() const;
+		_float GetTimeScale() const;
 
 	public:
 		static TimeManager* Create();
@@ -22,7 +31,9 @@ namespace Core
 		void Remove() override;
 
 	private:
-		LARGE_INTEGER tick{}, prevTick{}, frameTick{};
-		float tickTime = 0.f;
+		//LARGE_INTEGER tick{}, prevTick{}, frameTick{};
+		_timePoint _prevTick{};
+		float _deltaSeconds{ 0.f };
+		float _timeScale{ 1.f };
 	};
 }

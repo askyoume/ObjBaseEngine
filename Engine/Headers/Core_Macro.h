@@ -1,9 +1,9 @@
 #pragma once
 
+#define Interface __interface
+#define Super __super
 #define PURE = 0
-
 #define DEFAULT = default
-
 #define MAX_OBJECT 20
 
 #define _SINGLETON_OPERATOR(ClassName)                        \
@@ -34,8 +34,8 @@
     class State;					\
     class StateContainer;			\
 	class StateTransition;			\
+	__interface IInputReceiver;     \
     class StateComponent;		    \
-	class IInputReceiver;           \
 	class InputComponent;           \
     class CameraComponent;          \
 	class RenderComponent;          \

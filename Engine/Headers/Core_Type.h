@@ -7,6 +7,7 @@ typedef unsigned short _ushort;
 typedef unsigned int _uint;
 typedef unsigned long _ulong;
 typedef unsigned long long _ullong;
+typedef const int& _int;
 typedef const float& _float;
 typedef const char* _pstring;
 typedef const wchar_t* _pwstring;

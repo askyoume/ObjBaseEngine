@@ -11,9 +11,10 @@ namespace Core
 		explicit InputComponent() DEFAULT;
 		virtual ~InputComponent() DEFAULT;
 
-	public:
+	protected:
 		using Callback = std::function<void(const InputEvent&)>;
 		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<Callback>>> _eventHandlers;
+		std::deque<InputEvent> _inputEvents;
 
 	public:
 		void BindInputEvent(_uint key, InputType type, Callback handler);

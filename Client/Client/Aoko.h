@@ -18,8 +18,8 @@ namespace Client
 	class Aoko : public Core::Actor
 	{
 	protected:
-		explicit Aoko() DEFAULT;
-		virtual ~Aoko() DEFAULT;
+		explicit Aoko() = default;
+		virtual ~Aoko() = default;
 
 	public:
 		void BeginPlay() override;
@@ -27,7 +27,7 @@ namespace Client
 		void Fixed() override;
 		void EndPlay() override;
 
-		void MatchCombo();
+		void MatchCombo(_float deltaTime);
 		InputEvent GetPrevInputEvent();
 
 		void Attack(const InputEvent& inputEvent);
@@ -46,5 +46,8 @@ namespace Client
 		::Core::InputComponent*		_pInputComponent{ nullptr };
 		::Core::StateComponent*		_pStateComponent{ nullptr };
 		std::deque<InputEvent>		_inputQueue;
+
+	private:
+		float _comboTime{ 0.f };
 	};
 }

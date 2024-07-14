@@ -10,6 +10,7 @@ namespace Core
 namespace Client
 {
 	class Aoko;
+	class Neko;
 	class ClientWorld final : public Core::World
 	{
 	private:
@@ -26,5 +27,6 @@ namespace Client
 
 	private:
 		Aoko* _pAoko{ nullptr };
+		Neko* _pNeko{ nullptr };
 	};
 }

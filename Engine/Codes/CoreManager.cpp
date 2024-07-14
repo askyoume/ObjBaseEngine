@@ -25,7 +25,7 @@ void Core::CoreManager::Tick()
 {
     _pTimeMgr->UpdateTick();
 
-    float tickTime = _pTimeMgr->GetTick();
+    float tickTime = _pTimeMgr->GetDeltaSeconds();
 
     _pInputMgr->InputUpdate();
     if(_pWorld) { _pWorld->Tick(tickTime); }
@@ -36,7 +36,7 @@ void Core::CoreManager::Fixed(int count)
 	bool isZero = count == 0;
 	if (isZero) return;
 
-    _elapsedTick += _pTimeMgr->GetTick();
+    _elapsedTick += _pTimeMgr->GetDeltaSeconds();
 
 	float fixedTick = 1.f / count;
 
