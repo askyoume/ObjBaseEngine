@@ -12,8 +12,8 @@ namespace Client
 	class BackGround : public Core::Actor
 	{
 	protected:
-		explicit BackGround() DEFAULT;
-		virtual ~BackGround() DEFAULT;
+		explicit BackGround() = default;
+		virtual ~BackGround() = default;
 
 	public:
 		void BeginPlay() override;

@@ -6,8 +6,8 @@ namespace Core
 	class FontManager : public Core
 	{
 	private:
-		explicit FontManager() DEFAULT;
-		virtual ~FontManager() DEFAULT;
+		explicit FontManager() = default;
+		virtual ~FontManager() = default;
 
 	public:
 		bool Initialize();

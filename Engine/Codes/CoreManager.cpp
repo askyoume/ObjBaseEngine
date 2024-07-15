@@ -160,6 +160,22 @@ void Core::CoreManager::RemoveRenderQueue(int layerIndex, RenderComponent* pRend
 	}
 }
 
+void Core::CoreManager::AddCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent)
+{
+	if (_pWorld)
+	{
+		_pWorld->GetLayer(layerIndex)->AddCollisionQueue(pCollisionComponent);
+	}
+}
+
+void Core::CoreManager::RemoveCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent)
+{
+	if (_pWorld)
+	{
+		_pWorld->GetLayer(layerIndex)->RemoveCollisionQueue(pCollisionComponent);
+	}
+}
+
 GraphicsPtrPackage* Core::CoreManager::GetGraphicsPackage() const
 {
 	return _pGraphicsMgr->GetPackage();

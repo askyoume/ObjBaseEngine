@@ -7,8 +7,8 @@ namespace Core
 	class State abstract : public Core
 	{
 	protected:
-		explicit State() DEFAULT;
-		virtual ~State() DEFAULT;
+		explicit State() = default;
+		virtual ~State() = default;
 
 	public:
 		virtual void Enter() PURE;

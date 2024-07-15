@@ -4,7 +4,7 @@
 #include "../../Engine/Headers/Actor.h"
 #include "../../Engine/Headers/World.h"
 
-#include "../../ObjectBaseEngine/MovementComponent.h" //temp
+#include "../../Engine/Headers/MovementComponent.h" //temp
 
 #include "AI_IdleToAttack.h"
 

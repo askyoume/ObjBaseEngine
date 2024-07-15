@@ -2,21 +2,24 @@
 #include "Core_Define.h"
 #include "Object.h"
 #include "Mathf.h"
+#include "IColliderReceiver.h"
 
 namespace Core
 {
 	CORECLASS()
-	class Actor abstract : public Object
+	class Actor abstract : public Object, public IColliderReceiver
 	{
 	protected:
-		explicit Actor() DEFAULT;
-		virtual ~Actor() DEFAULT;
+		explicit Actor() = default;
+		virtual ~Actor() = default;
 
 	public:
 		virtual void BeginPlay();
 		virtual void Tick(_float deltaTime);
 		virtual void Fixed();
-		//virtual void Render(ID2D1RenderTarget* pRenderTarget);
+		virtual void NotifyActorBlock(Actor* pOther){};
+		virtual void NotifyActorBeginOverlap(Actor* pOther){};
+		virtual void NotifyActorEndOverlap(Actor* pOther){};
 		virtual void EndPlay();
 
 	public:
@@ -28,7 +31,7 @@ namespace Core
 			T* pComponent = T::Create();
 			pComponent->SetOwner(this);
 			pComponent->SetName(name);
-			//이게 맞니? ㅋㅋㅋㅋ
+
 			bool isSceneComponent = std::is_base_of<SceneComponent, T>::value;
 			bool isRootComponent = (nullptr == _pRootComponent);
 			if (isSceneComponent && !isRootComponent)

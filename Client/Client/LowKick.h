@@ -7,8 +7,8 @@ namespace Client
 	class LowKick : public Core::State
 	{
 	protected:
-		explicit LowKick() DEFAULT;
-		virtual ~LowKick() DEFAULT;
+		explicit LowKick() = default;
+		virtual ~LowKick() = default;
 
 	public:
 		void Enter() override;

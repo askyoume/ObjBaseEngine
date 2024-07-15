@@ -7,8 +7,8 @@ namespace Core
 	class Core abstract
 	{
 	protected:
-		explicit Core() DEFAULT;
-		virtual ~Core() DEFAULT;
+		explicit Core() = default;
+		virtual ~Core() = default;
 
 	public:
 		void Release()

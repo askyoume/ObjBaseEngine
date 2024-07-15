@@ -1,6 +1,6 @@
 #include "../../Engine/Headers/StateComponent.h"
 #include "../../Engine/Headers/AnimationComponent.h"
-#include "../../ObjectBaseEngine/MovementComponent.h" //temp
+#include "../../Engine/Headers/MovementComponent.h" //temp
 #include "../../Engine/Headers/Actor.h"
 
 #include "Runing.h"

@@ -8,8 +8,8 @@ namespace Core
 	class CameraComponent : public SceneComponent
 	{
 	protected:
-		explicit CameraComponent() DEFAULT;
-		virtual ~CameraComponent() DEFAULT;
+		explicit CameraComponent() = default;
+		virtual ~CameraComponent() = default;
 	public:
 		//Component
 		virtual void BeginPlay() override {};

@@ -3,7 +3,7 @@
 #include "../../Engine/Headers/AnimationComponent.h"
 #include "../../Engine/Headers/Actor.h"
 
-#include "../../ObjectBaseEngine/MovementComponent.h" //temp
+#include "../../Engine/Headers/MovementComponent.h" //temp
 
 #include "IdleToMove.h"
 

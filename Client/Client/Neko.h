@@ -9,6 +9,7 @@ namespace Core
 	class InputComponent;
 	class StateComponent;
 	class MovementComponent;
+	class BoxComponent;
 }
 
 struct InputEvent;
@@ -31,6 +32,7 @@ namespace Client
 		static Neko* Create();
 
 	private:
+		::Core::BoxComponent*		_pBoxComponent{ nullptr };
 		::Core::MovementComponent*  _pMovementComponent{ nullptr };
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::StateComponent*		_pAIComponent{ nullptr };

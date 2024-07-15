@@ -7,12 +7,12 @@ namespace Mathf
 {
 	struct Vector2 : public D2D1_VECTOR_2F
 	{
-		Vector2() DEFAULT;
+		Vector2() = default;
 		Vector2(float x, float y) : D2D1_VECTOR_2F{ x, y } {}
 		Vector2(const D2D1_VECTOR_2F& rhs) : D2D1_VECTOR_2F{ rhs.x, rhs.y } {}
 
-		Vector2(const Vector2& rhs) DEFAULT;
-		Vector2(Vector2&& rhs) DEFAULT;
+		Vector2(const Vector2& rhs) = default;
+		Vector2(Vector2&& rhs) = default;
 
 		Vector2 Normalize()
 		{

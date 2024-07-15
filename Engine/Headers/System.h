@@ -1,15 +1,15 @@
 #pragma once
-#include "../../Engine/Headers/Core.h"
+#include "Core.h"
 #include "Client_Macro.h"
-#include "../../Engine/Headers/CoreManager.h"
+#include "CoreManager.h"
 
 namespace Game
 {
 	class System : public Core::Core
 	{
 	private:
-		explicit System() DEFAULT;
-		virtual ~System() DEFAULT;
+		explicit System() = default;
+		virtual ~System() = default;
 		DENY_COPY(System)
 
 	public:

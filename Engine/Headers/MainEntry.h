@@ -16,8 +16,8 @@ namespace Game
 	class MainEntry abstract
 	{
 	public:
-		MainEntry() DEFAULT;
-		~MainEntry() DEFAULT;
+		MainEntry() = default;
+		~MainEntry() = default;
 
 	public:
 		virtual void CreateWorld() PURE; //이게 클라이언트에서 상속받아서 사용시에 월드를 강제로 생성하게 하기 위한 함수

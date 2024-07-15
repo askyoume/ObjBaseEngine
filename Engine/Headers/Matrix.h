@@ -6,6 +6,19 @@ namespace Mathf
 {
 	typedef D2D_MATRIX_3X2_F Matrix3x2;
 
+	inline Matrix3x2 InverseMatrix(Matrix3x2& matrix)
+	{
+		D2D1_MATRIX_3X2_F temp = matrix;
+		matrix._11 = temp._11;
+		matrix._12 = temp._21;
+		matrix._21 = temp._12;
+		matrix._22 = temp._22;
+		matrix._31 = -(temp._31 * matrix._11 + temp._32 * matrix._21);
+		matrix._32 = -(temp._31 * matrix._12 + temp._32 * matrix._22);
+
+		return matrix;
+	}
+
 	inline void GetRotationFormMatrix(const Matrix3x2& matrix, float& angle)
 	{
 		angle = atan2f(matrix._21, matrix._11);

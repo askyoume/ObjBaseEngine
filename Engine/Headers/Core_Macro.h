@@ -2,9 +2,12 @@
 
 #define Interface __interface
 #define Super __super
-#define PURE = 0
-#define DEFAULT = default
+//#define PURE abstract
 #define MAX_OBJECT 20
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
 
 #define _SINGLETON_OPERATOR(ClassName)                        \
     public:                                                   \
@@ -14,6 +17,7 @@
         ClassName& operator=(ClassName&&) = delete;
 
 #define CORECLASS()                 \
+	class CollisionComponent;       \
     class Texture;                  \
     class Object;                   \
     class Component;                \
@@ -34,6 +38,7 @@
     class State;					\
     class StateContainer;			\
 	class StateTransition;			\
+    __interface IColliderReceiver;  \
 	__interface IInputReceiver;     \
     class StateComponent;		    \
 	class InputComponent;           \

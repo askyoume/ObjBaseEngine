@@ -1,7 +1,7 @@
 ﻿#include <cstdlib>
 
 #include "../../Engine/Headers/Core_Define.h"
-#include "../../ObjectBaseEngine/System.h"
+#include "../../Engine/Headers/System.h"
 #include "../../Engine/Headers/CoreManager.h"
 
 #include "Client.h"
@@ -18,10 +18,6 @@
 #else
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 #endif
-#endif
-
-#ifdef _DEBUG
-#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
 #endif
 
 constexpr int SCREEN_WIDTH = 1920;

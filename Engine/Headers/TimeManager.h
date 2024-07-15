@@ -6,8 +6,8 @@ namespace Core
 	class TimeManager : public Core
 	{
 	private:
-		TimeManager() DEFAULT;
-		~TimeManager() DEFAULT;
+		TimeManager() = default;
+		~TimeManager() = default;
 
 	public:
 		using _clock = std::chrono::high_resolution_clock;

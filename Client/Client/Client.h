@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../ObjectBaseEngine/Client_Macro.h"
-#include "../../ObjectBaseEngine/MainEntry.h"
+#include "../../Engine/Headers/Client_Macro.h"
+#include "../../Engine/Headers/MainEntry.h"
 
 namespace Core
 {
@@ -14,8 +14,8 @@ namespace Client
 	class ClientGame : public Game::MainEntry
 	{
 	public:
-		ClientGame() DEFAULT;
-		~ClientGame() DEFAULT;
+		ClientGame() = default;
+		~ClientGame() = default;
 
 		void CreateWorld() override;
 	};

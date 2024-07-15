@@ -7,8 +7,8 @@ namespace Core
 	class Component abstract : public Object
 	{
 	protected:
-		explicit Component() DEFAULT;
-		virtual ~Component() DEFAULT;
+		explicit Component() = default;
+		virtual ~Component() = default;
 
 	public:
 		virtual void BeginPlay() PURE;

@@ -7,8 +7,8 @@ namespace Client
 	class TestActor2 : public Core::Actor
 	{
 	protected:
-		explicit TestActor2() DEFAULT;
-		virtual ~TestActor2() DEFAULT;
+		explicit TestActor2() = default;
+		virtual ~TestActor2() = default;
 	public:
 		void BeginPlay() override;
 		void Tick(_float deltaTime) override;

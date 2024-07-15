@@ -12,8 +12,8 @@ namespace Core
 		using ActorMap = std::unordered_map<_pstring, Actor*>;
 
 	protected:
-		explicit World() DEFAULT;
-		virtual	~World() DEFAULT;
+		explicit World() = default;
+		virtual	~World() = default;
 	
 	public:
 		bool InitializeWorld(int layerSize);

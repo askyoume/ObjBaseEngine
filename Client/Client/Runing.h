@@ -14,8 +14,8 @@ namespace Client
 	class Runing : public Core::State
 	{
 	protected:
-		explicit Runing() DEFAULT;
-		virtual ~Runing() DEFAULT;
+		explicit Runing() = default;
+		virtual ~Runing() = default;
 
 	public:
 		void Enter() override;

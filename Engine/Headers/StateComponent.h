@@ -8,8 +8,8 @@ namespace Core
 	class StateComponent : public Component
 	{
 	protected:
-		explicit StateComponent() DEFAULT;
-		virtual ~StateComponent() DEFAULT;
+		explicit StateComponent() = default;
+		virtual ~StateComponent() = default;
 
 	public:
 		virtual bool Initialize() override;

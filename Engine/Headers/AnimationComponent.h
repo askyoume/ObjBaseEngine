@@ -6,8 +6,8 @@ namespace Core
 	class AnimationComponent final : public BitmapComponent
 	{
 	protected:
-		explicit AnimationComponent() DEFAULT;
-		virtual ~AnimationComponent() DEFAULT;
+		explicit AnimationComponent() = default;
+		virtual ~AnimationComponent() = default;
 
 	public:
 		virtual void TickComponent(_float deltaTime) override;
@@ -27,7 +27,7 @@ namespace Core
 
 	private:
 		std::unordered_map<_pstring, AnimationClip*> _vecClips;
-		_pstring _currentClipName;
+		_pstring _currentClipName{};
 		float	 _frameTime{ 0 };
 		float	 _currentFrameTime{ -1 };
 		int		 _prevFrame{ -1 };

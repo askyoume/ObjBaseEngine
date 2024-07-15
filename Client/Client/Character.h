@@ -28,8 +28,8 @@ namespace Client
 			STATE_JUMPING = 1 << 8
 		};
 	protected:
-		explicit Character() DEFAULT;
-		virtual ~Character() DEFAULT;
+		explicit Character() = default;
+		virtual ~Character() = default;
 
 	public:
 		void BeginPlay() override;

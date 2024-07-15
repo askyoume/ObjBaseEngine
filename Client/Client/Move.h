@@ -14,8 +14,8 @@ namespace Client
 	class Move : public Core::State
 	{
 	protected:
-		explicit Move() DEFAULT;
-		virtual ~Move() DEFAULT;
+		explicit Move() = default;
+		virtual ~Move() = default;
 
 	public:
 		void Enter() override;

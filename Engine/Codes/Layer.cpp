@@ -4,6 +4,7 @@
 #include "RenderComponent.h"
 #include "CameraActor.h"
 #include "CameraComponent.h"
+#include "CollisionComponent.h"
 
 void Core::Layer::Tick(_float deltaTime)
 {
@@ -14,22 +15,22 @@ void Core::Layer::Tick(_float deltaTime)
 
 		actor->Tick(deltaTime);
 	}
-	//	//TODO: Debug Code
-	//for (auto& renderComponent  : _renderQueue)
-	//{
-	//	if (renderComponent->GetOwner()->IsDestroyMarked())
-	//		continue;
 
-	//	if(_pCameraActor->GetCameraComponent()->CheckCollision(renderComponent->GetCollision()))
-	//	{
-	//		//renderComponent->SetVisible(true);
-	//	}
-	//	else
-	//	{
-	//		//renderComponent->SetVisible(false);
-	//		std::cout << "Not Visible" << std::endl;
-	//	}
-	//}
+	//debug code
+	for (auto& pCollisionComponent : _collisionQueue)
+	{
+		for (auto& pOtherComponent : _collisionQueue)
+		{
+			if (pCollisionComponent == pOtherComponent)
+				continue;
+
+			if (pCollisionComponent->IsCollision(pOtherComponent))
+			{
+				pCollisionComponent->ProcessCollision(pOtherComponent->GetOwner());
+			}
+		}
+	}
+
 }
 
 void Core::Layer::Fixed()
@@ -150,4 +151,21 @@ void Core::Layer::RemoveRenderQueue(RenderComponent* pRenderComponent)
 
 	_renderQueue.erase(
 		std::find(_renderQueue.begin(), _renderQueue.end(), pRenderComponent));
+}
+
+void Core::Layer::AddCollisionQueue(CollisionComponent* pCollisionComponent)
+{
+	if (nullptr == pCollisionComponent)
+		return;
+
+	_collisionQueue.push_back(pCollisionComponent);
+}
+
+void Core::Layer::RemoveCollisionQueue(CollisionComponent* pCollisionComponent)
+{
+	if (nullptr == pCollisionComponent)
+		return;
+
+	_collisionQueue.erase(
+		std::find(_collisionQueue.begin(), _collisionQueue.end(), pCollisionComponent));
 }

@@ -12,8 +12,8 @@ namespace Client
 	class IdleToRuning : public Core::StateTransition
 	{
 	protected:
-		explicit IdleToRuning() DEFAULT;
-		virtual ~IdleToRuning() DEFAULT;
+		explicit IdleToRuning() = default;
+		virtual ~IdleToRuning() = default;
 
 	public:
 		bool ShouldTransition() override;

@@ -6,8 +6,8 @@ namespace Core
 	class Texture : public Core
 	{
 	private:
-		explicit Texture() DEFAULT;
-		virtual ~Texture() DEFAULT;
+		explicit Texture() = default;
+		virtual ~Texture() = default;
 
 	public:
 		ID2D1Bitmap* operator[](const int index) const { return _vecOriginBitmaps[index]; }

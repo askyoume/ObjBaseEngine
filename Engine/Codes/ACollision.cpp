@@ -1,6 +1,6 @@
 #include "ACollision.h"
 
-void ACollision::SetCollisionScale(Mathf::Vector2 collisionScale)
+void ACollision::SetCollisionScale(const Mathf::Vector2& collisionScale)
 {
 	_collisionSize.x *= collisionScale.x;
 	_collisionSize.y *= collisionScale.y;
@@ -23,9 +23,11 @@ bool ACollision::CheckCollision(ACollision* pCollision) const
 
 	if (thisRight < otherLeft || thisLeft > otherRight || thisBottom < otherTop || thisTop > otherBottom)
 	{
+		std::cout << "No Collision" << std::endl;
 		return false;
 	}
 
+	std::cout << "Collision Detected" << std::endl;
 	return true;
 
 }

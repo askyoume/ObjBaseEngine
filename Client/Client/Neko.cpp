@@ -1,15 +1,14 @@
-#include "Neko.h"
-#include "ClientFSMContainer.h"
-#include "AIMovementFSMContainer.h"
-#include "../../Engine/Headers/Core_Struct.h"
 #include "../../Engine/Headers/Actor.h"
 #include "../../Engine/Headers/InputComponent.h"
 #include "../../Engine/Headers/AnimationComponent.h"
 #include "../../Engine/Headers/CoreManager.h"
 #include "../../Engine/Headers/Texture.h"
 #include "../../Engine/Headers/StateComponent.h"
+#include "../../Engine/Headers/MovementComponent.h"
+#include "../../Engine/Headers/BoxComponent.h"
 
-#include "../../ObjectBaseEngine/MovementComponent.h"
+#include "Neko.h"
+#include "AIMovementFSMContainer.h"
 
 void Client::Neko::BeginPlay()
 {
@@ -29,8 +28,10 @@ void Client::Neko::BeginPlay()
 	_pAnimationComponent->AddClip("Runing", 0.1f, true);
 	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
 
-	//_pStateComponent = AddComponent<::Core::StateComponent>("StateComponent");
-	//_pStateComponent->AddContainer<ClientFSMContainer>();
+	_pBoxComponent = AddComponent<::Core::BoxComponent>("BoxComponent");
+	_pBoxComponent->SetSize({ 90.f, 550.f });
+	_pBoxComponent->AddColliderInLayer();
+	_pBoxComponent->AddRenderQueueInLayer();
 
 	_pAIComponent = AddComponent<::Core::StateComponent>("AIComponent");
 	_pAIComponent->AddContainer<AIMovementFSMContainer>();

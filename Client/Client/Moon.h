@@ -7,8 +7,8 @@ namespace Client
 	class Moon : public Core::Actor
 	{
 	protected:
-		explicit Moon() DEFAULT;
-		virtual ~Moon() DEFAULT;
+		explicit Moon() = default;
+		virtual ~Moon() = default;
 	public:
 		void BeginPlay() override;
 		void Tick(_float deltaTime) override;

@@ -9,8 +9,8 @@ namespace Core
 	private:
 		using Textures = std::unordered_map<std::wstring, Texture*>;
 	private:
-		TextureManager() DEFAULT;
-		~TextureManager() DEFAULT;
+		TextureManager() = default;
+		~TextureManager() = default;
 
 	public:
 		bool LoadTexture(LPCWSTR filePath);

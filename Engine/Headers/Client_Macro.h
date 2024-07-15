@@ -1,9 +1,5 @@
 #pragma once
 
-#define PURE = 0
-
-#define DEFAULT = default
-
 #define DENY_COPY(ClassName)						\
 	ClassName(const ClassName&) = delete;			\
 	ClassName(ClassName&&) = delete;				\
@@ -12,3 +8,7 @@
 
 #define CLIENTCLASS()                 \
     class System;
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif

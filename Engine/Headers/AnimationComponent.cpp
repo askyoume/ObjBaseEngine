@@ -2,6 +2,7 @@
 #include "CoreManager.h"
 #include "Texture.h"
 #include "Actor.h"
+#include "ACollision.h"
 
 #undef min
 #undef max
@@ -52,18 +53,44 @@ void Core::AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	SetBitmapLocalTransform();
 
 	//D2D1InvertMatrix(&_cameraMatrix);
+	Mathf::Matrix3x2 flipMatrix = Matx::Identity;
 
 	if (_isFlip)
 	{
-		_localTransform = D2D1::Matrix3x2F::Scale(-1, 1, 
+		flipMatrix = D2D1::Matrix3x2F::Scale(-1, 1, 
 				D2D1::Point2F(_textureRect.right * 0.5f, _textureRect.bottom * 0.5f)) * _localTransform;
 	}
+	else
+	{
+		flipMatrix = _localTransform;
+	}
 
-	Mathf::Matrix3x2 Transform = _localTransform * _WorldTransform * _cameraMatrix;
+	Mathf::Matrix3x2 Transform = flipMatrix * _WorldTransform * _cameraMatrix;
 
 	pRenderTarget->SetTransform(Transform);
 
 	pRenderTarget->DrawBitmap((*pTexture)[_currentFrame]);
+
+	CoreManager* _pCore = CoreManager::GetInstance();
+	ID2D1SolidColorBrush* m_pBrush = _pCore->GetGraphicsPackage()->_pBrush;
+	m_pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
+
+	Mathf::Matrix3x2 CollisionTransform = _localTransform * _WorldTransform * _cameraMatrix;
+
+	_pCollision->SetCollisionOffset(
+		{ CollisionTransform.dx + (_textureRect.right * 0.5f) * _RelativeScale.x,
+		CollisionTransform.dy + (_textureRect.bottom * 0.5f) * _RelativeScale.y }
+	);
+
+	pRenderTarget->SetTransform(Matx::Identity);
+
+	Mathf::Point point = {
+		_pCollision->GetCollisionOffset().x, 
+		_pCollision->GetCollisionOffset().y
+	};
+
+	//pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), m_pBrush, 1.0f);
+	//pRenderTarget->DrawLine(D2D1::Point2F(point.x, point.y - 5.0f), D2D1::Point2F(point.x, point.y + 5.0f), m_pBrush, 1.0f);
 }
 
 void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool isLoop)
@@ -93,10 +120,10 @@ bool Core::AnimationComponent::IsClipPlay(_pstring clipName)
 {
 	if (_currentClipName && !strcmp(_currentClipName, clipName))
 	{
-		return !_isFrameEnd;
+		return true;
 	}
 
-	//return false;
+	return false;
 }
 
 bool Core::AnimationComponent::IsClipEnd(_pstring clipName)

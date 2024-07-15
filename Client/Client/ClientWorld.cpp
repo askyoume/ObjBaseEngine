@@ -59,7 +59,7 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 		StateName,
 		StateName.length(),
 		_pCoreManager->GetFont(L"DemoFont"),
-		D2D1::RectF(500, 500, 100, 100),
+		D2D1::RectF(100, 500, 500, 100),
 		_pCoreManager->GetGraphicsPackage()->_pBrush
 	);
 
@@ -70,7 +70,7 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 		AIStateName,
 		AIStateName.length(),
 		_pCoreManager->GetFont(L"DemoFont"),
-		D2D1::RectF(1100, 600, 1500, 100),
+		D2D1::RectF(1300, 600, 1900, 100),
 		_pCoreManager->GetGraphicsPackage()->_pBrush
 	);
 
@@ -85,6 +85,16 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 		Distance.length(),
 		_pCoreManager->GetFont(L"DemoFont"),
 		D2D1::RectF(1600, 1000, 1900, 1100),
+		_pCoreManager->GetGraphicsPackage()->_pBrush
+	);
+
+	_bstr_t _explanation = "[ 좌우 방향키 : 이동 | 같은 방향키 2번 : 달리기 ]";
+
+	pRenderTarget->DrawTextW(
+		_explanation,
+		_explanation.length(),
+		_pCoreManager->GetFont(L"DemoFont"),
+		D2D1::RectF(100, 1000, 1500, 1100),
 		_pCoreManager->GetGraphicsPackage()->_pBrush
 	);
 

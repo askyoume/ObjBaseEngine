@@ -9,6 +9,7 @@ namespace Core
 	class InputComponent;
 	class StateComponent;
 	class MovementComponent;
+	class BoxComponent;
 }
 
 struct InputEvent;
@@ -41,6 +42,7 @@ namespace Client
 		static Aoko* Create() { return new Aoko; }
 
 	private:
+		::Core::BoxComponent*       _pBoxComponent{ nullptr };
 		::Core::MovementComponent*  _pMovementComponent{ nullptr };
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::InputComponent*		_pInputComponent{ nullptr };

@@ -8,8 +8,8 @@ namespace Core
 	class InputComponent : public Component, public IInputReceiver
 	{
 	protected:
-		explicit InputComponent() DEFAULT;
-		virtual ~InputComponent() DEFAULT;
+		explicit InputComponent() = default;
+		virtual ~InputComponent() = default;
 
 	protected:
 		using Callback = std::function<void(const InputEvent&)>;

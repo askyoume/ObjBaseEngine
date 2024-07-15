@@ -15,8 +15,8 @@ namespace Core
 			Right = 1 << 3,
 		};
 	protected:
-		explicit CameraActor() DEFAULT;
-		virtual ~CameraActor() DEFAULT;
+		explicit CameraActor() = default;
+		virtual ~CameraActor() = default;
 	public:
 		//Actor
 		virtual void BeginPlay() override {};

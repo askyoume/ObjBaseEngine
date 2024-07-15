@@ -11,8 +11,8 @@ namespace Core
 		using BitmapTextures = std::vector<Texture*>;
 
 	protected:
-		explicit BitmapComponent() DEFAULT;
-		virtual ~BitmapComponent() DEFAULT;
+		explicit BitmapComponent() = default;
+		virtual ~BitmapComponent() = default;
 
 	public:
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override;

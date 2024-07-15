@@ -1,7 +1,7 @@
-#pragma once //temp
-#include "../Engine/Headers/Core_Define.h"
-#include "../Engine/Headers/Component.h"
-#include "../Engine/Headers/Mathf.h"
+#pragma once
+#include "Core_Define.h"
+#include "Component.h"
+#include "Mathf.h"
 
 namespace Core
 {
@@ -9,8 +9,8 @@ namespace Core
 	class MovementComponent : public Component
 	{
 	protected:
-		explicit MovementComponent() DEFAULT;
-		virtual ~MovementComponent() DEFAULT;
+		explicit MovementComponent() = default;
+		virtual ~MovementComponent() = default;
 
 	public:
 		virtual bool Initialize() override;

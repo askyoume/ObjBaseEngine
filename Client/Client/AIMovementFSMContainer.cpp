@@ -12,8 +12,6 @@ void Client::AIMovementFSMContainer::ContainStep()
 {
 	AI_Idle* idle = AI_Idle::Create();
 	AddState(idle);
-	//_currentState = idle;
-	//_currentState->Enter();
 	SetInitialState("AI_IDLE");
 	
 	AI_Chasing* chasing = AI_Chasing::Create();
@@ -25,12 +23,11 @@ void Client::AIMovementFSMContainer::ContainStep()
 	AI_IdleToChasing* idleToChasing = AI_IdleToChasing::Create();
 	AI_IdleToAttack* idleToAttack = AI_IdleToAttack::Create();
 	AI_ChasingToIdle* chasingToIdle = AI_ChasingToIdle::Create();
+
 	idle->AddTransition(idleToChasing);
-	//idle->AddTransition(idleToAttack);
 	chasing->AddTransition(chasingToIdle);
 	chasing->AddTransition(idleToAttack);
 	attack->AddTransition(chasingToIdle);
-
 }
 
 void Client::AIMovementFSMContainer::Update(float deltaTime)

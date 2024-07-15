@@ -144,7 +144,9 @@
     <ClInclude Include="..\Engine\Headers\BoxComponent.h" />
     <ClInclude Include="..\Engine\Headers\CameraActor.h" />
     <ClInclude Include="..\Engine\Headers\CameraComponent.h" />
+    <ClInclude Include="..\Engine\Headers\Client_Macro.h" />
     <ClInclude Include="..\Engine\Headers\CollisionComponent.h" />
+    <ClInclude Include="..\Engine\Headers\CollisionManager.h" />
     <ClInclude Include="..\Engine\Headers\Component.h" />
     <ClInclude Include="..\Engine\Headers\Core.h" />
     <ClInclude Include="..\Engine\Headers\CoreManager.h" />
@@ -156,12 +158,15 @@
     <ClInclude Include="..\Engine\Headers\Core_Type.h" />
     <ClInclude Include="..\Engine\Headers\FontManager.h" />
     <ClInclude Include="..\Engine\Headers\GraphicsManager.h" />
+    <ClInclude Include="..\Engine\Headers\IColliderReceiver.h" />
     <ClInclude Include="..\Engine\Headers\IInputReceiver.h" />
     <ClInclude Include="..\Engine\Headers\InputComponent.h" />
     <ClInclude Include="..\Engine\Headers\InputManager.h" />
     <ClInclude Include="..\Engine\Headers\Layer.h" />
+    <ClInclude Include="..\Engine\Headers\MainEntry.h" />
     <ClInclude Include="..\Engine\Headers\Mathf.h" />
     <ClInclude Include="..\Engine\Headers\Matrix.h" />
+    <ClInclude Include="..\Engine\Headers\MovementComponent.h" />
     <ClInclude Include="..\Engine\Headers\Object.h" />
     <ClInclude Include="..\Engine\Headers\RenderComponent.h" />
     <ClInclude Include="..\Engine\Headers\SceneComponent.h" />
@@ -170,6 +175,7 @@
     <ClInclude Include="..\Engine\Headers\StateComponent.h" />
     <ClInclude Include="..\Engine\Headers\StateContainer.h" />
     <ClInclude Include="..\Engine\Headers\StateTransition.h" />
+    <ClInclude Include="..\Engine\Headers\System.h" />
     <ClInclude Include="..\Engine\Headers\Texture.h" />
     <ClInclude Include="..\Engine\Headers\TextureManager.h" />
     <ClInclude Include="..\Engine\Headers\TimeManager.h" />
@@ -177,29 +183,31 @@
     <ClInclude Include="..\Engine\Headers\Vector2.h" />
     <ClInclude Include="..\Engine\Headers\World.h" />
     <ClInclude Include="..\Engine\Headers\WorldManager.h" />
-    <ClInclude Include="Client_Macro.h" />
-    <ClInclude Include="MainEntry.h" />
-    <ClInclude Include="MovementComponent.h" />
-    <ClInclude Include="System.h" />
     <ClInclude Include="ToDoList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine\Codes\ACollision.cpp" />
     <ClCompile Include="..\Engine\Codes\Actor.cpp" />
     <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp" />
+    <ClCompile Include="..\Engine\Codes\BoxComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\CameraComponent.cpp" />
+    <ClCompile Include="..\Engine\Codes\CollisionComponent.cpp" />
+    <ClCompile Include="..\Engine\Codes\CollisionManager.cpp" />
     <ClCompile Include="..\Engine\Codes\CoreManager.cpp" />
     <ClCompile Include="..\Engine\Codes\FontManager.cpp" />
     <ClCompile Include="..\Engine\Codes\GraphicsManager.cpp" />
     <ClCompile Include="..\Engine\Codes\InputComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\InputManager.cpp" />
     <ClCompile Include="..\Engine\Codes\Layer.cpp" />
+    <ClCompile Include="..\Engine\Codes\MainEntry.cpp" />
+    <ClCompile Include="..\Engine\Codes\MovementComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\Object.cpp" />
     <ClCompile Include="..\Engine\Codes\RenderComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\SceneComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\State.cpp" />
     <ClCompile Include="..\Engine\Codes\StateComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\StateContainer.cpp" />
+    <ClCompile Include="..\Engine\Codes\System.cpp" />
     <ClCompile Include="..\Engine\Codes\Texture.cpp" />
     <ClCompile Include="..\Engine\Codes\TextureManager.cpp" />
     <ClCompile Include="..\Engine\Codes\TimeManager.cpp" />
@@ -207,9 +215,6 @@
     <ClCompile Include="..\Engine\Codes\World.cpp" />
     <ClCompile Include="..\Engine\Headers\AnimationComponent.cpp" />
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp" />
-    <ClCompile Include="MainEntry.cpp" />
-    <ClCompile Include="MovementComponent.cpp" />
-    <ClCompile Include="System.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,8 +8,8 @@ namespace Core
 	class Transform abstract
 	{
 	protected:
-		explicit Transform() DEFAULT;
-		virtual ~Transform() DEFAULT;
+		explicit Transform() = default;
+		virtual ~Transform() = default;
 
 	public:
 		virtual void UpdateTransform() PURE;

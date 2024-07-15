@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "Mathf.h"
 #include "Transform.h"
+#include "ACollision.h"
 
 namespace Core
 {
@@ -10,8 +11,8 @@ namespace Core
 	class SceneComponent : public Component, public Transform
 	{
 	protected:
-		explicit SceneComponent() DEFAULT;
-		virtual ~SceneComponent() DEFAULT;
+		explicit SceneComponent() = default;
+		virtual ~SceneComponent() = default;
 
 	public:
 		//Component
@@ -22,6 +23,7 @@ namespace Core
 	public:
 		//SceneComponent
 		void AttachToComponent(SceneComponent* pParent);
+		ACollision* GetCollision() const { return _pCollision; }
 
 	public:
 		//Transform
@@ -33,6 +35,7 @@ namespace Core
 		virtual void Remove(){};
 
 	protected:
+		ACollision*		 _pCollision{ nullptr };
 		SceneComponent*				 _parent = nullptr;
 		std::vector<SceneComponent*> _children;
 

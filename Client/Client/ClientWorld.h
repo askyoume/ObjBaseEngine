@@ -1,5 +1,5 @@
 #pragma once
-#include "../../ObjectBaseEngine/Client_Macro.h"
+#include "../../Engine/Headers/Client_Macro.h"
 #include "../../Engine/Headers/World.h"
 
 namespace Core
@@ -14,8 +14,8 @@ namespace Client
 	class ClientWorld final : public Core::World
 	{
 	private:
-		explicit ClientWorld() DEFAULT;
-		virtual ~ClientWorld() DEFAULT;
+		explicit ClientWorld() = default;
+		virtual ~ClientWorld() = default;
 
 	public:
 		bool BeginPlay() override;

@@ -7,8 +7,8 @@ namespace Client
 	class NightSky : public Core::Actor
 	{
 	protected:
-		explicit NightSky() DEFAULT;
-		virtual ~NightSky() DEFAULT;
+		explicit NightSky() = default;
+		virtual ~NightSky() = default;
 	public:
 		void BeginPlay() override;
 		void Tick(_float deltaTime) override;

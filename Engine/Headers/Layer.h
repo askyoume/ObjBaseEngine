@@ -9,10 +9,11 @@ namespace Core
 	private:
 		using Actors = std::list<Actor*>;
 		using RenderQueue = std::vector<RenderComponent*>;
+		using CollisionQueue = std::vector<CollisionComponent*>;
 
 	private:
-		Layer() DEFAULT;
-		~Layer() DEFAULT;
+		Layer() = default;
+		~Layer() = default;
 
 	public:
 		void Tick(_float deltaTime);
@@ -26,6 +27,8 @@ namespace Core
 		bool DestroyActor();
 		void AddRenderQueue(RenderComponent* pRenderComponent);
 		void RemoveRenderQueue(RenderComponent* pRenderComponent);
+		void AddCollisionQueue(CollisionComponent* pCollisionComponent);
+		void RemoveCollisionQueue(CollisionComponent* pCollisionComponent);
 
 	public:
 		static Layer* Begin();
@@ -34,6 +37,7 @@ namespace Core
 
 	private:
 		Actors _actors;
+		CollisionQueue _collisionQueue;
 		RenderQueue _renderQueue;
 		CameraActor* _pCameraActor{ nullptr };
 	};

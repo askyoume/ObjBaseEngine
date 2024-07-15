@@ -6,8 +6,8 @@ namespace Core
 	class GraphicsManager : public Core
 	{
 	private:
-		explicit GraphicsManager() DEFAULT;
-		virtual ~GraphicsManager() DEFAULT;
+		explicit GraphicsManager() = default;
+		virtual ~GraphicsManager() = default;
 
 	public:
 		HRESULT Initialize(HWND hWnd);

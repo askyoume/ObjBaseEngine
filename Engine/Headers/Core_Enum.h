@@ -21,3 +21,26 @@ enum BufferIndex : _uint
 	FRONTBUFFER,
 	BUFFER_END
 };
+
+namespace Collider
+{
+	enum ColliderType
+	{
+		COLLIDER_NONE = -1,
+		COLLIDER_AABB = 0,
+		COLLIDER_OBB,
+		COLLIDER_SPHERE,
+		COLLIDER_END
+	};
+}
+
+namespace Collision
+{
+	enum CollisionType
+	{
+		COLLISION_IGNORE = 0,
+		COLLISION_OVERLAP,
+		COLLISION_BLOCK,
+		COLLISION_END
+	};
+}

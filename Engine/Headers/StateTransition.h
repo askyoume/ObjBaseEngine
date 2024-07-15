@@ -7,8 +7,8 @@ namespace Core
 	class StateTransition abstract : public Core
 	{
 	protected:
-		explicit StateTransition() DEFAULT;
-		virtual ~StateTransition() DEFAULT;
+		explicit StateTransition() = default;
+		virtual ~StateTransition() = default;
 	public:
 		virtual bool ShouldTransition() PURE;
 		virtual void Remove() override PURE;

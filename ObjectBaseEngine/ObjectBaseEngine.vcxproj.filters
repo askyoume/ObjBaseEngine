@@ -23,19 +23,8 @@
     <Filter Include="Engine\Utility">
       <UniqueIdentifier>{74dc1f56-6ee3-48cb-9110-0223254be563}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Client">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Engine\Manager\Graphics">
       <UniqueIdentifier>{c8f897d5-0a3e-48b8-b0b4-109c52a9c319}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Client\MainEntry">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Client\System">
-      <UniqueIdentifier>{d967e8ac-bb42-445b-abb1-a8523f85ab03}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Manager\Texture">
       <UniqueIdentifier>{76deaee4-061e-4ff0-8090-d4fe5f1835d0}</UniqueIdentifier>
@@ -57,9 +46,6 @@
     </Filter>
     <Filter Include="Engine\Manager\World">
       <UniqueIdentifier>{dd844ada-7a22-4db4-9b7c-dd8887947dbc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Client\Header">
-      <UniqueIdentifier>{ad728146-4e41-4590-872b-9a9c0b555c52}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Component\SceneComponent">
       <UniqueIdentifier>{1c874fa5-5ccb-43f3-a7ab-5d0939e2b7d7}</UniqueIdentifier>
@@ -151,17 +137,25 @@
     <Filter Include="Engine\Component\MovementComponent">
       <UniqueIdentifier>{712fb5ae-096c-4127-b501-c1ccc9b69fc9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientBase">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="ClientBase\MainEntry">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ClientBase\System">
+      <UniqueIdentifier>{d967e8ac-bb42-445b-abb1-a8523f85ab03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientBase\Header">
+      <UniqueIdentifier>{ad728146-4e41-4590-872b-9a9c0b555c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\Collision">
+      <UniqueIdentifier>{12c93e4b-e409-4982-92c1-fbcbcdc52103}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainEntry.h">
-      <Filter>Client\MainEntry</Filter>
-    </ClInclude>
-    <ClInclude Include="Client_Macro.h">
-      <Filter>Client\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="System.h">
-      <Filter>Client\System</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine\Headers\Actor.h">
       <Filter>Engine\BaseClass\Actor</Filter>
     </ClInclude>
@@ -285,17 +279,26 @@
     <ClInclude Include="..\Engine\Headers\StateContainer.h">
       <Filter>Engine\BaseClass\State\StateContainer</Filter>
     </ClInclude>
-    <ClInclude Include="MovementComponent.h">
+    <ClInclude Include="..\Engine\Headers\MainEntry.h">
+      <Filter>ClientBase\MainEntry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Client_Macro.h">
+      <Filter>ClientBase\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\System.h">
+      <Filter>ClientBase\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\MovementComponent.h">
       <Filter>Engine\Component\MovementComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\IColliderReceiver.h">
+      <Filter>Engine\BaseClass\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Headers\CollisionManager.h">
+      <Filter>Engine\Manager\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainEntry.cpp">
-      <Filter>Client\MainEntry</Filter>
-    </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>Client\System</Filter>
-    </ClCompile>
     <ClCompile Include="..\Engine\Codes\Object.cpp">
       <Filter>Engine\BaseClass\Object</Filter>
     </ClCompile>
@@ -365,8 +368,23 @@
     <ClCompile Include="..\Engine\Codes\StateContainer.cpp">
       <Filter>Engine\BaseClass\State\StateContainer</Filter>
     </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
+    <ClCompile Include="..\Engine\Codes\System.cpp">
+      <Filter>ClientBase\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\MainEntry.cpp">
+      <Filter>ClientBase\MainEntry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\MovementComponent.cpp">
       <Filter>Engine\Component\MovementComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\CollisionComponent.cpp">
+      <Filter>Engine\Component\SceneComponent\CollisionComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\BoxComponent.cpp">
+      <Filter>Engine\Component\SceneComponent\CollisionComponent\BoxComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\CollisionManager.cpp">
+      <Filter>Engine\Manager\Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

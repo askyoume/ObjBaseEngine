@@ -1,21 +1,21 @@
-#include "Aoko.h"
-#include "ClientFSMContainer.h"
-#include "../../Engine/Headers/Core_Struct.h"
 #include "../../Engine/Headers/Actor.h"
 #include "../../Engine/Headers/InputComponent.h"
 #include "../../Engine/Headers/AnimationComponent.h"
 #include "../../Engine/Headers/CoreManager.h"
 #include "../../Engine/Headers/Texture.h"
 #include "../../Engine/Headers/StateComponent.h"
+#include "../../Engine/Headers/MovementComponent.h"
+#include "../../Engine/Headers/BoxComponent.h"
 
-#include "../../ObjectBaseEngine/MovementComponent.h"
+#include "Aoko.h"
+#include "ClientFSMContainer.h"
 
 void Client::Aoko::BeginPlay()
 {
 	Super::BeginPlay();
 
-	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
+	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
 	_pMovementComponent->SetGroundPosition(80.f);
 
@@ -46,6 +46,11 @@ void Client::Aoko::BeginPlay()
 
 	_pStateComponent = AddComponent<::Core::StateComponent>("StateComponent");
 	_pStateComponent->AddContainer<ClientFSMContainer>();
+
+	_pBoxComponent = AddComponent<::Core::BoxComponent>("BoxComponent");
+	_pBoxComponent->SetSize({ 90.f, 550.f });
+	_pBoxComponent->AddColliderInLayer();
+	_pBoxComponent->AddRenderQueueInLayer();
 
 	_pAnimationComponent->SetPlayClip("Idle");
 }

@@ -11,8 +11,8 @@ namespace Core
 		using PriorityStateList = std::vector<State*>;
 
 	protected:
-		explicit StateContainer() DEFAULT;
-		virtual ~StateContainer() DEFAULT;
+		explicit StateContainer() = default;
+		virtual ~StateContainer() = default;
 
 	public:
 		virtual void ContainStep() PURE;

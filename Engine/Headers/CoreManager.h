@@ -30,7 +30,7 @@ namespace Core
 
 	private:
 		CoreManager();
-		~CoreManager() DEFAULT;
+		~CoreManager() = default;
 
 	public: //game loop
 		void Tick();
@@ -69,6 +69,8 @@ namespace Core
 		Layer* GetLayer(int layerIndex) const;
 		void AddRenderQueue(int layerIndex, RenderComponent* pRenderComponent);
 		void RemoveRenderQueue(int layerIndex, RenderComponent* pRenderComponent);
+		void AddCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent);
+		void RemoveCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent);
 
 		//Graphics
 		GraphicsPtrPackage* GetGraphicsPackage() const;
