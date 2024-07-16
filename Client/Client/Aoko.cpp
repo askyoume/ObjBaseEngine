@@ -28,7 +28,7 @@ void Client::Aoko::BeginPlay()
 	_pAnimationComponent->AddClip("ReadyToRuning", 0.1f, false);
 	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f, false);
 	_pAnimationComponent->AddClip("Runing", 0.1f, true);
-	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
+	_pAnimationComponent->AddClip("MiddleKick", 0.1f, false);
 
 	_pInputComponent->BindAction(DIP_LX, InputType::AXIS, this, &Aoko::Move);
 	_pInputComponent->BindAction(DIK_RIGHT, InputType::PRESS, this, &Aoko::Move);
@@ -41,16 +41,23 @@ void Client::Aoko::BeginPlay()
 	_pInputComponent->BindAction(DIK_LEFT, InputType::RELEASE, this, &Aoko::MoveHandler);
 	_pInputComponent->BindAction(DIK_UP, InputType::RELEASE, this, &Aoko::MoveHandler);
 	_pInputComponent->BindAction(DIK_DOWN, InputType::RELEASE, this, &Aoko::MoveHandler);
-
+	_pInputComponent->BindAction(DIK_A, InputType::PRESS, this, &Aoko::Attack);
 	_pInputComponent->AttachToInputManager();
 
 	_pStateComponent = AddComponent<::Core::StateComponent>("StateComponent");
 	_pStateComponent->AddContainer<ClientFSMContainer>();
 
-	_pBoxComponent = AddComponent<::Core::BoxComponent>("BoxComponent");
-	_pBoxComponent->SetSize({ 90.f, 550.f });
-	_pBoxComponent->AddColliderInLayer();
-	_pBoxComponent->AddRenderQueueInLayer();
+	_pBodyBoxComponent = AddComponent<::Core::BoxComponent>("BodyBoxComponent");
+	_pBodyBoxComponent->SetAddOffset({ 0.f, 100.f });
+	_pBodyBoxComponent->SetSize({ 100.f, 400.f });
+	_pBodyBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
+	_pBodyBoxComponent->AddColliderInLayer();
+
+	_pFootBoxComponent = AddComponent<::Core::BoxComponent>("FootBoxComponent");
+	_pFootBoxComponent->SetAddOffset({ 0.f, 200.f });
+	_pFootBoxComponent->SetSize({ 400.f, 100.f });
+	_pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
+	_pFootBoxComponent->AddColliderInLayer();
 
 	_pAnimationComponent->SetPlayClip("Idle");
 }
@@ -59,6 +66,19 @@ void Client::Aoko::Tick(_float deltaTime)
 {
 	MatchCombo(deltaTime);
 	Super::Tick(deltaTime);
+
+	if (!strcmp(_pStateComponent->GetCurrentStateName(),"IDLE"))
+	{
+		_pBodyBoxComponent->SetSize({ 100.f, 400.f });
+	}
+	else if(!strcmp(_pStateComponent->GetCurrentStateName(),"MOVE"))
+	{
+		_pBodyBoxComponent->SetSize({ 120.f, 400.f });
+	}
+	else if(!strcmp(_pStateComponent->GetCurrentStateName(),"RUNING"))
+	{
+		_pBodyBoxComponent->SetSize({ 280.f, 400.f });
+	}
 }
 
 void Client::Aoko::Fixed()
@@ -66,6 +86,20 @@ void Client::Aoko::Fixed()
 }
 
 void Client::Aoko::EndPlay()
+{
+}
+
+void Client::Aoko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
+{
+	std::cout << "Aoko NotifyActorBeginOverlap" << std::endl;
+}
+
+void Client::Aoko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
+{
+	std::cout << "Aoko NotifyActorEndOverlap" << std::endl;
+}
+
+void Client::Aoko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 {
 }
 
@@ -107,6 +141,8 @@ InputEvent Client::Aoko::GetPrevInputEvent()
 
 void Client::Aoko::Attack(const InputEvent& inputEvent)
 {
+	//debug code
+	OnDestroyMark(true);
 }
 
 void Client::Aoko::Move(const InputEvent& inputEvent)

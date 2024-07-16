@@ -5,9 +5,8 @@
 void Core::BoxComponent::TickComponent(_float deltaTime)
 {
 	SceneComponent::TickComponent(deltaTime);
-	//_pCollision->SetCollisionSize(_size);
 	Mathf::Vector2 worldLocation = GetWorldLocation();
-	_pCollision->SetCollisionOffset(worldLocation);
+	_pCollision->SetCollisionOffset(worldLocation + _addOffset);
 }
 
 bool Core::BoxComponent::IsCollision(CollisionComponent* pOther)
@@ -26,6 +25,11 @@ bool Core::BoxComponent::IsCollision(CollisionComponent* pOther)
 
 void Core::BoxComponent::Render(ID2D1RenderTarget* pRenderTarget)
 {
+	if (_type == Collision::COLLISION_IGNORE)
+	{
+		return;
+	}
+
 	Mathf::Matrix3x2 Transform = _cameraMatrix;
 	pRenderTarget->SetTransform(Transform);
 
@@ -49,9 +53,9 @@ void Core::BoxComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	pRenderTarget->DrawRectangle(D2D1::RectF(rect.left, rect.top, rect.right, rect.bottom), m_pBrush, 3.0f);
 }
 
-void Core::BoxComponent::SetOffset(const Mathf::Vector2& offsetVector)
+void Core::BoxComponent::SetAddOffset(const Mathf::Vector2& offsetVector)
 {
-	_pCollision->SetCollisionOffset(offsetVector);
+	_addOffset = offsetVector;
 }
 
 void Core::BoxComponent::SetSize(const Mathf::Vector2& sizeVector)
@@ -75,6 +79,9 @@ bool Core::BoxComponent::Initialize()
 
 void Core::BoxComponent::Remove()
 {
+	CoreManager::GetInstance()->
+		RemoveCollisionQueue(_owner->GetLayerIndex(),this);
+
 	SafeRelease(_pCollision);
 }
 

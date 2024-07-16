@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "GraphicsManager.h"
 #include "TextureManager.h"
+#include "CollisionManager.h"
 #include "FontManager.h"
 #include "Object.h"
 #include "World.h"
@@ -16,6 +17,7 @@ Core::CoreManager::CoreManager()
     _pGraphicsMgr = GraphicsManager::Create();
     _pTextureMgr = TextureManager::Create();
 	_pFontMgr = FontManager::Create();
+	_pCollisionMgr = CollisionManager::Create();
     //클라이언트에서 월드를 생성하고 엔진(?)에 전달해야함.
     // 추후에 현 월드 클래스를 -> 레벨 클래스로 변경, 이후 월드 클래스는 레벨을 관리, 전환하는 역활을 수행
 
@@ -43,6 +45,7 @@ void Core::CoreManager::Fixed(int count)
     if(_elapsedTick >= fixedTick)
 	{
 		if (_pWorld) { _pWorld->Fixed(); }
+		_pCollisionMgr->SimulateCollision();
 		_elapsedTick -= fixedTick;
 	}
 }
@@ -162,18 +165,12 @@ void Core::CoreManager::RemoveRenderQueue(int layerIndex, RenderComponent* pRend
 
 void Core::CoreManager::AddCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent)
 {
-	if (_pWorld)
-	{
-		_pWorld->GetLayer(layerIndex)->AddCollisionQueue(pCollisionComponent);
-	}
+	_pCollisionMgr->AddCollisionQueue(layerIndex, pCollisionComponent);
 }
 
 void Core::CoreManager::RemoveCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent)
 {
-	if (_pWorld)
-	{
-		_pWorld->GetLayer(layerIndex)->RemoveCollisionQueue(pCollisionComponent);
-	}
+	_pCollisionMgr->RemoveCollisionQueue(layerIndex, pCollisionComponent);
 }
 
 GraphicsPtrPackage* Core::CoreManager::GetGraphicsPackage() const
@@ -199,11 +196,13 @@ void Core::CoreManager::Remove()
 	_pRenderTarget = nullptr;
 
 	SafeDelete(_pWorld);
+	DestroyPoint();
 	SafeDelete(_pFontMgr);
     SafeDelete(_pTimeMgr);
 	SafeDelete(_pInputMgr);
 	SafeDelete(_pTextureMgr);
 	SafeDelete(_pGraphicsMgr);
+	SafeDelete(_pCollisionMgr);
 
 	_endPlay = true;
 }

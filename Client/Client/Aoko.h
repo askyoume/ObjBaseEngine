@@ -10,6 +10,7 @@ namespace Core
 	class StateComponent;
 	class MovementComponent;
 	class BoxComponent;
+	class CollisionComponent;
 }
 
 struct InputEvent;
@@ -27,6 +28,9 @@ namespace Client
 		void Tick(_float deltaTime) override;
 		void Fixed() override;
 		void EndPlay() override;
+		void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
+		virtual void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		virtual void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
 
 		void MatchCombo(_float deltaTime);
 		InputEvent GetPrevInputEvent();
@@ -42,7 +46,8 @@ namespace Client
 		static Aoko* Create() { return new Aoko; }
 
 	private:
-		::Core::BoxComponent*       _pBoxComponent{ nullptr };
+		::Core::BoxComponent*       _pBodyBoxComponent{ nullptr };
+		::Core::BoxComponent*       _pFootBoxComponent{ nullptr };
 		::Core::MovementComponent*  _pMovementComponent{ nullptr };
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::InputComponent*		_pInputComponent{ nullptr };

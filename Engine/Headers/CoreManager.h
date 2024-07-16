@@ -69,6 +69,8 @@ namespace Core
 		Layer* GetLayer(int layerIndex) const;
 		void AddRenderQueue(int layerIndex, RenderComponent* pRenderComponent);
 		void RemoveRenderQueue(int layerIndex, RenderComponent* pRenderComponent);
+		
+		//Collision
 		void AddCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent);
 		void RemoveCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent);
 
@@ -93,6 +95,7 @@ namespace Core
 		//IDXGISwapChain*			_pSwapChain{ nullptr };
 		HWND 					_hWnd{ nullptr };
 		//Managers
+		CollisionManager*		_pCollisionMgr{ nullptr };
 		TimeManager*			_pTimeMgr{ nullptr };
 		InputManager*			_pInputMgr{ nullptr };
 		GraphicsManager*		_pGraphicsMgr{ nullptr };

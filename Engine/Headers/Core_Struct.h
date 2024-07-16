@@ -58,7 +58,6 @@ namespace Core
 	};
 }
 
-
 struct GraphicsPtrPackage
 {
 	// DirectX 11

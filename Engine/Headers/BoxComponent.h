@@ -15,7 +15,7 @@ namespace Core
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override; //for debug draw
 	
 	public:
-		void SetOffset(const Mathf::Vector2& offsetVector); 
+		void SetAddOffset(const Mathf::Vector2& offsetVector); 
 		void SetSize(const Mathf::Vector2& sizeVector);
 
 	public:
@@ -27,7 +27,6 @@ namespace Core
 
 	protected:
 		ACollision*	   _pCollision{ nullptr };
-		Mathf::Vector2 _offset{ 0.f, 0.f };
-		Mathf::Vector2 _size{ 0.f, 0.f };
+		Mathf::Vector2 _addOffset{ 0.f, 0.f };
 	};
 }

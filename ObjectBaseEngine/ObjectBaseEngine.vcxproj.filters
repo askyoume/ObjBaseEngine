@@ -134,9 +134,6 @@
     <Filter Include="Engine\BaseClass\State\State">
       <UniqueIdentifier>{8b06e8d9-1ba8-407b-8e0a-c29185e310d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Component\MovementComponent">
-      <UniqueIdentifier>{712fb5ae-096c-4127-b501-c1ccc9b69fc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientBase">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
@@ -153,6 +150,9 @@
     </Filter>
     <Filter Include="Engine\Manager\Collision">
       <UniqueIdentifier>{12c93e4b-e409-4982-92c1-fbcbcdc52103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\ActorComponent\MovementComponent">
+      <UniqueIdentifier>{712fb5ae-096c-4127-b501-c1ccc9b69fc9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -289,7 +289,7 @@
       <Filter>ClientBase\System</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\MovementComponent.h">
-      <Filter>Engine\Component\MovementComponent</Filter>
+      <Filter>Engine\Component\ActorComponent\MovementComponent</Filter>
     </ClInclude>
     <ClInclude Include="..\Engine\Headers\IColliderReceiver.h">
       <Filter>Engine\BaseClass\Interface</Filter>
@@ -375,7 +375,7 @@
       <Filter>ClientBase\MainEntry</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\MovementComponent.cpp">
-      <Filter>Engine\Component\MovementComponent</Filter>
+      <Filter>Engine\Component\ActorComponent\MovementComponent</Filter>
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\CollisionComponent.cpp">
       <Filter>Engine\Component\SceneComponent\CollisionComponent</Filter>

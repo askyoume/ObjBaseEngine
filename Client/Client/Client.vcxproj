@@ -147,6 +147,7 @@
     <ClInclude Include="IdleToRuning.h" />
     <ClInclude Include="Jump.h" />
     <ClInclude Include="LowKick.h" />
+    <ClInclude Include="MiddleKick.h" />
     <ClInclude Include="Moon.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Neko.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="IdleToRuning.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="LowKick.cpp" />
+    <ClCompile Include="MiddleKick.cpp" />
     <ClCompile Include="Moon.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Neko.cpp" />

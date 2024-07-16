@@ -132,6 +132,8 @@ bool Core::AnimationComponent::IsClipEnd(_pstring clipName)
 	{
 		return _isFrameEnd;
 	}
+
+	return true;
 }
 
 void Core::AnimationComponent::SetPlayClip(_pstring clipName)

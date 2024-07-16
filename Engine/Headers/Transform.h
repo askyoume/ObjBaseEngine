@@ -41,7 +41,7 @@ namespace Core
 	
 	protected:
 		Mathf::Matrix3x2	_MidCalculateTransform{ Matx::Identity };
-		Mathf::Matrix3x2	_CenterTransform{ Matx::Identity }; //윈도우 중앙축을 기준으로 변환
+		Mathf::Matrix3x2	_CenterTransform{ Matx::Identity };
 		Mathf::Matrix3x2	_RelativeTransform{ Matx::Identity };
 		Mathf::Matrix3x2	_WorldTransform{ Matx::Identity };
 		Mathf::Vector2		_WorldLocation{ UnitVector::Zero };

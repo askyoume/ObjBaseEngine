@@ -5,11 +5,11 @@
 
 namespace Core
 {
-	class Actor;
+	class CollisionComponent;
 	Interface IColliderReceiver
 	{
-		virtual void NotifyActorBlock(Actor* pOther) PURE;
-		virtual void NotifyActorBeginOverlap(Actor* pOther) PURE;
-		virtual void NotifyActorEndOverlap(Actor* pOther) PURE;
+		virtual void NotifyActorBlock(CollisionComponent* pOtherComponent) PURE;
+		virtual void NotifyActorBeginOverlap(CollisionComponent* pOtherComponent) PURE;
+		virtual void NotifyActorEndOverlap(CollisionComponent* pOtherComponent) PURE;
 	};
 }

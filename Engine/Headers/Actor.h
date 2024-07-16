@@ -17,10 +17,10 @@ namespace Core
 		virtual void BeginPlay();
 		virtual void Tick(_float deltaTime);
 		virtual void Fixed();
-		virtual void NotifyActorBlock(Actor* pOther){};
-		virtual void NotifyActorBeginOverlap(Actor* pOther){};
-		virtual void NotifyActorEndOverlap(Actor* pOther){};
 		virtual void EndPlay();
+		virtual void NotifyActorBlock(CollisionComponent* pOtherComponent) override {};
+		virtual void NotifyActorBeginOverlap(CollisionComponent* pOtherComponent) override {};
+		virtual void NotifyActorEndOverlap(CollisionComponent* pOtherComponent) override {};
 
 	public:
 		template <typename T>

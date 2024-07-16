@@ -17,6 +17,7 @@
         ClassName& operator=(ClassName&&) = delete;
 
 #define CORECLASS()                 \
+    class CollisionManager;         \
 	class CollisionComponent;       \
     class Texture;                  \
     class Object;                   \

@@ -30,8 +30,8 @@ void Client::Neko::BeginPlay()
 
 	_pBoxComponent = AddComponent<::Core::BoxComponent>("BoxComponent");
 	_pBoxComponent->SetSize({ 90.f, 550.f });
+	_pBoxComponent->SetCollisionType(Collision::COLLISION_BLOCK);
 	_pBoxComponent->AddColliderInLayer();
-	_pBoxComponent->AddRenderQueueInLayer();
 
 	_pAIComponent = AddComponent<::Core::StateComponent>("AIComponent");
 	_pAIComponent->AddContainer<AIMovementFSMContainer>();

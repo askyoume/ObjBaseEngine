@@ -20,7 +20,6 @@ bool Core::World::InitializeWorld(int layerSize)
 
 void Core::World::Remove()
 {
-	//__Khala->Release();
 	SafeRelease(_pCameraActor);
 	ClearLayer();
 }
@@ -62,7 +61,7 @@ void Core::World::EndPlay()
 bool Core::World::InitializeLayer(int layerSize)
 {
     _layerSize = layerSize;
-	for (int i = 0; i < layerSize; i++)
+	for (int i = 0; i < _layerSize; i++)
 	{
 		Layer* pLayer = Layer::Begin();
 		pLayer->SettingCamera(_pCameraActor);

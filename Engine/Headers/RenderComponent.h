@@ -22,14 +22,11 @@ namespace Core
 		bool IsVisible() const { return _isVisible; }
 		void SetCameraMatrix(const Mathf::Matrix3x2& cameraMatrix);
 
-		//ACollision* GetCollision() const { return _pCollision; }
-
 	protected:
 		virtual bool Initialize();
 		virtual void Remove() override PURE;
 
 	protected:
-		//ACollision*		 _pCollision{ nullptr };
 		Mathf::Matrix3x2 _renderMatrix{};
 		Mathf::Matrix3x2 _cameraMatrix{};
 		bool _isVisible{ true };

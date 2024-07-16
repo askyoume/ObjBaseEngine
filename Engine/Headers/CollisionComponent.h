@@ -11,6 +11,7 @@ namespace Core
 		using Collider = Collider::ColliderType;
 		using Collision = Collision::CollisionType;
 		using CollisionState = std::set<CollisionComponent*>;
+		using IgnoreLayerList = std::set<int>;
 
 	protected:
 		explicit CollisionComponent() = default;
@@ -23,7 +24,10 @@ namespace Core
 	
 	public:
 		void ProcessCollision();
-		void ProcessCollision(Actor* pOther);
+		void ProcessCollision(CollisionComponent* pOtherComponent);
+
+		void AddCollisionState(CollisionComponent* pOtherComponent);
+		void UpdateCollisionState();
 
 	public:
 		void SetColliderType(Collider colliderType) { _collider = colliderType; }
@@ -31,6 +35,10 @@ namespace Core
 
 		void SetCollisionType(Collision collisionType) { _type = collisionType; }
 		Collision GetCollisionType() const { return _type; }
+
+		void SetIgnoreLayer(int layerIndex) { _ignoreLayerList.insert(layerIndex); }
+		void RemoveIgnoreLayer(int layerIndex) { _ignoreLayerList.erase(layerIndex); }
+		const IgnoreLayerList& GetIgnoreLayerList() const { return _ignoreLayerList; }
 
 	public:
 		void AddColliderInLayer();
@@ -40,11 +48,10 @@ namespace Core
 		void EndPlay() override{};
 
 	protected:
-		Collider  _collider{ Collider::COLLIDER_NONE };
-		Collision _type{ Collision::COLLISION_IGNORE };
-
-	protected:
-		CollisionState _previousCollisionState;
-		CollisionState _currentCollisionState;
+		Collider		_collider{ Collider::COLLIDER_NONE };
+		Collision		_type{ Collision::COLLISION_IGNORE };
+		IgnoreLayerList _ignoreLayerList;
+		CollisionState	_previousCollisionState;
+		CollisionState	_currentCollisionState;
 	};
 }

@@ -121,6 +121,9 @@
     <Filter Include="ClientFSM\AIMovementFSM\Transit\AI_AttackToIdle">
       <UniqueIdentifier>{0308ad60-5d0c-4ae0-839b-189cf163e7b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Middle\MiddleKick">
+      <UniqueIdentifier>{6ceb76c3-693e-4a38-9bec-fa267caa2fab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -201,6 +204,9 @@
     <ClInclude Include="AI_ChasingToIdle.h">
       <Filter>ClientFSM\AIMovementFSM\Transit\AI_ChasingToIdle</Filter>
     </ClInclude>
+    <ClInclude Include="MiddleKick.h">
+      <Filter>ClientFSM\CommonMovementFSM\State\Attack\Middle\MiddleKick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -280,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="AI_ChasingToIdle.cpp">
       <Filter>ClientFSM\AIMovementFSM\Transit\AI_ChasingToIdle</Filter>
+    </ClCompile>
+    <ClCompile Include="MiddleKick.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\State\Attack\Middle\MiddleKick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
