@@ -26,8 +26,7 @@ void Core::CollisionManager::SimulateCollision()
 				|| pOther.second->GetOwner()->IsDestroyMarked())
 				continue;
 
-			if(pCollision.second->GetCollisionType() == Collision::COLLISION_IGNORE ||
-				pOther.second->GetCollisionType() == Collision::COLLISION_IGNORE)
+			if(pCollision.second->GetCollisionType() == Collision::COLLISION_IGNORE)
 				continue;
 
 			if(!pCollision.second->GetIgnoreLayerList().empty())

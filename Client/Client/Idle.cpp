@@ -20,7 +20,8 @@ void Client::Idle::Enter()
 
 	if (pAnimationComponent->IsClipEnd("ReadyToIdle") && 
 		pAnimationComponent->IsClipEnd("Idle") &&
-		pAnimationComponent->IsClipEnd("Jump"))
+		pAnimationComponent->IsClipEnd("Jump") &&
+		pAnimationComponent->IsClipEnd("MiddleKick"))
 	{
 		pAnimationComponent->SetPlayClip("Idle");
 	}

@@ -124,6 +124,9 @@
     <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Middle\MiddleKick">
       <UniqueIdentifier>{6ceb76c3-693e-4a38-9bec-fa267caa2fab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\State\AI_Hit">
+      <UniqueIdentifier>{952676cd-e9e0-4b2a-bfee-52d5adb2c248}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -207,6 +210,9 @@
     <ClInclude Include="MiddleKick.h">
       <Filter>ClientFSM\CommonMovementFSM\State\Attack\Middle\MiddleKick</Filter>
     </ClInclude>
+    <ClInclude Include="AI_Hit.h">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Hit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -289,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="MiddleKick.cpp">
       <Filter>ClientFSM\CommonMovementFSM\State\Attack\Middle\MiddleKick</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_Hit.cpp">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Hit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

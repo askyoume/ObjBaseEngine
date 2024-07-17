@@ -34,6 +34,7 @@ void Client::Runing::Execute(float deltaTime)
 		pAnimationComponent->IsClipEnd("ReadyToRuning") &&
 		pAnimationComponent->IsClipEnd("Runing"))
 	{
+		pMovementComponent->SetRunning(true);
 		pAnimationComponent->SetPlayClip("Runing");
 	}
 

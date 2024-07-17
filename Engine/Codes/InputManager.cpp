@@ -209,11 +209,11 @@ void Core::InputManager::ProcessKeyboardInput()
 			{
 				DispatchInput(InputDevice::KEYBOARD, InputType::PRESS, i, 0.f, true);
 			}
-			else if (isPressed && wasPressed)
+			if (isPressed && wasPressed)
 			{
 				DispatchInput(InputDevice::KEYBOARD, InputType::HELD, i, 0.f, true);
 			}
-			else if (!isPressed && wasPressed)
+			if (!isPressed && wasPressed)
 			{
 				DispatchInput(InputDevice::KEYBOARD, InputType::RELEASE, i, 0.f, false);
 			}

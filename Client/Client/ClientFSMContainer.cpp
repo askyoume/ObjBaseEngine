@@ -4,6 +4,8 @@
 #include "Move.h"
 #include "IdleToRuning.h"
 #include "IdleToMove.h"
+#include "MiddleKick.h"
+#include "IdleToKick.h"
 
 void Client::ClientFSMContainer::ContainStep()
 {
@@ -17,11 +19,20 @@ void Client::ClientFSMContainer::ContainStep()
 	Move* move = Move::Create();
 	AddState(move);
 
+	MiddleKick* middleKick = MiddleKick::Create();
+	middleKick->SetPriority(true);
+	AddState(middleKick);
+
 	IdleToRuning* idleToRuning = IdleToRuning::Create();
 	IdleToMove* idleToMove = IdleToMove::Create();
+	IdleToKick* idleToKick = IdleToKick::Create();
 	idle->AddTransition(idleToMove);
 	move->AddTransition(idleToRuning);
-	//runing->AddTransition(idleToRuning);
+
+	middleKick->AddTransition(idleToKick);
+	middleKick->BindState(idle);
+	middleKick->BindState(move);
+	middleKick->BindState(runing);
 }
 
 void Client::ClientFSMContainer::Update(float deltaTime)

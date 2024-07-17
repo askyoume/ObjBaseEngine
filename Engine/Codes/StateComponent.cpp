@@ -24,6 +24,11 @@ void Core::StateComponent::Remove()
 	SafeDelete(_pContainer);
 }
 
+void Core::StateComponent::ChangeState(_pstring targetState)
+{
+	_pContainer->ChangeState(targetState);
+}
+
 _pstring Core::StateComponent::GetCurrentStateName() const
 {
 	return _pContainer->GetCurrentStateName();

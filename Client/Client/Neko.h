@@ -16,7 +16,7 @@ struct InputEvent;
 
 namespace Client
 {
-	class Neko : public Core::Actor
+	class Neko final : public Core::Actor
 	{
 	protected:
 		explicit Neko() = default;
@@ -27,6 +27,9 @@ namespace Client
 		void Tick(_float deltaTime) override;
 		void Fixed() override;
 		void EndPlay() override;
+		void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
+		void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
 
 	public:
 		static Neko* Create();

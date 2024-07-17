@@ -28,20 +28,23 @@ void Client::Aoko::BeginPlay()
 	_pAnimationComponent->AddClip("ReadyToRuning", 0.1f, false);
 	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f, false);
 	_pAnimationComponent->AddClip("Runing", 0.1f, true);
-	_pAnimationComponent->AddClip("MiddleKick", 0.1f, false);
+	_pAnimationComponent->AddClip("MiddleKick", 0.06f, false);
 
-	_pInputComponent->BindAction(DIP_LX, InputType::AXIS, this, &Aoko::Move);
-	_pInputComponent->BindAction(DIK_RIGHT, InputType::PRESS, this, &Aoko::Move);
-	_pInputComponent->BindAction(DIK_LEFT, InputType::PRESS, this, &Aoko::Move);
-	_pInputComponent->BindAction(DIK_RIGHT, InputType::HELD, this, &Aoko::Move);
-	_pInputComponent->BindAction(DIK_LEFT, InputType::HELD, this, &Aoko::Move);
-	_pInputComponent->BindAction(DIK_UP, InputType::PRESS, this, &Aoko::Move);
-	_pInputComponent->BindAction(DIK_DOWN, InputType::HELD, this, &Aoko::Move);
-	_pInputComponent->BindAction(DIK_RIGHT, InputType::RELEASE, this, &Aoko::MoveHandler);
-	_pInputComponent->BindAction(DIK_LEFT, InputType::RELEASE, this, &Aoko::MoveHandler);
-	_pInputComponent->BindAction(DIK_UP, InputType::RELEASE, this, &Aoko::MoveHandler);
-	_pInputComponent->BindAction(DIK_DOWN, InputType::RELEASE, this, &Aoko::MoveHandler);
+	//rip... need to change this(단순한게 쓰기도 좋다... 이건 너무 복잡, 구현도 그렇고, 이해도 그렇고)
+	//move to input component
+	//_pInputComponent->BindAction(DIP_LX, InputType::AXIS, this, &Aoko::Move);
+	_pInputComponent->BindAction(DIK_RIGHT, InputType::HELD, this, &Aoko::RightMoveHandler);
+	_pInputComponent->BindAction(DIK_LEFT, InputType::HELD, this, &Aoko::LeftMoveHandler);
+	_pInputComponent->BindAction(DIK_RIGHT, InputType::RELEASE, this, &Aoko::StandHandler);
+	_pInputComponent->BindAction(DIK_LEFT, InputType::RELEASE, this, &Aoko::StandHandler);
+	//jump to input component
+	_pInputComponent->BindAction(DIK_UP, InputType::PRESS, this, &Aoko::Jump);
+	_pInputComponent->BindAction(DIK_DOWN, InputType::HELD, this, &Aoko::Jump);
+	_pInputComponent->BindAction(DIK_UP, InputType::RELEASE, this, &Aoko::StandHandler);
+	_pInputComponent->BindAction(DIK_DOWN, InputType::RELEASE, this, &Aoko::StandHandler);
+	//attack to input component
 	_pInputComponent->BindAction(DIK_A, InputType::PRESS, this, &Aoko::Attack);
+	_pInputComponent->BindAction(DIK_A, InputType::RELEASE, this, &Aoko::Attack);
 	_pInputComponent->AttachToInputManager();
 
 	_pStateComponent = AddComponent<::Core::StateComponent>("StateComponent");
@@ -54,8 +57,8 @@ void Client::Aoko::BeginPlay()
 	_pBodyBoxComponent->AddColliderInLayer();
 
 	_pFootBoxComponent = AddComponent<::Core::BoxComponent>("FootBoxComponent");
-	_pFootBoxComponent->SetAddOffset({ 0.f, 200.f });
-	_pFootBoxComponent->SetSize({ 400.f, 100.f });
+	_pFootBoxComponent->SetAddOffset({ 200.f, 100.f });
+	_pFootBoxComponent->SetSize({ 270.f, 100.f });
 	_pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
 	_pFootBoxComponent->AddColliderInLayer();
 
@@ -75,7 +78,8 @@ void Client::Aoko::Tick(_float deltaTime)
 	{
 		_pBodyBoxComponent->SetSize({ 120.f, 400.f });
 	}
-	else if(!strcmp(_pStateComponent->GetCurrentStateName(),"RUNING"))
+	else if(!strcmp(_pStateComponent->GetCurrentStateName(),"RUNING")
+		&& !_pAnimationComponent->IsClipEnd("Runing"))
 	{
 		_pBodyBoxComponent->SetSize({ 280.f, 400.f });
 	}
@@ -91,12 +95,12 @@ void Client::Aoko::EndPlay()
 
 void Client::Aoko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
 {
-	std::cout << "Aoko NotifyActorBeginOverlap" << std::endl;
+	//std::cout << "Aoko NotifyActorBeginOverlap" << std::endl;
 }
 
 void Client::Aoko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
 {
-	std::cout << "Aoko NotifyActorEndOverlap" << std::endl;
+	//std::cout << "Aoko NotifyActorEndOverlap" << std::endl;
 }
 
 void Client::Aoko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
@@ -130,8 +134,6 @@ void Client::Aoko::MatchCombo(_float deltaTime)
 
 InputEvent Client::Aoko::GetPrevInputEvent()
 {
-	//std::cout << "Key : " << _inputQueue.front().key << std::endl;
-	//std::cout << "Type : " << (int)_inputQueue.front().type << std::endl;
 	if (_inputQueue.size() < 2)
 	{
 		return _inputQueue.back();
@@ -141,75 +143,89 @@ InputEvent Client::Aoko::GetPrevInputEvent()
 
 void Client::Aoko::Attack(const InputEvent& inputEvent)
 {
-	//debug code
-	OnDestroyMark(true);
+	if(_pAnimationComponent->IsFlip())
+	{
+		_pFootBoxComponent->SetAddOffset({ -190.f, 100.f });
+	}
+	else
+	{
+		_pFootBoxComponent->SetAddOffset({ 190.f, 100.f });
+	}
+	_pStateComponent->ChangeState("MiddleKick");
 }
 
-void Client::Aoko::Move(const InputEvent& inputEvent)
+void Client::Aoko::Jump(const InputEvent& inputEvent)
 {
-	//_direction.x = inputEvent.value;
-	//_direction.y = inputEvent.value;
-
-	if(inputEvent.type == InputType::PRESS || inputEvent.type == InputType::AXIS)
-	{
-		//std::cout << inputEvent.key << std::endl;
-		_inputQueue.push_back(inputEvent);
-	}
-
-	if(inputEvent.key == DIP_LX && inputEvent.type == InputType::AXIS)
-	{
-		if(	inputEvent.value > 0.7f || inputEvent.value < -0.7f )
-		_pMovementComponent->SetInputDirection({ inputEvent.value, 0.f });
-		else
-		_pMovementComponent->SetInputDirection({ 0.f, 0.f });
-	}
-
-	if (inputEvent.key == DIK_LEFT && inputEvent.type == InputType::HELD)
-	{
-		if(GetPrevInputEvent().key == DIK_LEFT && GetPrevInputEvent().type == InputType::RELEASE)
-		{
-			_pMovementComponent->SetRunning(true);
-			_pMovementComponent->SetInputDirection({ -2.f,0.f });
-		}
-		else
-		{
-			_pMovementComponent->SetRunning(false);
-			_pMovementComponent->SetInputDirection({ -1.f,0.f });
-		}
-	}
-	if (inputEvent.key == DIK_RIGHT && inputEvent.type == InputType::HELD)
-	{
-		if(GetPrevInputEvent().key == DIK_RIGHT && GetPrevInputEvent().type == InputType::RELEASE)
-		{
-			_pMovementComponent->SetRunning(true);	
-			_pMovementComponent->SetInputDirection({ 2.f,0.f });
-		}
-		else
-		{
-			_pMovementComponent->SetRunning(false);
-			_pMovementComponent->SetInputDirection({ 1.f,0.f });
-		}
-	}
-
 	if (inputEvent.key == DIK_UP && inputEvent.type == InputType::PRESS)
 	{
 		_pMovementComponent->SetInputDirection({ 0.f, -1.f });
 	}
-	else if (inputEvent.key == DIK_DOWN && inputEvent.type == InputType::HELD)
+}
+
+void Client::Aoko::Ducking(const InputEvent& inputEvent)
+{
+	if (inputEvent.key == DIK_DOWN && inputEvent.type == InputType::HELD)
 	{
 		_pMovementComponent->SetInputDirection({ 0.f, 1.f });
 	}
 }
 
-void Client::Aoko::MoveHandler(const InputEvent& inputEvent)
+void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 {
-	if (inputEvent.type == InputType::RELEASE)
+	if(_pMovementComponent->GetInputDirection() == Mathf::Vector2{ -2.f,0.f })
 	{
-		std::cout << inputEvent.key << std::endl;
-		_inputQueue.push_back(inputEvent);
-		_pMovementComponent->SetInputDirection({0.f,0.f});
-		_pMovementComponent->SetRunning(false);
+		return;
 	}
+
+	if(_pInputComponent->IsKeyPressed(DIK_RIGHT,InputType::RELEASE))
+	{
+		_pMovementComponent->SetRunning(true);
+		_pMovementComponent->SetInputDirection({ 2.f,0.f });
+	}
+	else if(_pMovementComponent->IsRunning() &&
+		_pInputComponent->IsKeyPress(DIK_RIGHT,InputType::HELD))
+	{
+		_pMovementComponent->SetInputDirection({ 2.f,0.f });
+	}
+	else
+	{
+		_pMovementComponent->SetRunning(false);
+		_pMovementComponent->SetInputDirection({ 1.f,0.f });
+	}
+
+}
+
+void Client::Aoko::LeftMoveHandler(const InputEvent& inputEvent)
+{
+	if(_pMovementComponent->GetInputDirection() == Mathf::Vector2{ 2.f,0.f })
+	{
+		return;
+	}
+
+	if(_pInputComponent->IsKeyPressed(DIK_LEFT,InputType::RELEASE))
+	{
+		_pMovementComponent->SetRunning(true);
+		_pMovementComponent->SetInputDirection({ -2.f,0.f });
+	}
+	else if(_pMovementComponent->IsRunning() &&
+		_pInputComponent->IsKeyPress(DIK_LEFT,InputType::HELD))
+	{
+		_pMovementComponent->SetInputDirection({ -2.f,0.f });
+	}
+	else
+	{
+		_pMovementComponent->SetRunning(false);
+		_pMovementComponent->SetInputDirection({ -1.f,0.f });
+	}
+}
+
+void Client::Aoko::StandHandler(const InputEvent& inputEvent)
+{
+	std::cout << inputEvent.key << std::endl;
+	_inputQueue.push_back(inputEvent);
+	_pMovementComponent->SetInputDirection({0.f,0.f});
+	_pMovementComponent->SetRunning(false);
+	_pStateComponent->ChangeState("IDLE");
 }
 
 void Client::Aoko::Dead()

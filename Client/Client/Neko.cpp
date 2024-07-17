@@ -52,6 +52,26 @@ void Client::Neko::EndPlay()
 {
 }
 
+void Client::Neko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
+{
+}
+
+void Client::Neko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
+{
+	std::cout << "Neko BeginOverlap" << std::endl;
+
+	if ((*pOtherComponent->GetOwner() == "Aoko") &&
+		(*pOtherComponent == "FootBoxComponent"))
+	{
+		std::cout << "Attacked by Aoko" << std::endl;
+	}
+}
+
+void Client::Neko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
+{
+	std::cout << "Neko EndOverlap" << std::endl;
+}
+
 Client::Neko* Client::Neko::Create()
 {
 	return new Neko;

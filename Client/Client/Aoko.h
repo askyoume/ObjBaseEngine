@@ -17,7 +17,7 @@ struct InputEvent;
 
 namespace Client
 {
-	class Aoko : public Core::Actor
+	class Aoko final : public Core::Actor
 	{
 	protected:
 		explicit Aoko() = default;
@@ -29,15 +29,18 @@ namespace Client
 		void Fixed() override;
 		void EndPlay() override;
 		void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
-		virtual void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
-		virtual void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
 
 		void MatchCombo(_float deltaTime);
 		InputEvent GetPrevInputEvent();
 
 		void Attack(const InputEvent& inputEvent);
-		void Move(const InputEvent& inputEvent);
-		void MoveHandler(const InputEvent& inputEvent);
+		void Jump(const InputEvent& inputEvent);
+		void Ducking(const InputEvent& inputEvent);
+		void RightMoveHandler(const InputEvent& inputEvent);
+		void LeftMoveHandler(const InputEvent& inputEvent);
+		void StandHandler(const InputEvent& inputEvent);
 		void Dead();
 
 		void SetPlayClip(_pstring clipName);

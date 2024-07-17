@@ -28,6 +28,7 @@ bool Client::IdleToRuning::ShouldTransition()
 		return true;
 	}
 
+	SetTargetState("IDLE");
 	return false;
 }
 

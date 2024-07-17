@@ -29,6 +29,9 @@ namespace Core
 		}
 
 	public:
+		void ChangeState(_pstring targetState);
+
+	public:
 		static StateComponent* Create() { return new StateComponent; }
 
 	public:

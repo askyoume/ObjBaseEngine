@@ -41,6 +41,10 @@ namespace Core
 		const IgnoreLayerList& GetIgnoreLayerList() const { return _ignoreLayerList; }
 
 	public:
+		bool operator==(_pstring _name) const { return !strcmp(name, _name); }
+		bool operator!=(_pstring _name) const { return strcmp(name, _name); }
+
+	public:
 		void AddColliderInLayer();
 
 	public:

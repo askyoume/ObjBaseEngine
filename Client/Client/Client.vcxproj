@@ -132,6 +132,7 @@
     <ClInclude Include="AI_Attack.h" />
     <ClInclude Include="AI_Chasing.h" />
     <ClInclude Include="AI_ChasingToIdle.h" />
+    <ClInclude Include="AI_Hit.h" />
     <ClInclude Include="AI_Idle.h" />
     <ClInclude Include="AI_IdleToAttack.h" />
     <ClInclude Include="AI_IdleToChasing.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="AI_Attack.cpp" />
     <ClCompile Include="AI_Chasing.cpp" />
     <ClCompile Include="AI_ChasingToIdle.cpp" />
+    <ClCompile Include="AI_Hit.cpp" />
     <ClCompile Include="AI_Idle.cpp" />
     <ClCompile Include="AI_IdleToAttack.cpp" />
     <ClCompile Include="AI_IdleToChasing.cpp" />

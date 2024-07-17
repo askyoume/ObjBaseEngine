@@ -14,6 +14,8 @@ void Core::InputComponent::OnInputReceived(const InputEvent& inputEvent)
 	if (_owner->IsDestroyMarked())
 		return;
 
+	_inputEvents.push_back(inputEvent);
+
 	auto iter = _eventHandlers.find(inputEvent.key);
 	if (iter == _eventHandlers.end())
 		return;
@@ -22,7 +24,11 @@ void Core::InputComponent::OnInputReceived(const InputEvent& inputEvent)
 	for (auto& handler : handlers)
 	{
 		handler(inputEvent);
-		//_inputEvents.push_back(inputEvent);
+	}
+
+	if (_inputEvents.size() > 10)
+	{
+		_inputEvents.pop_front();
 	}
 }
 
@@ -47,6 +53,33 @@ void Core::InputComponent::SetVibration(float leftMotor, float rightMotor)
 	};
 
 	XInputSetState(0, &vibration);
+}
+
+bool Core::InputComponent::IsKeyPress(_uint key, InputType type) const
+{
+	if (_inputEvents.empty())
+		return false;
+
+	if (_inputEvents.back().key == key && _inputEvents.back().type == type)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool Core::InputComponent::IsKeyPressed(_uint key, InputType type) const
+{
+	if (_inputEvents.empty())
+		return false;
+
+	for (auto& inputEvent : _inputEvents)
+	{
+		if (inputEvent.key == key && inputEvent.type == type)
+			return true;
+	}
+
+	return false;
 }
 
 Core::InputComponent* Core::InputComponent::Create()

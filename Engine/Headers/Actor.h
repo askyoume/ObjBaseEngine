@@ -55,19 +55,20 @@ namespace Core
 			return nullptr;
 		}
 
+	public:
+		bool operator==(_pstring name) const { return !strcmp(this->name, name); }
+		bool operator!=(_pstring name) const { return strcmp(this->name, name); }
+
+	public:
 		bool SetRootComponent(SceneComponent* pRootComponent);
 		SceneComponent* GetRootComponent() const { return _pRootComponent; }
-
 		void SetLayerIndex(int layerIndex) { _layerIndex = layerIndex; }
 		int GetLayerIndex() const { return _layerIndex; }
-
 		void AttachToActor(Actor* pParent);
 		void DetachFromActor();
 		Actor* GetParent() const { return _pParent; }
-
 		void SetWorld(World* world) { _pOwnerWorld = world; }
 		World* GetWorld() const { return _pOwnerWorld; }
-
 		void AddTexture(Texture* pTexture) { _vecTextures.push_back(pTexture); }
 		size_t GetTextureSize() const { return _vecTextures.size(); }
 		Texture* GetFrame(int index) const { return _vecTextures[index]; }
