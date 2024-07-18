@@ -1,10 +1,13 @@
 #include "ClientFSMContainer.h"
+//state
 #include "Idle.h"
 #include "Runing.h"
 #include "Move.h"
+#include "MiddleKick.h"
+#include "LowKick.h"
+//transition
 #include "IdleToRuning.h"
 #include "IdleToMove.h"
-#include "MiddleKick.h"
 #include "IdleToKick.h"
 
 void Client::ClientFSMContainer::ContainStep()
@@ -13,8 +16,8 @@ void Client::ClientFSMContainer::ContainStep()
 	AddState(idle);
 	SetInitialState("IDLE");
 
-	Runing* runing = Runing::Create();
-	AddState(runing);
+	Running* running = Running::Create();
+	AddState(running);
 
 	Move* move = Move::Create();
 	AddState(move);
@@ -23,16 +26,25 @@ void Client::ClientFSMContainer::ContainStep()
 	middleKick->SetPriority(true);
 	AddState(middleKick);
 
-	IdleToRuning* idleToRuning = IdleToRuning::Create();
+	LowKick* lowKick = LowKick::Create();
+	lowKick->SetPriority(true);
+	AddState(lowKick);
+
+	IdleToRunning* idleToRunning = IdleToRunning::Create();
 	IdleToMove* idleToMove = IdleToMove::Create();
 	IdleToKick* idleToKick = IdleToKick::Create();
 	idle->AddTransition(idleToMove);
-	move->AddTransition(idleToRuning);
+	move->AddTransition(idleToRunning);
 
 	middleKick->AddTransition(idleToKick);
 	middleKick->BindState(idle);
 	middleKick->BindState(move);
-	middleKick->BindState(runing);
+	middleKick->BindState(running);
+
+	lowKick->AddTransition(idleToKick);
+	lowKick->BindState(idle);
+	lowKick->BindState(move);
+	lowKick->BindState(running);
 }
 
 void Client::ClientFSMContainer::Update(float deltaTime)

@@ -19,7 +19,7 @@ namespace Core
 		_pstring GetTargetState() const { return _targetState; }
 
 	protected:
-		_pstring		_targetState;
+		_pstring		_targetState{ nullptr };
 		StateComponent*	_pOwnerComponent{ nullptr };
 	};
 }

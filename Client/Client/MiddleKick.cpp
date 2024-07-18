@@ -16,15 +16,17 @@ void Client::MiddleKick::Enter()
 	{
 		pActor = _pOwnerComponent->GetOwner();
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
-		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
-		pBoxComponent = pActor->GetComponent<::Core::BoxComponent>("FootBoxComponent");
+		pBodyBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
+		pFootBoxComponent = pActor->GetComponent<::Core::BoxComponent>("FootBoxComponent");
 	}
 
 	if(pAnimationComponent->IsClipEnd("MiddleKick"))
 	{
-		pBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
+		pFootBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
 		pAnimationComponent->SetPlayClip("MiddleKick");
 	}
+
+	pBodyBoxComponent->SetSize({ 100.f, 400.f });
 }
 
 void Client::MiddleKick::Execute(float deltaTime)
@@ -39,7 +41,7 @@ void Client::MiddleKick::Exit()
 {
 	if(pAnimationComponent->IsClipEnd("MiddleKick"))
 	{
-		pBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
+		pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
 	}
 }
 

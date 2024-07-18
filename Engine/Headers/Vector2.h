@@ -7,17 +7,24 @@ namespace Mathf
 {
 	struct Vector2 : public D2D1_VECTOR_2F
 	{
-		Vector2() = default;
+		explicit Vector2() = default;
 		Vector2(float x, float y) : D2D1_VECTOR_2F{ x, y } {}
 		Vector2(const D2D1_VECTOR_2F& rhs) : D2D1_VECTOR_2F{ rhs.x, rhs.y } {}
 
 		Vector2(const Vector2& rhs) = default;
 		Vector2(Vector2&& rhs) = default;
+		~Vector2() = default;
 
+		ReadOnly_Property(float, Length);
+		_Get(Length)
+		{
+			return sqrtf(x * x + y * y);
+		}
+		
 		Vector2 Normalize()
 		{
 			Vector2 result{ 0.f, 0.f };
-			float length = sqrtf(x * x + y * y);
+			float length = (*this).Length;
 			if(Vector2{0.f, 0.f} == *this)
 			{
 				return result;
@@ -27,11 +34,6 @@ namespace Mathf
 			result.y = y / length;
 
 			return result;
-		}
-
-		float Length()
-		{
-			return sqrtf(x * x + y * y);
 		}
 
 		Vector2 operator=(const Vector2& rhs)

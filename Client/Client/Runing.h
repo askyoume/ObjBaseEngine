@@ -7,15 +7,16 @@ namespace Core
 	class Actor;
 	class MovementComponent;
 	class AnimationComponent;
+	class BoxComponent;
 }
 
 namespace Client
 {
-	class Runing : public Core::State
+	class Running : public Core::State
 	{
 	protected:
-		explicit Runing() = default;
-		virtual ~Runing() = default;
+		explicit Running() = default;
+		virtual ~Running() = default;
 
 	public:
 		void Enter() override;
@@ -24,11 +25,12 @@ namespace Client
 		void Remove() override;
 
 	public:
-		static Runing* Create();
+		static Running* Create();
 
 	private:
 		::Core::Actor* pActor{ nullptr };
 		::Core::MovementComponent* pMovementComponent{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
+		::Core::BoxComponent* pBoxComponent{ nullptr };
 	};
 }

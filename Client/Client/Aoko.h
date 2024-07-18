@@ -33,9 +33,9 @@ namespace Client
 		void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
 
 		void MatchCombo(_float deltaTime);
-		InputEvent GetPrevInputEvent();
 
-		void Attack(const InputEvent& inputEvent);
+		void LowKickHandler(const InputEvent& inputEvent);
+		void MiddleKickHandler(const InputEvent& inputEvent);
 		void Jump(const InputEvent& inputEvent);
 		void Ducking(const InputEvent& inputEvent);
 		void RightMoveHandler(const InputEvent& inputEvent);
@@ -55,9 +55,5 @@ namespace Client
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::InputComponent*		_pInputComponent{ nullptr };
 		::Core::StateComponent*		_pStateComponent{ nullptr };
-		std::deque<InputEvent>		_inputQueue;
-
-	private:
-		float _comboTime{ 0.f };
 	};
 }

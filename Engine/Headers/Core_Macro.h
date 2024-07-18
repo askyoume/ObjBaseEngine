@@ -2,7 +2,6 @@
 
 #define Interface __interface
 #define Super __super
-//#define PURE abstract
 #define MAX_OBJECT 20
 
 #ifdef _DEBUG
@@ -47,6 +46,19 @@
 	class RenderComponent;          \
 	class BitmapComponent;          \
 	class SceneComponent;
+
+//////////////////////////////////////////////
+// Define Property                        //
+//////////////////////////////////////////////
+
+#define _Property(t,n)  __declspec( property ( put = property__set_##n, get = property__get_##n ) ) t n;\
+	typedef t property__tmp_type_##n
+#define ReadOnly_Property(t,n) __declspec( property (get = property__get_##n) ) t n;\
+	typedef t property__tmp_type_##n
+#define WriteOnly_Property(t,n) __declspec( property (put = property__set_##n) ) t n;\
+	typedef t property__tmp_type_##n
+#define _Get(n) property__tmp_type_##n property__get_##n() 
+#define _Set(n) void property__set_##n(const property__tmp_type_##n& value)
 
 //////////////////////////////////////////////
 // Define KeyArrow                          //

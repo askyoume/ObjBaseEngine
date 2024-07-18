@@ -9,18 +9,18 @@ namespace Core
 
 namespace Client
 {
-	class IdleToRuning : public Core::StateTransition
+	class IdleToRunning : public Core::StateTransition
 	{
 	protected:
-		explicit IdleToRuning() = default;
-		virtual ~IdleToRuning() = default;
+		explicit IdleToRunning() = default;
+		virtual ~IdleToRunning() = default;
 
 	public:
 		bool ShouldTransition() override;
 		void Remove() override;
 
 	public:
-		static IdleToRuning* Create();
+		static IdleToRunning* Create();
 
 	private:
 		::Core::Actor* pActor{ nullptr };

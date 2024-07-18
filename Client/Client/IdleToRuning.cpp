@@ -2,12 +2,11 @@
 #include "../../Engine/Headers/StateComponent.h"
 #include "../../Engine/Headers/AnimationComponent.h"
 #include "../../Engine/Headers/Actor.h"
-
-#include "../../Engine/Headers/MovementComponent.h" //temp
+#include "../../Engine/Headers/MovementComponent.h"
 
 #include "IdleToRuning.h"
 
-bool Client::IdleToRuning::ShouldTransition()
+bool Client::IdleToRunning::ShouldTransition()
 {
 	if(!pActor)
 	{
@@ -24,7 +23,7 @@ bool Client::IdleToRuning::ShouldTransition()
 
 	if (pMovementComponent->IsRunning())
 	{
-		SetTargetState("RUNING");
+		SetTargetState("RUNNING");
 		return true;
 	}
 
@@ -32,12 +31,12 @@ bool Client::IdleToRuning::ShouldTransition()
 	return false;
 }
 
-void Client::IdleToRuning::Remove()
+void Client::IdleToRunning::Remove()
 {
 }
 
-Client::IdleToRuning* Client::IdleToRuning::Create()
+Client::IdleToRunning* Client::IdleToRunning::Create()
 {
-	IdleToRuning* pTransit = new IdleToRuning();
+	IdleToRunning* pTransit = new IdleToRunning();
 	return pTransit;
 }

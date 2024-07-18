@@ -1,9 +1,13 @@
 #pragma once
 #include "../../Engine/Headers/State.h"
+namespace Core
+{
+	class Actor;
+	class BoxComponent;
+}
 
 namespace Client
 {
-	class Aoko;
 	class LowKick : public Core::State
 	{
 	protected:
@@ -20,9 +24,10 @@ namespace Client
 		static LowKick* Create();
 
 	private:
-		Aoko* pAoko{ nullptr };
-		bool isLowKick{ false };
-		float _elapsedTime{ 0.f };
-		float _lowKickSpeed{ 5.f };
+		::Core::Actor* pActor{ nullptr };
+		::Core::AnimationComponent* pAnimationComponent{ nullptr };
+		::Core::BoxComponent* pBodyBoxComponent{ nullptr };
+		::Core::BoxComponent* pFootBoxComponent{ nullptr };
+
 	};
 }

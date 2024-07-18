@@ -154,6 +154,9 @@
     <Filter Include="Engine\Component\ActorComponent\MovementComponent">
       <UniqueIdentifier>{712fb5ae-096c-4127-b501-c1ccc9b69fc9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\BaseClass\UI">
+      <UniqueIdentifier>{ea951b26-8e07-4d58-88f3-deef8da9c60a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Engine\Headers\Actor.h">

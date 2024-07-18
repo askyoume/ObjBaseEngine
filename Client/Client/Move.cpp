@@ -3,8 +3,9 @@
 #include "../../Engine/Headers/AnimationComponent.h"
 #include "../../Engine/Headers/CoreManager.h"
 #include "../../Engine/Headers/World.h"
-#include "../../Engine/Headers/MovementComponent.h" //temp
+#include "../../Engine/Headers/MovementComponent.h"
 #include "../../Engine/Headers/Actor.h"
+#include "../../Engine/Headers/BoxComponent.h"
 
 #include "Move.h"
 #include "ClientFSMContainer.h"
@@ -16,7 +17,10 @@ void Client::Move::Enter()
 		pActor = _pOwnerComponent->GetOwner();
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
+		pBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 	}
+
+	pBoxComponent->SetSize({ 120.f, 400.f });
 
 	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
 	if (0.f < _direction.x)

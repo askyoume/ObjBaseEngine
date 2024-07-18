@@ -49,8 +49,8 @@ namespace Core
 		HWND hWnd = nullptr;
 
 	private:
-		_byte _previousKeyboardState[256];
-		_byte _keyboardState[256];
+		_byte _previousKeyboardState[256]{};
+		_byte _keyboardState[256]{};
 
 	private:
 		ReceiverMap Receivers;

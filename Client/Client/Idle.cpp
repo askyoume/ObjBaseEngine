@@ -3,8 +3,9 @@
 #include "../../Engine/Headers/AnimationComponent.h"
 #include "../../Engine/Headers/CoreManager.h"
 #include "../../Engine/Headers/World.h"
-#include "../../Engine/Headers/MovementComponent.h" //temp
+#include "../../Engine/Headers/MovementComponent.h"
 #include "../../Engine/Headers/Actor.h"
+#include "../../Engine/Headers/BoxComponent.h"
 
 #include "Idle.h"
 #include "ClientFSMContainer.h"
@@ -16,6 +17,7 @@ void Client::Idle::Enter()
 		pActor = _pOwnerComponent->GetOwner();
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
+		pBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 	}
 
 	if (pAnimationComponent->IsClipEnd("ReadyToIdle") && 
@@ -25,6 +27,8 @@ void Client::Idle::Enter()
 	{
 		pAnimationComponent->SetPlayClip("Idle");
 	}
+
+	pBoxComponent->SetSize({ 100.f, 400.f });
 }
 
 void Client::Idle::Execute(float deltaTime)

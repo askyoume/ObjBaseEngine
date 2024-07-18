@@ -6,6 +6,7 @@ namespace Core
 	class Actor;
 	class AnimationComponent;
 	class MovementComponent;
+	class BoxComponent;
 };
 
 namespace Client
@@ -26,8 +27,9 @@ namespace Client
 		static Idle* Create();
 
 	private:
-		::Core::Actor* pActor{ nullptr };
+		::Core::Actor*				pActor{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
-		::Core::MovementComponent* pMovementComponent{ nullptr };
+		::Core::MovementComponent*	pMovementComponent{ nullptr };
+		::Core::BoxComponent*		pBoxComponent{ nullptr };
 	};
 }

@@ -55,7 +55,7 @@ void Core::InputComponent::SetVibration(float leftMotor, float rightMotor)
 	XInputSetState(0, &vibration);
 }
 
-bool Core::InputComponent::IsKeyPress(_uint key, InputType type) const
+bool Core::InputComponent::IsKeyEventTriggerNow(_uint key, InputType type) const
 {
 	if (_inputEvents.empty())
 		return false;
@@ -68,7 +68,7 @@ bool Core::InputComponent::IsKeyPress(_uint key, InputType type) const
 	return false;
 }
 
-bool Core::InputComponent::IsKeyPressed(_uint key, InputType type) const
+bool Core::InputComponent::IsKeyEventTriggered(_uint key, InputType type) const
 {
 	if (_inputEvents.empty())
 		return false;
@@ -77,6 +77,53 @@ bool Core::InputComponent::IsKeyPressed(_uint key, InputType type) const
 	{
 		if (inputEvent.key == key && inputEvent.type == type)
 			return true;
+	}
+
+	return false;
+}
+
+bool Core::InputComponent::IsLastInputOverTime(_float time) const
+{
+	if (_inputEvents.empty())
+		return false;
+
+	int backBefore = _inputEvents.size() - 2;
+	if (backBefore < 0)
+		return false;
+
+	std::cout << _inputEvents[backBefore].timeToLastInput << std::endl;
+	return _inputEvents[backBefore].timeToLastInput > time;
+}
+
+bool Core::InputComponent::IsKeyEventTriggeredOverTime(_uint key, InputType type, _float time) const
+{
+	if (_inputEvents.empty())
+		return false;
+
+	for (auto iter = _inputEvents.rbegin(); 
+		iter != _inputEvents.rend(); iter++)
+	{
+		if (iter->key == key && iter->type == type)
+		{
+			return iter->timeToLastInput > time;
+		}
+	}
+
+	return false;
+}
+
+bool Core::InputComponent::IsKeyEventTriggeredLessTime(_uint key, InputType type, _float time) const
+{
+	if (_inputEvents.empty())
+		return false;
+
+	for (auto iter = _inputEvents.rbegin();
+		iter != _inputEvents.rend(); iter++)
+	{
+		if (iter->key == key && iter->type == type)
+		{
+			return iter->timeToLastInput < time;
+		}
 	}
 
 	return false;
@@ -94,6 +141,14 @@ Core::InputComponent* Core::InputComponent::Create()
 bool Core::InputComponent::Initialize()
 {
 	return true;
+}
+
+void Core::InputComponent::TickComponent(_float deltaTime)
+{
+	if (_inputEvents.empty())
+		return;
+
+	_inputEvents.back().timeToLastInput += deltaTime;
 }
 
 void Core::InputComponent::Remove()

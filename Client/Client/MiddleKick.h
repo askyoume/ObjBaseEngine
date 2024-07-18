@@ -29,8 +29,8 @@ namespace Client
 
 	private:
 		::Core::Actor* pActor{ nullptr };
-		::Core::MovementComponent* pMovementComponent{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
-		::Core::BoxComponent* pBoxComponent{ nullptr };
+		::Core::BoxComponent* pBodyBoxComponent{ nullptr };
+		::Core::BoxComponent* pFootBoxComponent{ nullptr };
 	};
 }

@@ -1,18 +1,20 @@
 #include "../../Engine/Headers/StateComponent.h"
 #include "../../Engine/Headers/AnimationComponent.h"
-#include "../../Engine/Headers/MovementComponent.h" //temp
+#include "../../Engine/Headers/MovementComponent.h"
 #include "../../Engine/Headers/Actor.h"
+#include "../../Engine/Headers/BoxComponent.h"
 
 #include "Runing.h"
 #include "ClientFSMContainer.h"
 
-void Client::Runing::Enter()
+void Client::Running::Enter()
 {
 	if(!pActor)
 	{
 		pActor = _pOwnerComponent->GetOwner();
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
+		pBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 	}
 
 	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
@@ -25,37 +27,37 @@ void Client::Runing::Enter()
 		pAnimationComponent->SetFlip(true);
 	}
 
-	pAnimationComponent->SetPlayClip("ReadyToRuning");
+	pAnimationComponent->SetPlayClip("ReadyToRunning");
+	pBoxComponent->SetSize({ 280.f, 400.f });
 }
 
-void Client::Runing::Execute(float deltaTime)
+void Client::Running::Execute(float deltaTime)
 {
 	if(!pMovementComponent->IsJumping() &&
-		pAnimationComponent->IsClipEnd("ReadyToRuning") &&
-		pAnimationComponent->IsClipEnd("Runing"))
+		pAnimationComponent->IsClipEnd("ReadyToRunning") &&
+		pAnimationComponent->IsClipEnd("Running"))
 	{
 		pMovementComponent->SetRunning(true);
-		pAnimationComponent->SetPlayClip("Runing");
+		pAnimationComponent->SetPlayClip("Running");
 	}
 
-	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
 	pMovementComponent->Run(deltaTime);
 }
 
-void Client::Runing::Exit()
+void Client::Running::Exit()
 {
 	pAnimationComponent->SetPlayClip("ReadyToIdle");
 	pMovementComponent->SetRunning(false);
 }
 
-void Client::Runing::Remove()
+void Client::Running::Remove()
 {
 }
 
-Client::Runing* Client::Runing::Create()
+Client::Running* Client::Running::Create()
 {
-	Runing* runing = new Runing();
-	runing->_name = "RUNING";
+	Running* running = new Running();
+	running->_name = "RUNNING";
 
-	return runing;
+	return running;
 }

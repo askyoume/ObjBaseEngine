@@ -20,7 +20,6 @@ void Core::AnimationComponent::TickComponent(_float deltaTime)
 	{
 		_currentFrameTime -= _frameTime;
 		_prevFrame = _currentFrame;
-		//_currentFrame++;
 
 		if (_isLoop)
 		{
@@ -52,7 +51,6 @@ void Core::AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 	SetBitmapLocalTransform();
 
-	//D2D1InvertMatrix(&_cameraMatrix);
 	Mathf::Matrix3x2 flipMatrix = Matx::Identity;
 
 	if (_isFlip)
@@ -88,9 +86,6 @@ void Core::AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 		_pCollision->GetCollisionOffset().x, 
 		_pCollision->GetCollisionOffset().y
 	};
-
-	//pRenderTarget->DrawLine(D2D1::Point2F(point.x - 5.0f, point.y), D2D1::Point2F(point.x + 5.0f, point.y), m_pBrush, 1.0f);
-	//pRenderTarget->DrawLine(D2D1::Point2F(point.x, point.y - 5.0f), D2D1::Point2F(point.x, point.y + 5.0f), m_pBrush, 1.0f);
 }
 
 void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool isLoop)
@@ -116,17 +111,17 @@ void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool
 	GetOwner()->AddTexture(pCore->FindTexture(textureName));
 }
 
-bool Core::AnimationComponent::IsClipPlay(_pstring clipName)
+const bool Core::AnimationComponent::IsClipPlay(_pstring clipName) const
 {
 	if (_currentClipName && !strcmp(_currentClipName, clipName))
 	{
-		return true;
+		return !_isFrameEnd;
 	}
 
 	return false;
 }
 
-bool Core::AnimationComponent::IsClipEnd(_pstring clipName)
+const bool Core::AnimationComponent::IsClipEnd(_pstring clipName) const
 {
 	if (_currentClipName && !strcmp(_currentClipName, clipName))
 	{

@@ -25,7 +25,7 @@ void Client::Neko::BeginPlay()
 	_pAnimationComponent->AddClip("ReadyToBackMove", 0.1f, false);
 	_pAnimationComponent->AddClip("ReadyToRuning", 0.1f, false);
 	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f, false);
-	_pAnimationComponent->AddClip("Runing", 0.1f, true);
+	_pAnimationComponent->AddClip("Running", 0.1f, true);
 	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
 
 	_pBoxComponent = AddComponent<::Core::BoxComponent>("BoxComponent");
