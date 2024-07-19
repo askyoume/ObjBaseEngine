@@ -6,6 +6,7 @@
 #include "../../Engine/Headers/StateComponent.h"
 //Client
 #include "ClientWorld.h"
+#include "PlayCameraActor.h"
 #include "BackGround.h"
 #include "Aoko.h"
 #include "Neko.h"
@@ -22,14 +23,12 @@ bool Client::ClientWorld::BeginPlay()
 	_pAoko = static_cast<Aoko*>(FindActor("Aoko"));
 	_pNeko = static_cast<Neko*>(FindActor("Neko"));
 
-	//TODO: Debug Code
-	SettingTrackingCameraTarget(FindActor("Aoko"));
+	SettingCamera(PlayCameraActor::Create());
+	//SettingTrackingCameraTarget(_pAoko);
 	SettingCameraOffset(Mathf::Vector2{0.f, 30.f});
 	SetWorldSize(Mathf::Rect{ 0.f, -1580.f, 3500.f, -100.f });
-	//1920,1480
-	//test code end
 
-    return true;
+    return isBeginPlayEnd;
 }
 
 void Client::ClientWorld::Tick(_float deltaTime)

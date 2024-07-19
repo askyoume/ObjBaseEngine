@@ -8,10 +8,7 @@
 
 bool Core::World::InitializeWorld(int layerSize)
 {
-	_pCameraActor = CameraActor::Create();
 	_pCoreManager = CoreManager::GetInstance();
-	_pCameraActor->SetWorld(this);
-	_pCameraActor->SetName("MainCamera");
 
     InitializeLayer(layerSize);
 
@@ -22,6 +19,16 @@ void Core::World::Remove()
 {
 	SafeRelease(_pCameraActor);
 	ClearLayer();
+}
+
+bool Core::World::BeginPlayEnd()
+{
+	for (auto iter = _vecLayers.begin(); iter != _vecLayers.end(); iter++)
+	{
+		(*iter)->SettingCamera(_pCameraActor);
+	}
+
+	return true;
 }
 
 void Core::World::Tick(_float deltaTime)
@@ -64,7 +71,6 @@ bool Core::World::InitializeLayer(int layerSize)
 	for (int i = 0; i < _layerSize; i++)
 	{
 		Layer* pLayer = Layer::Begin();
-		pLayer->SettingCamera(_pCameraActor);
 		_vecLayers.push_back(pLayer);
 	}
 
@@ -107,6 +113,20 @@ void Core::World::ClearLayer()
 	}
 
 	_vecLayers.clear();
+}
+
+void Core::World::SettingCamera(CameraActor* pCameraActor)
+{
+	if(!pCameraActor)
+	{
+		_pCameraActor = CameraActor::Create();
+		_pCameraActor->SetWorld(this);
+		_pCameraActor->SetName("MainCamera");
+		return;
+	}
+
+	_pCameraActor = pCameraActor;
+	_pCameraActor->SetWorld(this);
 }
 
 void Core::World::SettingTrackingCameraTarget(Actor* pTargetActor)

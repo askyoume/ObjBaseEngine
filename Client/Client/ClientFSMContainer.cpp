@@ -9,6 +9,7 @@
 #include "IdleToRuning.h"
 #include "IdleToMove.h"
 #include "IdleToKick.h"
+#include "IdleToMiddleKick.h"
 
 void Client::ClientFSMContainer::ContainStep()
 {
@@ -33,10 +34,11 @@ void Client::ClientFSMContainer::ContainStep()
 	IdleToRunning* idleToRunning = IdleToRunning::Create();
 	IdleToMove* idleToMove = IdleToMove::Create();
 	IdleToKick* idleToKick = IdleToKick::Create();
+	IdleToMiddleKick* idleToMiddleKick = IdleToMiddleKick::Create();
 	idle->AddTransition(idleToMove);
 	move->AddTransition(idleToRunning);
 
-	middleKick->AddTransition(idleToKick);
+	middleKick->AddTransition(idleToMiddleKick);
 	middleKick->BindState(idle);
 	middleKick->BindState(move);
 	middleKick->BindState(running);

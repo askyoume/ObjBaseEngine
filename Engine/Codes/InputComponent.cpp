@@ -87,12 +87,7 @@ bool Core::InputComponent::IsLastInputOverTime(_float time) const
 	if (_inputEvents.empty())
 		return false;
 
-	int backBefore = _inputEvents.size() - 2;
-	if (backBefore < 0)
-		return false;
-
-	std::cout << _inputEvents[backBefore].timeToLastInput << std::endl;
-	return _inputEvents[backBefore].timeToLastInput > time;
+	
 }
 
 bool Core::InputComponent::IsKeyEventTriggeredOverTime(_uint key, InputType type, _float time) const

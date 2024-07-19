@@ -17,6 +17,12 @@ namespace Core
 	
 	public:
 		bool InitializeWorld(int layerSize);
+		bool BeginPlayEnd();
+		ReadOnly_Property(bool, isBeginPlayEnd);
+		_Get(isBeginPlayEnd)
+		{
+			return World::BeginPlayEnd();
+		}
 		void Remove() override;
 
 	public:
@@ -37,6 +43,7 @@ namespace Core
 
 	public:
 		//Camera
+		void SettingCamera(CameraActor* pCameraActor = nullptr);
 		void SettingTrackingCameraTarget(Actor* pTargetActor);
 		CameraActor* GetCameraActor() { return _pCameraActor; }
 		void SetCameraLerpFactor(float lerpFactor);

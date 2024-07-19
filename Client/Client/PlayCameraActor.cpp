@@ -1,9 +1,24 @@
-#include "CameraActor.h"
-#include "CameraComponent.h"
-#include "CoreManager.h"
-#include "World.h"
+#include "../../Engine/Headers/CoreManager.h"
+#include "../../Engine/Headers/World.h"
+#include "../../Engine/Headers/SceneComponent.h"
+#include "../../Engine/Headers/CameraComponent.h"
 
-void Core::CameraActor::Tick(_float deltaTime)
+#include "PlayCameraActor.h"
+
+void Client::PlayCameraActor::BeginPlay()
+{
+	//_pActorOne = _pOwnerWorld->FindActor("Player1");
+	//_pActorTwo = _pOwnerWorld->FindActor("Player2");
+	::Core::CoreManager* _pCoreManager = ::Core::CoreManager::GetInstance();
+	_pOwnerWorld = _pCoreManager->GetWorld();
+	//test Code
+	_pActorOne = _pOwnerWorld->FindActor("Aoko");
+	_pActorTwo = _pOwnerWorld->FindActor("Neko");
+	_isTracking = true;
+	//test Code end
+}
+
+void Client::PlayCameraActor::Tick(_float deltaTime)
 {
 	if (!_isTracking)
 		return;
@@ -13,19 +28,22 @@ void Core::CameraActor::Tick(_float deltaTime)
 
 	Actor::Tick(deltaTime);
 
-	CoreManager* _pCoreManager = CoreManager::GetInstance();
+	::Core::CoreManager* _pCoreManager = ::Core::CoreManager::GetInstance();
 
 	Mathf::Rect worldSize = _pOwnerWorld->GetWorldSize();
 	float halfWidth = _pCoreManager->GetWidth() / 2.f;
 	float halfHeight = _pCoreManager->GetHeight() / 2.f;
 
-	Mathf::Vector2 parentLocation = _pParent->GetRootComponent()->GetRelativeLocation();
+	/*Mathf::Vector2 parentLocation = _pParent->GetRootComponent()->GetRelativeLocation();*/
+	Mathf::Vector2 PlayerOneLocation = _pActorOne->GetRootComponent()->GetRelativeLocation();
+	Mathf::Vector2 PlayerTwoLocation = _pActorTwo->GetRootComponent()->GetRelativeLocation();
+	Mathf::Vector2 parentLocation = Mathf::Vector2{(PlayerOneLocation.x - PlayerTwoLocation.x) * 2.f, PlayerOneLocation.y};
 	//Mathf::Vector2 cameraCenter = _cameraComponent->GetCenterPosition();
 	Mathf::Vector2 cameraCenter = Mathf::Vector2{ halfWidth, halfHeight };
 	Mathf::Vector2 cameraOffset = _cameraComponent->GetCameraOffset();
 	Mathf::Vector2 cameraLocation = _cameraComponent->GetRelativeLocation();
 
-	_cameraLerpFactor = fmin(3.0f, _cameraLerpFactor + deltaTime * 0.1f);
+	_cameraLerpFactor = fmin(8.0f, _cameraLerpFactor + deltaTime * 0.001f);
 
 	Mathf::Vector2 targetLocation = ( parentLocation - cameraCenter - cameraOffset );
 	Mathf::Vector2 newLocation = Mathf::Lerp(cameraLocation, targetLocation, _cameraLerpFactor * deltaTime);
@@ -91,33 +109,9 @@ void Core::CameraActor::Tick(_float deltaTime)
 	_oldLocation = targetLocation;
 }
 
-void Core::CameraActor::TrackTarget(Actor* pTarget)
+Client::PlayCameraActor* Client::PlayCameraActor::Create()
 {
-	_pParent = pTarget;
-}
-
-bool Core::CameraActor::Initialize()
-{
-	_cameraComponent = CameraComponent::Create();
-	_cameraComponent->SetOwner(this);
-
-	SetRootComponent(_cameraComponent);
-	_vecComponents.push_back(_cameraComponent);
-
-	BeginPlay();
-
-    return true;
-}
-
-void Core::CameraActor::Remove()
-{
-	_cameraComponent->Release();
-	_cameraComponent = nullptr;
-}
-
-Core::CameraActor* Core::CameraActor::Create()
-{
-	CameraActor* pInstance = new CameraActor;
+	PlayCameraActor* pInstance = new PlayCameraActor;
 	if (pInstance->Initialize())
 		return pInstance;
 

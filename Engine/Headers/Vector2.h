@@ -147,4 +147,9 @@ namespace Mathf
 		return in - normal * 2.f * Dot(in, normal);
 	}
 
+	inline Vector2 Abs(const Vector2& absVector)
+	{
+		return Vector2{ abs(absVector.x), abs(absVector.y) };
+	}
+
 }

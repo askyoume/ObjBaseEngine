@@ -5,6 +5,7 @@
 namespace Core
 {
 	class CoreManager;
+	class Actor;
 }
 
 namespace Client
@@ -26,6 +27,8 @@ namespace Client
 		static ClientWorld* Create() { return new ClientWorld; }
 
 	private:
+		::Core::Actor* _pActorOne{ nullptr };
+		::Core::Actor* _pActorTwo{ nullptr };
 		Aoko* _pAoko{ nullptr };
 		Neko* _pNeko{ nullptr };
 	};

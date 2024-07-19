@@ -47,6 +47,12 @@ void Client::LowKick::Exit()
 
 void Client::LowKick::Remove()
 {
+	for (auto& transit : _transitions)
+	{
+		SafeDelete(transit);
+	}
+
+	_transitions.clear();
 }
 
 Client::LowKick* Client::LowKick::Create()

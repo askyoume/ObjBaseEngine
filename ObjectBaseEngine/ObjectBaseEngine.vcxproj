@@ -176,6 +176,7 @@
     <ClInclude Include="..\Engine\Headers\StateContainer.h" />
     <ClInclude Include="..\Engine\Headers\StateTransition.h" />
     <ClInclude Include="..\Engine\Headers\System.h" />
+    <ClInclude Include="..\Engine\Headers\TextRenderActor.h" />
     <ClInclude Include="..\Engine\Headers\Texture.h" />
     <ClInclude Include="..\Engine\Headers\TextureManager.h" />
     <ClInclude Include="..\Engine\Headers\TimeManager.h" />

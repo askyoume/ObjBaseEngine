@@ -6,9 +6,9 @@
 #include "../../Engine/Headers/BoxComponent.h"
 #include "../../Engine/Headers/InputComponent.h"
 
-#include "IdleToKick.h"
+#include "IdleToMiddleKick.h"
 
-bool Client::IdleToKick::ShouldTransition()
+bool Client::IdleToMiddleKick::ShouldTransition()
 {
 	if (!pActor)
 	{
@@ -18,20 +18,20 @@ bool Client::IdleToKick::ShouldTransition()
 		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
-	if (!pAnimationComponent->IsClipEnd("LowKick"))
+	if (!pAnimationComponent->IsClipEnd("MiddleKick"))
 	{
 		return true;
 	}
 
 	pBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
-    return false;
+	return false;
 }
 
-void Client::IdleToKick::Remove()
+void Client::IdleToMiddleKick::Remove()
 {
 }
 
-Client::IdleToKick* Client::IdleToKick::Create()
+Client::IdleToMiddleKick* Client::IdleToMiddleKick::Create()
 {
-    return new IdleToKick;
+	return new IdleToMiddleKick;
 }

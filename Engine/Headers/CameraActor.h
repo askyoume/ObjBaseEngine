@@ -36,7 +36,7 @@ namespace Core
 	public:
 		static CameraActor* Create();
 
-	private:
+	protected:
 		CameraComponent*	_cameraComponent{ nullptr };
 		Mathf::Vector2		_oldLocation{};
 		float				_cameraLerpFactor{ 3.5f };

@@ -98,6 +98,11 @@ void Client::Aoko::MatchCombo(_float deltaTime)
 
 void Client::Aoko::LowKickHandler(const InputEvent& inputEvent)
 {
+	if (!strcmp(_pStateComponent->GetCurrentStateName(),"MiddleKick"))
+	{
+		return;
+	}
+
 	if (_pAnimationComponent->IsFlip())
 	{
 		_pFootBoxComponent->SetAddOffset({ -80.f, 160.f });
@@ -112,6 +117,11 @@ void Client::Aoko::LowKickHandler(const InputEvent& inputEvent)
 
 void Client::Aoko::MiddleKickHandler(const InputEvent& inputEvent)
 {
+	if (!strcmp(_pStateComponent->GetCurrentStateName(),"LowKick"))
+	{
+		return;
+	}
+
 	if(_pAnimationComponent->IsFlip())
 	{
 		_pFootBoxComponent->SetAddOffset({ -140.f, 100.f });

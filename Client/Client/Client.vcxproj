@@ -144,6 +144,7 @@
     <ClInclude Include="ClientWorld.h" />
     <ClInclude Include="Idle.h" />
     <ClInclude Include="IdleToKick.h" />
+    <ClInclude Include="IdleToMiddleKick.h" />
     <ClInclude Include="IdleToMove.h" />
     <ClInclude Include="IdleToRuning.h" />
     <ClInclude Include="Jump.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Move.h" />
     <ClInclude Include="Neko.h" />
     <ClInclude Include="NightSky.h" />
+    <ClInclude Include="PlayCameraActor.h" />
     <ClInclude Include="Runing.h" />
     <ClInclude Include="TestActor.h" />
     <ClInclude Include="TestActor2.h" />
@@ -174,6 +176,7 @@
     <ClCompile Include="ClientWorld.cpp" />
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="IdleToKick.cpp" />
+    <ClCompile Include="IdleToMiddleKick.cpp" />
     <ClCompile Include="IdleToMove.cpp" />
     <ClCompile Include="IdleToRuning.cpp" />
     <ClCompile Include="Jump.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Neko.cpp" />
     <ClCompile Include="NightSky.cpp" />
+    <ClCompile Include="PlayCameraActor.cpp" />
     <ClCompile Include="Runing.cpp" />
     <ClCompile Include="TestActor.cpp" />
     <ClCompile Include="TestActor2.cpp" />
