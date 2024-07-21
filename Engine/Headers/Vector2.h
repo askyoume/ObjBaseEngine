@@ -7,7 +7,7 @@ namespace Mathf
 {
 	struct Vector2 : public D2D1_VECTOR_2F
 	{
-		explicit Vector2() = default;
+		explicit Vector2(){ x = 0; y = 0; };
 		Vector2(float x, float y) : D2D1_VECTOR_2F{ x, y } {}
 		Vector2(const D2D1_VECTOR_2F& rhs) : D2D1_VECTOR_2F{ rhs.x, rhs.y } {}
 

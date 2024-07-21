@@ -7,7 +7,7 @@ namespace Core
 	class Layer : public Core
 	{
 	private:
-		using Actors = std::list<Actor*>;
+		using ActorsList = std::list<Actor*>;
 		using RenderQueue = std::vector<RenderComponent*>;
 
 	private:
@@ -28,13 +28,14 @@ namespace Core
 		void RemoveRenderQueue(RenderComponent* pRenderComponent);
 
 	public:
-		static Layer* Begin();
+		static Layer* Begin(_uint index);
 		void SettingCamera(CameraActor* pCameraActor){ _pCameraActor = pCameraActor; }
 		void Remove() override;
 
 	private:
-		Actors _actors;
-		RenderQueue _renderQueue;
+		ActorsList	 _actors;
+		RenderQueue	 _renderQueue;
 		CameraActor* _pCameraActor{ nullptr };
+		_uint		 _layerIndex{ 0 };
 	};
 }

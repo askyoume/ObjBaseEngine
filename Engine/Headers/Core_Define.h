@@ -50,6 +50,7 @@
 #include <comdef.h>
 #include <typeindex>
 #include <chrono>
+#include <filesystem>
 //#include <memory_resource>
 
 //Core

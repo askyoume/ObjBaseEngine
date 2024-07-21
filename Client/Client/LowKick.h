@@ -3,6 +3,8 @@
 namespace Core
 {
 	class Actor;
+	class InputComponent;
+	class AnimationComponent;
 	class BoxComponent;
 }
 
@@ -26,6 +28,7 @@ namespace Client
 	private:
 		::Core::Actor* pActor{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
+		::Core::InputComponent* pInputComponent{ nullptr };
 		::Core::BoxComponent* pBodyBoxComponent{ nullptr };
 		::Core::BoxComponent* pFootBoxComponent{ nullptr };
 

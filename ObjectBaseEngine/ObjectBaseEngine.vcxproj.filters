@@ -312,6 +312,9 @@
     <ClInclude Include="..\Engine\Headers\TextRenderActor.h">
       <Filter>Engine\BaseClass\Actor\TextRenderActor</Filter>
     </ClInclude>
+    <ClInclude Include="..\Engine\Headers\Canvas.h">
+      <Filter>Engine\BaseClass\UI\Canvas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Engine\Codes\Object.cpp">
@@ -400,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="..\Engine\Codes\CollisionManager.cpp">
       <Filter>Engine\Manager\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Engine\Codes\Canvas.cpp">
+      <Filter>Engine\BaseClass\UI\Canvas</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

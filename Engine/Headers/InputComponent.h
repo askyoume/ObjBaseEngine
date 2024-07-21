@@ -13,8 +13,8 @@ namespace Core
 
 	protected:
 		using Callback = std::function<void(const InputEvent&)>;
-		std::unordered_map<_uint, std::unordered_map<InputType, std::vector<Callback>>> _eventHandlers;
-		std::deque<InputEvent> _inputEvents;
+		using EventHandlers = std::unordered_map<_uint, std::unordered_map<InputType, std::vector<Callback>>>;
+		using InputEvents = std::deque<InputEvent>;
 
 	public:
 		void TickComponent(_float deltaTime) override;
@@ -49,6 +49,9 @@ namespace Core
 		static InputComponent* Create();
 
 	private:
+		EventHandlers _eventHandlers;
+		InputEvents _inputEvents;
+
 		void BeginPlay() override {};
 		bool Initialize() override;
 		void EndPlay() override {};

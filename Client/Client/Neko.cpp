@@ -13,7 +13,9 @@
 void Client::Neko::BeginPlay()
 {
 	Super::BeginPlay();
+
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
+	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
 	_pMovementComponent->SetGroundPosition(80.f);
 
@@ -27,6 +29,8 @@ void Client::Neko::BeginPlay()
 	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f, false);
 	_pAnimationComponent->AddClip("Running", 0.1f, true);
 	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
+
+	_pInputComponent->AttachToInputManager();
 
 	_pBoxComponent = AddComponent<::Core::BoxComponent>("BoxComponent");
 	_pBoxComponent->SetSize({ 90.f, 550.f });
@@ -58,7 +62,7 @@ void Client::Neko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 
 void Client::Neko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
 {
-	std::cout << "Neko BeginOverlap" << std::endl;
+	//std::cout << "Neko BeginOverlap" << std::endl;
 
 	if ((*pOtherComponent->GetOwner() == "Aoko") &&
 		(*pOtherComponent == "FootBoxComponent"))
@@ -69,7 +73,7 @@ void Client::Neko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherCom
 
 void Client::Neko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
 {
-	std::cout << "Neko EndOverlap" << std::endl;
+	//std::cout << "Neko EndOverlap" << std::endl;
 }
 
 Client::Neko* Client::Neko::Create()

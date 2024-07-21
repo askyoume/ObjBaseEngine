@@ -16,33 +16,37 @@
         ClassName& operator=(ClassName&&) = delete;
 
 #define CORECLASS()                 \
-    class CollisionManager;         \
-	class CollisionComponent;       \
+    class UI;                       \
+    class HUD;                      \
+    class Text;                     \
+    class Scene;                    \
+	class Canvas;                   \
     class Texture;                  \
     class Object;                   \
-    class Component;                \
+    class Layer;                    \
+    class World;					\
+    class Actor;					\
+    class State;					\
+    class Actor;                    \
+    class StateContainer;			\
+	class StateTransition;			\
+    class CameraActor;              \
     class TimeManager;              \
 	class CoreManager;              \
     class GraphicsManager;          \
+    class CollisionManager;         \
     class TextureManager;           \
     class ObjectManager;            \
     class SceneManager;             \
     class InputManager;             \
 	class FontManager;              \
-    class Scene;                    \
-    class CameraActor;              \
-    class Layer;                    \
-    class Actor;                    \
-    class World;					\
-    class Actor;					\
-    class State;					\
-    class StateContainer;			\
-	class StateTransition;			\
     __interface IColliderReceiver;  \
 	__interface IInputReceiver;     \
+    class Component;                \
     class StateComponent;		    \
 	class InputComponent;           \
     class CameraComponent;          \
+	class CollisionComponent;       \
 	class RenderComponent;          \
 	class BitmapComponent;          \
 	class SceneComponent;

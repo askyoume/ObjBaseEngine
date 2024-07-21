@@ -59,24 +59,24 @@ void Core::CollisionManager::SimulateCollision()
 	}
 }
 
-void Core::CollisionManager::AddCollisionQueue(int layerIndex, CollisionComponent* pCollsionComponent)
+void Core::CollisionManager::AddCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent)
 {
-	if (nullptr == pCollsionComponent)
+	if (nullptr == pCollisionComponent)
 		return;
 
-	_collisionQueue.push_back(std::make_pair(layerIndex, pCollsionComponent));
+	_collisionQueue.push_back(std::make_pair(layerIndex, pCollisionComponent));
 }
 
-void Core::CollisionManager::RemoveCollisionQueue(int layerIndex, CollisionComponent* pCollsionComponent)
+void Core::CollisionManager::RemoveCollisionQueue(int layerIndex, CollisionComponent* pCollisionComponent)
 {
-	if (nullptr == pCollsionComponent)
+	if (nullptr == pCollisionComponent)
 		return;
 
 	_collisionQueue.erase(
 		std::find_if(_collisionQueue.begin(), _collisionQueue.end(),
-			[layerIndex, pCollsionComponent](const CollsionData& data)
+			[layerIndex, pCollisionComponent](const CollsionData& data)
 			{
-				return data.first == layerIndex && data.second == pCollsionComponent;
+				return data.first == layerIndex && data.second == pCollisionComponent;
 			}));
 }
 

@@ -19,6 +19,7 @@ namespace Core
 		void InputUpdate();
 		void RegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver);
 		void UnRegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver);
+		void AllUnRegisterReceiver();
 		XINPUT_STATE* ReturnGamePad() { return _pGamePad; }
 
 	public:

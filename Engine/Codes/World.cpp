@@ -10,9 +10,14 @@ bool Core::World::InitializeWorld(int layerSize)
 {
 	_pCoreManager = CoreManager::GetInstance();
 
-    InitializeLayer(layerSize);
+	bool result{};
+    result = InitializeLayer(layerSize);
+	if(!result)
+	{
+		return result;
+	}
 
-	return true;
+	return result;
 }
 
 void Core::World::Remove()
@@ -68,9 +73,9 @@ void Core::World::EndPlay()
 bool Core::World::InitializeLayer(int layerSize)
 {
     _layerSize = layerSize;
-	for (int i = 0; i < _layerSize; i++)
+	for (_uint i = 0; i < _layerSize; i++)
 	{
-		Layer* pLayer = Layer::Begin();
+		Layer* pLayer = Layer::Begin(i);
 		_vecLayers.push_back(pLayer);
 	}
 
@@ -115,6 +120,12 @@ void Core::World::ClearLayer()
 	_vecLayers.clear();
 }
 
+bool Core::World::InitializeCanvas()
+{
+
+	return true;
+}
+
 void Core::World::SettingCamera(CameraActor* pCameraActor)
 {
 	if(!pCameraActor)
@@ -127,6 +138,11 @@ void Core::World::SettingCamera(CameraActor* pCameraActor)
 
 	_pCameraActor = pCameraActor;
 	_pCameraActor->SetWorld(this);
+}
+
+void Core::World::SettingCameraPosition(Mathf::Vector2 position)
+{
+	_pCameraActor->GetCameraComponent()->SetRelativeLocation(position);
 }
 
 void Core::World::SettingTrackingCameraTarget(Actor* pTargetActor)

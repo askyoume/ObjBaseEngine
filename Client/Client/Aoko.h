@@ -32,8 +32,9 @@ namespace Client
 		void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
 		void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
 
-		void MatchCombo(_float deltaTime);
+		void ExecuteMatchedCommands(_float deltaTime);
 
+		void AutoComboHandler(const InputEvent& inputEvent);
 		void LowKickHandler(const InputEvent& inputEvent);
 		void MiddleKickHandler(const InputEvent& inputEvent);
 		void Jump(const InputEvent& inputEvent);

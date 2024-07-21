@@ -66,6 +66,8 @@ void Core::InputManager::Remove()
     {
 		SafeRelease(_pInputSDK);
     }
+
+	AllUnRegisterReceiver();
 }
 
 void Core::InputManager::RegisterReceiver(_uint key, InputType Type, IInputReceiver* Receiver)
@@ -85,9 +87,26 @@ void Core::InputManager::UnRegisterReceiver(_uint key, InputType Type, IInputRec
 			if (findReceiver != findType->second.end())
 			{
 				findType->second.erase(findReceiver);
+				findType->second.shrink_to_fit();
+
+				// 만약 해당 타입의 리스트가 비어 있으면 타입 맵에서 제거
+				if (findType->second.empty())
+				{
+					find->second.erase(findType);
+					// 만약 해당 키의 맵이 비어 있으면 Receivers에서 키 제거
+					if (find->second.empty())
+					{
+						Receivers.erase(find);
+					}
+				}
 			}
 		}
 	}
+}
+
+void Core::InputManager::AllUnRegisterReceiver()
+{
+	Receivers.clear();
 }
 
 void Core::InputManager::InitializeKeyboard()
@@ -261,7 +280,6 @@ void Core::InputManager::ProcessGamePadInput()
 		for (_uint i = 0; i < DIP_MAX; i++)
 		{
 			bool isPressed = (_pGamePad->Gamepad.wButtons & (1 << i)) != 0;
-			/*DispatchInput(InputDevice::GAMEPAD, isPressed ? InputType::PRESS : InputType::RELEASE, i, 0.f, isPressed);*/
 			if (isPressed && !_previousButtonStates[i])
             {
                 DispatchInput(InputDevice::GAMEPAD, InputType::PRESS, i, 0.f, true);

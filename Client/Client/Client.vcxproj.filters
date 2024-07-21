@@ -16,9 +16,6 @@
     <Filter Include="ClientActors\Character">
       <UniqueIdentifier>{84990419-493e-45cb-8642-48bbf1a7d24a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientActors\ETC">
-      <UniqueIdentifier>{25cb5cea-cdf8-4a3b-ab76-43a60b1bd7c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientFSM">
       <UniqueIdentifier>{79bff297-cb1b-430f-9b92-ab1a56a6dc85}</UniqueIdentifier>
     </Filter>
@@ -70,9 +67,6 @@
     <Filter Include="ClientFSM\CommonMovementFSM\State\Attack">
       <UniqueIdentifier>{f83d1cc9-1db9-4dad-bccb-e4a4a2ccfaa0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\High">
-      <UniqueIdentifier>{b0fad545-3f5f-4d5a-8460-5f11df5ad748}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Middle">
       <UniqueIdentifier>{f5f058e9-68e3-4558-baf7-45a2a9883191}</UniqueIdentifier>
     </Filter>
@@ -87,9 +81,6 @@
     </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\Transit\IdleToMove">
       <UniqueIdentifier>{3975ddfe-d86f-425b-918b-c62e6ade1fe2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\OldProject\Platform">
-      <UniqueIdentifier>{1b7b7ce4-ad25-4ee1-b889-32d88952606d}</UniqueIdentifier>
     </Filter>
     <Filter Include="ClientFSM\AIMovementFSM">
       <UniqueIdentifier>{4b5a7e7f-f1a4-4093-8c44-644deb45e358}</UniqueIdentifier>
@@ -132,6 +123,36 @@
     </Filter>
     <Filter Include="ClientActors\PlayCameraActor">
       <UniqueIdentifier>{124c574a-0565-4289-9548-8df5d090ceab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo">
+      <UniqueIdentifier>{b120d57a-4f34-4961-9f34-bf4cbba29c8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\Start">
+      <UniqueIdentifier>{dd5e9efd-8dfa-4e61-a089-ae232c8ec223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AirLaunch">
+      <UniqueIdentifier>{80581b0d-888e-43d9-88b8-d315b1e94e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\End">
+      <UniqueIdentifier>{5b2eefec-39a4-42ce-8323-b17f58591904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\Grap">
+      <UniqueIdentifier>{3497b517-e3cc-47e4-acf8-37c76e322eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AerialAttack1">
+      <UniqueIdentifier>{b7f62fed-0eee-4b2e-89dd-3f6ef3a0c5d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AerialAttack2">
+      <UniqueIdentifier>{647f5781-7d39-43a4-98da-33e102b54417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AerialAttack3">
+      <UniqueIdentifier>{78ab1567-3795-41c3-a8a2-d9a45ef458d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\Transit\KickToComboStart">
+      <UniqueIdentifier>{056832ff-cac4-4c95-9990-5b2d7ec47a77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\Transit\MiddleKickToComboStart">
+      <UniqueIdentifier>{cdf88c05-7a7b-492a-95e2-2a058881fa15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +246,12 @@
     <ClInclude Include="PlayCameraActor.h">
       <Filter>ClientActors\PlayCameraActor</Filter>
     </ClInclude>
+    <ClInclude Include="AutoComboStart.h">
+      <Filter>ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\Start</Filter>
+    </ClInclude>
+    <ClInclude Include="KickToComboStart.h">
+      <Filter>ClientFSM\CommonMovementFSM\Transit\KickToComboStart</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -314,9 +341,14 @@
     <ClCompile Include="IdleToMiddleKick.cpp">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToMiddleKick</Filter>
     </ClCompile>
-    <ClCompile Include="PlayCameraActor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClCompile Include="PlayCameraActor.cpp">
+      <Filter>ClientActors\PlayCameraActor</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoComboStart.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\Start</Filter>
+    </ClCompile>
+    <ClCompile Include="KickToComboStart.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\Transit\KickToComboStart</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

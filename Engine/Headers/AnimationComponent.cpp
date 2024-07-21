@@ -81,11 +81,6 @@ void Core::AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	);
 
 	pRenderTarget->SetTransform(Matx::Identity);
-
-	Mathf::Point point = {
-		_pCollision->GetCollisionOffset().x, 
-		_pCollision->GetCollisionOffset().y
-	};
 }
 
 void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool isLoop)

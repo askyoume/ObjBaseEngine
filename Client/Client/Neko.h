@@ -36,6 +36,7 @@ namespace Client
 
 	private:
 		::Core::BoxComponent*		_pBoxComponent{ nullptr };
+		::Core::InputComponent*		_pInputComponent{ nullptr };
 		::Core::MovementComponent*  _pMovementComponent{ nullptr };
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::StateComponent*		_pAIComponent{ nullptr };

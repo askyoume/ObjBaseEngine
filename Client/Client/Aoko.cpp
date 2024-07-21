@@ -30,6 +30,8 @@ void Client::Aoko::BeginPlay()
 	_pAnimationComponent->AddClip("Running", 0.1f, true);
 	_pAnimationComponent->AddClip("LowKick", 0.06f, false);
 	_pAnimationComponent->AddClip("MiddleKick", 0.06f, false);
+	_pAnimationComponent->AddClip("AutoComboStart", 0.06f, false);
+	_pAnimationComponent->AddClip("AutoComboAirLaunch", 0.06f, false);
 	_pAnimationComponent->SetPlayClip("Idle");
 
 	//rip... need to change this(단순한게 쓰기도 좋다... 이건 너무 복잡, 구현도 그렇고, 이해도 그렇고)
@@ -43,8 +45,9 @@ void Client::Aoko::BeginPlay()
 	//jump to input component
 	_pInputComponent->BindAction(DIK_UP, InputType::PRESS, this, &Aoko::Jump);
 	//attack to input component
-	_pInputComponent->BindAction(DIK_S, InputType::PRESS, this, &Aoko::LowKickHandler);
-	_pInputComponent->BindAction(DIK_D, InputType::PRESS, this, &Aoko::MiddleKickHandler);
+	_pInputComponent->BindAction(DIK_A, InputType::PRESS, this, &Aoko::LowKickHandler);
+	_pInputComponent->BindAction(DIK_A, InputType::PRESS, this, &Aoko::AutoComboHandler);
+	_pInputComponent->BindAction(DIK_S, InputType::PRESS, this, &Aoko::MiddleKickHandler);
 	//input component attach to input manager
 	_pInputComponent->AttachToInputManager();
 
@@ -66,7 +69,7 @@ void Client::Aoko::BeginPlay()
 
 void Client::Aoko::Tick(_float deltaTime)
 {
-	MatchCombo(deltaTime);
+	ExecuteMatchedCommands(deltaTime);
 	Super::Tick(deltaTime);
 }
 
@@ -92,13 +95,37 @@ void Client::Aoko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 {
 }
 
-void Client::Aoko::MatchCombo(_float deltaTime)
+void Client::Aoko::ExecuteMatchedCommands(_float deltaTime)
 {
+}
+
+void Client::Aoko::AutoComboHandler(const InputEvent& inputEvent)
+{
+	if (!strcmp(_pStateComponent->GetPreviousStateName(),"LowKick"))
+	{
+		if ((_pInputComponent->IsKeyEventTriggeredOverTime(DIK_A, InputType::RELEASE, 0.02f) && 
+			_pInputComponent->IsKeyEventTriggerNow(DIK_A, InputType::PRESS)) ||
+			(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_S, InputType::RELEASE, 0.28f) && 
+				_pInputComponent->IsKeyEventTriggerNow(DIK_S, InputType::PRESS)))
+		{
+			if (_pAnimationComponent->IsFlip())
+			{
+				_pFootBoxComponent->SetAddOffset({ -80.f, 160.f });
+			}
+			else
+			{
+				_pFootBoxComponent->SetAddOffset({ 80.f, 160.f });
+			}
+			_pFootBoxComponent->SetSize({ 200.f, 300.f });
+			_pStateComponent->ChangeState("AutoComboStart");
+		}
+	}
 }
 
 void Client::Aoko::LowKickHandler(const InputEvent& inputEvent)
 {
-	if (!strcmp(_pStateComponent->GetCurrentStateName(),"MiddleKick"))
+	if (!strcmp(_pStateComponent->GetCurrentStateName(),"AutoComboStart") ||
+		!strcmp(_pStateComponent->GetCurrentStateName(),"MiddleKick"))
 	{
 		return;
 	}
@@ -117,7 +144,8 @@ void Client::Aoko::LowKickHandler(const InputEvent& inputEvent)
 
 void Client::Aoko::MiddleKickHandler(const InputEvent& inputEvent)
 {
-	if (!strcmp(_pStateComponent->GetCurrentStateName(),"LowKick"))
+	if (!strcmp(_pStateComponent->GetCurrentStateName(),"AutoComboStart") ||
+		!strcmp(_pStateComponent->GetCurrentStateName(),"LowKick"))
 	{
 		return;
 	}
@@ -161,23 +189,25 @@ void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 		return;
 	}
 
-	if(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_RIGHT, InputType::RELEASE, 0.18f) &&
-		_pInputComponent->IsKeyEventTriggerNow(DIK_RIGHT, InputType::PRESS))
+	bool isFlip = _pAnimationComponent->IsFlip();
+	switch (isFlip)
 	{
-		_pMovementComponent->SetRunning(true);
-		_pMovementComponent->SetInputDirection({ 2.f,0.f });
-	}
-	else if(_pMovementComponent->IsRunning() &&
-		_pInputComponent->IsKeyEventTriggerNow(DIK_RIGHT, InputType::HELD))
-	{
-		_pMovementComponent->SetInputDirection({ 2.f,0.f });
-	}
-	else
-	{
+	case true:
 		_pMovementComponent->SetRunning(false);
-		_pMovementComponent->SetInputDirection({ 1.f,0.f });
+		_pMovementComponent->SetInputDirection({ 2.f,0.f });
+		break;
+	case false:
+		if(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_RIGHT, InputType::RELEASE, 0.18f) &&
+			_pInputComponent->IsKeyEventTriggerNow(DIK_RIGHT, InputType::PRESS))
+		{
+			_pMovementComponent->SetRunning(true);
+		}
+		else
+		{
+			_pMovementComponent->SetInputDirection({ 2.f,0.f });
+		}
+		break;
 	}
-
 }
 
 void Client::Aoko::LeftMoveHandler(const InputEvent& inputEvent)
@@ -187,21 +217,24 @@ void Client::Aoko::LeftMoveHandler(const InputEvent& inputEvent)
 		return;
 	}
 
-	if(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_LEFT, InputType::RELEASE, 0.18f) &&
-		_pInputComponent->IsKeyEventTriggerNow(DIK_LEFT, InputType::PRESS))
+	bool isFlip = _pAnimationComponent->IsFlip();
+	switch (isFlip)
 	{
-		_pMovementComponent->SetRunning(true);
-		_pMovementComponent->SetInputDirection({ -2.f,0.f });
-	}
-	else if(_pMovementComponent->IsRunning() &&
-		_pInputComponent->IsKeyEventTriggerNow(DIK_LEFT, InputType::HELD))
-	{
-		_pMovementComponent->SetInputDirection({ -2.f,0.f });
-	}
-	else
-	{
+	case true:
+		if(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_LEFT, InputType::RELEASE, 0.18f) &&
+			_pInputComponent->IsKeyEventTriggerNow(DIK_LEFT, InputType::PRESS))
+		{
+			_pMovementComponent->SetRunning(true);
+		}
+		else
+		{
+			_pMovementComponent->SetInputDirection({ -2.f,0.f });
+		}
+		break;
+	case false:
 		_pMovementComponent->SetRunning(false);
-		_pMovementComponent->SetInputDirection({ -1.f,0.f });
+		_pMovementComponent->SetInputDirection({ -2.f,0.f });
+		break;
 	}
 }
 

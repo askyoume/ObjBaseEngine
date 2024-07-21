@@ -22,8 +22,7 @@ void Client::Idle::Enter()
 
 	if (pAnimationComponent->IsClipEnd("ReadyToIdle") && 
 		pAnimationComponent->IsClipEnd("Idle") &&
-		pAnimationComponent->IsClipEnd("Jump") &&
-		pAnimationComponent->IsClipEnd("MiddleKick"))
+		pAnimationComponent->IsClipEnd("Jump"))
 	{
 		pAnimationComponent->SetPlayClip("Idle");
 	}
@@ -42,7 +41,7 @@ void Client::Idle::Execute(float deltaTime)
 
 	if (pMovementComponent->IsJumping())
 	{
-		std::cout << "Jump" << (pMovementComponent->IsJumping()? "true" : "false")<< std::endl;
+		std::cout << "Jump : " << (pMovementComponent->IsJumping()? "true" : "false")<< std::endl;
 		pAnimationComponent->SetPlayClip("Jump");
 	}
 	else if (pAnimationComponent->IsClipEnd("ReadyToIdle") && 

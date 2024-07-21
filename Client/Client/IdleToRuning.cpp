@@ -13,9 +13,7 @@ bool Client::IdleToRunning::ShouldTransition()
 		pActor = _pOwnerComponent->GetOwner();
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
-	
-	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
-	//std::cout << _direction.x << std::endl;
+
 	if (!pMovementComponent->IsGrounded())
 	{
 		return false;

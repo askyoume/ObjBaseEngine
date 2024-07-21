@@ -55,7 +55,7 @@ void Core::Actor::DetachFromActor()
 void Core::Actor::Remove()
 {
 	for (auto& component : _vecComponents)
-		SafeDelete(component);
+		SafeRelease(component);
 
 	_vecComponents.clear();
 }

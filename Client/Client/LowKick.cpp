@@ -6,6 +6,7 @@
 #include "../../Engine/Headers/MovementComponent.h" //temp
 #include "../../Engine/Headers/Actor.h"
 #include "../../Engine/Headers/BoxComponent.h"
+#include "../../Engine/Headers/InputComponent.h"
 
 #include "LowKick.h"
 #include "ClientFSMContainer.h"
@@ -18,6 +19,7 @@ void Client::LowKick::Enter()
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 		pBodyBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 		pFootBoxComponent = pActor->GetComponent<::Core::BoxComponent>("FootBoxComponent");
+		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
 	if(pAnimationComponent->IsClipEnd("LowKick"))
@@ -31,7 +33,7 @@ void Client::LowKick::Enter()
 
 void Client::LowKick::Execute(float deltaTime)
 {
-	if (pAnimationComponent->IsClipEnd("LowKick"))
+	if(pAnimationComponent->IsClipEnd("LowKick"))
 	{
 		_pOwnerComponent->ChangeState("IDLE");
 	}

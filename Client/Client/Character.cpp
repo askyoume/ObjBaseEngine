@@ -190,8 +190,6 @@ void Client::Character::Attack(const InputEvent& inputEvent)
 	if(_stateFlag & STATE_DIR_ATTACK && _stateFlag & STATE_UP_ATTACK)
 		return;
 
-			std::cout << _direction.x << _direction.y << std::endl;
-
 	if (0.f != _velocity.y && _direction.y > 0.6f && _direction.y < 0.98f)
 	{
 		_stateFlag |= STATE_DIR_ATTACK;

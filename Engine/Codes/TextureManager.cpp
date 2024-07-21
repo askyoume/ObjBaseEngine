@@ -2,87 +2,45 @@
 #include "Core_Define.h"
 #include "Texture.h"
 
+namespace file = std::filesystem;
+
 bool Core::TextureManager::LoadTexture(LPCWSTR filePath)
 {
-	_wfinddata_t findData;
-	intptr_t handle;
-	int result = 0;
+    file::path rootPath(filePath);
 
-	WCHAR rootPath[MAX_PATH] = L"";
+    for (const auto& entry : file::directory_iterator(rootPath))
+    {
+        if (entry.is_directory())
+        {
+            if (entry.path().filename() == "." || entry.path().filename() == "..")
+                continue;
 
-	lstrcpy(rootPath, filePath);
-	lstrcat(rootPath, L"/*");
-	handle = _wfindfirst(rootPath, &findData);
+            LoadTexture(entry.path().wstring().c_str());
+        }
+        else
+        {
+            file::path fullPath = entry.path();
 
-	if(-1 != handle)
-	{
-		do
-		{
-			if(findData.attrib & _A_SUBDIR)
-			{
-				if(wcscmp(findData.name, L".") == 0 || wcscmp(findData.name, L"..") == 0)
-					continue;
+            std::wstring tag = fullPath.parent_path().wstring();
+			tag = tag.substr(tag.find_last_of(L"/") + 1);
+			std::replace(tag.begin(), tag.end(), L'\\', L'_');
 
-				WCHAR subPath[MAX_PATH] = L"";
-				lstrcpy(subPath, filePath);
-				lstrcat(subPath, L"/");
-				lstrcat(subPath, findData.name);
+            Texture* pTexture = _textures[tag];
 
-				LoadTexture(subPath);
-			}
-			else
-			{
-				WCHAR tag[64] = L"";
-				WCHAR fullPath[MAX_PATH] = L"";
+            if (nullptr == pTexture)
+            {
+                pTexture = Texture::Create(_pPackage);
+                pTexture->LoadTexture(fullPath.wstring().c_str());
+                _textures[tag] = pTexture;
+            }
+            else
+            {
+                pTexture->LoadTexture(fullPath.wstring().c_str());
+            }
+        }
+    }
 
-				lstrcpy(fullPath, filePath);
-				lstrcat(fullPath, L"/");
-				lstrcat(fullPath, findData.name);
-
-				int index = 0;
-				int offset = 0;
-				int length = lstrlen(filePath);
-
-				while(3 != offset)
-				{
-					if (L'/' == filePath[index++])
-					{
-						offset++;
-					}
-				}
-
-				offset = index + 1;
-				index = 0;
-
-				while(offset < length)
-				{
-					tag[index] = filePath[offset++];
-
-					if (tag[index] == L'/')
-						tag[index] = L'_';
-
-					index++;
-				}
-
-				Texture* pTexture = _textures[tag];
-
-				if (nullptr == pTexture)
-				{
-					pTexture = Texture::Create(_pPackage);
-					pTexture->LoadTexture(fullPath);
-					_textures[tag] = pTexture;
-				}
-				else
-				{
-					pTexture->LoadTexture(fullPath);
-				}
-			}
-		} while(0 == _wfindnext(handle, &findData));
-		
-	}
-		_findclose(handle);
-
-	return true;
+    return true;
 }
 
 Core::Texture* Core::TextureManager::FindTexture(_pwstring fileTag)

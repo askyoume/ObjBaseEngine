@@ -28,7 +28,6 @@ void Core::CoreManager::Tick()
     _pTimeMgr->UpdateTick();
 
     float tickTime = _pTimeMgr->GetDeltaSeconds();
-
     _pInputMgr->InputUpdate();
     if(_pWorld) { _pWorld->Tick(tickTime); }
 }

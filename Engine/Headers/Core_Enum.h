@@ -4,7 +4,7 @@
 
 namespace LAYER
 {
-	enum LayerIndex : int
+	enum LayerIndex : _uint
 	{
 		BACKGROUND = 0,
 		BACKOBJECT,

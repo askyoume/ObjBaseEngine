@@ -34,6 +34,9 @@ void Core::InputComponent::OnInputReceived(const InputEvent& inputEvent)
 
 void Core::InputComponent::AttachToInputManager()
 {
+	if(_eventHandlers.empty())
+		return;
+
 	CoreManager* pCore = CoreManager::GetInstance();
 
 	for (auto& [key, types] : _eventHandlers)
@@ -59,6 +62,9 @@ bool Core::InputComponent::IsKeyEventTriggerNow(_uint key, InputType type) const
 {
 	if (_inputEvents.empty())
 		return false;
+
+	//if (_inputEvents.back().timeToLastInput > 0.2f)
+	//	return false;
 
 	if (_inputEvents.back().key == key && _inputEvents.back().type == type)
 	{
@@ -126,7 +132,7 @@ bool Core::InputComponent::IsKeyEventTriggeredLessTime(_uint key, InputType type
 
 Core::InputComponent* Core::InputComponent::Create()
 {
-	static InputComponent* pInputComponent = new InputComponent;
+	InputComponent* pInputComponent = new InputComponent;
 	if (pInputComponent->Initialize())
 		return pInputComponent;
 
@@ -148,8 +154,10 @@ void Core::InputComponent::TickComponent(_float deltaTime)
 
 void Core::InputComponent::Remove()
 {
-	CoreManager* pCore = CoreManager::GetInstance();
+	if(_eventHandlers.empty())
+		return;
 
+	CoreManager* pCore = CoreManager::GetInstance();
 	for (auto& [key, types] : _eventHandlers)
 	{
 		for (auto& [type, _] : types)

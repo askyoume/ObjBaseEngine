@@ -5,11 +5,14 @@
 #include "Move.h"
 #include "MiddleKick.h"
 #include "LowKick.h"
+#include "AutoComboStart.h"
 //transition
 #include "IdleToRuning.h"
 #include "IdleToMove.h"
 #include "IdleToKick.h"
 #include "IdleToMiddleKick.h"
+#include "KickToComboStart.h"
+
 
 void Client::ClientFSMContainer::ContainStep()
 {
@@ -31,10 +34,16 @@ void Client::ClientFSMContainer::ContainStep()
 	lowKick->SetPriority(true);
 	AddState(lowKick);
 
+	AutoComboStart* autoComboStart = AutoComboStart::Create();
+	autoComboStart->SetPriority(true);
+	AddState(autoComboStart);
+
 	IdleToRunning* idleToRunning = IdleToRunning::Create();
 	IdleToMove* idleToMove = IdleToMove::Create();
 	IdleToKick* idleToKick = IdleToKick::Create();
 	IdleToMiddleKick* idleToMiddleKick = IdleToMiddleKick::Create();
+	KickToComboStart* kickToComboStart = KickToComboStart::Create();
+	//idle->AddTransition(kickToComboStart);
 	idle->AddTransition(idleToMove);
 	move->AddTransition(idleToRunning);
 
@@ -47,6 +56,9 @@ void Client::ClientFSMContainer::ContainStep()
 	lowKick->BindState(idle);
 	lowKick->BindState(move);
 	lowKick->BindState(running);
+
+	autoComboStart->AddTransition(kickToComboStart);
+	autoComboStart->BindState(idle);
 }
 
 void Client::ClientFSMContainer::Update(float deltaTime)

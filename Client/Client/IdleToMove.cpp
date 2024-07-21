@@ -12,12 +12,18 @@ bool Client::IdleToMove::ShouldTransition()
 	if (!pActor)
 	{
 		pActor = _pOwnerComponent->GetOwner();
+		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
 
 	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
 	//std::cout << _direction.x << std::endl;
 	if (!pMovementComponent->IsGrounded())
+	{
+		return false;
+	}
+
+	if (!pAnimationComponent->IsClipEnd("AutoComboStart"))
 	{
 		return false;
 	}

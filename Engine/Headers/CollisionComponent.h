@@ -27,6 +27,7 @@ namespace Core
 		void ProcessCollision(CollisionComponent* pOtherComponent);
 
 		void AddCollisionState(CollisionComponent* pOtherComponent);
+		void ClearCollisionState();
 		void UpdateCollisionState();
 
 	public:

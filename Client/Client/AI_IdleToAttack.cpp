@@ -21,7 +21,6 @@ bool Client::AI_IdleToAttack::ShouldTransition()
 	pActor->GetRootComponent()->GetWorldLocation();
 
 	float distanceLocation = abs(_distance.x);
-	std::cout << distanceLocation << std::endl;
 	if (100.f > distanceLocation)
 	{
 		SetTargetState("AI_ATTACK");

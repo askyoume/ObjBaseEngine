@@ -11,4 +11,5 @@ typedef const int& _int;
 typedef const float& _float;
 typedef const char* _pstring;
 typedef const wchar_t* _pwstring;
+typedef _bstr_t _bstring;
 typedef IDWriteTextFormat* _pFont;

@@ -34,6 +34,12 @@ void Core::CollisionComponent::AddCollisionState(CollisionComponent* pOtherCompo
 	_currentCollisionState.insert(pOtherComponent);
 }
 
+void Core::CollisionComponent::ClearCollisionState()
+{
+	_previousCollisionState.clear();
+	_currentCollisionState.clear();
+}
+
 void Core::CollisionComponent::UpdateCollisionState()
 {
 	_previousCollisionState = _currentCollisionState;

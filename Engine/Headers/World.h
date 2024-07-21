@@ -39,11 +39,16 @@ namespace Core
 		void AddLayer(int layerIndex, Layer* pLayer);
 		void RemoveLayer(int layerIndex);
 		void ClearLayer();
-		int GetLayerSize() const { return _layerSize;}
+		int GetLayerSize() const { return _layerSize; }
+
+	public:
+		//Canvas
+		bool InitializeCanvas();
 
 	public:
 		//Camera
 		void SettingCamera(CameraActor* pCameraActor = nullptr);
+		void SettingCameraPosition(Mathf::Vector2 position);
 		void SettingTrackingCameraTarget(Actor* pTargetActor);
 		CameraActor* GetCameraActor() { return _pCameraActor; }
 		void SetCameraLerpFactor(float lerpFactor);
@@ -67,6 +72,7 @@ namespace Core
 	protected:
 		CoreManager* _pCoreManager{ nullptr };
 		CameraActor* _pCameraActor{ nullptr };
+		Canvas*		 _pCanvas{ nullptr };
 
 	protected:
 		ActorMap			_actorMap;

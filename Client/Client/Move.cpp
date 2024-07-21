@@ -21,33 +21,71 @@ void Client::Move::Enter()
 	}
 
 	pBoxComponent->SetSize({ 120.f, 400.f });
+	bool isFlip = pAnimationComponent->IsFlip();
+	Mathf::Vector2 direction = pMovementComponent->GetInputDirection();
+	switch (isFlip)
+	{
+	case true:
+		if (0.f < direction.x)
+		{
+			pAnimationComponent->SetPlayClip("ReadyToMove");
+		}
+		else if (0.f > direction.x)
+		{
+			pAnimationComponent->SetPlayClip("ReadyToBackMove");
+		}
+		break;
+	case false:
+		if (0.f > direction.x)
+		{
+			pAnimationComponent->SetPlayClip("ReadyToMove");
+		}
+		else if (0.f < direction.x)
+		{
+			pAnimationComponent->SetPlayClip("ReadyToBackMove");
+		}
+		break;
+	}
 
-	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
-	if (0.f < _direction.x)
-	{
-		pAnimationComponent->SetPlayClip("ReadyToMove");
-	}
-	else if (0.f > _direction.x)
-	{
-		pAnimationComponent->SetPlayClip("ReadyToBackMove");
-	}
 }
 
 void Client::Move::Execute(float deltaTime)
 {
-	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
-	if (0.f < _direction.x &&  
-		pAnimationComponent->IsClipEnd("ReadyToMove") && 
-		pAnimationComponent->IsClipEnd("Move"))
+	bool isFlip = pAnimationComponent->IsFlip();
+	Mathf::Vector2 direction = pMovementComponent->GetInputDirection();
+
+	switch (isFlip)
 	{
-		pAnimationComponent->SetPlayClip("Move");
+	case true:
+		if (0.f > direction.x &&
+			pAnimationComponent->IsClipEnd("ReadyToMove") &&
+			pAnimationComponent->IsClipEnd("Move"))
+		{
+			pAnimationComponent->SetPlayClip("Move");
+		}
+		else if (0.f < direction.x &&
+			pAnimationComponent->IsClipEnd("ReadyToBackMove") &&
+			pAnimationComponent->IsClipEnd("BackMove"))
+		{
+			pAnimationComponent->SetPlayClip("BackMove");
+		}
+		break;
+	case false:
+		if (0.f < direction.x &&  
+			pAnimationComponent->IsClipEnd("ReadyToMove") && 
+			pAnimationComponent->IsClipEnd("Move"))
+		{
+			pAnimationComponent->SetPlayClip("Move");
+		}
+		else if (0.f > direction.x &&
+			pAnimationComponent->IsClipEnd("ReadyToBackMove") &&
+			pAnimationComponent->IsClipEnd("BackMove"))
+		{
+			pAnimationComponent->SetPlayClip("BackMove");
+		}
+		break;
 	}
-	else if (0.f > _direction.x &&
-		pAnimationComponent->IsClipEnd("ReadyToBackMove") &&
-		pAnimationComponent->IsClipEnd("BackMove"))
-	{
-		pAnimationComponent->SetPlayClip("BackMove");
-	}
+
 
 	pMovementComponent->Move(deltaTime);
 }
