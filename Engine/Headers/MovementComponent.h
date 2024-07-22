@@ -30,6 +30,7 @@ namespace Core
 		void SetInputDirectionX(float x) { _inputDirection.x = x; }
 		void SetInputDirectionY(float y) { _inputDirection.y = y; }
 		Mathf::Vector2 GetInputDirection() const { return _inputDirection; }
+		Mathf::Vector2& ChangeVelocity() { return _velocity; }
 
 	public:
 		void SetGroundPosition(float groundPosition) { _groundPosition = groundPosition; }

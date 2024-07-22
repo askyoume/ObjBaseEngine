@@ -207,7 +207,8 @@ void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 		else
 		{
 			_pMovementComponent->SetRunning(false);
-			_pMovementComponent->SetInputDirectionX(2.f);
+			_pMovementComponent->SetInputDirectionX(4.f);
+
 		}
 		break;
 	case false:
@@ -243,7 +244,7 @@ void Client::Aoko::LeftMoveHandler(const InputEvent& inputEvent)
 		}
 		else
 		{
-			_pMovementComponent->SetInputDirectionX(-2.f);
+			_pMovementComponent->SetInputDirectionX(-4.f);
 		}
 		break;
 	case false:

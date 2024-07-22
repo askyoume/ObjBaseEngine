@@ -37,7 +37,7 @@ void Core::MovementComponent::TickComponent(_float deltaTime)
 	_ownerCurrentLocation = _pRootComponent->GetWorldLocation();
 
 	_velocity.y += _calculatedGravity * deltaTime;
-
+	std::cout << _velocity.y << std::endl;
 	if (_velocity.x > 0)
 	{
 		_velocity.x = std::max(_velocity.x, -_limitSpeed);

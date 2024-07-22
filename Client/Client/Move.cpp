@@ -95,7 +95,6 @@ void Client::Move::Execute(float deltaTime)
 
 	if (pMovementComponent->IsJumping())
 	{
-		std::cout << "Jump1 : " << (pMovementComponent->IsJumping()? "true" : "false")<< std::endl;
 		pAnimationComponent->SetPlayClip("Jump");
 	}
 	pMovementComponent->Move(deltaTime);

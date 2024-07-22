@@ -21,6 +21,7 @@ void Client::BackDash::Enter()
 	}
 
 	pAnimationComponent->SetPlayClip("BackDash");
+	//pMovementComponent->ChangeVelocity().y = 
 }
 
 void Client::BackDash::Execute(float deltaTime)
@@ -33,12 +34,13 @@ void Client::BackDash::Execute(float deltaTime)
 	{
 		if (0.f > _direction.x)
 		{
-			pMovementComponent->SetInputDirection({ 3.f,0.f });
+			pMovementComponent->SetInputDirection({ 4.f, -0.5f });
 		}
 		else if (0.f < _direction.x)
 		{
-			pMovementComponent->SetInputDirection({ -3.f,0.f });
+			pMovementComponent->SetInputDirection({ -4.f, -0.5f });
 		}
+
 
 		pMovementComponent->Move(deltaTime);
 	}
