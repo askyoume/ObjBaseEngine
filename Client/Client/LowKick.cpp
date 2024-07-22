@@ -16,24 +16,43 @@ void Client::LowKick::Enter()
 	if(!pActor)
 	{
 		pActor = _pOwnerComponent->GetOwner();
+		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 		pBodyBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 		pFootBoxComponent = pActor->GetComponent<::Core::BoxComponent>("FootBoxComponent");
 		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
-	if(pAnimationComponent->IsClipEnd("LowKick"))
+	if(pAnimationComponent->IsClipEnd("JumpLowKick") &&
+		pAnimationComponent->IsClipEnd("LowKick"))
 	{
-		pFootBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
-		pAnimationComponent->SetPlayClip("LowKick");
+		if(!pMovementComponent->IsGrounded())
+		{
+			if (pAnimationComponent->IsFlip())
+			{
+				pFootBoxComponent->SetAddOffset({ -80.f, 80.f });
+			}
+			else
+			{
+				pFootBoxComponent->SetAddOffset({ 80.f, 80.f });
+			}
+			pFootBoxComponent->SetSize({ 200.f, 100.f });
+			pAnimationComponent->SetPlayClip("JumpLowKick");
+		}
+		else
+		{
+			pAnimationComponent->SetPlayClip("LowKick");
+		}
 	}
 
+	pFootBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
 	pBodyBoxComponent->SetSize({ 100.f, 400.f });
 }
 
 void Client::LowKick::Execute(float deltaTime)
 {
-	if(pAnimationComponent->IsClipEnd("LowKick"))
+	if (pAnimationComponent->IsClipEnd("JumpLowKick") ||
+		pAnimationComponent->IsClipEnd("LowKick"))
 	{
 		_pOwnerComponent->ChangeState("IDLE");
 	}
@@ -41,7 +60,8 @@ void Client::LowKick::Execute(float deltaTime)
 
 void Client::LowKick::Exit()
 {
-	if (pAnimationComponent->IsClipEnd("LowKick"))
+	if (pAnimationComponent->IsClipEnd("JumpLowKick") ||
+		pAnimationComponent->IsClipEnd("LowKick"))
 	{
 		pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
 	}

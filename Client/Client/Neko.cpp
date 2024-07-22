@@ -29,6 +29,7 @@ void Client::Neko::BeginPlay()
 	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f, false);
 	_pAnimationComponent->AddClip("Running", 0.1f, true);
 	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
+	_pAnimationComponent->AddClip("Hit", 0.1f, false);
 
 	_pInputComponent->AttachToInputManager();
 
@@ -58,6 +59,12 @@ void Client::Neko::EndPlay()
 
 void Client::Neko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 {
+	//std::cout << "Neko NotifyActorBlock" << " " << pOtherComponent->GetName() << std::endl;
+	if ((*pOtherComponent->GetOwner() == "Aoko") &&
+	(*pOtherComponent == "FootBoxComponent"))
+	{	
+		_pAIComponent->ChangeState("AI_Hit");
+	}
 }
 
 void Client::Neko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)

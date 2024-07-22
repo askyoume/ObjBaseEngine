@@ -14,6 +14,13 @@ bool Client::AI_IdleToAttack::ShouldTransition()
 	{
 		pActor = _pOwnerComponent->GetOwner();
 		pTarget = pActor->GetWorld()->FindActor("Aoko");
+		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
+	}
+
+	if (!pAnimationComponent->IsClipEnd("Hit"))
+	{
+		SetTargetState("AI_Hit");
+		return true;
 	}
 
 	Mathf::Vector2 _distance =

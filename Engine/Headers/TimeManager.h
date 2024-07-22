@@ -34,6 +34,6 @@ namespace Core
 		//LARGE_INTEGER tick{}, prevTick{}, frameTick{};
 		_timePoint _prevTick{};
 		float _deltaSeconds{ 0.f };
-		float _timeScale{ 1.f };
+		float _timeScale{ 1.1f };
 	};
 }

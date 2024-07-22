@@ -39,7 +39,8 @@ void Client::Running::Execute(float deltaTime)
 
 	if( pMovementComponent->IsRunning() && 
 		!pMovementComponent->IsJumping() &&
-		pAnimationComponent->IsClipEnd("ReadyToRunning"))
+		pAnimationComponent->IsClipEnd("ReadyToRunning") &&
+		pAnimationComponent->IsClipEnd("Running"))
 	{
 		pAnimationComponent->SetPlayClip("Running");
 	}

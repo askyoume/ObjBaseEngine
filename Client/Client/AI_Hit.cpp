@@ -14,6 +14,7 @@ void Client::AI_Hit::Enter()
 	if (!pActor)
 	{
 		pActor = _pOwnerComponent->GetOwner();
+		pTarget = pActor->GetWorld()->FindActor("Aoko");
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
@@ -23,6 +24,23 @@ void Client::AI_Hit::Enter()
 
 void Client::AI_Hit::Execute(float deltaTime)
 {
+	Mathf::Vector2 _direction = 
+		pTarget->GetRootComponent()->GetWorldLocation() - 
+		pActor->GetRootComponent()->GetWorldLocation();
+	if (0.f < _direction.Normalize().x)
+	{
+		pMovementComponent->SetInputDirectionX(-0.3f);
+	}
+	else if (0.f > _direction.Normalize().x)
+	{
+		pMovementComponent->SetInputDirectionX(0.3f);
+	}
+	pMovementComponent->Move(deltaTime);
+
+	if(pAnimationComponent->IsClipEnd("Hit"))
+	{
+		_pOwnerComponent->ChangeState("AI_IDLE");
+	}
 }
 
 void Client::AI_Hit::Exit()
@@ -31,6 +49,10 @@ void Client::AI_Hit::Exit()
 
 void Client::AI_Hit::Remove()
 {
+	for(auto& transit : _transitions)
+	{
+		SafeDelete(transit);
+	}
 }
 
 Client::AI_Hit* Client::AI_Hit::Create()

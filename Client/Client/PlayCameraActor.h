@@ -21,6 +21,8 @@ namespace Client
 
 	public:
 		static PlayCameraActor* Create();
+		bool IsPlayerOneClamp() const { return _isOneClamp; }
+		bool IsPlayerTwoClamp() const { return _isTwoClamp; }
 
 	private:
 		void PlayerLocationClamp();

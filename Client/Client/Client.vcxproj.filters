@@ -151,8 +151,20 @@
     <Filter Include="ClientFSM\CommonMovementFSM\Transit\KickToComboStart">
       <UniqueIdentifier>{056832ff-cac4-4c95-9990-5b2d7ec47a77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\Transit\MiddleKickToComboStart">
-      <UniqueIdentifier>{cdf88c05-7a7b-492a-95e2-2a058881fa15}</UniqueIdentifier>
+    <Filter Include="ClientFSM\AIMovementFSM\Transit\Ai_IdleToHit">
+      <UniqueIdentifier>{3437c8a6-ca36-48e6-8729-c90349fd0148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Dash">
+      <UniqueIdentifier>{a76f489e-35cd-442f-8ff4-c9d49e8f9da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Dash\JumpDash">
+      <UniqueIdentifier>{8a50efab-43f1-4cf7-adf3-3ae7e37330dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Dash\JumpBackDash">
+      <UniqueIdentifier>{4779d9ed-6517-44d2-8326-6912d9e33436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Dash\BackDash">
+      <UniqueIdentifier>{af2a48d8-5301-4710-b56c-7f5a5d74c50b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +264,12 @@
     <ClInclude Include="KickToComboStart.h">
       <Filter>ClientFSM\CommonMovementFSM\Transit\KickToComboStart</Filter>
     </ClInclude>
+    <ClInclude Include="AI_IdleToHit.h">
+      <Filter>ClientFSM\AIMovementFSM\Transit\Ai_IdleToHit</Filter>
+    </ClInclude>
+    <ClInclude Include="BackDash.h">
+      <Filter>ClientFSM\CommonMovementFSM\State\Dash\BackDash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -349,6 +367,12 @@
     </ClCompile>
     <ClCompile Include="KickToComboStart.cpp">
       <Filter>ClientFSM\CommonMovementFSM\Transit\KickToComboStart</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_IdleToHit.cpp">
+      <Filter>ClientFSM\AIMovementFSM\Transit\Ai_IdleToHit</Filter>
+    </ClCompile>
+    <ClCompile Include="BackDash.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\State\Dash\BackDash</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

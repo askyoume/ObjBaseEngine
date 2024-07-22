@@ -26,7 +26,7 @@ void Core::InputComponent::OnInputReceived(const InputEvent& inputEvent)
 		handler(inputEvent);
 	}
 
-	if (_inputEvents.size() > 10)
+	if (_inputEvents.size() > 30)
 	{
 		_inputEvents.pop_front();
 	}
@@ -63,8 +63,8 @@ bool Core::InputComponent::IsKeyEventTriggerNow(_uint key, InputType type) const
 	if (_inputEvents.empty())
 		return false;
 
-	//if (_inputEvents.back().timeToLastInput > 0.2f)
-	//	return false;
+	if (_inputEvents.back().timeToLastInput > 0.2f)
+		return false;
 
 	if (_inputEvents.back().key == key && _inputEvents.back().type == type)
 	{
@@ -93,7 +93,7 @@ bool Core::InputComponent::IsLastInputOverTime(_float time) const
 	if (_inputEvents.empty())
 		return false;
 
-	
+	return _inputEvents.back().timeToLastInput > time;
 }
 
 bool Core::InputComponent::IsKeyEventTriggeredOverTime(_uint key, InputType type, _float time) const
@@ -150,6 +150,7 @@ void Core::InputComponent::TickComponent(_float deltaTime)
 		return;
 
 	_inputEvents.back().timeToLastInput += deltaTime;
+	//std::cout << "Time : " << _inputEvents.back().timeToLastInput << std::endl;
 }
 
 void Core::InputComponent::Remove()

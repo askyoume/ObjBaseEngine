@@ -18,11 +18,14 @@ bool Client::IdleToKick::ShouldTransition()
 		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
-	if (!pAnimationComponent->IsClipEnd("LowKick"))
+	if (!pAnimationComponent->IsClipEnd("JumpLowKick") ||
+		!pAnimationComponent->IsClipEnd("LowKick"))
 	{
+		SetTargetState("LowKick");
 		return true;
 	}
 
+	SetTargetState("IDLE");
 	pBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
     return false;
 }

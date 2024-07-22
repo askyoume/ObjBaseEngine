@@ -16,6 +16,7 @@ void Client::AutoComboStart::Enter()
 	{
 		pActor = _pOwnerComponent->GetOwner();
 		pTargetActor = ::Core::CoreManager::GetInstance()->GetWorld()->FindActor("Neko");
+		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 		pBodyBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 		pFootBoxComponent = pActor->GetComponent<::Core::BoxComponent>("FootBoxComponent");
@@ -23,13 +24,32 @@ void Client::AutoComboStart::Enter()
 
 	if (pAnimationComponent->IsClipEnd("AutoComboStart"))
 	{
-		pFootBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
+		pFootBoxComponent->SetCollisionType(Collision::COLLISION_BLOCK);
 		pAnimationComponent->SetPlayClip("AutoComboStart");
 	}
 }
 
 void Client::AutoComboStart::Execute(float deltaTime)
 {
+	float locationX = pActor->GetRootComponent()->GetRelativeLocation().x;
+	float targetX	= pTargetActor->GetRootComponent()->GetRelativeLocation().x;
+	float direction = locationX - targetX;
+	float distanceX = abs(targetX - locationX);
+
+	if(50.f < distanceX)
+	{
+		if(0.f > direction)
+		{
+			pMovementComponent->SetInputDirection({ 1.f,0.f });
+		}
+		else if (0.f < direction)
+		{
+			pMovementComponent->SetInputDirection({ -1.f,0.f });
+		}
+
+		pMovementComponent->Move(deltaTime);
+	}
+
 	if (pAnimationComponent->IsClipEnd("AutoComboStart"))
 	{
 		_pOwnerComponent->ChangeState("IDLE");
@@ -40,6 +60,7 @@ void Client::AutoComboStart::Exit()
 {
 	if (pAnimationComponent->IsClipEnd("AutoComboStart"))
 	{
+		pMovementComponent->SetInputDirection({ 0.f,0.f });
 		pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
 	}
 }

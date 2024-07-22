@@ -28,9 +28,10 @@ namespace Client
 		static MiddleKick* Create();
 
 	private:
-		::Core::Actor* pActor{ nullptr };
+		::Core::Actor*				pActor{ nullptr };
+		::Core::MovementComponent*	pMovementComponent{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
-		::Core::BoxComponent* pBodyBoxComponent{ nullptr };
-		::Core::BoxComponent* pFootBoxComponent{ nullptr };
+		::Core::BoxComponent*		pBodyBoxComponent{ nullptr };
+		::Core::BoxComponent*		pFootBoxComponent{ nullptr };
 	};
 }

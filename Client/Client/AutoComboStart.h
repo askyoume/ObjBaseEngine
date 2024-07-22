@@ -4,6 +4,7 @@
 namespace Core
 {
 	class Actor;
+	class MovementComponent;
 	class AnimationComponent;
 	class BoxComponent;
 }
@@ -26,10 +27,11 @@ namespace Client
 		static AutoComboStart* Create();
 
 	private:
-		::Core::Actor* pActor{ nullptr };
-		::Core::Actor* pTargetActor{ nullptr };
+		::Core::Actor*				pActor{ nullptr };
+		::Core::Actor*				pTargetActor{ nullptr };
+		::Core::MovementComponent*	pMovementComponent{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
-		::Core::BoxComponent* pBodyBoxComponent{ nullptr };
-		::Core::BoxComponent* pFootBoxComponent{ nullptr };
+		::Core::BoxComponent*		pBodyBoxComponent{ nullptr };
+		::Core::BoxComponent*		pFootBoxComponent{ nullptr };
 	};
 }

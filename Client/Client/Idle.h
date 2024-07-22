@@ -6,6 +6,7 @@ namespace Core
 	class Actor;
 	class AnimationComponent;
 	class MovementComponent;
+	class InputComponent;
 	class BoxComponent;
 };
 
@@ -28,8 +29,10 @@ namespace Client
 
 	private:
 		::Core::Actor*				pActor{ nullptr };
+		::Core::InputComponent*		pInputComponent{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
 		::Core::MovementComponent*	pMovementComponent{ nullptr };
-		::Core::BoxComponent*		pBoxComponent{ nullptr };
+		::Core::BoxComponent*		pBodyBoxComponent{ nullptr };
+		::Core::BoxComponent*		pFootBoxComponent{ nullptr };
 	};
 }

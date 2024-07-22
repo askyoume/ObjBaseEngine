@@ -42,6 +42,9 @@ void Core::CollisionManager::SimulateCollision()
 			{
 				if(pCollision.second->GetCollisionType() == Collision::COLLISION_BLOCK)
 				{
+					if(pOther.second->GetCollisionType() == Collision::COLLISION_IGNORE)
+						continue;
+
 					pCollision.second->ProcessCollision(pOther.second);
 				}
 				else if (pCollision.second->GetCollisionType() == Collision::COLLISION_OVERLAP)

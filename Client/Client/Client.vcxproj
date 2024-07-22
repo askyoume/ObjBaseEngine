@@ -138,12 +138,14 @@
     <ClInclude Include="AI_IdleToChasing.h" />
     <ClInclude Include="Aoko.h" />
     <ClInclude Include="AutoComboStart.h" />
+    <ClInclude Include="BackDash.h" />
     <ClInclude Include="ClientFSMContainer.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ClientWorld.h" />
     <ClInclude Include="Idle.h" />
+    <ClInclude Include="AI_IdleToHit.h" />
     <ClInclude Include="IdleToKick.h" />
     <ClInclude Include="IdleToMiddleKick.h" />
     <ClInclude Include="IdleToMove.h" />
@@ -170,8 +172,10 @@
     <ClCompile Include="AI_Idle.cpp" />
     <ClCompile Include="AI_IdleToAttack.cpp" />
     <ClCompile Include="AI_IdleToChasing.cpp" />
+    <ClCompile Include="AI_IdleToHit.cpp" />
     <ClCompile Include="Aoko.cpp" />
     <ClCompile Include="AutoComboStart.cpp" />
+    <ClCompile Include="BackDash.cpp" />
     <ClCompile Include="ClientFSMContainer.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Character.cpp" />

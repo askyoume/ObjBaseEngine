@@ -56,5 +56,8 @@ namespace Client
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::InputComponent*		_pInputComponent{ nullptr };
 		::Core::StateComponent*		_pStateComponent{ nullptr };
+
+	private:
+		bool _isComboStart{ false };
 	};
 }

@@ -27,6 +27,8 @@ namespace Core
 	public:
 		void SetRootComponent(SceneComponent* pRootComponent) { _pRootComponent = pRootComponent; }
 		void SetInputDirection(Mathf::Vector2 inputDirection) { _inputDirection = inputDirection; }
+		void SetInputDirectionX(float x) { _inputDirection.x = x; }
+		void SetInputDirectionY(float y) { _inputDirection.y = y; }
 		Mathf::Vector2 GetInputDirection() const { return _inputDirection; }
 
 	public:

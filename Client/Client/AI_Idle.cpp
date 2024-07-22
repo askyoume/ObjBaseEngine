@@ -18,6 +18,7 @@ void Client::AI_Idle::Enter()
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
 
+	if(strcmp(_pOwnerComponent->GetCurrentStateName(),"AI_Hit"))
 	pAnimationComponent->SetPlayClip("Idle");
 }
 

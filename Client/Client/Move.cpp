@@ -6,6 +6,7 @@
 #include "../../Engine/Headers/MovementComponent.h"
 #include "../../Engine/Headers/Actor.h"
 #include "../../Engine/Headers/BoxComponent.h"
+#include "../../Engine/Headers/InputComponent.h"
 
 #include "Move.h"
 #include "ClientFSMContainer.h"
@@ -14,13 +15,15 @@ void Client::Move::Enter()
 {
 	if(!pActor)
 	{
-		pActor = _pOwnerComponent->GetOwner();
-		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
+		pActor				= _pOwnerComponent->GetOwner();
+		pMovementComponent	= pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
-		pBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
+		pBodyBoxComponent	= pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
+		pFootBoxComponent	= pActor->GetComponent<::Core::BoxComponent>("FootBoxComponent");
+		pInputComponent		= pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
-	pBoxComponent->SetSize({ 120.f, 400.f });
+	pBodyBoxComponent->SetSize({ 120.f, 400.f });
 	bool isFlip = pAnimationComponent->IsFlip();
 	Mathf::Vector2 direction = pMovementComponent->GetInputDirection();
 	switch (isFlip)
@@ -53,6 +56,10 @@ void Client::Move::Execute(float deltaTime)
 {
 	bool isFlip = pAnimationComponent->IsFlip();
 	Mathf::Vector2 direction = pMovementComponent->GetInputDirection();
+	if (direction.y < 0)
+	{
+		pMovementComponent->Jump(deltaTime);
+	}
 
 	switch (isFlip)
 	{
@@ -86,8 +93,13 @@ void Client::Move::Execute(float deltaTime)
 		break;
 	}
 
-
+	if (pMovementComponent->IsJumping())
+	{
+		std::cout << "Jump1 : " << (pMovementComponent->IsJumping()? "true" : "false")<< std::endl;
+		pAnimationComponent->SetPlayClip("Jump");
+	}
 	pMovementComponent->Move(deltaTime);
+
 }
 
 void Client::Move::Exit()

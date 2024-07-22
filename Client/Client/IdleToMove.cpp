@@ -16,18 +16,28 @@ bool Client::IdleToMove::ShouldTransition()
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
 
-	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
-	//std::cout << _direction.x << std::endl;
 	if (!pMovementComponent->IsGrounded())
+	{
+		return false;
+	}
+
+	if (!pAnimationComponent->IsClipEnd("MiddleKick"))
+	{
+		return false;
+	}
+
+	if (!pAnimationComponent->IsClipEnd("LowKick"))
 	{
 		return false;
 	}
 
 	if (!pAnimationComponent->IsClipEnd("AutoComboStart"))
 	{
-		return false;
+		SetTargetState("AutoComboStart");
+		return true;
 	}
 
+	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
 	if (0.5f < _direction.x || -0.5f > _direction.x)
 	{
 		SetTargetState("MOVE");

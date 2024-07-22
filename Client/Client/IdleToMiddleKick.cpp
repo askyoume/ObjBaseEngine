@@ -18,11 +18,14 @@ bool Client::IdleToMiddleKick::ShouldTransition()
 		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
-	if (!pAnimationComponent->IsClipEnd("MiddleKick"))
+	if (!pAnimationComponent->IsClipEnd("JumpMiddleKick") ||
+		!pAnimationComponent->IsClipEnd("MiddleKick"))
 	{
+		SetTargetState("MiddleKick");
 		return true;
 	}
 
+	SetTargetState("IDLE");
 	pBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
 	return false;
 }
