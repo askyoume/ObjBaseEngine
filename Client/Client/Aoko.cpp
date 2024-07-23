@@ -52,6 +52,7 @@ void Client::Aoko::BeginPlay()
 	_pInputComponent->BindAction(DIK_LEFT, InputType::RELEASE, this, &Aoko::StandHandler);
 	//jump to input component
 	_pInputComponent->BindAction(DIK_UP, InputType::PRESS, this, &Aoko::Jump);
+	_pInputComponent->BindAction(DIK_DOWN, InputType::HELD, this, &Aoko::Ducking);
 	//attack to input component
 	_pInputComponent->BindAction(DIK_A, InputType::PRESS, this, &Aoko::LowKickHandler);
 	_pInputComponent->BindAction(DIK_A, InputType::PRESS, this, &Aoko::AutoComboHandler);

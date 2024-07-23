@@ -28,16 +28,33 @@ void Client::LowKick::Enter()
 	{
 		if(!pMovementComponent->IsGrounded())
 		{
-			if (pAnimationComponent->IsFlip())
+			if(pInputComponent->IsKeyEventTriggeredLessTime(DIK_DOWN, InputType::HELD, 0.28f))
 			{
-				pFootBoxComponent->SetAddOffset({ -80.f, 80.f });
+				if (pAnimationComponent->IsFlip())
+				{
+					pFootBoxComponent->SetAddOffset({ -80.f, 80.f });
+				}
+				else
+				{
+					pFootBoxComponent->SetAddOffset({ 80.f, 80.f });
+				}
+				pFootBoxComponent->SetSize({ 300.f, 300.f });
+				pAnimationComponent->SetPlayClip("JumpDownKick");
 			}
 			else
 			{
-				pFootBoxComponent->SetAddOffset({ 80.f, 80.f });
+				if (pAnimationComponent->IsFlip())
+				{
+					pFootBoxComponent->SetAddOffset({ -80.f, 80.f });
+				}
+				else
+				{
+					pFootBoxComponent->SetAddOffset({ 80.f, 80.f });
+				}
+				pFootBoxComponent->SetSize({ 200.f, 100.f });
+				pAnimationComponent->SetPlayClip("JumpLowKick");
 			}
-			pFootBoxComponent->SetSize({ 200.f, 100.f });
-			pAnimationComponent->SetPlayClip("JumpLowKick");
+
 		}
 		else
 		{
