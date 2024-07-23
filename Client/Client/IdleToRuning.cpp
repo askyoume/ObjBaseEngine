@@ -14,6 +14,8 @@ bool Client::IdleToRunning::ShouldTransition()
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
 
+	//std::cout << "IdleToRunning" << std::endl;
+
 	if (!pMovementComponent->IsGrounded())
 	{
 		return false;

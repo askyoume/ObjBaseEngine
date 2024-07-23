@@ -61,9 +61,6 @@
     <Filter Include="ClientActors\Character\Neko">
       <UniqueIdentifier>{6d1289b1-9479-4798-85d9-ffe9e8eaf82b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Jump">
-      <UniqueIdentifier>{843a2f9d-6758-4452-b322-1b9fac6e3f6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\State\Attack">
       <UniqueIdentifier>{f83d1cc9-1db9-4dad-bccb-e4a4a2ccfaa0}</UniqueIdentifier>
     </Filter>
@@ -133,21 +130,6 @@
     <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AirLaunch">
       <UniqueIdentifier>{80581b0d-888e-43d9-88b8-d315b1e94e9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\End">
-      <UniqueIdentifier>{5b2eefec-39a4-42ce-8323-b17f58591904}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\Grap">
-      <UniqueIdentifier>{3497b517-e3cc-47e4-acf8-37c76e322eb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AerialAttack1">
-      <UniqueIdentifier>{b7f62fed-0eee-4b2e-89dd-3f6ef3a0c5d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AerialAttack2">
-      <UniqueIdentifier>{647f5781-7d39-43a4-98da-33e102b54417}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AerialAttack3">
-      <UniqueIdentifier>{78ab1567-3795-41c3-a8a2-d9a45ef458d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\Transit\KickToComboStart">
       <UniqueIdentifier>{056832ff-cac4-4c95-9990-5b2d7ec47a77}</UniqueIdentifier>
     </Filter>
@@ -165,6 +147,12 @@
     </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\State\Dash\BackDash">
       <UniqueIdentifier>{af2a48d8-5301-4710-b56c-7f5a5d74c50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\Transit\ComboToCombo">
+      <UniqueIdentifier>{a08a5286-a39d-4d13-b437-c38a6c4cd9b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Grap">
+      <UniqueIdentifier>{3497b517-e3cc-47e4-acf8-37c76e322eb8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +200,6 @@
     </ClInclude>
     <ClInclude Include="IdleToKick.h">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToKick</Filter>
-    </ClInclude>
-    <ClInclude Include="Jump.h">
-      <Filter>ClientFSM\CommonMovementFSM\State\Jump</Filter>
     </ClInclude>
     <ClInclude Include="Move.h">
       <Filter>ClientFSM\CommonMovementFSM\State\Move</Filter>
@@ -270,6 +255,12 @@
     <ClInclude Include="BackDash.h">
       <Filter>ClientFSM\CommonMovementFSM\State\Dash\BackDash</Filter>
     </ClInclude>
+    <ClInclude Include="AirLaunch.h">
+      <Filter>ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AirLaunch</Filter>
+    </ClInclude>
+    <ClInclude Include="StartToAirLaunch.h">
+      <Filter>ClientFSM\CommonMovementFSM\Transit\ComboToCombo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -316,9 +307,6 @@
     </ClCompile>
     <ClCompile Include="IdleToKick.cpp">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToKick</Filter>
-    </ClCompile>
-    <ClCompile Include="Jump.cpp">
-      <Filter>ClientFSM\CommonMovementFSM\State\Jump</Filter>
     </ClCompile>
     <ClCompile Include="Move.cpp">
       <Filter>ClientFSM\CommonMovementFSM\State\Move</Filter>
@@ -373,6 +361,12 @@
     </ClCompile>
     <ClCompile Include="BackDash.cpp">
       <Filter>ClientFSM\CommonMovementFSM\State\Dash\BackDash</Filter>
+    </ClCompile>
+    <ClCompile Include="AirLaunch.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\State\Attack\AutoCombo\AirLaunch</Filter>
+    </ClCompile>
+    <ClCompile Include="StartToAirLaunch.cpp">
+      <Filter>ClientFSM\CommonMovementFSM\Transit\ComboToCombo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

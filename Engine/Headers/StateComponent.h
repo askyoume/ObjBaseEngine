@@ -30,6 +30,7 @@ namespace Core
 
 	public:
 		void ChangeState(_pstring targetState);
+		void ForceCheckTransition(_pstring targetState);
 
 	public:
 		static StateComponent* Create() { return new StateComponent; }
@@ -37,6 +38,8 @@ namespace Core
 	public:
 		_pstring GetCurrentStateName() const;
 		_pstring GetPreviousStateName() const;
+		bool IsCurrentState(_pstring targetState) const;
+		bool IsPreviousState(_pstring targetState) const;
 
 	protected:
 		StateContainer* _pContainer{ nullptr };

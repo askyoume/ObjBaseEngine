@@ -20,6 +20,7 @@ namespace Core
 		virtual void Remove() override PURE;
 
 	public:
+		void ForceCheckTransition(_pstring targetState);
 		void ChangeState(_pstring targetState);
 		void SetInitialState(_pstring initialState);
 		void AddState(State* pState);

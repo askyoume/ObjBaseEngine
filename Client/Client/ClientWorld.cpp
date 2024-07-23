@@ -4,6 +4,7 @@
 #include "../../Engine/Headers/CameraActor.h"
 #include "../../Engine/Headers/CameraComponent.h"
 #include "../../Engine/Headers/StateComponent.h"
+#include "../../Engine/Headers/MovementComponent.h"
 //Client
 #include "ClientWorld.h"
 #include "PlayCameraActor.h"
@@ -24,14 +25,14 @@ bool Client::ClientWorld::BeginPlay()
 	SpawnActor(LAYER::BACKGROUND, "BackGround", BackGround::Create(), Mathf::Vector2{ 2750.f, -180.f });
 
 	_pAoko = static_cast<Aoko*>(FindActor("Aoko"));
-	std::cout << &_pAoko << std::endl;
+	//std::cout << &_pAoko << std::endl;
 	_pNeko = static_cast<Neko*>(FindActor("Neko"));
-	std::cout << &_pNeko << std::endl;
+	//std::cout << &_pNeko << std::endl;
 
 	SettingCamera(PlayCameraActor::Create());
-	SettingCameraPosition(Mathf::Vector2{ 1835.f, -660.f });
+	SettingCameraPosition(Mathf::Vector2{ 1835.f, -560.f });
 	SettingCameraOffset(Mathf::Vector2{0.f, 30.f});
-	SetWorldSize(Mathf::Rect{ 0.f, -1580.f, 3500.f, -100.f });
+	SetWorldSize(Mathf::Rect{ 0.f, -1350.f, 3500.f, -100.f });
 
     return isBeginPlayEnd;
 }
@@ -76,7 +77,26 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 		AIStateName,
 		AIStateName.length(),
 		_pCoreManager->GetFont(L"DemoFont"),
-		D2D1::RectF(1300, 600, 1900, 100),
+		D2D1::RectF(1300, 100, 1900, 200),
+		_pCoreManager->GetGraphicsPackage()->_pBrush
+	);
+
+	bool NekoGrounded = _pNeko->GetComponent<::Core::MovementComponent>("MovementComponent")->IsGrounded();
+	_bstring NekoGround = "Neko Grounded : ";
+	if (NekoGrounded)
+	{
+		NekoGround += "True";
+	}
+	else
+	{
+		NekoGround += "False";
+	}
+
+	pRenderTarget->DrawTextW(
+		NekoGround,
+		NekoGround.length(),
+		_pCoreManager->GetFont(L"DemoFont"),
+		D2D1::RectF(1300, 300, 1900, 800),
 		_pCoreManager->GetGraphicsPackage()->_pBrush
 	);
 
@@ -94,7 +114,8 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 		_pCoreManager->GetGraphicsPackage()->_pBrush
 	);
 
-	_bstring _explanation1 = "[ Left & Right : 이동 | 적 방향 방향키 2번 : 달리기 ]\n\n[ UP : 점프 | A : 약발 | S : 강발 ]";
+	_bstring _explanation1 = 
+		"[ Left & Right : 이동 | 적 방향 방향키 2번 : 달리기 | 적 반대방향 방향키 2번 : 백대쉬 | 공중 방향키 2번 : 공중 백대쉬 & 공중 대쉬 ]\n\n[ UP : 점프 | A : 약발 | S : 강발 ]\n\n[ A 연타 : 어시스턴트 모드 ]";
 
 	pRenderTarget->DrawTextW(
 		_explanation1,
@@ -106,4 +127,5 @@ void Client::ClientWorld::Render(ID2D1RenderTarget* pRenderTarget)
 
 	//test code end
 }
+
 

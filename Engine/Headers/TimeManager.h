@@ -35,5 +35,6 @@ namespace Core
 		_timePoint _prevTick{};
 		float _deltaSeconds{ 0.f };
 		float _timeScale{ 1.1f };
+		//float _timeScale{ 0.5f };
 	};
 }

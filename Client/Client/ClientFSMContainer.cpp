@@ -7,12 +7,15 @@
 #include "LowKick.h"
 #include "AutoComboStart.h"
 #include "BackDash.h"
+#include "AirLaunch.h"
+
 //transition
 #include "IdleToRuning.h"
 #include "IdleToMove.h"
 #include "IdleToKick.h"
 #include "IdleToMiddleKick.h"
 #include "KickToComboStart.h"
+#include "StartToAirLaunch.h"
 
 
 void Client::ClientFSMContainer::ContainStep()
@@ -22,6 +25,7 @@ void Client::ClientFSMContainer::ContainStep()
 	Running*		running			= Running::Create();
 	LowKick*		lowKick			= LowKick::Create();
 	BackDash*		backDash		= BackDash::Create();
+	AirLaunch*		airLaunch		= AirLaunch::Create();
 	MiddleKick*		middleKick		= MiddleKick::Create();
 	AutoComboStart* autoComboStart	= AutoComboStart::Create();
 
@@ -30,6 +34,7 @@ void Client::ClientFSMContainer::ContainStep()
 	IdleToRunning*		idleToRunning		= IdleToRunning::Create();
 	IdleToMiddleKick*	idleToMiddleKick	= IdleToMiddleKick::Create();
 	KickToComboStart*	kickToComboStart	= KickToComboStart::Create();
+	StartToAirLaunch*	startToAirLaunch	= StartToAirLaunch::Create();
 	
 	autoComboStart->SetPriority(true);
 	middleKick->SetPriority(true);
@@ -40,6 +45,7 @@ void Client::ClientFSMContainer::ContainStep()
 	AddState(running);
 	AddState(lowKick);
 	AddState(backDash);
+	AddState(airLaunch);
 	AddState(middleKick);
 	AddState(autoComboStart);
 
@@ -48,6 +54,7 @@ void Client::ClientFSMContainer::ContainStep()
 	idle->AddTransition(idleToMove);
 	move->AddTransition(idleToRunning);
 	lowKick->AddTransition(idleToKick);
+	airLaunch->AddTransition(startToAirLaunch);
 	middleKick->AddTransition(idleToMiddleKick);
 	autoComboStart->AddTransition(kickToComboStart);
 

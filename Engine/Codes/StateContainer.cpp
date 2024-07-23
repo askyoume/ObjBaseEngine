@@ -68,6 +68,25 @@ void Core::StateContainer::Remove()
 	}
 }
 
+void Core::StateContainer::ForceCheckTransition(_pstring targetState)
+{
+	size_t transitionSize = _states[targetState]->GetTransitions().size();
+
+	if (transitionSize == 0)
+	{
+		return;
+	}
+
+	for (size_t i = 0; i < transitionSize; ++i)
+	{
+		if (_states[targetState]->GetTransitions()[i]->ShouldTransition())
+		{
+			ChangeState(targetState);
+			return;
+		}
+	}
+}
+
 void Core::StateContainer::ChangeState(_pstring targetState)
 {
 	_pstring previousState{ "None" }; 

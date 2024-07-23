@@ -4,19 +4,19 @@
 namespace Core
 {
 	class Actor;
-	class InputComponent;
 	class MovementComponent;
+	class InputComponent;
 	class AnimationComponent;
 	class BoxComponent;
 }
 
 namespace Client
 {
-	class AutoComboStart : public Core::State
+	class AirLaunch : public Core::State
 	{
 	protected:
-		explicit AutoComboStart() = default;
-		virtual ~AutoComboStart() = default;
+		explicit AirLaunch() = default;
+		virtual ~AirLaunch() = default;
 
 	public:
 		void Enter() override;
@@ -25,7 +25,7 @@ namespace Client
 		void Remove() override;
 
 	public:
-		static AutoComboStart* Create();
+		static AirLaunch* Create();
 
 	private:
 		::Core::Actor*				pActor{ nullptr };

@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AIMovementFSMContainer.h" />
+    <ClInclude Include="AirLaunch.h" />
     <ClInclude Include="AI_Attack.h" />
     <ClInclude Include="AI_Chasing.h" />
     <ClInclude Include="AI_ChasingToIdle.h" />
@@ -150,7 +151,6 @@
     <ClInclude Include="IdleToMiddleKick.h" />
     <ClInclude Include="IdleToMove.h" />
     <ClInclude Include="IdleToRuning.h" />
-    <ClInclude Include="Jump.h" />
     <ClInclude Include="KickToComboStart.h" />
     <ClInclude Include="LowKick.h" />
     <ClInclude Include="MiddleKick.h" />
@@ -160,11 +160,13 @@
     <ClInclude Include="NightSky.h" />
     <ClInclude Include="PlayCameraActor.h" />
     <ClInclude Include="Runing.h" />
+    <ClInclude Include="StartToAirLaunch.h" />
     <ClInclude Include="TestActor.h" />
     <ClInclude Include="TestActor2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIMovementFSMContainer.cpp" />
+    <ClCompile Include="AirLaunch.cpp" />
     <ClCompile Include="AI_Attack.cpp" />
     <ClCompile Include="AI_Chasing.cpp" />
     <ClCompile Include="AI_ChasingToIdle.cpp" />
@@ -186,7 +188,6 @@
     <ClCompile Include="IdleToMiddleKick.cpp" />
     <ClCompile Include="IdleToMove.cpp" />
     <ClCompile Include="IdleToRuning.cpp" />
-    <ClCompile Include="Jump.cpp" />
     <ClCompile Include="KickToComboStart.cpp" />
     <ClCompile Include="LowKick.cpp" />
     <ClCompile Include="MiddleKick.cpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="NightSky.cpp" />
     <ClCompile Include="PlayCameraActor.cpp" />
     <ClCompile Include="Runing.cpp" />
+    <ClCompile Include="StartToAirLaunch.cpp" />
     <ClCompile Include="TestActor.cpp" />
     <ClCompile Include="TestActor2.cpp" />
   </ItemGroup>

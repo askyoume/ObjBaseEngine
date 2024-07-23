@@ -61,6 +61,7 @@ void Client::MiddleKick::Exit()
 	if(pAnimationComponent->IsClipEnd("JumpMiddleKick") ||
 		pAnimationComponent->IsClipEnd("MiddleKick"))
 	{
+		pMovementComponent->SetInputDirectionY(0.f);
 		pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
 	}
 }

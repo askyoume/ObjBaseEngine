@@ -18,6 +18,8 @@ bool Client::IdleToKick::ShouldTransition()
 		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
+	//std::cout << "IdleToKick" << std::endl;
+
 	if (!pAnimationComponent->IsClipEnd("JumpLowKick") ||
 		!pAnimationComponent->IsClipEnd("LowKick"))
 	{

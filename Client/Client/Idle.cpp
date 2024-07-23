@@ -23,13 +23,8 @@ void Client::Idle::Enter()
 		pInputComponent		= pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
-	if (pAnimationComponent->IsClipEnd("ReadyToIdle")	&& 
-		pAnimationComponent->IsClipEnd("Idle")			&&
-		pAnimationComponent->IsClipEnd("Jump")			&&
-		pAnimationComponent->IsClipEnd("LowKick")		&&
-		pAnimationComponent->IsClipEnd("JumpLowKick")	&&
-		pAnimationComponent->IsClipEnd("MiddleKick")	&&
-		pAnimationComponent->IsClipEnd("JumpMiddleKick"))
+	if (pAnimationComponent->IsFrameEnd() && 
+		pMovementComponent->IsGrounded())
 	{
 		pAnimationComponent->SetPlayClip("Idle");
 	}
@@ -50,17 +45,15 @@ void Client::Idle::Execute(float deltaTime)
 	{
 		pAnimationComponent->SetPlayClip("Jump");
 	}
-	else if (pAnimationComponent->IsClipEnd("ReadyToIdle")		&& 
-			 pAnimationComponent->IsClipEnd("Idle")				&&
-			 pAnimationComponent->IsClipEnd("Jump")				&&
-			 pAnimationComponent->IsClipEnd("LowKick")			&&
-			 pAnimationComponent->IsClipEnd("JumpLowKick")		&&
-			 pAnimationComponent->IsClipEnd("MiddleKick")		&&
-			 pAnimationComponent->IsClipEnd("JumpMiddleKick"))
+	else if (pAnimationComponent->IsFrameEnd())
 	{
 		pAnimationComponent->SetPlayClip("Idle");
 	}
 
+	if (pAnimationComponent->IsFrameEnd())
+	{
+		pMovementComponent->SetInputDirectionY(0.f);
+	}
 }
 
 void Client::Idle::Exit()

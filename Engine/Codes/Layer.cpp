@@ -1,5 +1,6 @@
 #include "Layer.h"
 #include "Actor.h"
+#include "World.h"
 #include "CoreManager.h"
 #include "RenderComponent.h"
 #include "CameraActor.h"
@@ -31,6 +32,21 @@ void Core::Layer::Fixed()
 
 void Core::Layer::Render(ID2D1RenderTarget* pRenderTarget)
 {
+	World* pWorld = CoreManager::GetInstance()->GetWorld();
+
+	if(pWorld->IsCustomRenderSort())
+	{
+		pWorld->CustomRenderSort();
+	}
+	else
+	{
+		std::sort(_renderQueue.begin(), _renderQueue.end(),
+			[](RenderComponent* lhs, RenderComponent* rhs)
+			{
+				return lhs->GetOrder() < rhs->GetOrder();
+			});
+	}
+
 	const Mathf::Matrix3x2& matrixCamera = _pCameraActor->GetCameraComponent()->GetWorldTransform();
 
 	for (auto& renderComponent : _renderQueue)

@@ -33,7 +33,5 @@ namespace Client
 		::Core::MovementComponent* pMovementComponent{ nullptr };
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
 		::Core::BoxComponent* pBoxComponent{ nullptr };
-	private:
-		float DashTargetLocationX{ 0.f };
 	};
 }

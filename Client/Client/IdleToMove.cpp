@@ -16,7 +16,13 @@ bool Client::IdleToMove::ShouldTransition()
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 	}
 
-	if (!pMovementComponent->IsGrounded())
+	//std::cout << "IdleToMove" << std::endl;
+	if (!pMovementComponent->IsGrounded() && !pAnimationComponent->IsClipEnd("JumpBackDash"))
+	{
+		SetTargetState("BackDash");
+		return true;
+	}
+	else if (!pMovementComponent->IsGrounded())
 	{
 		return false;
 	}

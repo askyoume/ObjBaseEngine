@@ -63,7 +63,7 @@ bool Core::InputComponent::IsKeyEventTriggerNow(_uint key, InputType type) const
 	if (_inputEvents.empty())
 		return false;
 
-	if (_inputEvents.back().timeToLastInput > 0.2f)
+	if (_inputEvents.back().timeToLastInput > 0.3f)
 		return false;
 
 	if (_inputEvents.back().key == key && _inputEvents.back().type == type)
@@ -149,7 +149,11 @@ void Core::InputComponent::TickComponent(_float deltaTime)
 	if (_inputEvents.empty())
 		return;
 
-	_inputEvents.back().timeToLastInput += deltaTime;
+	if(9999.f > _inputEvents.back().timeToLastInput)
+	{
+		_inputEvents.back().timeToLastInput += deltaTime;
+	}
+
 	//std::cout << "Time : " << _inputEvents.back().timeToLastInput << std::endl;
 }
 

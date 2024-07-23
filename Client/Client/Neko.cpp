@@ -8,6 +8,7 @@
 #include "../../Engine/Headers/BoxComponent.h"
 
 #include "Neko.h"
+#include "Aoko.h"
 #include "AIMovementFSMContainer.h"
 
 void Client::Neko::BeginPlay()
@@ -30,23 +31,26 @@ void Client::Neko::BeginPlay()
 	_pAnimationComponent->AddClip("Running", 0.1f, true);
 	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
 	_pAnimationComponent->AddClip("Hit", 0.1f, false);
+	_pAnimationComponent->SetOrder(1);
+	_pAnimationComponent->SetPlayClip("Idle");
 
 	_pInputComponent->AttachToInputManager();
 
 	_pBoxComponent = AddComponent<::Core::BoxComponent>("BoxComponent");
-	_pBoxComponent->SetSize({ 90.f, 550.f });
+	_pBoxComponent->SetAddOffset({ 0.f, 150.f });
+	_pBoxComponent->SetSize({ 90.f, 300.f });
 	_pBoxComponent->SetCollisionType(Collision::COLLISION_BLOCK);
 	_pBoxComponent->AddColliderInLayer();
 
 	_pAIComponent = AddComponent<::Core::StateComponent>("AIComponent");
 	_pAIComponent->AddContainer<AIMovementFSMContainer>();
 
-	_pAnimationComponent->SetPlayClip("Idle");
 }
 
 void Client::Neko::Tick(_float deltaTime)
 {
 	Super::Tick(deltaTime);
+	//std::cout << _pRootComponent->GetRelativeLocation().y << std::endl;
 }
 
 void Client::Neko::Fixed()
@@ -59,10 +63,25 @@ void Client::Neko::EndPlay()
 
 void Client::Neko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 {
-	//std::cout << "Neko NotifyActorBlock" << " " << pOtherComponent->GetName() << std::endl;
 	if ((*pOtherComponent->GetOwner() == "Aoko") &&
 	(*pOtherComponent == "FootBoxComponent"))
 	{	
+		_pAIComponent->ChangeState("AI_Hit");
+	}
+
+	if (!_pMovementComponent->IsGrounded() &&
+		(*pOtherComponent->GetOwner() == "Aoko") &&
+	(*pOtherComponent == "FootBoxComponent"))
+	{	
+		_pAIComponent->ChangeState("AI_Hit");
+		_pMovementComponent->ChangeVelocity().y = -65.f;
+	}
+	
+	if (pOtherComponent->GetOwner()->GetComponent<::Core::StateComponent>("StateComponent")->IsCurrentState("AirLaunch") &&
+		(*pOtherComponent == "FootBoxComponent"))
+	{
+		_pMovementComponent->SetGrounded(false);
+		_pMovementComponent->ChangeVelocity().y = -5.f * 300.f;
 		_pAIComponent->ChangeState("AI_Hit");
 	}
 }
@@ -74,7 +93,8 @@ void Client::Neko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherCom
 	if ((*pOtherComponent->GetOwner() == "Aoko") &&
 		(*pOtherComponent == "FootBoxComponent"))
 	{
-		std::cout << "Attacked by Aoko" << std::endl;
+		_pAnimationComponent->SetOrder(0);
+		//std::cout << "Attacked by Aoko" << std::endl;
 	}
 }
 

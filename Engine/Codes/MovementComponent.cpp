@@ -37,7 +37,7 @@ void Core::MovementComponent::TickComponent(_float deltaTime)
 	_ownerCurrentLocation = _pRootComponent->GetWorldLocation();
 
 	_velocity.y += _calculatedGravity * deltaTime;
-	std::cout << _velocity.y << std::endl;
+	//std::cout << _velocity.y << std::endl;
 	if (_velocity.x > 0)
 	{
 		_velocity.x = std::max(_velocity.x, -_limitSpeed);
@@ -55,10 +55,10 @@ void Core::MovementComponent::TickComponent(_float deltaTime)
 	if (_ownerCurrentLocation.y > _groundPosition)
 	{
 		_pRootComponent->SetRelativeY(_groundPosition);
-		_velocity.y = 0.f;
+		_velocity.y = -1.f;
 		_isGrounded = true;
 	}
-
+		
 	_isJumping = false;
 }
 
@@ -85,6 +85,12 @@ void Core::MovementComponent::Jump(float deltaTime)
 		_isGrounded = false;
 		_isJumping = true;
 	}
+}
+
+void Core::MovementComponent::DiagonalMove(float deltaTime)
+{
+	_velocity.x = _inputDirection.x * _moveSpeed;
+	_velocity.y = _inputDirection.y * _jumpPower;
 }
 
 Core::MovementComponent* Core::MovementComponent::Create()

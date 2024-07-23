@@ -14,6 +14,7 @@ void Client::Aoko::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//_pRootComponent->SetRelativeScale({1.3f,1.3f});
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
@@ -21,20 +22,24 @@ void Client::Aoko::BeginPlay()
 
 	_pAnimationComponent->AddClip("Idle", 0.1f, true);
 	_pAnimationComponent->AddClip("Move", 0.1f, true);
-	_pAnimationComponent->AddClip("BackMove", 0.1f, true);
-	_pAnimationComponent->AddClip("BackDash", 0.06f, true);
-	_pAnimationComponent->AddClip("Jump", 0.1f, false);
-	_pAnimationComponent->AddClip("JumpLowKick", 0.06f, false);
-	_pAnimationComponent->AddClip("JumpMiddleKick", 0.06f, false);
-	_pAnimationComponent->AddClip("ReadyToMove", 0.1f, false);
-	_pAnimationComponent->AddClip("ReadyToBackMove", 0.1f, false);
-	_pAnimationComponent->AddClip("ReadyToRunning", 0.1f, false);
-	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f, false);
+	_pAnimationComponent->AddClip("Jump", 0.1f);
 	_pAnimationComponent->AddClip("Running", 0.1f, true);
-	_pAnimationComponent->AddClip("LowKick", 0.06f, false);
-	_pAnimationComponent->AddClip("MiddleKick", 0.06f, false);
-	_pAnimationComponent->AddClip("AutoComboStart", 0.06f, false);
-	_pAnimationComponent->AddClip("AutoComboAirLaunch", 0.06f, false);
+	_pAnimationComponent->AddClip("BackMove", 0.1f, true);
+	_pAnimationComponent->AddClip("BackDash", 0.06f);
+	_pAnimationComponent->AddClip("LowKick", 0.06f);
+	_pAnimationComponent->AddClip("JumpDownKick", 0.06f);
+	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f);
+	_pAnimationComponent->AddClip("ReadyToMove", 0.1f);
+	_pAnimationComponent->AddClip("MiddleKick", 0.06f);
+	_pAnimationComponent->AddClip("JumpBackDash", 0.1f);
+	_pAnimationComponent->AddClip("JumpLowKick", 0.06f);
+	_pAnimationComponent->AddClip("JumpMiddleKick", 0.06f);
+	_pAnimationComponent->AddClip("ReadyToBackMove", 0.1f);
+	_pAnimationComponent->AddClip("ReadyToRunning", 0.1f);
+	_pAnimationComponent->AddClip("AutoComboStart", 0.06f);
+	_pAnimationComponent->AddClip("AutoComboAirLaunch", 0.06f);
+
+	_pAnimationComponent->SetOrder(1);
 	_pAnimationComponent->SetPlayClip("Idle");
 
 	//rip... need to change this(단순한게 쓰기도 좋다... 이건 너무 복잡, 구현도 그렇고, 이해도 그렇고)
@@ -96,6 +101,13 @@ void Client::Aoko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherCompo
 
 void Client::Aoko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 {
+	if (!strcmp(_pStateComponent->GetCurrentStateName(),"AirLaunch") &&
+		(*pOtherComponent->GetOwner() == "Neko") &&
+		(*pOtherComponent == "BoxComponent"))
+	{
+		std::cout << "Aoko NotifyActorBlock" << std::endl;
+		//_pMovementComponent->SetInputDirectionY(-1.2f);
+	}
 }
 
 void Client::Aoko::ExecuteMatchedCommands(_float deltaTime)
@@ -104,6 +116,11 @@ void Client::Aoko::ExecuteMatchedCommands(_float deltaTime)
 
 void Client::Aoko::AutoComboHandler(const InputEvent& inputEvent)
 {
+	if (_pStateComponent->IsCurrentState("AirLaunch"))
+	{
+		return;
+	}
+
 	if (_pMovementComponent->IsGrounded() && !_pMovementComponent->IsRunning())
 	{
 		if (_pInputComponent->IsKeyEventTriggeredLessTime(DIK_A, InputType::RELEASE, 0.28f) && 
@@ -125,10 +142,11 @@ void Client::Aoko::AutoComboHandler(const InputEvent& inputEvent)
 
 void Client::Aoko::LowKickHandler(const InputEvent& inputEvent)
 {
-	if (_pMovementComponent->IsRunning() ||
-		!strcmp(_pStateComponent->GetCurrentStateName(),"LowKick") ||
-		!strcmp(_pStateComponent->GetCurrentStateName(),"AutoComboStart") ||
-		!strcmp(_pStateComponent->GetCurrentStateName(),"MiddleKick"))
+	if (_pMovementComponent->IsRunning()					||
+		_pStateComponent->IsCurrentState("LowKick")			||
+		_pStateComponent->IsCurrentState("AutoComboStart")	||
+		_pStateComponent->IsCurrentState("AirLaunch")		||
+		_pStateComponent->IsCurrentState("MiddleKick"))
 	{
 		return;
 	}
@@ -147,10 +165,11 @@ void Client::Aoko::LowKickHandler(const InputEvent& inputEvent)
 
 void Client::Aoko::MiddleKickHandler(const InputEvent& inputEvent)
 {
-	if (_pMovementComponent->IsRunning() ||
-		!strcmp(_pStateComponent->GetCurrentStateName(),"MiddleKick") ||
-		!strcmp(_pStateComponent->GetCurrentStateName(),"AutoComboStart") ||
-		!strcmp(_pStateComponent->GetCurrentStateName(),"LowKick"))
+	if (_pMovementComponent->IsRunning()					||
+		_pStateComponent->IsCurrentState("MiddleKick")		||
+		_pStateComponent->IsCurrentState("AutoComboStart")	||
+		_pStateComponent->IsCurrentState("AirLaunch")		||
+		_pStateComponent->IsCurrentState("LowKick"))
 	{
 		return;
 	}
@@ -189,8 +208,7 @@ void Client::Aoko::Ducking(const InputEvent& inputEvent)
 
 void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 {
-	if(_pMovementComponent->GetInputDirection() == Mathf::Vector2{ -2.f,0.f } ||
-		_pMovementComponent->IsJumping())
+	if(_pMovementComponent->GetInputDirection() == Mathf::Vector2{ -2.f,0.f })
 	{
 		return;
 	}
@@ -199,7 +217,8 @@ void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 	switch (isFlip)
 	{
 	case true:
-		if(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_RIGHT, InputType::RELEASE, 0.18f) &&
+		if(_pAnimationComponent->IsClipEnd("BackDash") && _pAnimationComponent->IsClipEnd("JumpBackDash") &&
+			_pInputComponent->IsKeyEventTriggeredLessTime(DIK_RIGHT, InputType::RELEASE, 0.18f) &&
 			_pInputComponent->IsKeyEventTriggerNow(DIK_RIGHT, InputType::PRESS))
 		{
 			_pStateComponent->ChangeState("BackDash");
@@ -207,8 +226,7 @@ void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 		else
 		{
 			_pMovementComponent->SetRunning(false);
-			_pMovementComponent->SetInputDirectionX(4.f);
-
+			_pMovementComponent->SetInputDirectionX(2.f);
 		}
 		break;
 	case false:
@@ -219,7 +237,7 @@ void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 		}
 		else
 		{
-			_pMovementComponent->SetInputDirectionX(2.f);
+			_pMovementComponent->SetInputDirectionX(5.f);
 		}
 		break;
 	}
@@ -227,8 +245,7 @@ void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 
 void Client::Aoko::LeftMoveHandler(const InputEvent& inputEvent)
 {
-	if(_pMovementComponent->GetInputDirection() == Mathf::Vector2{ 2.f,0.f } ||
-		_pMovementComponent->IsJumping())
+	if(_pMovementComponent->GetInputDirection() == Mathf::Vector2{ 2.f,0.f })
 	{
 		return;
 	}
@@ -244,11 +261,12 @@ void Client::Aoko::LeftMoveHandler(const InputEvent& inputEvent)
 		}
 		else
 		{
-			_pMovementComponent->SetInputDirectionX(-4.f);
+			_pMovementComponent->SetInputDirectionX(-5.f);
 		}
 		break;
 	case false:
-		if(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_LEFT, InputType::RELEASE, 0.18f) &&
+		if(_pAnimationComponent->IsClipEnd("BackDash") && _pAnimationComponent->IsClipEnd("JumpBackDash") &&
+			_pInputComponent->IsKeyEventTriggeredLessTime(DIK_LEFT, InputType::RELEASE, 0.18f) &&
 			_pInputComponent->IsKeyEventTriggerNow(DIK_LEFT, InputType::PRESS))
 		{
 			_pStateComponent->ChangeState("BackDash");

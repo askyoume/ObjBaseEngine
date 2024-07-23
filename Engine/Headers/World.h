@@ -40,6 +40,11 @@ namespace Core
 		void RemoveLayer(int layerIndex);
 		void ClearLayer();
 		int GetLayerSize() const { return _layerSize; }
+	public:
+		//RenderSort
+		virtual void CustomRenderSort() {};
+		void SetCustomRenderSort(bool isCustomRenderSort) { _isCustomRenderSort = isCustomRenderSort; }
+		bool IsCustomRenderSort() const { return _isCustomRenderSort; }
 
 	public:
 		//Canvas
@@ -81,6 +86,6 @@ namespace Core
 		Mathf::Vector2		_worldCenter{ UnitVector::Zero };
 		Mathf::Rect			_worldSize{};
 		int					_layerSize{};
-
+		bool				_isCustomRenderSort{ false };
 	};
 }

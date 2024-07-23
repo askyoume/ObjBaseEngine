@@ -12,9 +12,10 @@ namespace Core
 	public:
 		virtual void TickComponent(_float deltaTime) override;
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override;
-		void AddClip(_pstring clipName, _float frameTime, bool isLoop);
+		void AddClip(_pstring clipName, _float frameTime, bool isLoop = false);
 		const bool IsClipPlay(_pstring clipName) const;
 		const bool IsClipEnd(_pstring clipName) const;
+		const bool IsFrameEnd() const;
 		void SetPlayClip(_pstring clipName);
 		void RemoveClip(_pstring clipName);
 		

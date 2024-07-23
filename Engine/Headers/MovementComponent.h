@@ -23,6 +23,7 @@ namespace Core
 		void Move(float deltaTime);
 		void Run(float deltaTime);
 		void Jump(float deltaTime);
+		void DiagonalMove(float deltaTime);
 
 	public:
 		void SetRootComponent(SceneComponent* pRootComponent) { _pRootComponent = pRootComponent; }
@@ -40,9 +41,12 @@ namespace Core
 		void SetJumpPower(float jumpPower) { _jumpPower = jumpPower; }
 		void SetRunning(bool isRunning) { _isRunning = isRunning; }
 
+	public:
 		bool IsGrounded() const { return _isGrounded; }
 		bool IsJumping() const { return _isJumping; }
 		bool IsRunning() const { return _isRunning; }
+
+		void SetGrounded(bool isGrounded) { _isGrounded = isGrounded; }
 
 	public:
 		static MovementComponent* Create();

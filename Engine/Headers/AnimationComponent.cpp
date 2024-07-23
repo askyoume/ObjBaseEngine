@@ -126,6 +126,11 @@ const bool Core::AnimationComponent::IsClipEnd(_pstring clipName) const
 	return true;
 }
 
+const bool Core::AnimationComponent::IsFrameEnd() const
+{
+	return _isFrameEnd;
+}
+
 void Core::AnimationComponent::SetPlayClip(_pstring clipName)
 {
 	_currentClipName = clipName;

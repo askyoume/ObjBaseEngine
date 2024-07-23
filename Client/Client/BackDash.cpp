@@ -20,8 +20,19 @@ void Client::BackDash::Enter()
 		pBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 	}
 
-	pAnimationComponent->SetPlayClip("BackDash");
-	pMovementComponent->ChangeVelocity().y = -400.f;
+	if(pMovementComponent->IsGrounded())
+	{
+		pAnimationComponent->SetPlayClip("BackDash");
+	}
+	else
+	{
+		pAnimationComponent->SetPlayClip("JumpBackDash");
+	}
+
+	if(!pAnimationComponent->IsClipEnd("JumpBackDash"))
+	{
+		pMovementComponent->ChangeVelocity().y = -5.f * 150.f;
+	}
 }
 
 void Client::BackDash::Execute(float deltaTime)
@@ -30,22 +41,24 @@ void Client::BackDash::Execute(float deltaTime)
 			pTarget->GetRootComponent()->GetWorldLocation() -
 			pActor->GetRootComponent()->GetWorldLocation();
 
-	if (!pAnimationComponent->IsClipEnd("BackDash"))
+	if (!pAnimationComponent->IsClipEnd("JumpBackDash") ||
+		!pAnimationComponent->IsClipEnd("BackDash"))
 	{
 		if (0.f > _direction.x)
 		{
-			pMovementComponent->SetInputDirection({ 4.f, -0.5f });
+			pMovementComponent->SetInputDirectionX(5.f);
 		}
 		else if (0.f < _direction.x)
 		{
-			pMovementComponent->SetInputDirection({ -4.f, -0.5f });
+			pMovementComponent->SetInputDirectionX(-5.f);
 		}
 
 		pMovementComponent->Move(deltaTime);
 	}
-	else if (pAnimationComponent->IsClipEnd("BackDash"))
+	else if (pAnimationComponent->IsClipEnd("JumpBackDash") &&
+			 pAnimationComponent->IsClipEnd("BackDash"))
 	{
-		pMovementComponent->SetInputDirection({ 0.f,0.f });
+		pMovementComponent->SetInputDirectionX(0.f);
 		_pOwnerComponent->ChangeState("IDLE");
 	}
 }

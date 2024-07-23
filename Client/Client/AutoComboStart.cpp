@@ -6,9 +6,9 @@
 #include "../../Engine/Headers/MovementComponent.h" //temp
 #include "../../Engine/Headers/Actor.h"
 #include "../../Engine/Headers/BoxComponent.h"
+#include "../../Engine/Headers/InputComponent.h"
 
 #include "AutoComboStart.h"
-#include "ClientFSMContainer.h"
 
 void Client::AutoComboStart::Enter()
 {
@@ -16,11 +16,13 @@ void Client::AutoComboStart::Enter()
 	{
 		pActor = _pOwnerComponent->GetOwner();
 		pTargetActor = ::Core::CoreManager::GetInstance()->GetWorld()->FindActor("Neko");
+		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
 		pMovementComponent = pActor->GetComponent<::Core::MovementComponent>("MovementComponent");
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 		pBodyBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 		pFootBoxComponent = pActor->GetComponent<::Core::BoxComponent>("FootBoxComponent");
 	}
+
 
 	if (pAnimationComponent->IsClipEnd("AutoComboStart"))
 	{
@@ -52,7 +54,7 @@ void Client::AutoComboStart::Execute(float deltaTime)
 
 	if (pAnimationComponent->IsClipEnd("AutoComboStart"))
 	{
-		_pOwnerComponent->ChangeState("IDLE");
+		_pOwnerComponent->ForceCheckTransition("AirLaunch");
 	}
 }
 

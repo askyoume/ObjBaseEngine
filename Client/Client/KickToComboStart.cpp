@@ -18,8 +18,11 @@ bool Client::KickToComboStart::ShouldTransition()
 		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
+	//std::cout << "KickToComboStart" << std::endl;
+
 	if(!pAnimationComponent->IsClipEnd("AutoComboStart"))
 	{
+		SetTargetState("AutoComboStart");
 		return true;
 	}
 
