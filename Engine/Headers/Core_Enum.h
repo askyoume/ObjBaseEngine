@@ -9,8 +9,8 @@ namespace LAYER
 		BACKGROUND = 0,
 		BACKOBJECT,
 		OBJECT,
-		FRONTOBJECT,
 		UI,
+		FRONTOBJECT,
 		END
 	};
 }

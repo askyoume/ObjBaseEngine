@@ -15,12 +15,11 @@ void Client::Aoko::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//_pRootComponent->SetRelativeScale({1.3f,1.3f});
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pTextRenderComponent = AddComponent<::Core::TextRenderComponent>("TextRenderComponent");
 	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
-	_pMovementComponent->SetGroundPosition(80.f);
+	_pMovementComponent->SetGroundPosition(-130.f);
 
 	_pAnimationComponent->AddClip("Idle", 0.1f, true);
 	_pAnimationComponent->AddClip("Move", 0.1f, true);
@@ -43,6 +42,8 @@ void Client::Aoko::BeginPlay()
 
 	_pAnimationComponent->SetOrder(1);
 	_pAnimationComponent->SetPlayClip("Idle");
+
+	_pRootComponent->SetRelativeScale({1.5f, 1.5f});
 
 	//rip... need to change this(단순한게 쓰기도 좋다... 이건 너무 복잡, 구현도 그렇고, 이해도 그렇고)
 	//move to input component
@@ -67,14 +68,16 @@ void Client::Aoko::BeginPlay()
 
 	_pBodyBoxComponent = AddComponent<::Core::BoxComponent>("BodyBoxComponent");
 	_pBodyBoxComponent->SetAddOffset({ 0.f, 100.f });
-	_pBodyBoxComponent->SetSize({ 100.f, 400.f });
+	_pBodyBoxComponent->SetSize({ 200.f, 600.f });
 	_pBodyBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
+	_pBodyBoxComponent->SetOrder(2);
 	_pBodyBoxComponent->AddColliderInLayer();
 
 	_pFootBoxComponent = AddComponent<::Core::BoxComponent>("FootBoxComponent");
 	_pFootBoxComponent->SetAddOffset({ 200.f, 100.f });
 	_pFootBoxComponent->SetSize({ 270.f, 100.f });
 	_pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
+	_pFootBoxComponent->SetOrder(2);
 	_pFootBoxComponent->AddColliderInLayer();
 
 	_pTextRenderComponent->SetFont(L"NameFont");

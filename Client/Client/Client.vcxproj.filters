@@ -142,12 +142,6 @@
     <Filter Include="ClientActors\Character\UI_Actor\Player2">
       <UniqueIdentifier>{cdec818d-3cd8-4465-b0ab-b5c7ecffeac4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientActors\Character\UI_Actor\Player_Guage_HUD">
-      <UniqueIdentifier>{8ceb5dc5-03a9-4a5e-8e42-5b507bb02aef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\Character\UI_Actor\Player_HP_HUD">
-      <UniqueIdentifier>{aed31fd2-e2e7-4907-ab78-7b7425da4890}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientActors\Character\UI_Actor\Player1\P1InfoFace">
       <UniqueIdentifier>{553646f8-7beb-4a35-ada0-4fafda1fbaef}</UniqueIdentifier>
     </Filter>
@@ -156,6 +150,24 @@
     </Filter>
     <Filter Include="ClientActors\Character\Interface">
       <UniqueIdentifier>{3d0293aa-d12d-4517-b610-21784881b4dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Timer_HUD">
+      <UniqueIdentifier>{a8b48372-593e-4d97-b965-df505f32a838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\Test\Mouse">
+      <UniqueIdentifier>{22167d12-1735-4c34-8208-849aa78e6d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player1\Player_HP_HUD">
+      <UniqueIdentifier>{aed31fd2-e2e7-4907-ab78-7b7425da4890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player1\Player_Guage_HUD">
+      <UniqueIdentifier>{8ceb5dc5-03a9-4a5e-8e42-5b507bb02aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player2\Player_Guage_HUD">
+      <UniqueIdentifier>{fce08127-1342-4b87-b095-1928e47a56c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player2\Player_HP_HUD">
+      <UniqueIdentifier>{71529f46-ae48-4df1-a59f-56c3164a4d94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -253,16 +265,25 @@
       <Filter>ClientActors\Character\Test</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHP.h">
-      <Filter>ClientActors\Character\UI_Actor\Player_HP_HUD</Filter>
+      <Filter>ClientActors\Character\UI_Actor\Player1\Player_HP_HUD</Filter>
     </ClInclude>
     <ClInclude Include="PlayerGuage.h">
-      <Filter>ClientActors\Character\UI_Actor\Player_Guage_HUD</Filter>
+      <Filter>ClientActors\Character\UI_Actor\Player1\Player_Guage_HUD</Filter>
     </ClInclude>
     <ClInclude Include="IPlayerInfo.h">
       <Filter>ClientActors\Character\Interface</Filter>
     </ClInclude>
     <ClInclude Include="PlayerOneFace.h">
       <Filter>ClientActors\Character\UI_Actor\Player1\P1InfoFace</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>ClientActors\Character\UI_Actor\Timer_HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>ClientActors\Character\Test\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTwoFace.h">
+      <Filter>ClientActors\Character\UI_Actor\Player2\P2InfoFace</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -360,13 +381,19 @@
       <Filter>ClientActors\Character\Test</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHP.cpp">
-      <Filter>ClientActors\Character\UI_Actor\Player_HP_HUD</Filter>
+      <Filter>ClientActors\Character\UI_Actor\Player1\Player_HP_HUD</Filter>
     </ClCompile>
     <ClCompile Include="PlayerGuage.cpp">
-      <Filter>ClientActors\Character\UI_Actor\Player_Guage_HUD</Filter>
+      <Filter>ClientActors\Character\UI_Actor\Player1\Player_Guage_HUD</Filter>
     </ClCompile>
     <ClCompile Include="PlayerOneFace.cpp">
       <Filter>ClientActors\Character\UI_Actor\Player1\P1InfoFace</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>ClientActors\Character\UI_Actor\Timer_HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTwoFace.cpp">
+      <Filter>ClientActors\Character\UI_Actor\Player2\P2InfoFace</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

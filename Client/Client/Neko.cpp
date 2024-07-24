@@ -20,7 +20,7 @@ void Client::Neko::BeginPlay()
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
 	_pTextRenderComponent = AddComponent<::Core::TextRenderComponent>("TextRenderComponent");
 	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
-	_pMovementComponent->SetGroundPosition(80.f);
+	_pMovementComponent->SetGroundPosition(-130.f);
 
 	_pAnimationComponent->AddClip("Idle", 0.1f, true);
 	_pAnimationComponent->AddClip("Move", 0.1f, true);
@@ -35,6 +35,8 @@ void Client::Neko::BeginPlay()
 	_pAnimationComponent->AddClip("Hit", 0.1f, false);
 	_pAnimationComponent->SetOrder(1);
 	_pAnimationComponent->SetPlayClip("Idle");
+
+	_pRootComponent->SetRelativeScale({1.5f, 1.5f});
 
 	_pInputComponent->AttachToInputManager();
 
@@ -59,10 +61,16 @@ void Client::Neko::Tick(_float deltaSeconds)
 {
 	Super::Tick(deltaSeconds);
 	_pTextRenderComponent->SetText("AI_State : " + (_bstring)_pAIComponent->GetCurrentStateName());
+
 }
 
 void Client::Neko::Fixed()
 {
+	if (_pAIComponent->IsCurrentState("AI_Hit") &&
+	_pTargetAnimationComponent->IsFrameEnd())
+	{
+		DamageInvoker(100);
+	}
 }
 
 void Client::Neko::EndPlay()
@@ -71,6 +79,12 @@ void Client::Neko::EndPlay()
 
 void Client::Neko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 {
+	if((*pOtherComponent->GetOwner() == "Aoko") &&
+		!_pTargetAnimationComponent)
+	{
+		_pTargetAnimationComponent = pOtherComponent->GetOwner()->GetComponent<::Core::AnimationComponent>("AnimationComponent");
+	}
+
 	if ((*pOtherComponent->GetOwner() == "Aoko") &&
 	(*pOtherComponent == "FootBoxComponent"))
 	{	
@@ -102,7 +116,6 @@ void Client::Neko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherCom
 		(*pOtherComponent == "FootBoxComponent"))
 	{
 		_pAnimationComponent->SetOrder(0);
-		//std::cout << "Attacked by Aoko" << std::endl;
 	}
 }
 
@@ -113,16 +126,17 @@ void Client::Neko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherCompo
 
 void Client::Neko::DamageInvoker(int damage)
 {
+	_currentHP -= damage;
 }
 
 int Client::Neko::GetHP() const
 {
-	return 0;
+	return _currentHP;
 }
 
 int Client::Neko::GetMaxHP() const
 {
-	return 0;
+	return _maxHP;
 }
 
 int Client::Neko::GetGauge() const

@@ -27,7 +27,7 @@ void Client::Running::Enter()
 	}
 
 	pAnimationComponent->SetPlayClip("ReadyToRunning");
-	pBoxComponent->SetSize({ 280.f, 400.f });
+	pBoxComponent->SetSize({ 450.f, 600.f });
 }
 
 void Client::Running::Execute(float deltaSeconds)

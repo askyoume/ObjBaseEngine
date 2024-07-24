@@ -139,6 +139,7 @@
     <ClInclude Include="AI_IdleToChasing.h" />
     <ClInclude Include="Aoko.h" />
     <ClInclude Include="IPlayerInfo.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="PlayerGuage.h" />
     <ClInclude Include="PlayerHP.h" />
     <ClInclude Include="AutoComboStart.h" />
@@ -160,9 +161,11 @@
     <ClInclude Include="Neko.h" />
     <ClInclude Include="PlayCameraActor.h" />
     <ClInclude Include="PlayerOneFace.h" />
+    <ClInclude Include="PlayerTwoFace.h" />
     <ClInclude Include="Runing.h" />
     <ClInclude Include="StartToAirLaunch.h" />
     <ClInclude Include="TestActor.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIMovementFSMContainer.cpp" />
@@ -196,9 +199,11 @@
     <ClCompile Include="Neko.cpp" />
     <ClCompile Include="PlayCameraActor.cpp" />
     <ClCompile Include="PlayerOneFace.cpp" />
+    <ClCompile Include="PlayerTwoFace.cpp" />
     <ClCompile Include="Runing.cpp" />
     <ClCompile Include="StartToAirLaunch.cpp" />
     <ClCompile Include="TestActor.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ObjectBaseEngine\ObjectBaseEngine.vcxproj">

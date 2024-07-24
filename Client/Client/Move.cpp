@@ -23,7 +23,7 @@ void Client::Move::Enter()
 		pInputComponent		= pActor->GetComponent<::Core::InputComponent>("InputComponent");
 	}
 
-	pBodyBoxComponent->SetSize({ 120.f, 400.f });
+	pBodyBoxComponent->SetSize({ 200.f, 600.f });
 	bool isFlip = pAnimationComponent->IsFlip();
 	Mathf::Vector2 direction = pMovementComponent->GetInputDirection();
 	switch (isFlip)

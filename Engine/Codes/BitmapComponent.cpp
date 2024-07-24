@@ -46,7 +46,23 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	Mathf::Matrix3x2 Transform = flipMatrix * _WorldTransform * _cameraMatrix;
 
 	pRenderTarget->SetTransform(Transform);
-	pRenderTarget->DrawBitmap((*pTexture)[_currentBitmapIndex]);
+
+	switch (_isTextureClipping)
+	{
+	case true:
+
+		pRenderTarget->PushAxisAlignedClip(_textureClippingRect, D2D1_ANTIALIAS_MODE_ALIASED);
+		pRenderTarget->DrawBitmap((*pTexture)[_currentBitmapIndex]);
+		pRenderTarget->PopAxisAlignedClip();
+
+		break;
+	case false:
+
+		pRenderTarget->DrawBitmap((*pTexture)[_currentBitmapIndex]);
+
+		break;
+	}
+
 	pRenderTarget->SetTransform(Matx::Identity);
 }
 

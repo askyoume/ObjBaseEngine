@@ -12,6 +12,7 @@ namespace Client
 {
 	class Aoko;
 	class Neko;
+	class PlayerHP;
 	class ClientWorld final : public Core::World
 	{
 	private:
@@ -30,7 +31,7 @@ namespace Client
 	private:
 		::Core::Actor* _pActorOne{ nullptr };
 		::Core::Actor* _pActorTwo{ nullptr };
-		Aoko* _pAoko{ nullptr };
-		Neko* _pNeko{ nullptr };
+		PlayerHP* _pPlayerOneHP{ nullptr };
+		PlayerHP* _pPlayerTwoHP{ nullptr };
 	};
 }

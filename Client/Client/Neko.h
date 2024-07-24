@@ -48,15 +48,19 @@ namespace Client
 		::Core::BoxComponent*		_pBoxComponent{ nullptr };
 		::Core::InputComponent*		_pInputComponent{ nullptr };
 		::Core::MovementComponent*  _pMovementComponent{ nullptr };
+		::Core::AnimationComponent* _pTargetAnimationComponent{ nullptr };
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::StateComponent*		_pAIComponent{ nullptr };
 		::Core::StateComponent*		_pStateComponent{ nullptr };
 		::Core::TextRenderComponent* _pTextRenderComponent{ nullptr };
 
 	private:
-		int _currentHP{ 0 };
-		int _maxHP{ 0 };
+		int _currentHP{ 10000 };
+		int _maxHP{ 10000 };
 		int _currentGauge{ 0 };
 		int _maxGauge{ 0 };
+
+	private:
+		bool _isFrameEnd{ false };
 	};
 }

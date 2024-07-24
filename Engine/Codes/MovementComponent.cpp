@@ -19,7 +19,7 @@ void Core::MovementComponent::BeginPlay()
 	_moveSpeed = 150.f;
 	_gravityFactor = 450.f;
 	_calculatedGravity = _gravity * _gravityFactor;
-	_jumpPower = 1500.f;
+	_jumpPower = 1700.f;
 	_limitSpeed = 100.0f;
 
 	_acceleration = 4.f;

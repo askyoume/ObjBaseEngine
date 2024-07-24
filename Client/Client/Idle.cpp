@@ -29,7 +29,7 @@ void Client::Idle::Enter()
 		pAnimationComponent->SetPlayClip("Idle");
 	}
 
-	pBodyBoxComponent->SetSize({ 100.f, 400.f });
+	pBodyBoxComponent->SetSize({ 200.f, 600.f });
 }
 
 void Client::Idle::Execute(float deltaSeconds)

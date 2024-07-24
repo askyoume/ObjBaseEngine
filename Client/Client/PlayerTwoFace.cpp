@@ -4,9 +4,9 @@
 #include "../../Engine/Headers/Texture.h"
 #include "../../Engine/Headers/World.h"
 
-#include "PlayerOneFace.h"
+#include "PlayerTwoFace.h"
 
-void Client::PlayerOneFace::BeginPlay()
+void Client::PlayerTwoFace::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -17,27 +17,27 @@ void Client::PlayerOneFace::BeginPlay()
 	_pBitmapComponent2 = AddComponent<::Core::BitmapComponent>("OuterFace");
 	_pBitmapComponent2->SetTextures(&_vecTextures);
 	_pBitmapComponent2->SetBitmapIndex(1);
-	_pBitmapComponent2->SetRelativeLocation({ 0.f, -5.f });
+	_pBitmapComponent2->SetRelativeLocation({ 200.f, -5.f });
 	_pBitmapComponent2->SetOrder(2);
 
 	_pBitmapComponent3 = AddComponent<::Core::BitmapComponent>("namePlate");
 	_pBitmapComponent3->SetTextures(&_vecTextures);
 	_pBitmapComponent3->SetBitmapIndex(2);
-	_pBitmapComponent3->SetRelativeLocation({ 145.f, 85.f });
+	_pBitmapComponent3->SetRelativeLocation({ 197.f, 85.f });
 	_pBitmapComponent3->SetOrder(3);
 
 	_pRootComponent->SetRelativeScale({ 1.5f, 1.5f });
 }
 
-void Client::PlayerOneFace::Tick(_float deltaSeconds)
+void Client::PlayerTwoFace::Tick(_float deltaSeconds)
 {
 	Super::Tick(deltaSeconds);
 }
 
-void Client::PlayerOneFace::Fixed()
+void Client::PlayerTwoFace::Fixed()
 {
 }
 
-void Client::PlayerOneFace::EndPlay()
+void Client::PlayerTwoFace::EndPlay()
 {
 }
