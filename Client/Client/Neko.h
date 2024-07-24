@@ -3,6 +3,8 @@
 #include "../../Engine/Headers/Actor.h"
 #include "../../Engine/Headers/Mathf.h"
 
+#include "IPlayerInfo.h"
+
 namespace Core
 {
 	class AnimationComponent;
@@ -10,13 +12,14 @@ namespace Core
 	class StateComponent;
 	class MovementComponent;
 	class BoxComponent;
+	class TextRenderComponent;
 }
 
 struct InputEvent;
 
 namespace Client
 {
-	class Neko final : public Core::Actor
+	class Neko final : public Core::Actor, public IPlayerInfo
 	{
 	protected:
 		explicit Neko() = default;
@@ -24,12 +27,19 @@ namespace Client
 
 	public:
 		void BeginPlay() override;
-		void Tick(_float deltaTime) override;
+		void Tick(_float deltaSeconds) override;
 		void Fixed() override;
 		void EndPlay() override;
 		void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
 		void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
 		void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
+
+		// IPlayerInfo
+		void DamageInvoker(int damage) override;
+		int GetHP() const override;
+		int GetMaxHP() const override;
+		int GetGauge() const override;
+		int GetMaxGauge() const override;
 
 	public:
 		static Neko* Create();
@@ -41,5 +51,12 @@ namespace Client
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::StateComponent*		_pAIComponent{ nullptr };
 		::Core::StateComponent*		_pStateComponent{ nullptr };
+		::Core::TextRenderComponent* _pTextRenderComponent{ nullptr };
+
+	private:
+		int _currentHP{ 0 };
+		int _maxHP{ 0 };
+		int _currentGauge{ 0 };
+		int _maxGauge{ 0 };
 	};
 }

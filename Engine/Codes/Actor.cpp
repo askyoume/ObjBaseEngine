@@ -16,11 +16,11 @@ void Core::Actor::BeginPlay()
 
 }
 
-void Core::Actor::Tick(_float deltaTime)
+void Core::Actor::Tick(_float deltaSeconds)
 {
 	for (auto& component : _vecComponents)
 	{
-		component->TickComponent(deltaTime);
+		component->TickComponent(deltaSeconds);
 	}
 }
 

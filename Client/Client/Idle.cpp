@@ -32,13 +32,13 @@ void Client::Idle::Enter()
 	pBodyBoxComponent->SetSize({ 100.f, 400.f });
 }
 
-void Client::Idle::Execute(float deltaTime)
+void Client::Idle::Execute(float deltaSeconds)
 {
 	Mathf::Vector2 _direction = pMovementComponent->GetInputDirection();
 	if (_direction.y < 0)
 	{
-		pMovementComponent->Move(deltaTime);
-		pMovementComponent->Jump(deltaTime);
+		pMovementComponent->Move(deltaSeconds);
+		pMovementComponent->Jump(deltaSeconds);
 	}
 
 	if (pMovementComponent->IsJumping())

@@ -31,7 +31,7 @@ void Client::AI_Chasing::Enter()
 	}
 }
 
-void Client::AI_Chasing::Execute(float deltaTime)
+void Client::AI_Chasing::Execute(float deltaSeconds)
 {
 	Mathf::Vector2 _direction = 
 		pTarget->GetRootComponent()->GetWorldLocation() - 
@@ -51,7 +51,7 @@ void Client::AI_Chasing::Execute(float deltaTime)
 		pAnimationComponent->SetPlayClip("BackMove");
 	}
 
-	pMovementComponent->Move(deltaTime);
+	pMovementComponent->Move(deltaSeconds);
 
 }
 

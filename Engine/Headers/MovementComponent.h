@@ -15,15 +15,15 @@ namespace Core
 	public:
 		virtual bool Initialize() override;
 		virtual void BeginPlay() override;
-		virtual void TickComponent(_float deltaTime) override;
+		virtual void TickComponent(_float deltaSeconds) override;
 		virtual void EndPlay() override;
 		virtual void Remove() override{};
 
 	public:
-		void Move(float deltaTime);
-		void Run(float deltaTime);
-		void Jump(float deltaTime);
-		void DiagonalMove(float deltaTime);
+		void Move(float deltaSeconds);
+		void Run(float deltaSeconds);
+		void Jump(float deltaSeconds);
+		void DiagonalMove(float deltaSeconds);
 
 	public:
 		void SetRootComponent(SceneComponent* pRootComponent) { _pRootComponent = pRootComponent; }

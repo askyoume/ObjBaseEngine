@@ -22,7 +22,7 @@ void Client::AI_Idle::Enter()
 	pAnimationComponent->SetPlayClip("Idle");
 }
 
-void Client::AI_Idle::Execute(float deltaTime)
+void Client::AI_Idle::Execute(float deltaSeconds)
 {
 	pMovementComponent->SetInputDirection(UnitVector::Zero);
 }

@@ -19,23 +19,8 @@
     <Filter Include="ClientFSM">
       <UniqueIdentifier>{79bff297-cb1b-430f-9b92-ab1a56a6dc85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientActors\OldProject">
-      <UniqueIdentifier>{785111bf-58cc-4f8f-a9d5-d888739e5c21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\OldProject\Map">
-      <UniqueIdentifier>{4f7f6e98-81f3-4696-b90d-32b62130904b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\OldProject\NightSky">
-      <UniqueIdentifier>{0d7963f4-c44d-4d81-a77a-ffb08fbf1c11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\OldProject\Moon">
-      <UniqueIdentifier>{dddb6f86-0155-4f5e-9ee2-c47d550cfbd5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientActors\Character\Aoko">
       <UniqueIdentifier>{d53a728c-e587-4d6d-8bfb-5c8e5d1b801c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\OldProject\TrackingTestActor">
-      <UniqueIdentifier>{05cdde12-b47d-4268-a030-1d5808b5d223}</UniqueIdentifier>
     </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM">
       <UniqueIdentifier>{5cf4fae9-f66d-4a18-be94-ea9651cbffc6}</UniqueIdentifier>
@@ -106,9 +91,6 @@
     <Filter Include="ClientFSM\AIMovementFSM\Transit\AI_ChasingToIdle">
       <UniqueIdentifier>{6d18befd-a9b5-48e8-9b82-27ea66494bc8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\AIMovementFSM\Transit\AI_AttackToIdle">
-      <UniqueIdentifier>{0308ad60-5d0c-4ae0-839b-189cf163e7b8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Middle\MiddleKick">
       <UniqueIdentifier>{6ceb76c3-693e-4a38-9bec-fa267caa2fab}</UniqueIdentifier>
     </Filter>
@@ -142,17 +124,38 @@
     <Filter Include="ClientFSM\CommonMovementFSM\State\Dash\JumpDash">
       <UniqueIdentifier>{8a50efab-43f1-4cf7-adf3-3ae7e37330dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Dash\JumpBackDash">
-      <UniqueIdentifier>{4779d9ed-6517-44d2-8326-6912d9e33436}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\State\Dash\BackDash">
       <UniqueIdentifier>{af2a48d8-5301-4710-b56c-7f5a5d74c50b}</UniqueIdentifier>
     </Filter>
     <Filter Include="ClientFSM\CommonMovementFSM\Transit\ComboToCombo">
       <UniqueIdentifier>{a08a5286-a39d-4d13-b437-c38a6c4cd9b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientFSM\CommonMovementFSM\State\Attack\Grap">
-      <UniqueIdentifier>{3497b517-e3cc-47e4-acf8-37c76e322eb8}</UniqueIdentifier>
+    <Filter Include="ClientActors\Character\Test">
+      <UniqueIdentifier>{6bea0950-a183-4694-b1cc-84825ad67c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor">
+      <UniqueIdentifier>{13f2f264-a07f-4055-b1b1-df118361011f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player1">
+      <UniqueIdentifier>{4c493032-8bc4-4d1b-8325-0146e1dca3bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player2">
+      <UniqueIdentifier>{cdec818d-3cd8-4465-b0ab-b5c7ecffeac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player_Guage_HUD">
+      <UniqueIdentifier>{8ceb5dc5-03a9-4a5e-8e42-5b507bb02aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player_HP_HUD">
+      <UniqueIdentifier>{aed31fd2-e2e7-4907-ab78-7b7425da4890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player1\P1InfoFace">
+      <UniqueIdentifier>{553646f8-7beb-4a35-ada0-4fafda1fbaef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player2\P2InfoFace">
+      <UniqueIdentifier>{1651f41b-089a-45d0-b407-7e83730d9ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\Interface">
+      <UniqueIdentifier>{3d0293aa-d12d-4517-b610-21784881b4dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -162,20 +165,8 @@
     <ClInclude Include="ClientWorld.h">
       <Filter>ClientWorld</Filter>
     </ClInclude>
-    <ClInclude Include="TestActor2.h">
-      <Filter>ClientActors\OldProject\Map</Filter>
-    </ClInclude>
     <ClInclude Include="BackGround.h">
       <Filter>ClientActors\BackGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Moon.h">
-      <Filter>ClientActors\OldProject\Moon</Filter>
-    </ClInclude>
-    <ClInclude Include="NightSky.h">
-      <Filter>ClientActors\OldProject\NightSky</Filter>
-    </ClInclude>
-    <ClInclude Include="TestActor.h">
-      <Filter>ClientActors\OldProject\TrackingTestActor</Filter>
     </ClInclude>
     <ClInclude Include="Aoko.h">
       <Filter>ClientActors\Character\Aoko</Filter>
@@ -194,9 +185,6 @@
     </ClInclude>
     <ClInclude Include="LowKick.h">
       <Filter>ClientFSM\CommonMovementFSM\State\Attack\Low\LowKick</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>ClientActors\OldProject</Filter>
     </ClInclude>
     <ClInclude Include="IdleToKick.h">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToKick</Filter>
@@ -261,6 +249,21 @@
     <ClInclude Include="StartToAirLaunch.h">
       <Filter>ClientFSM\CommonMovementFSM\Transit\ComboToCombo</Filter>
     </ClInclude>
+    <ClInclude Include="TestActor.h">
+      <Filter>ClientActors\Character\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHP.h">
+      <Filter>ClientActors\Character\UI_Actor\Player_HP_HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerGuage.h">
+      <Filter>ClientActors\Character\UI_Actor\Player_Guage_HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlayerInfo.h">
+      <Filter>ClientActors\Character\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOneFace.h">
+      <Filter>ClientActors\Character\UI_Actor\Player1\P1InfoFace</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -269,20 +272,8 @@
     <ClCompile Include="ClientWorld.cpp">
       <Filter>ClientWorld</Filter>
     </ClCompile>
-    <ClCompile Include="TestActor2.cpp">
-      <Filter>ClientActors\OldProject\Map</Filter>
-    </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>ClientActors\BackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Moon.cpp">
-      <Filter>ClientActors\OldProject\Moon</Filter>
-    </ClCompile>
-    <ClCompile Include="NightSky.cpp">
-      <Filter>ClientActors\OldProject\NightSky</Filter>
-    </ClCompile>
-    <ClCompile Include="TestActor.cpp">
-      <Filter>ClientActors\OldProject\TrackingTestActor</Filter>
     </ClCompile>
     <ClCompile Include="Aoko.cpp">
       <Filter>ClientActors\Character\Aoko</Filter>
@@ -301,9 +292,6 @@
     </ClCompile>
     <ClCompile Include="LowKick.cpp">
       <Filter>ClientFSM\CommonMovementFSM\State\Attack\Low\LowKick</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>ClientActors\OldProject</Filter>
     </ClCompile>
     <ClCompile Include="IdleToKick.cpp">
       <Filter>ClientFSM\CommonMovementFSM\Transit\IdleToKick</Filter>
@@ -367,6 +355,18 @@
     </ClCompile>
     <ClCompile Include="StartToAirLaunch.cpp">
       <Filter>ClientFSM\CommonMovementFSM\Transit\ComboToCombo</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp">
+      <Filter>ClientActors\Character\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHP.cpp">
+      <Filter>ClientActors\Character\UI_Actor\Player_HP_HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGuage.cpp">
+      <Filter>ClientActors\Character\UI_Actor\Player_Guage_HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerOneFace.cpp">
+      <Filter>ClientActors\Character\UI_Actor\Player1\P1InfoFace</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

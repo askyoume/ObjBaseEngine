@@ -2,11 +2,11 @@
 #include "CoreManager.h"
 #include "Actor.h"
 
-void Core::BoxComponent::TickComponent(_float deltaTime)
+void Core::BoxComponent::TickComponent(_float deltaSeconds)
 {
-	SceneComponent::TickComponent(deltaTime);
+	SceneComponent::TickComponent(deltaSeconds);
 	Mathf::Vector2 worldLocation = GetWorldLocation();
-	_pCollision->SetCollisionOffset(worldLocation + _addOffset);
+	_pCollision->SetCollisionOffset(worldLocation);
 }
 
 bool Core::BoxComponent::IsCollision(CollisionComponent* pOther)
@@ -55,7 +55,7 @@ void Core::BoxComponent::Render(ID2D1RenderTarget* pRenderTarget)
 
 void Core::BoxComponent::SetAddOffset(const Mathf::Vector2& offsetVector)
 {
-	_addOffset = offsetVector;
+	SetRelativeLocation(offsetVector);
 }
 
 void Core::BoxComponent::SetSize(const Mathf::Vector2& sizeVector)

@@ -17,7 +17,7 @@ namespace Client
 
 	public:
 		virtual void BeginPlay() override;
-		virtual void Tick(_float deltaTime) override;
+		virtual void Tick(_float deltaSeconds) override;
 
 	public:
 		static PlayCameraActor* Create();

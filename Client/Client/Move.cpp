@@ -52,13 +52,13 @@ void Client::Move::Enter()
 
 }
 
-void Client::Move::Execute(float deltaTime)
+void Client::Move::Execute(float deltaSeconds)
 {
 	bool isFlip = pAnimationComponent->IsFlip();
 	Mathf::Vector2 direction = pMovementComponent->GetInputDirection();
 	if (direction.y < 0)
 	{
-		pMovementComponent->Jump(deltaTime);
+		pMovementComponent->Jump(deltaSeconds);
 	}
 
 	switch (isFlip)
@@ -97,7 +97,7 @@ void Client::Move::Execute(float deltaTime)
 	{
 		pAnimationComponent->SetPlayClip("Jump");
 	}
-	pMovementComponent->Move(deltaTime);
+	pMovementComponent->Move(deltaSeconds);
 
 }
 

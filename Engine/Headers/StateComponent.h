@@ -14,7 +14,7 @@ namespace Core
 	public:
 		virtual bool Initialize() override;
 		virtual void BeginPlay() override;
-		virtual void TickComponent(_float deltaTime) override;
+		virtual void TickComponent(_float deltaSeconds) override;
 		virtual void EndPlay() override;
 		virtual void Remove() override;
 

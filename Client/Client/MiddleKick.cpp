@@ -47,7 +47,7 @@ void Client::MiddleKick::Enter()
 	pBodyBoxComponent->SetSize({ 100.f, 400.f });
 }
 
-void Client::MiddleKick::Execute(float deltaTime)
+void Client::MiddleKick::Execute(float deltaSeconds)
 {
 	if (pAnimationComponent->IsClipEnd("JumpMiddleKick") ||
 		pAnimationComponent->IsClipEnd("MiddleKick"))

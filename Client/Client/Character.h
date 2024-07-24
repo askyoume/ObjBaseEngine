@@ -33,7 +33,7 @@ namespace Client
 
 	public:
 		void BeginPlay() override;
-		void Tick(_float deltaTime) override;
+		void Tick(_float deltaSeconds) override;
 		void Fixed() override;
 		void EndPlay() override;
 
@@ -41,7 +41,7 @@ namespace Client
 		void Move(const InputEvent& inputEvent);
 		void Duck(const InputEvent& inputEvent);
 		void JumpHandle(const InputEvent& inputEvent);
-		void Jump(_float deltaTime);
+		void Jump(_float deltaSeconds);
 
 	public:
 		static Character* Create() { return new Character; }

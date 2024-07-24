@@ -37,7 +37,7 @@ void Client::Character::BeginPlay()
 	_pInputComponent->AttachToInputManager();
 }
 
-void Client::Character::Tick(_float deltaTime)
+void Client::Character::Tick(_float deltaSeconds)
 {
 	if(0.f != _velocity.y && _stateFlag & STATE_ATTACK)
 	{
@@ -80,7 +80,7 @@ void Client::Character::Tick(_float deltaTime)
 	}
 	else if (_stateFlag & STATE_MOVE && _stateFlag & STATE_DUCK)
 	{
-		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _direction.x * _velocity.x * deltaTime, 0.f });
+		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _direction.x * _velocity.x * deltaSeconds, 0.f });
 		_pAnimationComponent->SetPlayClip("CrouchWalking");
 	}
 	else if (_stateFlag & STATE_JUMP)
@@ -89,7 +89,7 @@ void Client::Character::Tick(_float deltaTime)
 	}
 	else if (_stateFlag & STATE_MOVE)
 	{
-		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _direction.x * _velocity.x * deltaTime, 0.f });
+		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _direction.x * _velocity.x * deltaSeconds, 0.f });
 		_pAnimationComponent->SetPlayClip("Walk");
 	}
 	else if (_stateFlag & STATE_DUCK)
@@ -121,7 +121,7 @@ void Client::Character::Tick(_float deltaTime)
 	_stateFlag &= ~STATE_MOVE;
 	_stateFlag &= ~STATE_DUCK;
 
-	Jump(deltaTime);
+	Jump(deltaSeconds);
 
 	if (_pAnimationComponent->IsClipEnd("NormalAttack") && 
 		_pAnimationComponent->IsClipEnd("CrouchAttack") && 
@@ -145,7 +145,7 @@ void Client::Character::Tick(_float deltaTime)
 		_pAnimationComponent->SetFlip(true);
 	}
 
-	Actor::Tick(deltaTime);
+	Actor::Tick(deltaSeconds);
 }
 
 void Client::Character::Fixed()
@@ -158,7 +158,7 @@ void Client::Character::EndPlay()
 
 }
 
-void Client::Character::Jump(_float deltaTime)
+void Client::Character::Jump(_float deltaSeconds)
 {
 	if (_stateFlag & STATE_JUMP)
 	{
@@ -166,10 +166,10 @@ void Client::Character::Jump(_float deltaTime)
 
 		_velocity.x = _direction.x * 90.f;
 
-		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _velocity.x * 5.f * deltaTime, _velocity.y * 5.f * deltaTime });
+		_pRootComponent->AddRelativeLocation(Mathf::Vector2{ _velocity.x * 5.f * deltaSeconds, _velocity.y * 5.f * deltaSeconds });
 		//std::cout << _velocity.y << std::endl;
-		_velocity.y += _gravity.y * 5.f * deltaTime;
-		_velocity.x += _velocity.x * 5.f * deltaTime;
+		_velocity.y += _gravity.y * 5.f * deltaSeconds;
+		_velocity.x += _velocity.x * 5.f * deltaSeconds;
 
 	}
 	//temp code before made collision component

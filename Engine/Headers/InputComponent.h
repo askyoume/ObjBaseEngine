@@ -17,7 +17,7 @@ namespace Core
 		using InputEvents = std::deque<InputEvent>;
 
 	public:
-		void TickComponent(_float deltaTime) override;
+		void TickComponent(_float deltaSeconds) override;
 		void BindInputEvent(_uint key, InputType type, Callback handler);
 		void OnInputReceived(const InputEvent& inputEvent) override; // IInputReceiver 인터페이스 구현부
 		void AttachToInputManager();

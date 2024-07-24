@@ -31,7 +31,7 @@ void Client::AutoComboStart::Enter()
 	}
 }
 
-void Client::AutoComboStart::Execute(float deltaTime)
+void Client::AutoComboStart::Execute(float deltaSeconds)
 {
 	float locationX = pActor->GetRootComponent()->GetRelativeLocation().x;
 	float targetX	= pTargetActor->GetRootComponent()->GetRelativeLocation().x;
@@ -49,7 +49,7 @@ void Client::AutoComboStart::Execute(float deltaTime)
 			pMovementComponent->SetInputDirection({ -1.f,0.f });
 		}
 
-		pMovementComponent->Move(deltaTime);
+		pMovementComponent->Move(deltaSeconds);
 	}
 
 	if (pAnimationComponent->IsClipEnd("AutoComboStart"))

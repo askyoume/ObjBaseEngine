@@ -11,7 +11,7 @@ namespace Client
 		virtual ~TestActor2() = default;
 	public:
 		void BeginPlay() override;
-		void Tick(_float deltaTime) override;
+		void Tick(_float deltaSeconds) override;
 		void Fixed() override;
 		void EndPlay() override;
 

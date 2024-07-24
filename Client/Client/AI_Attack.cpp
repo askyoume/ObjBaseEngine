@@ -35,7 +35,7 @@ void Client::AI_Attack::Enter()
 	}
 }
 
-void Client::AI_Attack::Execute(float deltaTime)
+void Client::AI_Attack::Execute(float deltaSeconds)
 {
 	if(pAnimationComponent->IsClipEnd("LowKick"))
 	{

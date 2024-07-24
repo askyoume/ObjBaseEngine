@@ -154,17 +154,8 @@
     <Filter Include="Engine\Component\ActorComponent\MovementComponent">
       <UniqueIdentifier>{712fb5ae-096c-4127-b501-c1ccc9b69fc9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\BaseClass\UI">
-      <UniqueIdentifier>{ea951b26-8e07-4d58-88f3-deef8da9c60a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\BaseClass\UI\Canvas">
-      <UniqueIdentifier>{e5e6985f-17b8-4832-843c-9d60f8b6162d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\BaseClass\UI\Text">
-      <UniqueIdentifier>{95a28dbf-d741-47f1-b12b-7b66198954fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\BaseClass\UI\HUD">
-      <UniqueIdentifier>{8fe4959d-31bb-4d7a-8cab-aa2b81ec99f8}</UniqueIdentifier>
+    <Filter Include="Engine\Component\SceneComponent\TextRenderComponent">
+      <UniqueIdentifier>{1a79321a-6241-45ff-b786-8960a6421dc6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -312,8 +303,8 @@
     <ClInclude Include="..\Engine\Headers\TextRenderActor.h">
       <Filter>Engine\BaseClass\Actor\TextRenderActor</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine\Headers\Canvas.h">
-      <Filter>Engine\BaseClass\UI\Canvas</Filter>
+    <ClInclude Include="..\Engine\Headers\TextRenderComponent.h">
+      <Filter>Engine\Component\SceneComponent\TextRenderComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -404,8 +395,8 @@
     <ClCompile Include="..\Engine\Codes\CollisionManager.cpp">
       <Filter>Engine\Manager\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="..\Engine\Codes\Canvas.cpp">
-      <Filter>Engine\BaseClass\UI\Canvas</Filter>
+    <ClCompile Include="..\Engine\Codes\TextRenderComponent.cpp">
+      <Filter>Engine\Component\SceneComponent\TextRenderComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

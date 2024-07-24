@@ -66,9 +66,9 @@ void Client::LowKick::Enter()
 	pBodyBoxComponent->SetSize({ 100.f, 400.f });
 }
 
-void Client::LowKick::Execute(float deltaTime)
+void Client::LowKick::Execute(float deltaSeconds)
 {
-	if (pAnimationComponent->IsClipEnd("JumpLowKick") ||
+	if (pAnimationComponent->IsClipEnd("JumpLowKick") &&
 		pAnimationComponent->IsClipEnd("LowKick"))
 	{
 		_pOwnerComponent->ChangeState("IDLE");

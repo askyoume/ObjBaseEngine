@@ -10,7 +10,7 @@ namespace Core
 		virtual ~BoxComponent() = default;
 
 	public:
-		virtual void TickComponent(_float deltaTime) override;
+		virtual void TickComponent(_float deltaSeconds) override;
 		virtual bool IsCollision(CollisionComponent* pOther) override;
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override; //for debug draw
 	

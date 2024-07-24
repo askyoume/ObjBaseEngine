@@ -12,7 +12,7 @@ namespace Core
 
 	public:
 		virtual void BeginPlay() PURE;
-		virtual void TickComponent(_float deltaTime) PURE;
+		virtual void TickComponent(_float deltaSeconds) PURE;
 		virtual void EndPlay() PURE;
 
 	public:

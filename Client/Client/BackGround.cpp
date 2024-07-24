@@ -28,9 +28,9 @@ void Client::BackGround::BeginPlay()
 	//pBitmapComponent->SetRelativeScale(Mathf::Vector2(5.f, 5.f));
 }
 
-void Client::BackGround::Tick(_float deltaTime)
+void Client::BackGround::Tick(_float deltaSeconds)
 {
-	Actor::Tick(deltaTime);
+	Actor::Tick(deltaSeconds);
 
 	//float BackgroundLocationY = -180.f;
  //   float BackgroundStartX = 125.0f;

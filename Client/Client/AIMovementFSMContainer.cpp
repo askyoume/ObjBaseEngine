@@ -44,9 +44,9 @@ void Client::AIMovementFSMContainer::ContainStep()
 	hit->BindState(attack);
 }
 
-void Client::AIMovementFSMContainer::Update(float deltaTime)
+void Client::AIMovementFSMContainer::Update(float deltaSeconds)
 {
-	Super::Update(deltaTime);
+	Super::Update(deltaSeconds);
 }
 
 void Client::AIMovementFSMContainer::Remove()

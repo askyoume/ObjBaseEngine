@@ -10,7 +10,7 @@ namespace Core
 		virtual ~AnimationComponent() = default;
 
 	public:
-		virtual void TickComponent(_float deltaTime) override;
+		virtual void TickComponent(_float deltaSeconds) override;
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override;
 		void AddClip(_pstring clipName, _float frameTime, bool isLoop = false);
 		const bool IsClipPlay(_pstring clipName) const;

@@ -15,7 +15,7 @@ namespace Core
 
 	public:
 		virtual void BeginPlay();
-		virtual void Tick(_float deltaTime);
+		virtual void Tick(_float deltaSeconds);
 		virtual void Fixed();
 		virtual void EndPlay();
 		virtual void NotifyActorBlock(CollisionComponent* pOtherComponent) override {};

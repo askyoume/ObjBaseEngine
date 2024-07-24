@@ -27,7 +27,7 @@ void Core::MovementComponent::BeginPlay()
 	_targetSpeed = 0.f;
 }
 
-void Core::MovementComponent::TickComponent(_float deltaTime)
+void Core::MovementComponent::TickComponent(_float deltaSeconds)
 {
 	if(!_pRootComponent)
 	{
@@ -36,7 +36,7 @@ void Core::MovementComponent::TickComponent(_float deltaTime)
 
 	_ownerCurrentLocation = _pRootComponent->GetWorldLocation();
 
-	_velocity.y += _calculatedGravity * deltaTime;
+	_velocity.y += _calculatedGravity * deltaSeconds;
 	//std::cout << _velocity.y << std::endl;
 	if (_velocity.x > 0)
 	{
@@ -47,7 +47,7 @@ void Core::MovementComponent::TickComponent(_float deltaTime)
 		_velocity.x = std::min(_velocity.x, _limitSpeed);
 	}
 
-	_pRootComponent->AddRelativeLocation(_velocity * deltaTime);
+	_pRootComponent->AddRelativeLocation(_velocity * deltaSeconds);
 	_pRootComponent->SetVelocity(_velocity);
 
 	_velocity.x *= _friction;
@@ -66,18 +66,18 @@ void Core::MovementComponent::EndPlay()
 {
 }
 
-void Core::MovementComponent::Move(float deltaTime)
+void Core::MovementComponent::Move(float deltaSeconds)
 {
 	_velocity.x = _inputDirection.x * _moveSpeed;
 }
 
-void Core::MovementComponent::Run(float deltaTime)
+void Core::MovementComponent::Run(float deltaSeconds)
 {
 	if(_isRunning)
 		_velocity.x = _inputDirection.x * _acceleration * _moveSpeed;
 }
 
-void Core::MovementComponent::Jump(float deltaTime)
+void Core::MovementComponent::Jump(float deltaSeconds)
 {
 	if (_isGrounded && !_isJumping)
 	{
@@ -87,7 +87,7 @@ void Core::MovementComponent::Jump(float deltaTime)
 	}
 }
 
-void Core::MovementComponent::DiagonalMove(float deltaTime)
+void Core::MovementComponent::DiagonalMove(float deltaSeconds)
 {
 	_velocity.x = _inputDirection.x * _moveSpeed;
 	_velocity.y = _inputDirection.y * _jumpPower;

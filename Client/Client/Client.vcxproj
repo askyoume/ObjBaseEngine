@@ -138,11 +138,13 @@
     <ClInclude Include="AI_IdleToAttack.h" />
     <ClInclude Include="AI_IdleToChasing.h" />
     <ClInclude Include="Aoko.h" />
+    <ClInclude Include="IPlayerInfo.h" />
+    <ClInclude Include="PlayerGuage.h" />
+    <ClInclude Include="PlayerHP.h" />
     <ClInclude Include="AutoComboStart.h" />
     <ClInclude Include="BackDash.h" />
     <ClInclude Include="ClientFSMContainer.h" />
     <ClInclude Include="BackGround.h" />
-    <ClInclude Include="Character.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ClientWorld.h" />
     <ClInclude Include="Idle.h" />
@@ -154,15 +156,13 @@
     <ClInclude Include="KickToComboStart.h" />
     <ClInclude Include="LowKick.h" />
     <ClInclude Include="MiddleKick.h" />
-    <ClInclude Include="Moon.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Neko.h" />
-    <ClInclude Include="NightSky.h" />
     <ClInclude Include="PlayCameraActor.h" />
+    <ClInclude Include="PlayerOneFace.h" />
     <ClInclude Include="Runing.h" />
     <ClInclude Include="StartToAirLaunch.h" />
     <ClInclude Include="TestActor.h" />
-    <ClInclude Include="TestActor2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIMovementFSMContainer.cpp" />
@@ -176,11 +176,12 @@
     <ClCompile Include="AI_IdleToChasing.cpp" />
     <ClCompile Include="AI_IdleToHit.cpp" />
     <ClCompile Include="Aoko.cpp" />
+    <ClCompile Include="PlayerGuage.cpp" />
+    <ClCompile Include="PlayerHP.cpp" />
     <ClCompile Include="AutoComboStart.cpp" />
     <ClCompile Include="BackDash.cpp" />
     <ClCompile Include="ClientFSMContainer.cpp" />
     <ClCompile Include="BackGround.cpp" />
-    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ClientWorld.cpp" />
     <ClCompile Include="Idle.cpp" />
@@ -191,15 +192,13 @@
     <ClCompile Include="KickToComboStart.cpp" />
     <ClCompile Include="LowKick.cpp" />
     <ClCompile Include="MiddleKick.cpp" />
-    <ClCompile Include="Moon.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Neko.cpp" />
-    <ClCompile Include="NightSky.cpp" />
     <ClCompile Include="PlayCameraActor.cpp" />
+    <ClCompile Include="PlayerOneFace.cpp" />
     <ClCompile Include="Runing.cpp" />
     <ClCompile Include="StartToAirLaunch.cpp" />
     <ClCompile Include="TestActor.cpp" />
-    <ClCompile Include="TestActor2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ObjectBaseEngine\ObjectBaseEngine.vcxproj">

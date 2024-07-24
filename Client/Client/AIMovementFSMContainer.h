@@ -11,7 +11,7 @@ namespace Client
 
 	public:
 		void ContainStep() override;
-		void Update(float deltaTime) override;
+		void Update(float deltaSeconds) override;
 		void Remove() override;
 
 	public:

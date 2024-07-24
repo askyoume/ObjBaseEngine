@@ -2,7 +2,7 @@
 #include "State.h"
 #include "StateTransition.h"
 
-void Core::StateContainer::Update(float deltaTime)
+void Core::StateContainer::Update(float deltaSeconds)
 {
 	if (!_currentState)
 	{
@@ -14,7 +14,7 @@ void Core::StateContainer::Update(float deltaTime)
 		return;
 	}
 
-	_currentState->Execute(deltaTime);
+	_currentState->Execute(deltaSeconds);
 	_previousState = _currentState;
 
 	for(auto& pTransition : _currentState->GetTransitions())

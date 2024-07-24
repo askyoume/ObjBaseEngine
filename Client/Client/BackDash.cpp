@@ -35,7 +35,7 @@ void Client::BackDash::Enter()
 	}
 }
 
-void Client::BackDash::Execute(float deltaTime)
+void Client::BackDash::Execute(float deltaSeconds)
 {
 	Mathf::Vector2 _direction =
 			pTarget->GetRootComponent()->GetWorldLocation() -
@@ -53,7 +53,7 @@ void Client::BackDash::Execute(float deltaTime)
 			pMovementComponent->SetInputDirectionX(-5.f);
 		}
 
-		pMovementComponent->Move(deltaTime);
+		pMovementComponent->Move(deltaSeconds);
 	}
 	else if (pAnimationComponent->IsClipEnd("JumpBackDash") &&
 			 pAnimationComponent->IsClipEnd("BackDash"))

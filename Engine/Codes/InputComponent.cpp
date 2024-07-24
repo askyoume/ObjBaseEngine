@@ -144,14 +144,14 @@ bool Core::InputComponent::Initialize()
 	return true;
 }
 
-void Core::InputComponent::TickComponent(_float deltaTime)
+void Core::InputComponent::TickComponent(_float deltaSeconds)
 {
 	if (_inputEvents.empty())
 		return;
 
 	if(9999.f > _inputEvents.back().timeToLastInput)
 	{
-		_inputEvents.back().timeToLastInput += deltaTime;
+		_inputEvents.back().timeToLastInput += deltaSeconds;
 	}
 
 	//std::cout << "Time : " << _inputEvents.back().timeToLastInput << std::endl;

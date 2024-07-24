@@ -12,7 +12,7 @@ namespace Core
 
 	public:
 		virtual void Enter() PURE;
-		virtual void Execute(float deltaTime) PURE;
+		virtual void Execute(float deltaSeconds) PURE;
 		virtual void Exit() PURE;
 		virtual void Remove() override PURE;
 

@@ -6,6 +6,7 @@
 #include "../../Engine/Headers/StateComponent.h"
 #include "../../Engine/Headers/MovementComponent.h"
 #include "../../Engine/Headers/BoxComponent.h"
+#include "../../Engine/Headers/TextRenderComponent.h"
 
 #include "Aoko.h"
 #include "ClientFSMContainer.h"
@@ -17,6 +18,7 @@ void Client::Aoko::BeginPlay()
 	//_pRootComponent->SetRelativeScale({1.3f,1.3f});
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
+	_pTextRenderComponent = AddComponent<::Core::TextRenderComponent>("TextRenderComponent");
 	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
 	_pMovementComponent->SetGroundPosition(80.f);
 
@@ -32,8 +34,8 @@ void Client::Aoko::BeginPlay()
 	_pAnimationComponent->AddClip("ReadyToMove", 0.1f);
 	_pAnimationComponent->AddClip("MiddleKick", 0.06f);
 	_pAnimationComponent->AddClip("JumpBackDash", 0.1f);
-	_pAnimationComponent->AddClip("JumpLowKick", 0.06f);
-	_pAnimationComponent->AddClip("JumpMiddleKick", 0.06f);
+	_pAnimationComponent->AddClip("JumpLowKick", 0.1f);
+	_pAnimationComponent->AddClip("JumpMiddleKick", 0.08f);
 	_pAnimationComponent->AddClip("ReadyToBackMove", 0.1f);
 	_pAnimationComponent->AddClip("ReadyToRunning", 0.1f);
 	_pAnimationComponent->AddClip("AutoComboStart", 0.06f);
@@ -74,12 +76,21 @@ void Client::Aoko::BeginPlay()
 	_pFootBoxComponent->SetSize({ 270.f, 100.f });
 	_pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
 	_pFootBoxComponent->AddColliderInLayer();
+
+	_pTextRenderComponent->SetFont(L"NameFont");
+	_pTextRenderComponent->GetFont()->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+	_pTextRenderComponent->SetColor(D2D1::ColorF(D2D1::ColorF::White));
+	_pTextRenderComponent->SetRelativeLocation({ 0.f, -100.f });
+	_pTextRenderComponent->SetSize({300.f, 100.f});
+	_pTextRenderComponent->AddRenderQueueInLayer();
 }
 
-void Client::Aoko::Tick(_float deltaTime)
+void Client::Aoko::Tick(_float deltaSeconds)
 {
-	ExecuteMatchedCommands(deltaTime);
-	Super::Tick(deltaTime);
+	ExecuteMatchedCommands(deltaSeconds);
+	Super::Tick(deltaSeconds);
+
+	_pTextRenderComponent->SetText("State : " + (_bstring)_pStateComponent->GetCurrentStateName());
 }
 
 void Client::Aoko::Fixed()
@@ -111,7 +122,7 @@ void Client::Aoko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 	}
 }
 
-void Client::Aoko::ExecuteMatchedCommands(_float deltaTime)
+void Client::Aoko::ExecuteMatchedCommands(_float deltaSeconds)
 {
 }
 
@@ -294,4 +305,28 @@ void Client::Aoko::Dead()
 void Client::Aoko::SetPlayClip(_pstring clipName)
 {
 	_pAnimationComponent->SetPlayClip(clipName);
+}
+
+void Client::Aoko::DamageInvoker(int damage)
+{
+}
+
+int Client::Aoko::GetHP() const
+{
+	return _currentHP;
+}
+
+int Client::Aoko::GetMaxHP() const
+{
+	return _maxHP;
+}
+
+int Client::Aoko::GetGauge() const
+{
+	return 0;
+}
+
+int Client::Aoko::GetMaxGauge() const
+{
+	return 0;
 }

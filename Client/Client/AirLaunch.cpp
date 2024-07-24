@@ -34,7 +34,7 @@ void Client::AirLaunch::Enter()
 	}
 }
 
-void Client::AirLaunch::Execute(float deltaTime)
+void Client::AirLaunch::Execute(float deltaSeconds)
 {
 	if (pAnimationComponent->IsClipEnd("AutoComboAirLaunch"))
 	{

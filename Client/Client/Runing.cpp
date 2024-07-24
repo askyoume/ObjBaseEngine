@@ -30,7 +30,7 @@ void Client::Running::Enter()
 	pBoxComponent->SetSize({ 280.f, 400.f });
 }
 
-void Client::Running::Execute(float deltaTime)
+void Client::Running::Execute(float deltaSeconds)
 {
 	float locationX = pActor->GetRootComponent()->GetRelativeLocation().x;
 	float targetX	= pTargetActor->GetRootComponent()->GetRelativeLocation().x;
@@ -57,7 +57,7 @@ void Client::Running::Execute(float deltaTime)
 			pMovementComponent->SetInputDirection({ -3.f,0.f });
 		}
 
-		pMovementComponent->Run(deltaTime);
+		pMovementComponent->Run(deltaSeconds);
 	}
 	else
 	{

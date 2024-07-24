@@ -16,20 +16,38 @@ void Core::BitmapComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	SetBitmapLocalTransform();
 
 	Mathf::Matrix3x2 flipMatrix = Matx::Identity;
-	if (_isFlip)
+	switch (_isCenterAlignment)
 	{
-		flipMatrix = D2D1::Matrix3x2F::Scale(-1, 1, 
-				D2D1::Point2F(_textureRect.right * 0.5f, _textureRect.bottom * 0.5f)) * _localTransform;
-	}
-	else
-	{
-		flipMatrix = _localTransform;
+	case true:
+		if (_isFlip)
+		{
+			flipMatrix = D2D1::Matrix3x2F::Scale(-1, 1, 
+					D2D1::Point2F(_textureRect.right * 0.5f, _textureRect.bottom * 0.5f)) * _localTransform;
+		}
+		else
+		{
+			flipMatrix = _localTransform;
+		}
+		break;
+	case false:
+		if (_isFlip)
+		{
+			flipMatrix = D2D1::Matrix3x2F::Scale(-1, 1, 
+					D2D1::Point2F(_textureRect.right * 0.5f, _textureRect.bottom * 0.5f));
+		}
+		else
+		{
+			flipMatrix = Matx::Identity;
+		}
+		break;
 	}
 
-	Mathf::Matrix3x2 Transform = _localTransform * _WorldTransform * _cameraMatrix;
+	
+	Mathf::Matrix3x2 Transform = flipMatrix * _WorldTransform * _cameraMatrix;
 
 	pRenderTarget->SetTransform(Transform);
-	pRenderTarget->DrawBitmap((*pTexture)[0]);
+	pRenderTarget->DrawBitmap((*pTexture)[_currentBitmapIndex]);
+	pRenderTarget->SetTransform(Matx::Identity);
 }
 
 void Core::BitmapComponent::SetTextures(BitmapTextures* vecTextures)

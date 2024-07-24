@@ -13,7 +13,7 @@ namespace Core
 	public:
 		//Component
 		virtual void BeginPlay() override {};
-		virtual void TickComponent(_float deltaTime) override;
+		virtual void TickComponent(_float deltaSeconds) override;
 		virtual void EndPlay() override {};
 
 	public:

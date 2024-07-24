@@ -10,9 +10,9 @@ void Core::StateComponent::BeginPlay()
 {
 }
 
-void Core::StateComponent::TickComponent(_float deltaTime)
+void Core::StateComponent::TickComponent(_float deltaSeconds)
 {
-	_pContainer->Update(deltaTime);
+	_pContainer->Update(deltaSeconds);
 }
 
 void Core::StateComponent::EndPlay()

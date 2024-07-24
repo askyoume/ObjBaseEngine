@@ -18,7 +18,7 @@ namespace Core
 		virtual ~CollisionComponent() = default;
 
 	public:
-		virtual void TickComponent(_float deltaTime) override PURE;
+		virtual void TickComponent(_float deltaSeconds) override PURE;
 		virtual bool IsCollision(CollisionComponent* pOther) PURE;
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override PURE; //for debug draw
 	

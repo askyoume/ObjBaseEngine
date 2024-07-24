@@ -20,7 +20,7 @@ namespace Client
 
 	public:
 		void Enter() override;
-		void Execute(float deltaTime) override;
+		void Execute(float deltaSeconds) override;
 		void Exit() override;
 		void Remove() override;
 

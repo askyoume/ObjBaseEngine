@@ -7,14 +7,14 @@
 #undef min
 #undef max
 
-void Core::AnimationComponent::TickComponent(_float deltaTime)
+void Core::AnimationComponent::TickComponent(_float deltaSeconds)
 {
-	SceneComponent::TickComponent(deltaTime);
+	SceneComponent::TickComponent(deltaSeconds);
 
 	if (_isVisible == false) { return; }
 	if (0 == _currentFrame) { _isFrameEnd = false; }
 
-	_currentFrameTime += deltaTime;
+	_currentFrameTime += deltaSeconds;
 	
 	if (_currentFrameTime >= _frameTime)
 	{
@@ -68,17 +68,6 @@ void Core::AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	pRenderTarget->SetTransform(Transform);
 
 	pRenderTarget->DrawBitmap((*pTexture)[_currentFrame]);
-
-	CoreManager* _pCore = CoreManager::GetInstance();
-	ID2D1SolidColorBrush* m_pBrush = _pCore->GetGraphicsPackage()->_pBrush;
-	m_pBrush->SetColor(D2D1::ColorF(D2D1::ColorF::Red));
-
-	Mathf::Matrix3x2 CollisionTransform = _localTransform * _WorldTransform * _cameraMatrix;
-
-	_pCollision->SetCollisionOffset(
-		{ CollisionTransform.dx + (_textureRect.right * 0.5f) * _RelativeScale.x,
-		CollisionTransform.dy + (_textureRect.bottom * 0.5f) * _RelativeScale.y }
-	);
 
 	pRenderTarget->SetTransform(Matx::Identity);
 }

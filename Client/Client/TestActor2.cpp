@@ -22,9 +22,9 @@ void Client::TestActor2::BeginPlay()
 	//Mathf::Rect worldSize = pBitmapComponent->GetTransformedTextureRect();
 }
 
-void Client::TestActor2::Tick(_float deltaTime)
+void Client::TestActor2::Tick(_float deltaSeconds)
 {
-	Actor::Tick(deltaTime);
+	Actor::Tick(deltaSeconds);
 	//::Core::BitmapComponent* pBitmapComponent =
 	//	GetComponent<::Core::BitmapComponent>("BitmapComponent");
 

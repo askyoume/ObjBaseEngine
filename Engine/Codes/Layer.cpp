@@ -7,19 +7,25 @@
 #include "CameraComponent.h"
 #include "CollisionComponent.h"
 
-void Core::Layer::Tick(_float deltaTime)
+void Core::Layer::Tick(_float deltaSeconds)
 {
+	if(_actors.empty())
+		return;
+
 	for(auto& actor : _actors)
 	{
 		if(actor->IsDestroyMarked())
 			continue;
 
-		actor->Tick(deltaTime);
+		actor->Tick(deltaSeconds);
 	}
 }
 
 void Core::Layer::Fixed()
 {
+	if(_actors.empty())
+		return;
+
 	for(auto& actor : _actors)
 	{
 
@@ -32,6 +38,9 @@ void Core::Layer::Fixed()
 
 void Core::Layer::Render(ID2D1RenderTarget* pRenderTarget)
 {
+	if(_renderQueue.empty())
+		return;
+
 	World* pWorld = CoreManager::GetInstance()->GetWorld();
 
 	if(pWorld->IsCustomRenderSort())
@@ -40,22 +49,50 @@ void Core::Layer::Render(ID2D1RenderTarget* pRenderTarget)
 	}
 	else
 	{
-		std::sort(_renderQueue.begin(), _renderQueue.end(),
-			[](RenderComponent* lhs, RenderComponent* rhs)
-			{
-				return lhs->GetOrder() < rhs->GetOrder();
-			});
+		if(pWorld->IsSortGreater())
+		{
+			std::sort(_renderQueue.begin(), _renderQueue.end(),
+				[](RenderComponent* lhs, RenderComponent* rhs)
+				{
+					return (*lhs) > (*rhs);
+				});
+		}
+		else
+		{
+			std::sort(_renderQueue.begin(), _renderQueue.end(),
+				[](RenderComponent* lhs, RenderComponent* rhs)
+				{
+					return (*lhs) < (*rhs);
+				});
+		}
+
 	}
 
-	const Mathf::Matrix3x2& matrixCamera = _pCameraActor->GetCameraComponent()->GetWorldTransform();
-
-	for (auto& renderComponent : _renderQueue)
+	if(_layerIndex == LAYER::UI)
 	{
-		if (renderComponent->GetOwner()->IsDestroyMarked())
-			continue;
+		const Mathf::Matrix3x2& matrixCamera = Matx::Identity;
+		pRenderTarget->SetTransform(Matx::Identity);
+		for (auto& renderComponent : _renderQueue)
+		{
+			if (renderComponent->GetOwner()->IsDestroyMarked())
+				continue;
 
-		renderComponent->SetCameraMatrix(matrixCamera);
-		renderComponent->Render(pRenderTarget);
+			renderComponent->SetCameraMatrix(matrixCamera);
+			renderComponent->Render(pRenderTarget);
+		}
+	}
+	else
+	{
+		const Mathf::Matrix3x2& matrixCamera = _pCameraActor->GetCameraComponent()->GetWorldTransform();
+
+		for (auto& renderComponent : _renderQueue)
+		{
+			if (renderComponent->GetOwner()->IsDestroyMarked())
+				continue;
+
+			renderComponent->SetCameraMatrix(matrixCamera);
+			renderComponent->Render(pRenderTarget);
+		}
 	}
 }
 

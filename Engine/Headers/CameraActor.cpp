@@ -3,7 +3,7 @@
 #include "CoreManager.h"
 #include "World.h"
 
-void Core::CameraActor::Tick(_float deltaTime)
+void Core::CameraActor::Tick(_float deltaSeconds)
 {
 	if (!_isTracking)
 		return;
@@ -11,7 +11,7 @@ void Core::CameraActor::Tick(_float deltaTime)
 	if (!_pOwnerWorld)
 		return;
 
-	Actor::Tick(deltaTime);
+	Actor::Tick(deltaSeconds);
 
 	CoreManager* _pCoreManager = CoreManager::GetInstance();
 
@@ -25,10 +25,10 @@ void Core::CameraActor::Tick(_float deltaTime)
 	Mathf::Vector2 cameraOffset = _cameraComponent->GetCameraOffset();
 	Mathf::Vector2 cameraLocation = _cameraComponent->GetRelativeLocation();
 
-	_cameraLerpFactor = fmin(3.0f, _cameraLerpFactor + deltaTime * 0.1f);
+	_cameraLerpFactor = fmin(3.0f, _cameraLerpFactor + deltaSeconds * 0.1f);
 
 	Mathf::Vector2 targetLocation = ( parentLocation - cameraCenter - cameraOffset );
-	Mathf::Vector2 newLocation = Mathf::Lerp(cameraLocation, targetLocation, _cameraLerpFactor * deltaTime);
+	Mathf::Vector2 newLocation = Mathf::Lerp(cameraLocation, targetLocation, _cameraLerpFactor * deltaSeconds);
 
 	if (targetLocation != _oldLocation)
 	{

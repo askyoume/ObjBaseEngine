@@ -2,9 +2,9 @@
 #include "CoreManager.h"
 #include "ACollision.h"
 
-void Core::CameraComponent::TickComponent(_float deltaTime)
+void Core::CameraComponent::TickComponent(_float deltaSeconds)
 {
-	SceneComponent::TickComponent(deltaTime);
+	SceneComponent::TickComponent(deltaSeconds);
 	CoreManager* _pCore = CoreManager::GetInstance();
 
 	float Width = _pCore->GetWidth();

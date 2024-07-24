@@ -15,7 +15,7 @@ namespace Core
 		~Layer() = default;
 
 	public:
-		void Tick(_float deltaTime);
+		void Tick(_float deltaSeconds);
 		void Fixed();
 		void Render(ID2D1RenderTarget* pRenderTarget);
 		void EndPlay();

@@ -65,9 +65,9 @@ void Client::ClientFSMContainer::ContainStep()
 	autoComboStart->BindState(idle);
 }
 
-void Client::ClientFSMContainer::Update(float deltaTime)
+void Client::ClientFSMContainer::Update(float deltaSeconds)
 {
-	StateContainer::Update(deltaTime);
+	StateContainer::Update(deltaSeconds);
 }
 
 void Client::ClientFSMContainer::Remove()

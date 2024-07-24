@@ -36,12 +36,12 @@ bool Core::World::BeginPlayEnd()
 	return true;
 }
 
-void Core::World::Tick(_float deltaTime)
+void Core::World::Tick(_float deltaSeconds)
 {
-	_pCameraActor->Tick(deltaTime);
+	_pCameraActor->Tick(deltaSeconds);
 	for(auto iter = _vecLayers.begin(); iter != _vecLayers.end(); iter++)
 	{
-		(*iter)->Tick(deltaTime);
+		(*iter)->Tick(deltaSeconds);
 	}
 }
 
@@ -118,12 +118,6 @@ void Core::World::ClearLayer()
 	}
 
 	_vecLayers.clear();
-}
-
-bool Core::World::InitializeCanvas()
-{
-
-	return true;
 }
 
 void Core::World::SettingCamera(CameraActor* pCameraActor)

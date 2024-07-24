@@ -6,6 +6,7 @@
 #include "../../Engine/Headers/StateComponent.h"
 #include "../../Engine/Headers/MovementComponent.h"
 #include "../../Engine/Headers/BoxComponent.h"
+#include "../../Engine/Headers/TextRenderComponent.h"
 
 #include "Neko.h"
 #include "Aoko.h"
@@ -17,6 +18,7 @@ void Client::Neko::BeginPlay()
 
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
+	_pTextRenderComponent = AddComponent<::Core::TextRenderComponent>("TextRenderComponent");
 	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
 	_pMovementComponent->SetGroundPosition(80.f);
 
@@ -45,12 +47,18 @@ void Client::Neko::BeginPlay()
 	_pAIComponent = AddComponent<::Core::StateComponent>("AIComponent");
 	_pAIComponent->AddContainer<AIMovementFSMContainer>();
 
+	_pTextRenderComponent->SetFont(L"NameFont");
+	_pTextRenderComponent->SetColor(D2D1::ColorF(D2D1::ColorF::White));
+	_pTextRenderComponent->SetRelativeLocation({ 0.f, 0.f });
+	_pTextRenderComponent->SetSize({400.f, 100.f});
+	_pTextRenderComponent->AddRenderQueueInLayer();
+
 }
 
-void Client::Neko::Tick(_float deltaTime)
+void Client::Neko::Tick(_float deltaSeconds)
 {
-	Super::Tick(deltaTime);
-	//std::cout << _pRootComponent->GetRelativeLocation().y << std::endl;
+	Super::Tick(deltaSeconds);
+	_pTextRenderComponent->SetText("AI_State : " + (_bstring)_pAIComponent->GetCurrentStateName());
 }
 
 void Client::Neko::Fixed()
@@ -101,6 +109,30 @@ void Client::Neko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherCom
 void Client::Neko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
 {
 	//std::cout << "Neko EndOverlap" << std::endl;
+}
+
+void Client::Neko::DamageInvoker(int damage)
+{
+}
+
+int Client::Neko::GetHP() const
+{
+	return 0;
+}
+
+int Client::Neko::GetMaxHP() const
+{
+	return 0;
+}
+
+int Client::Neko::GetGauge() const
+{
+	return 0;
+}
+
+int Client::Neko::GetMaxGauge() const
+{
+	return 0;
 }
 
 Client::Neko* Client::Neko::Create()

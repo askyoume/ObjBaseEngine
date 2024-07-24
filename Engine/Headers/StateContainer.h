@@ -16,7 +16,7 @@ namespace Core
 
 	public:
 		virtual void ContainStep() PURE;
-		virtual void Update(float deltaTime) PURE;
+		virtual void Update(float deltaSeconds) PURE;
 		virtual void Remove() override PURE;
 
 	public:

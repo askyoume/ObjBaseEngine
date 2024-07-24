@@ -22,13 +22,17 @@ namespace Core
 		bool IsVisible() const { return _isVisible; }
 		void SetCameraMatrix(const Mathf::Matrix3x2& cameraMatrix);
 
+	public:
+		bool operator>(const RenderComponent& rhs) { return _order > rhs._order; };
+		bool operator<(const RenderComponent& rhs) { return _order < rhs._order; };
+
 	protected:
 		virtual bool Initialize();
 		virtual void Remove() override PURE;
 
 	protected:
 		Mathf::Matrix3x2 _renderMatrix{};
-		Mathf::Matrix3x2 _cameraMatrix{};
+		Mathf::Matrix3x2 _cameraMatrix{ Matx::Identity };
 		bool _isVisible{ true };
 		int  _order{ 0 };
 	};

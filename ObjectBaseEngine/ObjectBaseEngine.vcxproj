@@ -144,7 +144,6 @@
     <ClInclude Include="..\Engine\Headers\BoxComponent.h" />
     <ClInclude Include="..\Engine\Headers\CameraActor.h" />
     <ClInclude Include="..\Engine\Headers\CameraComponent.h" />
-    <ClInclude Include="..\Engine\Headers\Canvas.h" />
     <ClInclude Include="..\Engine\Headers\Client_Macro.h" />
     <ClInclude Include="..\Engine\Headers\CollisionComponent.h" />
     <ClInclude Include="..\Engine\Headers\CollisionManager.h" />
@@ -178,6 +177,7 @@
     <ClInclude Include="..\Engine\Headers\StateTransition.h" />
     <ClInclude Include="..\Engine\Headers\System.h" />
     <ClInclude Include="..\Engine\Headers\TextRenderActor.h" />
+    <ClInclude Include="..\Engine\Headers\TextRenderComponent.h" />
     <ClInclude Include="..\Engine\Headers\Texture.h" />
     <ClInclude Include="..\Engine\Headers\TextureManager.h" />
     <ClInclude Include="..\Engine\Headers\TimeManager.h" />
@@ -193,7 +193,6 @@
     <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\BoxComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\CameraComponent.cpp" />
-    <ClCompile Include="..\Engine\Codes\Canvas.cpp" />
     <ClCompile Include="..\Engine\Codes\CollisionComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\CollisionManager.cpp" />
     <ClCompile Include="..\Engine\Codes\CoreManager.cpp" />
@@ -211,6 +210,7 @@
     <ClCompile Include="..\Engine\Codes\StateComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\StateContainer.cpp" />
     <ClCompile Include="..\Engine\Codes\System.cpp" />
+    <ClCompile Include="..\Engine\Codes\TextRenderComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\Texture.cpp" />
     <ClCompile Include="..\Engine\Codes\TextureManager.cpp" />
     <ClCompile Include="..\Engine\Codes\TimeManager.cpp" />

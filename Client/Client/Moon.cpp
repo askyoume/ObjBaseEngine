@@ -18,9 +18,9 @@ void Client::Moon::BeginPlay()
 	pBitmapComponent->SetRelativeScale(Mathf::Vector2(5.f, 5.f));
 }
 
-void Client::Moon::Tick(_float deltaTime)
+void Client::Moon::Tick(_float deltaSeconds)
 {
-	Actor::Tick(deltaTime);
+	Actor::Tick(deltaSeconds);
 
 	Mathf::Vector2 CameraLocation = 
 		_pOwnerWorld->GetCameraActor()->GetRootComponent()->GetRelativeLocation();

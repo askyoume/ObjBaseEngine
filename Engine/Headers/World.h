@@ -27,7 +27,7 @@ namespace Core
 
 	public:
 		virtual bool BeginPlay() PURE;
-		virtual void Tick(_float deltaTime);
+		virtual void Tick(_float deltaSeconds);
 		virtual void Fixed();
 		virtual void Render(ID2D1RenderTarget* pRenderTarget);
 		virtual void EndPlay();
@@ -44,18 +44,16 @@ namespace Core
 		//RenderSort
 		virtual void CustomRenderSort() {};
 		void SetCustomRenderSort(bool isCustomRenderSort) { _isCustomRenderSort = isCustomRenderSort; }
+		void SetSortGreater(bool isSortGreater) { _isSortGreater = isSortGreater; }
 		bool IsCustomRenderSort() const { return _isCustomRenderSort; }
-
-	public:
-		//Canvas
-		bool InitializeCanvas();
+		bool IsSortGreater() const { return _isSortGreater; }
 
 	public:
 		//Camera
+		CameraActor* GetCameraActor() { return _pCameraActor; }
 		void SettingCamera(CameraActor* pCameraActor = nullptr);
 		void SettingCameraPosition(Mathf::Vector2 position);
 		void SettingTrackingCameraTarget(Actor* pTargetActor);
-		CameraActor* GetCameraActor() { return _pCameraActor; }
 		void SetCameraLerpFactor(float lerpFactor);
 		void SettingTrackingCamera(bool isTracking);
 		bool IsTrackingCamera() const;
@@ -69,10 +67,10 @@ namespace Core
 	public:
 		//Actor
 		ActorMap& GetActorMap() { return _actorMap; }
+		Actor* FindActor(_pstring name);
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor);
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor, Mathf::Vector2 location);
 		bool RemoveActor(_pstring name);
-		Actor* FindActor(_pstring name);
 
 	protected:
 		CoreManager* _pCoreManager{ nullptr };
@@ -82,10 +80,15 @@ namespace Core
 	protected:
 		ActorMap			_actorMap;
 		Layers				_vecLayers;
+
+	protected:
 		Mathf::Matrix3x2	_worldTransform{ Matx::Identity };
 		Mathf::Vector2		_worldCenter{ UnitVector::Zero };
 		Mathf::Rect			_worldSize{};
+
+	protected:
 		int					_layerSize{};
 		bool				_isCustomRenderSort{ false };
+		bool				_isSortGreater{ false };
 	};
 }

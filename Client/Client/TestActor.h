@@ -18,15 +18,10 @@ namespace Client
 		virtual ~TestActor() = default;
 	public:
 		void BeginPlay() override;
-		void Tick(_float deltaTime) override;
+		void Tick(_float deltaSeconds) override;
 		void Fixed() override;
 		void EndPlay() override;
 
-		//testCode
-		void Fire();
-		void Rotate(float degree);
-		void Move(float x, float y);
-		//testCodeEnd
 
 	public:
 		static TestActor* Create() { return new TestActor; }
@@ -34,6 +29,5 @@ namespace Client
 	private:
 		::Core::InputComponent* _pInputComponent{ nullptr };
 		::Core::BitmapComponent* _pBitmapComponent{ nullptr };
-		bool _isMove{ false };
 	};
 }

@@ -20,7 +20,7 @@ namespace Client
 
 	public:
 		bool BeginPlay() override;
-		void Tick(_float deltaTime) override;
+		void Tick(_float deltaSeconds) override;
 		void Render(ID2D1RenderTarget* pRenderTarget) override;
 		//void CustomRenderSort() override;
 

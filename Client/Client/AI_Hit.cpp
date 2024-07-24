@@ -22,7 +22,7 @@ void Client::AI_Hit::Enter()
 	pAnimationComponent->SetPlayClip("Hit");
 }
 
-void Client::AI_Hit::Execute(float deltaTime)
+void Client::AI_Hit::Execute(float deltaSeconds)
 {
 	Mathf::Vector2 _direction = 
 		pTarget->GetRootComponent()->GetWorldLocation() - 
@@ -35,7 +35,7 @@ void Client::AI_Hit::Execute(float deltaTime)
 	{
 		pMovementComponent->SetInputDirectionX(0.3f);
 	}
-	pMovementComponent->Move(deltaTime);
+	pMovementComponent->Move(deltaSeconds);
 
 	if(pAnimationComponent->IsClipEnd("Hit"))
 	{

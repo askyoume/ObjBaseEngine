@@ -20,7 +20,7 @@ namespace Core
 	public:
 		//Actor
 		virtual void BeginPlay() override {};
-		virtual void Tick(_float deltaTime) override;
+		virtual void Tick(_float deltaSeconds) override;
 		CameraComponent* GetCameraComponent() { return _cameraComponent; }
 
 		void TrackTarget(Actor* pTarget);

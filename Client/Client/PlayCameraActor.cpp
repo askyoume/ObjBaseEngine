@@ -25,7 +25,7 @@ void Client::PlayCameraActor::BeginPlay()
 	//test Code end
 }
 
-void Client::PlayCameraActor::Tick(_float deltaTime)
+void Client::PlayCameraActor::Tick(_float deltaSeconds)
 {
 	if (!_isTracking)
 		return;
@@ -33,7 +33,7 @@ void Client::PlayCameraActor::Tick(_float deltaTime)
 	if (!_pOwnerWorld)
 		return;
 
-	Actor::Tick(deltaTime);
+	Actor::Tick(deltaSeconds);
 
 	Mathf::Rect worldSize = _pOwnerWorld->GetWorldSize();
 	_playerOneLocation = _pActorOne->GetRootComponent()->GetRelativeLocation();
@@ -56,12 +56,12 @@ void Client::PlayCameraActor::Tick(_float deltaTime)
 	Mathf::Vector2 cameraOffset = _cameraComponent->GetCameraOffset();
 	Mathf::Vector2 cameraLocation = _cameraComponent->GetRelativeLocation();
 
-	_cameraLerpFactor = fmin(8.0f, _cameraLerpFactor + deltaTime * 0.1f);
+	_cameraLerpFactor = fmin(8.0f, _cameraLerpFactor + deltaSeconds * 0.1f);
 
     if (!_isOneClamp && !_isTwoClamp)
     {
         Mathf::Vector2 targetLocation = (parentLocation - cameraCenter - cameraOffset);
-        Mathf::Vector2 newLocation = Mathf::Lerp(cameraLocation, targetLocation, _cameraLerpFactor * deltaTime);
+        Mathf::Vector2 newLocation = Mathf::Lerp(cameraLocation, targetLocation, _cameraLerpFactor * deltaSeconds);
 
         if (targetLocation != _oldLocation)
         {
