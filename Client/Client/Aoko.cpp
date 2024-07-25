@@ -123,7 +123,12 @@ void Client::Aoko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 		std::cout << "Aoko NotifyActorBlock" << std::endl;
 	}
 
-	//if(!_pMovementComponent->IsGrounded() &&)
+	if(!_pMovementComponent->IsGrounded() &&
+		(*pOtherComponent->GetOwner() == "Neko") &&
+		(*pOtherComponent == "BoxComponent"))
+	{
+		_pMovementComponent->ChangeVelocity().y = -1.f;
+	}
 }
 
 void Client::Aoko::ExecuteMatchedCommands(_float deltaSeconds)
