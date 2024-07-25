@@ -14,8 +14,26 @@ void Core::StateContainer::Update(float deltaSeconds)
 		return;
 	}
 
-	_currentState->Execute(deltaSeconds);
-	_previousState = _currentState;
+	switch (_currentState->IsEndState())
+	{
+	case true:
+		if (!_currentState->IsExit())
+		{
+			_currentState->Execute(deltaSeconds);
+			_currentState->Exit();
+			_currentState->SetExit(true);
+			return;
+		}
+		else
+		{
+			return;
+		}
+		break;
+	case false:
+		_currentState->Execute(deltaSeconds);
+		_previousState = _currentState;
+		break;
+	}
 
 	for(auto& pTransition : _currentState->GetTransitions())
 	{
@@ -94,6 +112,7 @@ void Core::StateContainer::ChangeState(_pstring targetState)
 	{
 		previousState = _currentState->GetName();
 		_currentState->Exit();
+		_currentState->SetExit(true);
 	}
 
 	auto pFindState = _states.find(targetState);
@@ -101,6 +120,7 @@ void Core::StateContainer::ChangeState(_pstring targetState)
 	{
 		pFindState->second->SetPreviousStateName(previousState);
 		_currentState = pFindState->second;
+		_currentState->SetExit(false);
 		_currentState->Enter();
 	}
 	else

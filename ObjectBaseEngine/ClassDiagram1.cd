@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Core::SceneComponent" Collapsed="true">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAUAAAAEgAAAQAAgABABAAQAAAEAEAAAAAABAAgAgA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\SceneComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::RenderComponent" Collapsed="true">
+    <Position X="6.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAAAQACAAEIEQAAgAAABAAAQAAQAAAAABAgJAAAgAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\RenderComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::BitmapComponent" Collapsed="true">
+    <Position X="4.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAMUAgAEAAIAQAARgAABAAAEFhQEGAAABAwAARAEAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\BitmapComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::CameraComponent" Collapsed="true">
+    <Position X="11.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAIAAAIAEgAAIQEAgAgABAEBMIAAAECAAAEAARAwAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\CameraComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::AnimationComponent" Collapsed="true">
+    <Position X="4.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACBhgAAAoAAsQAAQCAABAAAAAAAYEAAABEAAgApAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\AnimationComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::CollisionComponent" Collapsed="true">
+    <Position X="6.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAWAkFgiAAAQACAKAASAAAgEAAAAAABAAAAYgAAI=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\CollisionComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::BoxComponent" Collapsed="true">
+    <Position X="6.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACQAAAgAAAQAAgAAIBBAAAAAAAEAAABIAAAAABAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\BoxComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::TextRenderComponent" Collapsed="true">
+    <Position X="9" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEADgAIAQAAAIAIDADAAAiAAEAIABgAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\TextRenderComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::Component" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAAIEoAAIQAAAAAABAAAAAAAAAAACABAAAAgAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Component.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::InputComponent" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABgAgAAAEkBAhQAAAAABBAAgQAAAQEAAAgAAAAAgAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\InputComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::StateComponent" Collapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAEgAABQAAAAAABACAAAAAAEBAABCAACAgAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\StateComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::MovementComponent" Collapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAYEAGoIQCQKAAIAB1AAAKQoCokAIAACACSBwAAI=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\MovementComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::TimeManager" Collapsed="true">
+    <Position X="23.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAECAAAAAAUAAAQAgBgAAAAAABUAAABAAAAAQAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\TimeManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::CoreManager" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgLMCAAAGJSAEQAAAAAwFAFDEFhAFCAAQBADAMJAaAg=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\CoreManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::InputManager" Collapsed="true">
+    <Position X="23.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEIAAAkgCAAAKQABAAAAJAAACwAEAEECRAAAIAAAAEA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\InputManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::GraphicsManager" Collapsed="true">
+    <Position X="27" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAABEAAAAAAQAAAAAABAAAAAAAAEAQAAAABAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\GraphicsManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::TextureManager" Collapsed="true">
+    <Position X="21.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAQAAAQIABAAABAAABAAAAEAAQAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\TextureManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::FontManager" Collapsed="true">
+    <Position X="25.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAQQAAAAAABCAAAAgAAEABAQAAkBAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\FontManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::CollisionManager" Collapsed="true">
+    <Position X="23.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAQAAAAAAABAAAAEAAAEIAAAAAAACAAEA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\CollisionManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::has_Release&lt;T&gt;" Collapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Function.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::Texture" Collapsed="true">
+    <Position X="27" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAEAAAAAAAggQIAAAAABAARAAEAAEAAAAIAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Texture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::Core" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAAAEAABAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::Object" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAgAAgAAAABAAAgAAEBEAAIAAAYAAABCA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::World" Collapsed="true">
+    <Position X="25.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wiBEAACAmVJgAAAJIEhSBwggAwICCCACgBQBQABwQGA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\World.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::Layer" Collapsed="true">
+    <Position X="25.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAQEEAIAAAAAAAAQBBABAAAAkCCEAJAAAABQQAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Layer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::Actor" Collapsed="true">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBEBAAGAAYgAAEAgAABQAAAIAAgAAIJASREARgQBY=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Actor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::CameraActor" Collapsed="true">
+    <Position X="12.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAAAAQgBARAIAQAAAAQABAAAAiAAAEAAAAABAAAgQIA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\CameraActor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::Transform" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAEBAAEEEAAAADQAIEAQBaoAAAEBkAABAYAAAiAAIA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Transform.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::StateContainer" Collapsed="true">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAABIAAAABAEEAQAABQACAAQAEEAAAACAgCAACBA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\StateContainer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::StateTransition" Collapsed="true">
+    <Position X="25.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgAAAQAAAAAAUAAAAABAACEAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\StateTransition.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Core::State" Collapsed="true">
+    <Position X="21.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAIAAQAAAAACYAAAKABAAHgAAEgAKA4AAAJBAABAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Singleton&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAQAABAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Singleton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ACollision" Collapsed="true">
+    <Position X="21.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAABAYAAQBEAAAAAAAECAAAAAABAEBAQ=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\ACollision.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game::MainEntry" Collapsed="true">
+    <Position X="27" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAACAEQAAAwAAgABABBAAEACACAAAQFIAAgA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\MainEntry.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game::System" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIEAAQAAAAAAhAAAAAAAgEAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\System.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Core::AnimationClip" Collapsed="true">
+    <Position X="21.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAAAAAAAAAAAAAAAAAgAAQAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Struct.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="InputEvent" Collapsed="true">
+    <Position X="27" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAgCAAAAAAAAAAAEAAAAAAABACAEAABgAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Struct.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="GraphicsPtrPackage" Collapsed="true">
+    <Position X="25.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAMAAABIAAAAAQAAgEgIAAAAAIAgACAAAEAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Struct.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="BitmapPtrPackage" Collapsed="true">
+    <Position X="23.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAACAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Struct.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Mathf::Vector2" Collapsed="true">
+    <Position X="21.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAABAAAAEAAAAQgAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Vector2.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="Mathf::Rect" Collapsed="true">
+    <Position X="23.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Mathf.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="Mathf::Size" Collapsed="true">
+    <Position X="25.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Mathf.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="Mathf::Point" Collapsed="true">
+    <Position X="21.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Mathf.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="Mathf::Matrix3x2" Collapsed="true">
+    <Position X="27" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Matrix.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_byte" Collapsed="true">
+    <Position X="23.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_ushort" Collapsed="true">
+    <Position X="25.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_uint" Collapsed="true">
+    <Position X="27" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_ulong" Collapsed="true">
+    <Position X="23.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_ullong" Collapsed="true">
+    <Position X="21.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_int" Collapsed="true">
+    <Position X="27" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_float" Collapsed="true">
+    <Position X="25.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_pstring" Collapsed="true">
+    <Position X="23.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_pwstring" Collapsed="true">
+    <Position X="25.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_bstring" Collapsed="true">
+    <Position X="21.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="_pFont" Collapsed="true">
+    <Position X="21.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Type.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="BufferIndex" Collapsed="true">
+    <Position X="21.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAQAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Enum.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InputDevice" Collapsed="true">
+    <Position X="27" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABgABgAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Struct.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InputType" Collapsed="true">
+    <Position X="21.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAUEEACAAAACAAAAAAAAAAAgAAAAAAAAAAAAAAAAIE=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Struct.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MouseState" Collapsed="true">
+    <Position X="25.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAIAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Struct.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LAYER::LayerIndex" Collapsed="true">
+    <Position X="23.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAEAAAgAgAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Enum.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Collider::ColliderType" Collapsed="true">
+    <Position X="23.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAABAAAAAAAAAAAAAAAAUgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Enum.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Collision::CollisionType" Collapsed="true">
+    <Position X="25.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAABAAAAAAIAACAAA=</HashCode>
+      <FileName>C:\Users\User\Documents\ObjectBaseEngine\ObjBaseEngine\Engine\Headers\Core_Enum.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

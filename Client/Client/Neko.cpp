@@ -33,6 +33,7 @@ void Client::Neko::BeginPlay()
 	_pAnimationComponent->AddClip("Running", 0.1f, true);
 	_pAnimationComponent->AddClip("LowKick", 0.1f, false);
 	_pAnimationComponent->AddClip("Hit", 0.1f, false);
+	_pAnimationComponent->AddClip("Dead", 0.1f, false);
 	_pAnimationComponent->SetOrder(1);
 	_pAnimationComponent->SetPlayClip("Idle");
 
@@ -51,8 +52,8 @@ void Client::Neko::BeginPlay()
 
 	_pTextRenderComponent->SetFont(L"NameFont");
 	_pTextRenderComponent->SetColor(D2D1::ColorF(D2D1::ColorF::White));
-	_pTextRenderComponent->SetRelativeLocation({ 0.f, 0.f });
-	_pTextRenderComponent->SetSize({400.f, 100.f});
+	_pTextRenderComponent->SetRelativeLocation({ 0.f, 100.f });
+	_pTextRenderComponent->SetSize({400.f, 200.f});
 	_pTextRenderComponent->AddRenderQueueInLayer();
 
 }
@@ -62,15 +63,32 @@ void Client::Neko::Tick(_float deltaSeconds)
 	Super::Tick(deltaSeconds);
 	_pTextRenderComponent->SetText("AI_State : " + (_bstring)_pAIComponent->GetCurrentStateName());
 
+	if(_isDead)
+	{
+		_elapsedTime += deltaSeconds;
+	}
+
+	if (_elapsedTime >= 3.f)
+	{
+		OnDestroyMark(true);
+	}
 }
 
 void Client::Neko::Fixed()
 {
-	if (_pAIComponent->IsCurrentState("AI_Hit") &&
-	_pTargetAnimationComponent->IsFrameEnd())
+	if(!_pTargetAnimationComponent || !_pTargetStateComponent)
+		return;
+
+	if (_pAIComponent->IsCurrentState("AI_DEAD") &&
+		_pTargetAnimationComponent->IsFrameEnd())
 	{
-		DamageInvoker(100);
+		_isDead = true;
+	} 
+	else if(0 >= _currentHP && !_isDead)
+	{
+		_pAIComponent->ForceCheckTransition("AI_DEAD");
 	}
+
 }
 
 void Client::Neko::EndPlay()
@@ -83,28 +101,43 @@ void Client::Neko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 		!_pTargetAnimationComponent)
 	{
 		_pTargetAnimationComponent = pOtherComponent->GetOwner()->GetComponent<::Core::AnimationComponent>("AnimationComponent");
+		_pTargetStateComponent = pOtherComponent->GetOwner()->GetComponent<::Core::StateComponent>("StateComponent");
 	}
 
 	if ((*pOtherComponent->GetOwner() == "Aoko") &&
-	(*pOtherComponent == "FootBoxComponent"))
+		(*pOtherComponent == "FootBoxComponent") &&
+		_pTargetStateComponent->IsCurrentState("LowKick"))
 	{	
 		_pAIComponent->ChangeState("AI_Hit");
+		DamageInvoker(10);
 	}
+
+	if ((*pOtherComponent->GetOwner() == "Aoko") &&
+		(*pOtherComponent == "FootBoxComponent") &&
+		_pTargetStateComponent->IsCurrentState("MiddleKick"))
+	{	
+		_pAIComponent->ChangeState("AI_Hit");
+		DamageInvoker(12);
+	}
+
 
 	if (!_pMovementComponent->IsGrounded() &&
 		(*pOtherComponent->GetOwner() == "Aoko") &&
-	(*pOtherComponent == "FootBoxComponent"))
+		(*pOtherComponent == "FootBoxComponent"))
 	{	
 		_pAIComponent->ChangeState("AI_Hit");
-		_pMovementComponent->ChangeVelocity().y = -65.f;
+		_pMovementComponent->ChangeVelocity().y = -60.f;
+		DamageInvoker(14);
 	}
 	
-	if (pOtherComponent->GetOwner()->GetComponent<::Core::StateComponent>("StateComponent")->IsCurrentState("AirLaunch") &&
-		(*pOtherComponent == "FootBoxComponent"))
+	if ((*pOtherComponent->GetOwner() == "Aoko") &&
+		(*pOtherComponent == "FootBoxComponent") &&
+		_pTargetStateComponent->IsCurrentState("AirLaunch"))
 	{
 		_pMovementComponent->SetGrounded(false);
 		_pMovementComponent->ChangeVelocity().y = -5.f * 300.f;
 		_pAIComponent->ChangeState("AI_Hit");
+		DamageInvoker(17);
 	}
 }
 
@@ -122,6 +155,16 @@ void Client::Neko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherCom
 void Client::Neko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
 {
 	//std::cout << "Neko EndOverlap" << std::endl;
+}
+
+void Client::Neko::ReviveInitialize()
+{
+	_pAIComponent->ChangeState("AI_IDLE");
+	_pBoxComponent->SetCollisionType(Collision::COLLISION_BLOCK);
+	_pRootComponent->SetRelativeLocation({ 3000.f, -130.f });
+	_currentHP = _maxHP;
+	_elapsedTime = 0.f;
+	_isDead = false;
 }
 
 void Client::Neko::DamageInvoker(int damage)

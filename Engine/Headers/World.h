@@ -40,6 +40,7 @@ namespace Core
 		void RemoveLayer(int layerIndex);
 		void ClearLayer();
 		int GetLayerSize() const { return _layerSize; }
+
 	public:
 		//RenderSort
 		virtual void CustomRenderSort() {};
@@ -71,6 +72,7 @@ namespace Core
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor);
 		bool SpawnActor(int layerIndex, _pstring name, Actor* pActor, Mathf::Vector2 location);
 		bool RemoveActor(_pstring name);
+		bool ReviveActor(_pstring name);
 
 	protected:
 		CoreManager* _pCoreManager{ nullptr };

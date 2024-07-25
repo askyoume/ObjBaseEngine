@@ -43,7 +43,7 @@ void Client::MiddleKick::Enter()
 		}
 	}
 
-	pFootBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
+	pFootBoxComponent->SetCollisionType(Collision::COLLISION_BLOCK);
 	pBodyBoxComponent->SetSize({ 100.f, 400.f });
 }
 

@@ -134,12 +134,19 @@ void Core::Layer::Remove()
 	_actors.clear();
 }
 
-Core::Layer* Core::Layer::Begin(_uint index)
+Core::Layer* Core::Layer::Begin(int index)
 {
 	Layer* pLayer = new Layer;
 	pLayer->_layerIndex = index;
 
     return pLayer;
+}
+
+bool Core::Layer::InsertActor(Actor* pActor)
+{
+	_actors.push_back(pActor);
+
+	return true;
 }
 
 bool Core::Layer::AddActor(Actor* pActor)

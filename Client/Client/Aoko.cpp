@@ -69,7 +69,7 @@ void Client::Aoko::BeginPlay()
 	_pBodyBoxComponent = AddComponent<::Core::BoxComponent>("BodyBoxComponent");
 	_pBodyBoxComponent->SetAddOffset({ 0.f, 100.f });
 	_pBodyBoxComponent->SetSize({ 200.f, 600.f });
-	_pBodyBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
+	_pBodyBoxComponent->SetCollisionType(Collision::COLLISION_BLOCK);
 	_pBodyBoxComponent->SetOrder(2);
 	_pBodyBoxComponent->AddColliderInLayer();
 
@@ -121,8 +121,9 @@ void Client::Aoko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
 		(*pOtherComponent == "BoxComponent"))
 	{
 		std::cout << "Aoko NotifyActorBlock" << std::endl;
-		//_pMovementComponent->SetInputDirectionY(-1.2f);
 	}
+
+	//if(!_pMovementComponent->IsGrounded() &&)
 }
 
 void Client::Aoko::ExecuteMatchedCommands(_float deltaSeconds)
@@ -312,6 +313,7 @@ void Client::Aoko::SetPlayClip(_pstring clipName)
 
 void Client::Aoko::DamageInvoker(int damage)
 {
+	_currentHP -= damage;
 }
 
 int Client::Aoko::GetHP() const

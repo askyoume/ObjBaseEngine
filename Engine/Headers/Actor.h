@@ -21,6 +21,7 @@ namespace Core
 		virtual void NotifyActorBlock(CollisionComponent* pOtherComponent) override {};
 		virtual void NotifyActorBeginOverlap(CollisionComponent* pOtherComponent) override {};
 		virtual void NotifyActorEndOverlap(CollisionComponent* pOtherComponent) override {};
+		virtual void ReviveInitialize() {};
 
 	public:
 		template <typename T>

@@ -268,7 +268,11 @@ void Core::InputManager::ProcessMouseInput()
 
         if (mouseState.lX != 0 || mouseState.lY != 0)
         {
-            DispatchInput(InputDevice::MOUSE, InputType::MOVE, (_uint)InputType::MOVE, 0.0f, false, mouseState.lX, mouseState.lY);
+			POINT mousePos;
+			GetCursorPos(&mousePos);
+			ScreenToClient(hWnd, &mousePos);
+
+            DispatchInput(InputDevice::MOUSE, InputType::MOVE, (_uint)InputType::MOVE, 0.0f, false, mousePos.x, mousePos.y);
         }
 	}
 }

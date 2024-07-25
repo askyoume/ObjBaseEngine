@@ -176,7 +176,6 @@
     <ClInclude Include="..\Engine\Headers\StateContainer.h" />
     <ClInclude Include="..\Engine\Headers\StateTransition.h" />
     <ClInclude Include="..\Engine\Headers\System.h" />
-    <ClInclude Include="..\Engine\Headers\TextRenderActor.h" />
     <ClInclude Include="..\Engine\Headers\TextRenderComponent.h" />
     <ClInclude Include="..\Engine\Headers\Texture.h" />
     <ClInclude Include="..\Engine\Headers\TextureManager.h" />
@@ -190,6 +189,7 @@
   <ItemGroup>
     <ClCompile Include="..\Engine\Codes\ACollision.cpp" />
     <ClCompile Include="..\Engine\Codes\Actor.cpp" />
+    <ClCompile Include="..\Engine\Codes\AnimationComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\BitmapComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\BoxComponent.cpp" />
     <ClCompile Include="..\Engine\Codes\CameraComponent.cpp" />
@@ -216,8 +216,11 @@
     <ClCompile Include="..\Engine\Codes\TimeManager.cpp" />
     <ClCompile Include="..\Engine\Codes\Transform.cpp" />
     <ClCompile Include="..\Engine\Codes\World.cpp" />
-    <ClCompile Include="..\Engine\Headers\AnimationComponent.cpp" />
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

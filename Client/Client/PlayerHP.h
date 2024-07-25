@@ -44,7 +44,7 @@ namespace Client
 		int _previousHP{ 0 };
 		int _currentHP{ 0 };
 		int _maxHP{ 0 };
-		float _maxHPUnit{ 0.f };
+		float _hpToPixel{ 0.f };
 		float _currentHPFraction{ 0.f };
 	};
 }

@@ -256,8 +256,8 @@ HRESULT Core::GraphicsManager::InitializeD2D(HWND hWnd)
 		(_uint)_pCoreMgr->GetHeight()
 	);
 
-	//D2D1_PRESENT_OPTIONS presentOptions = D2D1_PRESENT_OPTIONS_IMMEDIATELY;
-	D2D1_PRESENT_OPTIONS presentOptions = D2D1_PRESENT_OPTIONS_NONE;
+	D2D1_PRESENT_OPTIONS presentOptions = D2D1_PRESENT_OPTIONS_IMMEDIATELY;
+	//D2D1_PRESENT_OPTIONS presentOptions = D2D1_PRESENT_OPTIONS_NONE;
 
 	hresult = _pGraphicsPtrPackage._pD2DFactory->CreateHwndRenderTarget(
 		renderTargetProperties,

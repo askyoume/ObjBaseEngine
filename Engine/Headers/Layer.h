@@ -21,6 +21,7 @@ namespace Core
 		void EndPlay();
 
 	public:
+		bool InsertActor(Actor* pActor);
 		bool AddActor(Actor* pActor);
 		Actor* GetActor(_pstring name);
 		bool DestroyActor();
@@ -28,7 +29,7 @@ namespace Core
 		void RemoveRenderQueue(RenderComponent* pRenderComponent);
 
 	public:
-		static Layer* Begin(_uint index);
+		static Layer* Begin(int index);
 		void SettingCamera(CameraActor* pCameraActor){ _pCameraActor = pCameraActor; }
 		void Remove() override;
 
@@ -36,6 +37,6 @@ namespace Core
 		ActorsList	 _actors;
 		RenderQueue	 _renderQueue;
 		CameraActor* _pCameraActor{ nullptr };
-		_uint		 _layerIndex{ 0 };
+		int		 _layerIndex{ 0 };
 	};
 }

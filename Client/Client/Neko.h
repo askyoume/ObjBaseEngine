@@ -33,6 +33,7 @@ namespace Client
 		void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
 		void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
 		void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		void ReviveInitialize() override;
 
 		// IPlayerInfo
 		void DamageInvoker(int damage) override;
@@ -52,6 +53,7 @@ namespace Client
 		::Core::AnimationComponent* _pAnimationComponent{ nullptr };
 		::Core::StateComponent*		_pAIComponent{ nullptr };
 		::Core::StateComponent*		_pStateComponent{ nullptr };
+		::Core::StateComponent*		_pTargetStateComponent{ nullptr };
 		::Core::TextRenderComponent* _pTextRenderComponent{ nullptr };
 
 	private:
@@ -61,6 +63,8 @@ namespace Client
 		int _maxGauge{ 0 };
 
 	private:
+		float _elapsedTime{ 0.f };
 		bool _isFrameEnd{ false };
+		bool _isDead{ false };
 	};
 }

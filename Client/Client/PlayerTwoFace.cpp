@@ -12,19 +12,19 @@ void Client::PlayerTwoFace::BeginPlay()
 
 	_pBitmapComponent = AddComponent<::Core::BitmapComponent>("InnerPlate");
 	_pBitmapComponent->SetTextures(&_vecTextures);
-	_pBitmapComponent->SetOrder(1);
+	_pBitmapComponent->SetOrder(2);
 
 	_pBitmapComponent2 = AddComponent<::Core::BitmapComponent>("OuterFace");
 	_pBitmapComponent2->SetTextures(&_vecTextures);
 	_pBitmapComponent2->SetBitmapIndex(1);
 	_pBitmapComponent2->SetRelativeLocation({ 200.f, -5.f });
-	_pBitmapComponent2->SetOrder(2);
+	_pBitmapComponent2->SetOrder(1);
 
 	_pBitmapComponent3 = AddComponent<::Core::BitmapComponent>("namePlate");
 	_pBitmapComponent3->SetTextures(&_vecTextures);
 	_pBitmapComponent3->SetBitmapIndex(2);
 	_pBitmapComponent3->SetRelativeLocation({ 197.f, 85.f });
-	_pBitmapComponent3->SetOrder(3);
+	_pBitmapComponent3->SetOrder(1);
 
 	_pRootComponent->SetRelativeScale({ 1.5f, 1.5f });
 }

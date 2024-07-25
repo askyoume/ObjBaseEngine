@@ -31,7 +31,7 @@ void Client::Timer::BeginPlay()
 	_pBoxComponent = AddComponent<::Core::BoxComponent>("TimerBox");
 	_pBoxComponent->SetAddOffset({ 0.f, 0.f });
 	_pBoxComponent->SetSize({ 500.f, 150.f });
-	_pBoxComponent->SetCollisionType(Collision::COLLISION_BLOCK);
+	_pBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
 	_pBoxComponent->AddColliderInLayer();
 
 	_pRootComponent->SetRelativeScale({ 1.54f, 1.5f });
@@ -41,7 +41,6 @@ void Client::Timer::Tick(_float deltaSeconds)
 {
 	Super::Tick(deltaSeconds);
 
-	
 	if (_isTimerOn)
 	{
 		if(!_pBitmapComponent3->IsVisible())
@@ -96,6 +95,18 @@ void Client::Timer::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent
 
 void Client::Timer::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
 {
+	if (*pOtherComponent->GetOwner() == "Mouse")
+	{
+		if(_isTimerOn)
+		{
+			_isTimerOn = false;
+		}
+		else
+		{
+			_isTimerOn = true;
+			ResetTimer();
+		}
+	}
 }
 
 void Client::Timer::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)

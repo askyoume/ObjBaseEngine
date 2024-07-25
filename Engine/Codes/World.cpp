@@ -73,7 +73,7 @@ void Core::World::EndPlay()
 bool Core::World::InitializeLayer(int layerSize)
 {
     _layerSize = layerSize;
-	for (_uint i = 0; i < _layerSize; i++)
+	for (int i = 0; i < _layerSize; i++)
 	{
 		Layer* pLayer = Layer::Begin(i);
 		_vecLayers.push_back(pLayer);
@@ -196,6 +196,26 @@ bool Core::World::RemoveActor(_pstring name)
 	_actorMap.find(name)->second->OnDestroyMark(true);
 
 	return true;
+}
+
+bool Core::World::ReviveActor(_pstring name)
+{
+	CoreManager* pCoreManager = CoreManager::GetInstance();
+	Actor* pActor = static_cast<Actor*>(pCoreManager->FindDestroyList(name));
+	if (pActor)
+	{
+		pActor->OnDestroyMark(false);
+		_actorMap.insert(std::make_pair(name, pActor));
+		_vecLayers[pActor->GetLayerIndex()]->InsertActor(pActor);
+		//pActor->BeginPlay();
+		pActor->ReviveInitialize();
+		pActor->SetWorld(this);
+		pCoreManager->UnRegisterDestroyList(pActor);
+
+		return true;
+	}
+
+	return false;
 }
 
 Core::Actor* Core::World::FindActor(_pstring name)

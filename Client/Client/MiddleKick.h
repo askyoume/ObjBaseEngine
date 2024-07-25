@@ -33,8 +33,5 @@ namespace Client
 		::Core::AnimationComponent* pAnimationComponent{ nullptr };
 		::Core::BoxComponent*		pBodyBoxComponent{ nullptr };
 		::Core::BoxComponent*		pFootBoxComponent{ nullptr };
-
-	private:
-		float _elapsedTime{ 0.0f };
 	};
 }

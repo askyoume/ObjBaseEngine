@@ -6,6 +6,8 @@
 namespace Core
 {
 	class InputComponent;
+	class BoxComponent;
+	class TextRenderComponent;
 	class BitmapComponent;
 }
 
@@ -21,13 +23,19 @@ namespace Client
 		void Tick(_float deltaSeconds) override;
 		void Fixed() override;
 		void EndPlay() override;
+		virtual void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
+		virtual void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		virtual void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
 
 
 	public:
 		static TestActor* Create() { return new TestActor; }
 
 	private:
-		::Core::InputComponent* _pInputComponent{ nullptr };
-		::Core::BitmapComponent* _pBitmapComponent{ nullptr };
+		::Core::InputComponent*		 _pInputComponent{ nullptr };
+		::Core::TextRenderComponent* _pTextRenderComponent{ nullptr };
+		::Core::BitmapComponent*	 _pBitmapComponent{ nullptr };
+		::Core::BoxComponent*		 _pBoxComponent{ nullptr };
+		::Core::Actor*				 _pTargetActor{ nullptr };
 	};
 }

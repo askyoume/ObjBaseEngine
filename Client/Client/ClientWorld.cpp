@@ -16,6 +16,7 @@
 #include "PlayerOneFace.h"
 #include "PlayerTwoFace.h"
 #include "Timer.h"
+#include "Mouse.h"
 
 bool Client::ClientWorld::BeginPlay()
 {
@@ -34,6 +35,7 @@ bool Client::ClientWorld::BeginPlay()
 	SpawnActor(LAYER::UI, "PlayerTwoHP",	PlayerHP::Create(),		 Mathf::Vector2{ 1410.f, 100.f	});
 	SpawnActor(LAYER::UI, "PlayerOneFace",	PlayerOneFace::Create(), Mathf::Vector2{ 336.f, 110.f   });
 	SpawnActor(LAYER::UI, "PlayerTwoFace",	PlayerTwoFace::Create(), Mathf::Vector2{ 1599.f, 110.f  });
+	SpawnActor(LAYER::UI, "Mouse",			Mouse::Create(),		 Mathf::Vector2{ 0.f, 0.f		});
 	//배경도 그래야 함.
 	SpawnActor(LAYER::BACKGROUND, "BackGround", BackGround::Create(), Mathf::Vector2{ 2750.f, -390.f });
 
@@ -49,6 +51,7 @@ bool Client::ClientWorld::BeginPlay()
 	SettingCameraPosition(Mathf::Vector2{ 1835.f, -530.f });
 	SettingCameraOffset(Mathf::Vector2{0.f, -70.f});
 	SetWorldSize(Mathf::Rect{ 0.f, -1350.f, 3500.f, -100.f });
+	SetSortGreater(true);
 
     return isBeginPlayEnd;
 }

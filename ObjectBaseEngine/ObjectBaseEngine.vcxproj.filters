@@ -95,9 +95,6 @@
     <Filter Include="Engine\Manager\Font">
       <UniqueIdentifier>{89b472a4-cce8-4d39-9b02-3f3b89381eff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\BaseClass\Actor\TextRenderActor">
-      <UniqueIdentifier>{8a79fbde-c755-46eb-9561-259db5b40b19}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Utility\Random">
       <UniqueIdentifier>{3085c436-8b7b-4bc6-bea6-3b51edbdb6d4}</UniqueIdentifier>
     </Filter>
@@ -300,9 +297,6 @@
     <ClInclude Include="..\Engine\Headers\CollisionManager.h">
       <Filter>Engine\Manager\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine\Headers\TextRenderActor.h">
-      <Filter>Engine\BaseClass\Actor\TextRenderActor</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine\Headers\TextRenderComponent.h">
       <Filter>Engine\Component\SceneComponent\TextRenderComponent</Filter>
     </ClInclude>
@@ -362,9 +356,6 @@
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp">
       <Filter>Engine\BaseClass\Actor\CameraActor</Filter>
     </ClCompile>
-    <ClCompile Include="..\Engine\Headers\AnimationComponent.cpp">
-      <Filter>Engine\Component\SceneComponent\AnimationComponent</Filter>
-    </ClCompile>
     <ClCompile Include="..\Engine\Codes\ACollision.cpp">
       <Filter>Engine\BaseClass\ACollision</Filter>
     </ClCompile>
@@ -398,5 +389,12 @@
     <ClCompile Include="..\Engine\Codes\TextRenderComponent.cpp">
       <Filter>Engine\Component\SceneComponent\TextRenderComponent</Filter>
     </ClCompile>
+    <ClCompile Include="..\Engine\Codes\AnimationComponent.cpp">
+      <Filter>Engine\Component\SceneComponent\AnimationComponent</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

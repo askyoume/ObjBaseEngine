@@ -19,7 +19,7 @@ void Client::AI_Idle::Enter()
 	}
 
 	if(strcmp(_pOwnerComponent->GetCurrentStateName(),"AI_Hit"))
-	pAnimationComponent->SetPlayClip("Idle");
+		pAnimationComponent->SetPlayClip("Idle");
 }
 
 void Client::AI_Idle::Execute(float deltaSeconds)

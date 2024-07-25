@@ -157,17 +157,17 @@
     <Filter Include="ClientActors\Character\Test\Mouse">
       <UniqueIdentifier>{22167d12-1735-4c34-8208-849aa78e6d45}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientActors\Character\UI_Actor\Player1\Player_HP_HUD">
+    <Filter Include="ClientFSM\AIMovementFSM\State\AI_Dead">
+      <UniqueIdentifier>{83921511-43c8-430f-be14-a0b607cc9627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientFSM\AIMovementFSM\Transit\AI_AllToDeath">
+      <UniqueIdentifier>{7499ed0b-4b13-4f03-b1ad-aa87894557f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientActors\Character\UI_Actor\Player_HP_HUD">
       <UniqueIdentifier>{aed31fd2-e2e7-4907-ab78-7b7425da4890}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ClientActors\Character\UI_Actor\Player1\Player_Guage_HUD">
+    <Filter Include="ClientActors\Character\UI_Actor\Player_Guage_HUD">
       <UniqueIdentifier>{8ceb5dc5-03a9-4a5e-8e42-5b507bb02aef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\Character\UI_Actor\Player2\Player_Guage_HUD">
-      <UniqueIdentifier>{fce08127-1342-4b87-b095-1928e47a56c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientActors\Character\UI_Actor\Player2\Player_HP_HUD">
-      <UniqueIdentifier>{71529f46-ae48-4df1-a59f-56c3164a4d94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -265,10 +265,10 @@
       <Filter>ClientActors\Character\Test</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHP.h">
-      <Filter>ClientActors\Character\UI_Actor\Player1\Player_HP_HUD</Filter>
+      <Filter>ClientActors\Character\UI_Actor\Player_HP_HUD</Filter>
     </ClInclude>
     <ClInclude Include="PlayerGuage.h">
-      <Filter>ClientActors\Character\UI_Actor\Player1\Player_Guage_HUD</Filter>
+      <Filter>ClientActors\Character\UI_Actor\Player_Guage_HUD</Filter>
     </ClInclude>
     <ClInclude Include="IPlayerInfo.h">
       <Filter>ClientActors\Character\Interface</Filter>
@@ -284,6 +284,12 @@
     </ClInclude>
     <ClInclude Include="PlayerTwoFace.h">
       <Filter>ClientActors\Character\UI_Actor\Player2\P2InfoFace</Filter>
+    </ClInclude>
+    <ClInclude Include="AI_Dead.h">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Dead</Filter>
+    </ClInclude>
+    <ClInclude Include="Ai_AllToDeath.h">
+      <Filter>ClientFSM\AIMovementFSM\Transit\AI_AllToDeath</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -381,10 +387,10 @@
       <Filter>ClientActors\Character\Test</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHP.cpp">
-      <Filter>ClientActors\Character\UI_Actor\Player1\Player_HP_HUD</Filter>
+      <Filter>ClientActors\Character\UI_Actor\Player_HP_HUD</Filter>
     </ClCompile>
     <ClCompile Include="PlayerGuage.cpp">
-      <Filter>ClientActors\Character\UI_Actor\Player1\Player_Guage_HUD</Filter>
+      <Filter>ClientActors\Character\UI_Actor\Player_Guage_HUD</Filter>
     </ClCompile>
     <ClCompile Include="PlayerOneFace.cpp">
       <Filter>ClientActors\Character\UI_Actor\Player1\P1InfoFace</Filter>
@@ -395,5 +401,19 @@
     <ClCompile Include="PlayerTwoFace.cpp">
       <Filter>ClientActors\Character\UI_Actor\Player2\P2InfoFace</Filter>
     </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>ClientActors\Character\Test\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="AI_Dead.cpp">
+      <Filter>ClientFSM\AIMovementFSM\State\AI_Dead</Filter>
+    </ClCompile>
+    <ClCompile Include="Ai_AllToDeath.cpp">
+      <Filter>ClientFSM\AIMovementFSM\Transit\AI_AllToDeath</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>

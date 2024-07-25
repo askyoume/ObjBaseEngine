@@ -64,6 +64,8 @@ namespace Core
 		//World
 		World* GetWorld() const { return _pWorld; }
 		void EraseActorMap(Object* pObject);
+		Object* FindDestroyList(_pstring name);
+		void UnRegisterDestroyList(Object* pObject);
 
 		//Layer
 		Layer* GetLayer(int layerIndex) const;
@@ -80,9 +82,6 @@ namespace Core
 		//Font
 		_pFont LoadFont(_pwstring fontName, _pwstring fontPath, float fontSize);
 		_pFont GetFont(_pwstring fontName);
-		//test code
-
-		//test code end
 
 	private:
 		void Remove() override;

@@ -20,6 +20,7 @@ void Client::AI_Hit::Enter()
 	}
 
 	pAnimationComponent->SetPlayClip("Hit");
+
 }
 
 void Client::AI_Hit::Execute(float deltaSeconds)

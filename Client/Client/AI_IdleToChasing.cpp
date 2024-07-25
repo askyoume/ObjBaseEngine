@@ -17,6 +17,11 @@ bool Client::AI_IdleToChasing::ShouldTransition()
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 	}
 
+	if(!pAnimationComponent->IsClipEnd("Dead"))
+	{
+		return false;
+	}
+
 	if (!pAnimationComponent->IsClipEnd("Hit"))
 	{
 		SetTargetState("AI_Hit");

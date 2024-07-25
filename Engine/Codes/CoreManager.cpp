@@ -108,7 +108,6 @@ void Core::CoreManager::AddDestroyList(Object* pObject)
     if (!pObject) return;  // 유효하지 않은 포인터 검증
 
 	_toBeDestroyed.push_back(pObject);
-
 }
 
 bool Core::CoreManager::LoadTexture(_pwstring filePath)
@@ -134,6 +133,31 @@ void Core::CoreManager::UnRegisterReceiver(_uint key, InputType Type, IInputRece
 void Core::CoreManager::EraseActorMap(Object* pObject)
 {
     _pWorld->GetActorMap().erase(pObject->GetName());
+}
+
+Core::Object* Core::CoreManager::FindDestroyList(_pstring name)
+{
+	for (auto& pObject : _toBeDestroyed)
+	{
+		if (pObject->GetName() == name)
+		{
+			return pObject;
+		}
+	}
+
+	return nullptr;
+}
+
+void Core::CoreManager::UnRegisterDestroyList(Object* pObject)
+{
+	for (auto iter = _toBeDestroyed.begin(); iter != _toBeDestroyed.end(); iter++)
+	{
+		if (*iter == pObject)
+		{
+			_toBeDestroyed.erase(iter);
+			break;
+		}
+	}
 }
 
 Core::Layer* Core::CoreManager::GetLayer(int layerIndex) const

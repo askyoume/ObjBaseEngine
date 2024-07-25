@@ -130,9 +130,11 @@
   <ItemGroup>
     <ClInclude Include="AIMovementFSMContainer.h" />
     <ClInclude Include="AirLaunch.h" />
+    <ClInclude Include="Ai_AllToDeath.h" />
     <ClInclude Include="AI_Attack.h" />
     <ClInclude Include="AI_Chasing.h" />
     <ClInclude Include="AI_ChasingToIdle.h" />
+    <ClInclude Include="AI_Dead.h" />
     <ClInclude Include="AI_Hit.h" />
     <ClInclude Include="AI_Idle.h" />
     <ClInclude Include="AI_IdleToAttack.h" />
@@ -170,15 +172,18 @@
   <ItemGroup>
     <ClCompile Include="AIMovementFSMContainer.cpp" />
     <ClCompile Include="AirLaunch.cpp" />
+    <ClCompile Include="Ai_AllToDeath.cpp" />
     <ClCompile Include="AI_Attack.cpp" />
     <ClCompile Include="AI_Chasing.cpp" />
     <ClCompile Include="AI_ChasingToIdle.cpp" />
+    <ClCompile Include="AI_Dead.cpp" />
     <ClCompile Include="AI_Hit.cpp" />
     <ClCompile Include="AI_Idle.cpp" />
     <ClCompile Include="AI_IdleToAttack.cpp" />
     <ClCompile Include="AI_IdleToChasing.cpp" />
     <ClCompile Include="AI_IdleToHit.cpp" />
     <ClCompile Include="Aoko.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="PlayerGuage.cpp" />
     <ClCompile Include="PlayerHP.cpp" />
     <ClCompile Include="AutoComboStart.cpp" />
@@ -209,6 +214,11 @@
     <ProjectReference Include="..\..\ObjectBaseEngine\ObjectBaseEngine.vcxproj">
       <Project>{dad063fd-4e42-45ac-a1c8-9a09d43eeab3}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
