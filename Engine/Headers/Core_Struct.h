@@ -47,6 +47,16 @@ struct InputEvent
 
 namespace Core
 {
+	class CollisionComponent;
+	struct CollisionPackage
+	{
+		CollisionComponent* thisComponent;
+		CollisionComponent* otherComponent;
+	};
+}
+
+namespace Core
+{
 	class Texture;
 	struct AnimationClip
 	{
@@ -54,8 +64,19 @@ namespace Core
 		int clipIndex{};
 		float frameTime{};
 		bool isLoop{};
+		bool isEnd{};
+		std::function<void()> dynamic{};
 
-		AnimationClip(const char* name) : clipName(name), clipIndex(0) {};
+		AnimationClip(const char* name) : clipName(name), clipIndex(0), isEnd(false), dynamic() {};
+
+		template<typename T, typename U>
+		void AddDynamic(T* object, void (U::* method)())
+		{
+			dynamic = [object, method]()
+				{
+					(object->*method)();
+				};
+		}
 	};
 }
 

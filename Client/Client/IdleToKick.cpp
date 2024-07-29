@@ -20,7 +20,8 @@ bool Client::IdleToKick::ShouldTransition()
 
 	//std::cout << "IdleToKick" << std::endl;
 
-	if (!pAnimationComponent->IsClipEnd("JumpLowKick") ||
+	if (!pAnimationComponent->IsClipEnd("JumpDownKick") ||
+		!pAnimationComponent->IsClipEnd("JumpLowKick")  ||
 		!pAnimationComponent->IsClipEnd("LowKick"))
 	{
 		SetTargetState("LowKick");

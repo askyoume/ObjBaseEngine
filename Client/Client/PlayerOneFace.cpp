@@ -26,6 +26,12 @@ void Client::PlayerOneFace::BeginPlay()
 	_pBitmapComponent3->SetRelativeLocation({ 145.f, 85.f });
 	_pBitmapComponent3->SetOrder(1);
 
+	_pBitmapComponent4 = AddComponent<::Core::BitmapComponent>("BottomPlate");
+	_pBitmapComponent4->SetTextures(&_vecTextures);
+	_pBitmapComponent4->SetBitmapIndex(3);
+	_pBitmapComponent4->SetRelativeLocation({ 0.f, 90.f });
+	_pBitmapComponent4->SetOrder(2);
+
 	_pRootComponent->SetRelativeScale({ 1.5f, 1.5f });
 }
 

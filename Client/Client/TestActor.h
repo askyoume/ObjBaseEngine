@@ -23,9 +23,9 @@ namespace Client
 		void Tick(_float deltaSeconds) override;
 		void Fixed() override;
 		void EndPlay() override;
-		virtual void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
-		virtual void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
-		virtual void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		virtual void NotifyActorBlock(::Core::CollisionPackage Components) override;
+		virtual void NotifyActorBeginOverlap(::Core::CollisionPackage Components) override;
+		virtual void NotifyActorEndOverlap(::Core::CollisionPackage Components) override;
 
 
 	public:

@@ -22,6 +22,11 @@ bool Client::IdleToMove::ShouldTransition()
 		SetTargetState("BackDash");
 		return true;
 	}
+	else if(!pAnimationComponent->IsClipEnd("JumpDownKick"))
+	{
+		SetTargetState("LowKick");
+		return true;
+	}
 	else if (!pMovementComponent->IsGrounded())
 	{
 		return false;

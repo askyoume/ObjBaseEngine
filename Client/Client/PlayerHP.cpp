@@ -41,7 +41,7 @@ void Client::PlayerHP::Fixed()
 		if(_previousHP != _currentHP)
 		{
 			_currentHPFraction = static_cast<float>(_previousHP - _currentHP) * _hpToPixel;
-			_textureRect.right -= _currentHPFraction;
+			_textureRect.left += _currentHPFraction;
 			_pBitmapComponent2->SetTextureClippingRect(_textureRect);
 		}
 		_previousHP = _currentHP;
@@ -61,7 +61,7 @@ void Client::PlayerHP::SetPlayerInfo(::Core::Actor* pPlayerInfo)
 	_hpToPixel = 0.04f;
 
 	_currentHPFraction = static_cast<float>(_previousHP - _currentHP) * _hpToPixel;
-	_textureRect.right -= (_currentHPFraction + 4.f);
+	_textureRect.left += _currentHPFraction;
 	_pBitmapComponent2->SetTextureClippingRect(_textureRect);
 }
 

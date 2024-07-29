@@ -54,10 +54,10 @@ namespace Core
 	protected:
 		SceneComponent* _pRootComponent{ nullptr };
 		Mathf::Vector2 _inputDirection{ UnitVector::Zero };
-		Mathf::Vector2 _velocity{ 0.f, 0.f };
-		Mathf::Vector2 _gravityVector{ 0.f, 0.f };
-		Mathf::Vector2 _ownerPreviousLocation{ 0.f, 0.f };
-		Mathf::Vector2 _ownerCurrentLocation{ 0.f, 0.f };
+		Mathf::Vector2 _velocity{ UnitVector::Zero };
+		Mathf::Vector2 _gravityVector{ UnitVector::Zero };
+		Mathf::Vector2 _ownerPreviousLocation{ UnitVector::Zero };
+		Mathf::Vector2 _ownerCurrentLocation{ UnitVector::Zero };
 
 	protected:
 		const float _gravity{ 9.8f };

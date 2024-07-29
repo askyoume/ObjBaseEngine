@@ -17,29 +17,29 @@ void Client::Aoko::BeginPlay()
 
 	_pAnimationComponent = AddComponent<::Core::AnimationComponent>("AnimationComponent");
 	_pInputComponent = AddComponent<::Core::InputComponent>("InputComponent");
+	_pAxisInputComponent = AddComponent<::Core::InputComponent>("AxisInputComponent");
 	_pTextRenderComponent = AddComponent<::Core::TextRenderComponent>("TextRenderComponent");
 	_pMovementComponent = AddComponent<::Core::MovementComponent>("MovementComponent");
 	_pMovementComponent->SetGroundPosition(-130.f);
 
 	_pAnimationComponent->AddClip("Idle", 0.1f, true);
-	_pAnimationComponent->AddClip("Move", 0.1f, true);
-	_pAnimationComponent->AddClip("Jump", 0.1f);
-	_pAnimationComponent->AddClip("Running", 0.1f, true);
-	_pAnimationComponent->AddClip("BackMove", 0.1f, true);
-	_pAnimationComponent->AddClip("BackDash", 0.06f);
-	_pAnimationComponent->AddClip("LowKick", 0.06f);
-	_pAnimationComponent->AddClip("JumpDownKick", 0.06f);
-	_pAnimationComponent->AddClip("ReadyToIdle", 0.1f);
-	_pAnimationComponent->AddClip("ReadyToMove", 0.1f);
-	_pAnimationComponent->AddClip("MiddleKick", 0.06f);
+	_pAnimationComponent->AddClip("Jump", 0.06f);
 	_pAnimationComponent->AddClip("JumpBackDash", 0.1f);
-	_pAnimationComponent->AddClip("JumpLowKick", 0.1f);
-	_pAnimationComponent->AddClip("JumpMiddleKick", 0.08f);
-	_pAnimationComponent->AddClip("ReadyToBackMove", 0.1f);
-	_pAnimationComponent->AddClip("ReadyToRunning", 0.1f);
-	_pAnimationComponent->AddClip("AutoComboStart", 0.06f);
-	_pAnimationComponent->AddClip("AutoComboAirLaunch", 0.06f);
-
+	_pAnimationComponent->AddClip("Move", 0.06f, true);
+	_pAnimationComponent->AddClip("Running", 0.06f, true);
+	_pAnimationComponent->AddClip("BackMove", 0.06f, true);
+	_pAnimationComponent->AddClip("BackDash", 0.06f);
+	_pAnimationComponent->AddClip("ReadyToIdle", 0.06f);
+	_pAnimationComponent->AddClip("ReadyToMove", 0.06f);
+	_pAnimationComponent->AddClip("ReadyToRunning", 0.06f);
+	_pAnimationComponent->AddClip("ReadyToBackMove", 0.06f);
+	_pAnimationComponent->AddClip("MiddleKick", 0.06f)->AddDynamic(this, &Aoko::BigDamage);
+	_pAnimationComponent->AddClip("LowKick", 0.06f)->AddDynamic(this, &Aoko::SmallDamage);
+	_pAnimationComponent->AddClip("JumpDownKick", 0.04f)->AddDynamic(this, &Aoko::SmallDamage);
+	_pAnimationComponent->AddClip("JumpLowKick", 0.06f)->AddDynamic(this, &Aoko::SmallDamage);
+	_pAnimationComponent->AddClip("JumpMiddleKick", 0.06f)->AddDynamic(this, &Aoko::BigDamage);
+	_pAnimationComponent->AddClip("AutoComboStart", 0.05f)->AddDynamic(this, &Aoko::BigDamage);
+	_pAnimationComponent->AddClip("AutoComboAirLaunch", 0.05f)->AddDynamic(this, &Aoko::BigDamage);
 	_pAnimationComponent->SetOrder(1);
 	_pAnimationComponent->SetPlayClip("Idle");
 
@@ -47,20 +47,21 @@ void Client::Aoko::BeginPlay()
 
 	//rip... need to change this(단순한게 쓰기도 좋다... 이건 너무 복잡, 구현도 그렇고, 이해도 그렇고)
 	//move to input component
-	_pInputComponent->BindAction(DIK_RIGHT, InputType::PRESS, this, &Aoko::RightMoveHandler);
-	_pInputComponent->BindAction(DIK_LEFT, InputType::PRESS, this, &Aoko::LeftMoveHandler);
-	_pInputComponent->BindAction(DIK_RIGHT, InputType::HELD, this, &Aoko::RightMoveHandler);
-	_pInputComponent->BindAction(DIK_LEFT, InputType::HELD, this, &Aoko::LeftMoveHandler);
-	_pInputComponent->BindAction(DIK_RIGHT, InputType::RELEASE, this, &Aoko::StandHandler);
-	_pInputComponent->BindAction(DIK_LEFT, InputType::RELEASE, this, &Aoko::StandHandler);
+	_pAxisInputComponent->BindAction(DIK_RIGHT, InputType::PRESS, this, &Aoko::RightMoveHandler);
+	_pAxisInputComponent->BindAction(DIK_LEFT, InputType::PRESS, this, &Aoko::LeftMoveHandler);
+	_pAxisInputComponent->BindAction(DIK_RIGHT, InputType::HELD, this, &Aoko::RightMoveHandler);
+	_pAxisInputComponent->BindAction(DIK_LEFT, InputType::HELD, this, &Aoko::LeftMoveHandler);
+	_pAxisInputComponent->BindAction(DIK_RIGHT, InputType::RELEASE, this, &Aoko::StandHandler);
+	_pAxisInputComponent->BindAction(DIK_LEFT, InputType::RELEASE, this, &Aoko::StandHandler);
 	//jump to input component
-	_pInputComponent->BindAction(DIK_UP, InputType::PRESS, this, &Aoko::Jump);
-	_pInputComponent->BindAction(DIK_DOWN, InputType::HELD, this, &Aoko::Ducking);
+	_pAxisInputComponent->BindAction(DIK_UP, InputType::PRESS, this, &Aoko::Jump);
+	_pAxisInputComponent->BindAction(DIK_DOWN, InputType::HELD, this, &Aoko::Ducking);
 	//attack to input component
 	_pInputComponent->BindAction(DIK_A, InputType::PRESS, this, &Aoko::LowKickHandler);
 	_pInputComponent->BindAction(DIK_A, InputType::PRESS, this, &Aoko::AutoComboHandler);
 	_pInputComponent->BindAction(DIK_S, InputType::PRESS, this, &Aoko::MiddleKickHandler);
 	//input component attach to input manager
+	_pAxisInputComponent->AttachToInputManager();
 	_pInputComponent->AttachToInputManager();
 
 	_pStateComponent = AddComponent<::Core::StateComponent>("StateComponent");
@@ -68,7 +69,7 @@ void Client::Aoko::BeginPlay()
 
 	_pBodyBoxComponent = AddComponent<::Core::BoxComponent>("BodyBoxComponent");
 	_pBodyBoxComponent->SetAddOffset({ 0.f, 100.f });
-	_pBodyBoxComponent->SetSize({ 200.f, 600.f });
+	_pBodyBoxComponent->SetSize({ 150.f, 600.f });
 	_pBodyBoxComponent->SetCollisionType(Collision::COLLISION_BLOCK);
 	_pBodyBoxComponent->SetOrder(2);
 	_pBodyBoxComponent->AddColliderInLayer();
@@ -104,35 +105,41 @@ void Client::Aoko::EndPlay()
 {
 }
 
-void Client::Aoko::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
+void Client::Aoko::NotifyActorBeginOverlap(::Core::CollisionPackage Components)
 {
 	//std::cout << "Aoko NotifyActorBeginOverlap" << std::endl;
 }
 
-void Client::Aoko::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
+void Client::Aoko::NotifyActorEndOverlap(::Core::CollisionPackage Components)
 {
 	//std::cout << "Aoko NotifyActorEndOverlap" << std::endl;
 }
 
-void Client::Aoko::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
+void Client::Aoko::NotifyActorBlock(::Core::CollisionPackage Components)
 {
+	if(!_pOtherPlayerInfo && (*Components.otherComponent->GetOwner() == "Neko"))
+	{
+		_pOtherPlayerInfo = dynamic_cast<IPlayerInfo*>(Components.otherComponent->GetOwner());
+	}
+
 	if (!strcmp(_pStateComponent->GetCurrentStateName(),"AirLaunch") &&
-		(*pOtherComponent->GetOwner() == "Neko") &&
-		(*pOtherComponent == "BoxComponent"))
+		(*Components.otherComponent->GetOwner() == "Neko") &&
+		(*Components.otherComponent == "BoxComponent"))
 	{
 		std::cout << "Aoko NotifyActorBlock" << std::endl;
 	}
 
-	if(!_pMovementComponent->IsGrounded() &&
-		(*pOtherComponent->GetOwner() == "Neko") &&
-		(*pOtherComponent == "BoxComponent"))
+	if(!_pMovementComponent->IsGrounded() && (*Components.thisComponent == "FootBoxComponent") &&
+		!Components.otherComponent->GetOwner()->GetComponent<::Core::MovementComponent>("MovementComponent")->IsGrounded() 
+		&& (*Components.otherComponent == "BoxComponent"))
 	{
-		_pMovementComponent->ChangeVelocity().y = -1.f;
+		_pMovementComponent->ChangeVelocity().y -= 55.f;
 	}
 }
 
 void Client::Aoko::ExecuteMatchedCommands(_float deltaSeconds)
 {
+
 }
 
 void Client::Aoko::AutoComboHandler(const InputEvent& inputEvent)
@@ -144,7 +151,8 @@ void Client::Aoko::AutoComboHandler(const InputEvent& inputEvent)
 
 	if (_pMovementComponent->IsGrounded() && !_pMovementComponent->IsRunning())
 	{
-		if (_pInputComponent->IsKeyEventTriggeredLessTime(DIK_A, InputType::RELEASE, 0.28f) && 
+		if (_pStateComponent->IsCurrentState("LowKick") && _pAnimationComponent->IsClipEnd("LowKick") &&
+			_pInputComponent->IsKeyEventTriggeredLessTime(DIK_A, InputType::RELEASE, 0.38f) && 
 			_pInputComponent->IsKeyEventTriggerNow(DIK_A, InputType::PRESS))
 		{
 			if (_pAnimationComponent->IsFlip())
@@ -209,11 +217,11 @@ void Client::Aoko::MiddleKickHandler(const InputEvent& inputEvent)
 
 void Client::Aoko::Jump(const InputEvent& inputEvent)
 {
-	if (_pInputComponent->IsKeyEventTriggerNow(DIK_UP, InputType::PRESS))
+	if (_pAxisInputComponent->IsKeyEventTriggerNow(DIK_UP, InputType::PRESS))
 	{
 		_pMovementComponent->SetInputDirectionY(-1.2f);
 	}
-	else if (_pInputComponent->IsKeyEventTriggerNow(DIK_UP, InputType::RELEASE))
+	else if (_pAxisInputComponent->IsKeyEventTriggerNow(DIK_UP, InputType::RELEASE))
 	{
 		_pMovementComponent->SetInputDirectionY(0.f);
 	}
@@ -239,8 +247,8 @@ void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 	{
 	case true:
 		if(_pAnimationComponent->IsClipEnd("BackDash") && _pAnimationComponent->IsClipEnd("JumpBackDash") &&
-			_pInputComponent->IsKeyEventTriggeredLessTime(DIK_RIGHT, InputType::RELEASE, 0.18f) &&
-			_pInputComponent->IsKeyEventTriggerNow(DIK_RIGHT, InputType::PRESS))
+			_pAxisInputComponent->IsKeyEventTriggeredLessTime(DIK_RIGHT, InputType::RELEASE, 0.18f) &&
+			_pAxisInputComponent->IsKeyEventTriggerNow(DIK_RIGHT, InputType::PRESS))
 		{
 			_pStateComponent->ChangeState("BackDash");
 		}
@@ -251,8 +259,8 @@ void Client::Aoko::RightMoveHandler(const InputEvent& inputEvent)
 		}
 		break;
 	case false:
-		if(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_RIGHT, InputType::RELEASE, 0.18f) &&
-			_pInputComponent->IsKeyEventTriggerNow(DIK_RIGHT, InputType::PRESS))
+		if(_pAxisInputComponent->IsKeyEventTriggeredLessTime(DIK_RIGHT, InputType::RELEASE, 0.18f) &&
+			_pAxisInputComponent->IsKeyEventTriggerNow(DIK_RIGHT, InputType::PRESS))
 		{
 			_pMovementComponent->SetRunning(true);
 		}
@@ -275,8 +283,8 @@ void Client::Aoko::LeftMoveHandler(const InputEvent& inputEvent)
 	switch (isFlip)
 	{
 	case true:
-		if(_pInputComponent->IsKeyEventTriggeredLessTime(DIK_LEFT, InputType::RELEASE, 0.18f) &&
-			_pInputComponent->IsKeyEventTriggerNow(DIK_LEFT, InputType::PRESS))
+		if(_pAxisInputComponent->IsKeyEventTriggeredLessTime(DIK_LEFT, InputType::RELEASE, 0.18f) &&
+			_pAxisInputComponent->IsKeyEventTriggerNow(DIK_LEFT, InputType::PRESS))
 		{
 			_pMovementComponent->SetRunning(true);
 		}
@@ -287,8 +295,8 @@ void Client::Aoko::LeftMoveHandler(const InputEvent& inputEvent)
 		break;
 	case false:
 		if(_pAnimationComponent->IsClipEnd("BackDash") && _pAnimationComponent->IsClipEnd("JumpBackDash") &&
-			_pInputComponent->IsKeyEventTriggeredLessTime(DIK_LEFT, InputType::RELEASE, 0.18f) &&
-			_pInputComponent->IsKeyEventTriggerNow(DIK_LEFT, InputType::PRESS))
+		   _pAxisInputComponent->IsKeyEventTriggeredLessTime(DIK_LEFT, InputType::RELEASE, 0.18f) &&
+		   _pAxisInputComponent->IsKeyEventTriggerNow(DIK_LEFT, InputType::PRESS))
 		{
 			_pStateComponent->ChangeState("BackDash");
 		}
@@ -311,6 +319,22 @@ void Client::Aoko::Dead()
 {
 }
 
+void Client::Aoko::SmallDamage()
+{
+	if(_pOtherPlayerInfo && _pOtherPlayerInfo->IsHit())
+	{
+		_pOtherPlayerInfo->DamageInvoker(170);
+	}
+}
+
+void Client::Aoko::BigDamage()
+{
+	if(_pOtherPlayerInfo && _pOtherPlayerInfo->IsHit())
+	{
+		_pOtherPlayerInfo->DamageInvoker(270);
+	}
+}
+
 void Client::Aoko::SetPlayClip(_pstring clipName)
 {
 	_pAnimationComponent->SetPlayClip(clipName);
@@ -319,6 +343,11 @@ void Client::Aoko::SetPlayClip(_pstring clipName)
 void Client::Aoko::DamageInvoker(int damage)
 {
 	_currentHP -= damage;
+}
+
+bool Client::Aoko::IsHit() const
+{
+	return false;
 }
 
 int Client::Aoko::GetHP() const

@@ -29,7 +29,7 @@ void Client::Idle::Enter()
 		pAnimationComponent->SetPlayClip("Idle");
 	}
 
-	pBodyBoxComponent->SetSize({ 200.f, 600.f });
+	pBodyBoxComponent->SetSize({ 150.f, 600.f });
 }
 
 void Client::Idle::Execute(float deltaSeconds)
@@ -45,7 +45,9 @@ void Client::Idle::Execute(float deltaSeconds)
 	{
 		pAnimationComponent->SetPlayClip("Jump");
 	}
-	else if (pAnimationComponent->IsFrameEnd())
+	else if (pAnimationComponent->IsClipEnd("JumpDownKick") && 
+			 pAnimationComponent->IsFrameEnd() &&
+			 pMovementComponent->IsGrounded())
 	{
 		pAnimationComponent->SetPlayClip("Idle");
 	}

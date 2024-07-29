@@ -183,7 +183,6 @@
     <ClInclude Include="..\Engine\Headers\Transform.h" />
     <ClInclude Include="..\Engine\Headers\Vector2.h" />
     <ClInclude Include="..\Engine\Headers\World.h" />
-    <ClInclude Include="..\Engine\Headers\WorldManager.h" />
     <ClInclude Include="ToDoList.h" />
   </ItemGroup>
   <ItemGroup>
@@ -217,10 +216,6 @@
     <ClCompile Include="..\Engine\Codes\Transform.cpp" />
     <ClCompile Include="..\Engine\Codes\World.cpp" />
     <ClCompile Include="..\Engine\Headers\CameraActor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

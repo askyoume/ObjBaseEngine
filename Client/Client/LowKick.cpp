@@ -20,25 +20,26 @@ void Client::LowKick::Enter()
 		pAnimationComponent = pActor->GetComponent<::Core::AnimationComponent>("AnimationComponent");
 		pBodyBoxComponent = pActor->GetComponent<::Core::BoxComponent>("BodyBoxComponent");
 		pFootBoxComponent = pActor->GetComponent<::Core::BoxComponent>("FootBoxComponent");
-		pInputComponent = pActor->GetComponent<::Core::InputComponent>("InputComponent");
+		pInputComponent = pActor->GetComponent<::Core::InputComponent>("AxisInputComponent");
 	}
 
-	if(pAnimationComponent->IsClipEnd("JumpLowKick") &&
+	if(pAnimationComponent->IsClipEnd("JumpDownKick") &&
+		pAnimationComponent->IsClipEnd("JumpLowKick") &&
 		pAnimationComponent->IsClipEnd("LowKick"))
 	{
 		if(!pMovementComponent->IsGrounded())
 		{
-			if(pInputComponent->IsKeyEventTriggeredLessTime(DIK_DOWN, InputType::HELD, 0.28f))
+			if(pInputComponent->IsKeyEventTriggerNow(DIK_DOWN, InputType::HELD))
 			{
 				if (pAnimationComponent->IsFlip())
 				{
-					pFootBoxComponent->SetAddOffset({ -80.f, 80.f });
+					pFootBoxComponent->SetAddOffset({ -80.f, 150.f });
 				}
 				else
 				{
-					pFootBoxComponent->SetAddOffset({ 80.f, 80.f });
+					pFootBoxComponent->SetAddOffset({ 80.f, 150.f });
 				}
-				pFootBoxComponent->SetSize({ 300.f, 300.f });
+				pFootBoxComponent->SetSize({ 300.f, 250.f });
 				pAnimationComponent->SetPlayClip("JumpDownKick");
 			}
 			else
@@ -68,8 +69,7 @@ void Client::LowKick::Enter()
 
 void Client::LowKick::Execute(float deltaSeconds)
 {
-	if (pAnimationComponent->IsClipEnd("JumpLowKick") &&
-		pAnimationComponent->IsClipEnd("LowKick"))
+	if (pAnimationComponent->IsFrameEnd())
 	{
 		_pOwnerComponent->ChangeState("IDLE");
 	}
@@ -77,8 +77,7 @@ void Client::LowKick::Execute(float deltaSeconds)
 
 void Client::LowKick::Exit()
 {
-	if (pAnimationComponent->IsClipEnd("JumpLowKick") ||
-		pAnimationComponent->IsClipEnd("LowKick"))
+	if (pAnimationComponent->IsFrameEnd())
 	{
 		pFootBoxComponent->SetCollisionType(Collision::COLLISION_IGNORE);
 	}

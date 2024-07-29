@@ -43,9 +43,9 @@ bool Client::ClientWorld::BeginPlay()
 	_pActorTwo = FindActor("Neko");
 	_pPlayerOneHP = dynamic_cast<PlayerHP*>(FindActor("PlayerOneHP"));
 	_pPlayerTwoHP = dynamic_cast<PlayerHP*>(FindActor("PlayerTwoHP"));
+	_pPlayerTwoHP->SwitchPlayer(PlayerID_Two);
 	_pPlayerOneHP->SetPlayerInfo(_pActorOne);
 	_pPlayerTwoHP->SetPlayerInfo(_pActorTwo);
-	_pPlayerTwoHP->SwitchPlayer(PlayerID_Two);
 
 	SettingCamera(PlayCameraActor::Create());
 	SettingCameraPosition(Mathf::Vector2{ 1835.f, -530.f });

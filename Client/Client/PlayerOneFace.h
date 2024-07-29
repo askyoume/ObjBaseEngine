@@ -28,5 +28,6 @@ namespace Client
 		::Core::BitmapComponent* _pBitmapComponent{ nullptr };
 		::Core::BitmapComponent* _pBitmapComponent2{ nullptr };
 		::Core::BitmapComponent* _pBitmapComponent3{ nullptr };
+		::Core::BitmapComponent* _pBitmapComponent4{ nullptr };
 	};
 }

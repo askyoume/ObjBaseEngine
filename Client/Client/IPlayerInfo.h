@@ -6,6 +6,7 @@ namespace Client
 	Interface IPlayerInfo
 	{
 		void DamageInvoker(int damage) PURE;
+		bool IsHit() const PURE;
 		int GetHP() const PURE;
 		int GetMaxHP() const PURE;
 		int GetGauge() const PURE;

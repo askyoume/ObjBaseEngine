@@ -46,13 +46,13 @@ void Client::TestActor::EndPlay()
 {
 }
 
-void Client::TestActor::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
+void Client::TestActor::NotifyActorBlock(::Core::CollisionPackage Components)
 {
 }
 
-void Client::TestActor::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
+void Client::TestActor::NotifyActorBeginOverlap(::Core::CollisionPackage Components)
 {
-	if (*pOtherComponent->GetOwner() == "Mouse")
+	if (*Components.otherComponent->GetOwner() == "Mouse")
 	{
 		if(_pTargetActor->IsDestroyMarked())
 		{
@@ -65,6 +65,6 @@ void Client::TestActor::NotifyActorBeginOverlap(::Core::CollisionComponent* pOth
 	}
 }
 
-void Client::TestActor::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
+void Client::TestActor::NotifyActorEndOverlap(::Core::CollisionPackage Components)
 {
 }

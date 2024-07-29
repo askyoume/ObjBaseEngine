@@ -10,7 +10,7 @@ void Core::CollisionComponent::ProcessCollision()
 		if (_previousCollisionState.find(pOtherComponent) == 
 			_previousCollisionState.end())
 		{
-			_owner->NotifyActorBeginOverlap(pOtherComponent);
+			_owner->NotifyActorBeginOverlap({this, pOtherComponent});
 		}	
 	}
 
@@ -19,14 +19,14 @@ void Core::CollisionComponent::ProcessCollision()
 		if (_currentCollisionState.find(pOtherComponent) ==
 			_currentCollisionState.end())
 		{
-			_owner->NotifyActorEndOverlap(pOtherComponent);
+			_owner->NotifyActorEndOverlap({this, pOtherComponent});
 		}
 	}
 }
 
 void Core::CollisionComponent::ProcessCollision(CollisionComponent* pOtherComponent)
 {
-	_owner->NotifyActorBlock(pOtherComponent);
+	_owner->NotifyActorBlock({this, pOtherComponent});
 }
 
 void Core::CollisionComponent::AddCollisionState(CollisionComponent* pOtherComponent)

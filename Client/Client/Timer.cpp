@@ -4,6 +4,7 @@
 #include "../../Engine/Headers/Texture.h"
 #include "../../Engine/Headers/World.h"
 #include "../../Engine/Headers/BoxComponent.h"
+#include "../../Engine/Headers/InputComponent.h"
 
 #include "Timer.h"
 
@@ -33,6 +34,18 @@ void Client::Timer::BeginPlay()
 	_pBoxComponent->SetSize({ 500.f, 150.f });
 	_pBoxComponent->SetCollisionType(Collision::COLLISION_OVERLAP);
 	_pBoxComponent->AddColliderInLayer();
+
+	_pInputComponent = AddComponent<::Core::InputComponent>("TimerInput");
+	_pInputComponent->BindInputEvent(DIK_END, InputType::PRESS, [](const InputEvent inputEvent){
+				::Core::CoreManager* pCoreManager = ::Core::CoreManager::GetInstance();
+				pCoreManager->SetTimeScale(0.3f);
+		});
+
+	_pInputComponent->BindInputEvent(DIK_HOME, InputType::PRESS, [](const InputEvent inputEvent) {
+				::Core::CoreManager* pCoreManager = ::Core::CoreManager::GetInstance();
+				pCoreManager->SetTimeScale(1.f);
+		});
+	_pInputComponent->AttachToInputManager();
 
 	_pRootComponent->SetRelativeScale({ 1.54f, 1.5f });
 }
@@ -89,13 +102,13 @@ void Client::Timer::EndPlay()
 {
 }
 
-void Client::Timer::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
+void Client::Timer::NotifyActorBlock(::Core::CollisionPackage Components)
 {
 }
 
-void Client::Timer::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
+void Client::Timer::NotifyActorBeginOverlap(::Core::CollisionPackage Components)
 {
-	if (*pOtherComponent->GetOwner() == "Mouse")
+	if (*Components.otherComponent->GetOwner() == "Mouse")
 	{
 		if(_isTimerOn)
 		{
@@ -109,6 +122,6 @@ void Client::Timer::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherCo
 	}
 }
 
-void Client::Timer::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
+void Client::Timer::NotifyActorEndOverlap(::Core::CollisionPackage Components)
 {
 }

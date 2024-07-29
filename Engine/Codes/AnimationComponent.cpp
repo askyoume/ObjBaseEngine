@@ -12,14 +12,26 @@ void Core::AnimationComponent::TickComponent(_float deltaSeconds)
 	SceneComponent::TickComponent(deltaSeconds);
 
 	if (_isVisible == false) { return; }
-	if (0 == _currentFrame) { _isFrameEnd = false; }
+	if (0 == _currentFrame) { 
+		_animationClips[_currentClipName]->isEnd = false;
+		_isFrameEnd = false; 
+	}
 
 	_currentFrameTime += deltaSeconds;
 	
 	if (_currentFrameTime >= _frameTime)
 	{
 		_currentFrameTime -= _frameTime;
-		_prevFrame = _currentFrame;
+		if(!_isFrameEnd)
+			_prevFrame = _currentFrame;
+
+		if (_currentFrame == std::nearbyint(_frameCount * 0.5f))
+		{
+			if (_animationClips[_currentClipName]->dynamic)
+			{
+				_animationClips[_currentClipName]->dynamic();
+			}
+		}
 
 		if (_isLoop)
 		{
@@ -33,6 +45,7 @@ void Core::AnimationComponent::TickComponent(_float deltaSeconds)
 
 	if (_prevFrame != _currentFrame && _currentFrame == _frameCount - 1)
 	{
+		_animationClips[_currentClipName]->isEnd = true;
 		_isFrameEnd = true;
 	}
 	else
@@ -72,7 +85,7 @@ void Core::AnimationComponent::Render(ID2D1RenderTarget* pRenderTarget)
 	pRenderTarget->SetTransform(Matx::Identity);
 }
 
-void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool isLoop)
+Core::AnimationClip* Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool isLoop)
 {
 	if(!_isInLayer)
 	{
@@ -85,7 +98,7 @@ void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool
 	pClip->clipIndex = (int)GetOwner()->GetTextureSize();
 	pClip->isLoop = isLoop;
 
-	_vecClips.insert(std::make_pair(clipName, pClip));
+	_animationClips.insert(std::make_pair(clipName, pClip));
 	
 	::Core::CoreManager* pCore = ::Core::CoreManager::GetInstance();
 	_bstr_t convertOwnerName = GetOwner()->GetName();
@@ -93,23 +106,20 @@ void Core::AnimationComponent::AddClip(_pstring clipName, _float frameTime, bool
 	_bstr_t textureName = convertOwnerName + "_" + convertName;
 	
 	GetOwner()->AddTexture(pCore->FindTexture(textureName));
+
+	return pClip;
 }
 
 const bool Core::AnimationComponent::IsClipPlay(_pstring clipName) const
 {
-	if (_currentClipName && !strcmp(_currentClipName, clipName))
-	{
-		return !_isFrameEnd;
-	}
-
-	return false;
+	return (_currentClipName && !strcmp(_currentClipName, clipName));
 }
 
-const bool Core::AnimationComponent::IsClipEnd(_pstring clipName) const
+bool Core::AnimationComponent::IsClipEnd(_pstring clipName) const
 {
 	if (_currentClipName && !strcmp(_currentClipName, clipName))
 	{
-		return _isFrameEnd;
+		return _animationClips.find(clipName)->second->isEnd;
 	}
 
 	return true;
@@ -122,10 +132,15 @@ const bool Core::AnimationComponent::IsFrameEnd() const
 
 void Core::AnimationComponent::SetPlayClip(_pstring clipName)
 {
+	if(_currentClipName && strcmp(_currentClipName,clipName))
+	{
+		_animationClips[_currentClipName]->isEnd = true;
+	}
+
 	_currentClipName = clipName;
-	_currentClipIndex = _vecClips[clipName]->clipIndex;
-	_frameTime = _vecClips[clipName]->frameTime;
-	_isLoop = _vecClips[clipName]->isLoop;
+	_currentClipIndex = _animationClips[clipName]->clipIndex;
+	_frameTime = _animationClips[clipName]->frameTime;
+	_isLoop = _animationClips[clipName]->isLoop;
 
 	Texture* pTexture = GetOwner()->GetFrame(_currentClipIndex);
 
@@ -137,7 +152,7 @@ void Core::AnimationComponent::SetPlayClip(_pstring clipName)
 
 void Core::AnimationComponent::RemoveClip(_pstring clipName)
 {
-	_vecClips.erase(clipName);
+	_animationClips.erase(clipName);
 }
 
 bool Core::AnimationComponent::Initialize()
@@ -149,12 +164,12 @@ bool Core::AnimationComponent::Initialize()
 
 void Core::AnimationComponent::Remove()
 {
-	for (auto& clip : _vecClips)
+	for (auto& clip : _animationClips)
 	{
 		delete clip.second;
 	}
 
-	_vecClips.clear();
+	_animationClips.clear();
 
 	BitmapComponent::Remove();
 }

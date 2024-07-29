@@ -30,13 +30,14 @@ namespace Client
 		void Tick(_float deltaSeconds) override;
 		void Fixed() override;
 		void EndPlay() override;
-		void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
-		void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
-		void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		void NotifyActorBlock(::Core::CollisionPackage Components) override;
+		void NotifyActorBeginOverlap(::Core::CollisionPackage Components) override;
+		void NotifyActorEndOverlap(::Core::CollisionPackage Components) override;
 		void ReviveInitialize() override;
 
 		// IPlayerInfo
 		void DamageInvoker(int damage) override;
+		bool IsHit() const override;
 		int GetHP() const override;
 		int GetMaxHP() const override;
 		int GetGauge() const override;

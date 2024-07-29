@@ -44,9 +44,6 @@
     <Filter Include="Engine\BaseClass\World">
       <UniqueIdentifier>{4f0f1d10-e542-4c0b-9ced-11199bb66e57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Manager\World">
-      <UniqueIdentifier>{dd844ada-7a22-4db4-9b7c-dd8887947dbc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Component\SceneComponent">
       <UniqueIdentifier>{1c874fa5-5ccb-43f3-a7ab-5d0939e2b7d7}</UniqueIdentifier>
     </Filter>
@@ -252,9 +249,6 @@
     <ClInclude Include="ToDoList.h">
       <Filter>Engine\TodoList</Filter>
     </ClInclude>
-    <ClInclude Include="..\Engine\Headers\WorldManager.h">
-      <Filter>Engine\Manager\World</Filter>
-    </ClInclude>
     <ClInclude Include="..\Engine\Headers\AnimationComponent.h">
       <Filter>Engine\Component\SceneComponent\AnimationComponent</Filter>
     </ClInclude>
@@ -392,9 +386,5 @@
     <ClCompile Include="..\Engine\Codes\AnimationComponent.cpp">
       <Filter>Engine\Component\SceneComponent\AnimationComponent</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

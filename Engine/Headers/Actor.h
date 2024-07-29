@@ -18,9 +18,9 @@ namespace Core
 		virtual void Tick(_float deltaSeconds);
 		virtual void Fixed();
 		virtual void EndPlay();
-		virtual void NotifyActorBlock(CollisionComponent* pOtherComponent) override {};
-		virtual void NotifyActorBeginOverlap(CollisionComponent* pOtherComponent) override {};
-		virtual void NotifyActorEndOverlap(CollisionComponent* pOtherComponent) override {};
+		virtual void NotifyActorBlock(CollisionPackage Components) override {};
+		virtual void NotifyActorBeginOverlap(CollisionPackage Components) override {};
+		virtual void NotifyActorEndOverlap(CollisionPackage Components) override {};
 		virtual void ReviveInitialize() {};
 
 	public:

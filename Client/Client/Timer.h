@@ -6,6 +6,7 @@ namespace Core
 {
 	class BitmapComponent;
 	class BoxComponent;
+	class InputComponent;
 	class CollisionComponent;
 }
 
@@ -40,9 +41,9 @@ namespace Client
 		void EndPlay() override;
 
 	public:
-		void NotifyActorBlock(::Core::CollisionComponent* pOtherComponent) override;
-		void NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent) override;
-		void NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent) override;
+		void NotifyActorBlock(::Core::CollisionPackage Components) override;
+		void NotifyActorBeginOverlap(::Core::CollisionPackage Components) override;
+		void NotifyActorEndOverlap(::Core::CollisionPackage Components) override;
 
 	public:
 		void SetTimerOn(bool isOn) { _isTimerOn = isOn; }
@@ -59,6 +60,7 @@ namespace Client
 		::Core::BitmapComponent* _pBitmapComponent2{ nullptr };
 		::Core::BitmapComponent* _pBitmapComponent3{ nullptr };
 		::Core::BoxComponent*	 _pBoxComponent{ nullptr };
+		::Core::InputComponent*  _pInputComponent{ nullptr };
 
 	private:
 		Mathf::Vector2 _infinityPos{ 0.f, 0.f };

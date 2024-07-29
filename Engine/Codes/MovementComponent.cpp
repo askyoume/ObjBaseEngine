@@ -17,7 +17,7 @@ void Core::MovementComponent::BeginPlay()
 {
 	//default settings
 	_moveSpeed = 150.f;
-	_gravityFactor = 550.f;
+	_gravityFactor = 450.f;
 	_calculatedGravity = _gravity * _gravityFactor;
 	_jumpPower = 1700.f;
 	_limitSpeed = 100.0f;
@@ -35,7 +35,6 @@ void Core::MovementComponent::TickComponent(_float deltaSeconds)
 	}
 
 	_ownerCurrentLocation = _pRootComponent->GetWorldLocation();
-
 	_velocity.y += _calculatedGravity * deltaSeconds;
 	//std::cout << _velocity.y << std::endl;
 	if (_velocity.x > 0)

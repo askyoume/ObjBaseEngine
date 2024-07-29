@@ -3,8 +3,12 @@
 
 namespace Core
 {
-	class AnimationComponent final : public BitmapComponent
+	class AnimationComponent : public BitmapComponent
 	{
+	public:
+		using Dynamic = std::function<void()>;
+		using Clips = std::unordered_map<_pstring, AnimationClip*>;
+
 	protected:
 		explicit AnimationComponent() = default;
 		virtual ~AnimationComponent() = default;
@@ -12,12 +16,23 @@ namespace Core
 	public:
 		virtual void TickComponent(_float deltaSeconds) override;
 		virtual void Render(ID2D1RenderTarget* pRenderTarget) override;
-		void AddClip(_pstring clipName, _float frameTime, bool isLoop = false);
+		AnimationClip* AddClip(_pstring clipName, _float frameTime, bool isLoop = false);
 		const bool IsClipPlay(_pstring clipName) const;
-		const bool IsClipEnd(_pstring clipName) const;
+		bool IsClipEnd(_pstring clipName) const;
 		const bool IsFrameEnd() const;
 		void SetPlayClip(_pstring clipName);
 		void RemoveClip(_pstring clipName);
+
+	public:
+		template<typename T, typename U>
+		void AddDynamic(const char* clipName, T* object, void (U::* method)())
+		{
+			Dynamic dynamic = [object, method]()
+				{
+					(object->*method)();
+				};
+			_animationClips[clipName]->dynamic = dynamic;
+		}
 		
 	protected:
 		virtual bool Initialize() override;
@@ -27,7 +42,7 @@ namespace Core
 		static AnimationComponent* Create();
 
 	private:
-		std::unordered_map<_pstring, AnimationClip*> _vecClips;
+		Clips	 _animationClips;
 		_pstring _currentClipName{};
 		float	 _frameTime{ 0 };
 		float	 _currentFrameTime{ -1 };

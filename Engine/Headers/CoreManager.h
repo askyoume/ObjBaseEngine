@@ -60,6 +60,7 @@ namespace Core
 
 		//Time
 		TimeManager* GetTimeManager() const { return _pTimeMgr; }
+		void SetTimeScale(_float timeScale);
 
 		//World
 		World* GetWorld() const { return _pWorld; }

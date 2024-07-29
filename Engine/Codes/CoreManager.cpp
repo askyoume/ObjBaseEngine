@@ -130,6 +130,11 @@ void Core::CoreManager::UnRegisterReceiver(_uint key, InputType Type, IInputRece
 	_pInputMgr->UnRegisterReceiver(key, Type, Receiver);
 }
 
+void Core::CoreManager::SetTimeScale(_float timeScale)
+{
+	_pTimeMgr->SetTimeScale(timeScale);
+}
+
 void Core::CoreManager::EraseActorMap(Object* pObject)
 {
     _pWorld->GetActorMap().erase(pObject->GetName());

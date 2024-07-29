@@ -33,11 +33,11 @@ void Client::Mouse::EndPlay()
 {
 }
 
-void Client::Mouse::NotifyActorBlock(::Core::CollisionComponent* pOtherComponent)
+void Client::Mouse::NotifyActorBlock(::Core::CollisionPackage Components)
 {
 }
 
-void Client::Mouse::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherComponent)
+void Client::Mouse::NotifyActorBeginOverlap(::Core::CollisionPackage Components)
 {
 	//if (*pOtherComponent->GetOwner() == "Timer")
 	//{
@@ -45,7 +45,7 @@ void Client::Mouse::NotifyActorBeginOverlap(::Core::CollisionComponent* pOtherCo
 	//}
 }
 
-void Client::Mouse::NotifyActorEndOverlap(::Core::CollisionComponent* pOtherComponent)
+void Client::Mouse::NotifyActorEndOverlap(::Core::CollisionPackage Components)
 {
 	//if (*pOtherComponent->GetOwner() == "Timer")
 	//{
